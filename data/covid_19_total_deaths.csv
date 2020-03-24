@@ -1,88 +1,90 @@
 Country,Deaths
-Afghanistan,1
-Albania,2
-Algeria,17
-Andorra,1
-Argentina,4
-Australia,7
-Austria,16
-Azerbaijan,1
-Bahrain,2
-Bangladesh,2
-Belgium,75
-Bosnia and Herzegovina,1
-Brazil,25
-Bulgaria,3
-Burkina Faso,4
-Canada,21
-Chile,1
-China,3265
-Colombia,2
-Congo (Kinshasa),1
-Costa Rica,2
-Croatia,1
-Cruise Ship,8
-Cuba,1
-Cyprus,1
-Czechia,1
-Denmark,13
-Dominican Republic,3
-Ecuador,14
-Egypt,14
-Finland,1
-France,674
-Gabon,1
-Germany,94
-Ghana,1
-Greece,15
-Guatemala,1
-Guyana,1
-Hungary,6
-Iceland,1
-India,7
-Indonesia,48
-Iran,1685
-Iraq,20
-Ireland,4
-Israel,1
-Italy,5476
-Jamaica,1
-Japan,40
-"Korea, South",104
-Lebanon,4
-Lithuania,1
-Luxembourg,8
-Malaysia,10
-Martinique,1
-Mauritius,1
-Mexico,2
-Moldova,1
-Morocco,4
-Netherlands,180
-North Macedonia,1
-Norway,7
-Pakistan,5
-Panama,3
-Paraguay,1
-Peru,5
-Philippines,25
-Poland,7
-Portugal,14
-Romania,3
-San Marino,20
-Serbia,2
-Singapore,2
-Slovakia,1
-Slovenia,2
-Spain,1772
-Sudan,1
-Sweden,21
-Switzerland,98
-Taiwan*,2
-Thailand,1
-Tunisia,3
-Turkey,30
-US,417
-Ukraine,3
-United Arab Emirates,2
-United Kingdom,282
+Afghanistan,1.0
+Albania,2.0
+Algeria,17.0
+Andorra,1.0
+Argentina,4.0
+Australia,7.0
+Austria,16.0
+Azerbaijan,1.0
+Bahrain,2.0
+Bangladesh,2.0
+Belgium,75.0
+Bosnia and Herzegovina,1.0
+Brazil,25.0
+Bulgaria,3.0
+Burkina Faso,4.0
+Canada,21.0
+Chile,1.0
+China,3274.0
+Colombia,2.0
+Congo (Kinshasa),1.0
+Costa Rica,2.0
+Croatia,1.0
+Cruise Ship,8.0
+Cuba,1.0
+Cyprus,1.0
+Czechia,1.0
+Denmark,13.0
+Dominican Republic,3.0
+Ecuador,14.0
+Egypt,14.0
+Finland,1.0
+France,674.0
+Gabon,1.0
+Germany,94.0
+Ghana,1.0
+Greece,15.0
+Guam,1.0
+Guatemala,1.0
+Guyana,1.0
+Hungary,6.0
+Iceland,1.0
+India,7.0
+Indonesia,48.0
+Iran,1685.0
+Iraq,20.0
+Ireland,4.0
+Israel,1.0
+Italy,5476.0
+Jamaica,1.0
+Japan,40.0
+"Korea, South",104.0
+Lebanon,4.0
+Lithuania,1.0
+Luxembourg,8.0
+Malaysia,10.0
+Martinique,1.0
+Mauritius,1.0
+Mexico,2.0
+Moldova,1.0
+Morocco,4.0
+Netherlands,180.0
+North Macedonia,1.0
+Norway,7.0
+Pakistan,5.0
+Panama,3.0
+Paraguay,1.0
+Peru,5.0
+Philippines,25.0
+Poland,7.0
+Portugal,14.0
+Puerto Rico,1.0
+Romania,3.0
+San Marino,20.0
+Serbia,2.0
+Singapore,2.0
+Slovakia,1.0
+Slovenia,2.0
+Spain,1772.0
+Sudan,1.0
+Sweden,21.0
+Switzerland,98.0
+Taiwan*,2.0
+Thailand,1.0
+Tunisia,3.0
+Turkey,30.0
+US,417.0
+Ukraine,3.0
+United Arab Emirates,2.0
+United Kingdom,282.0

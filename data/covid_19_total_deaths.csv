@@ -1,90 +1,74 @@
 Country,Deaths
-Afghanistan,1.0
-Albania,2.0
-Algeria,17.0
-Andorra,1.0
-Argentina,4.0
-Australia,7.0
-Austria,16.0
-Azerbaijan,1.0
-Bahrain,2.0
-Bangladesh,2.0
-Belgium,75.0
-Bosnia and Herzegovina,1.0
-Brazil,25.0
-Bulgaria,3.0
-Burkina Faso,4.0
-Canada,21.0
-Chile,1.0
-China,3274.0
-Colombia,2.0
-Congo (Kinshasa),1.0
-Costa Rica,2.0
-Croatia,1.0
-Cruise Ship,8.0
-Cuba,1.0
-Cyprus,1.0
-Czechia,1.0
-Denmark,13.0
-Dominican Republic,3.0
-Ecuador,14.0
-Egypt,14.0
-Finland,1.0
-France,674.0
-Gabon,1.0
-Germany,94.0
-Ghana,1.0
-Greece,15.0
-Guam,1.0
-Guatemala,1.0
-Guyana,1.0
-Hungary,6.0
-Iceland,1.0
-India,7.0
-Indonesia,48.0
-Iran,1685.0
-Iraq,20.0
-Ireland,4.0
-Israel,1.0
-Italy,5476.0
-Jamaica,1.0
-Japan,40.0
-"Korea, South",104.0
-Lebanon,4.0
-Lithuania,1.0
-Luxembourg,8.0
-Malaysia,10.0
-Martinique,1.0
-Mauritius,1.0
-Mexico,2.0
-Moldova,1.0
-Morocco,4.0
-Netherlands,180.0
-North Macedonia,1.0
-Norway,7.0
-Pakistan,5.0
-Panama,3.0
-Paraguay,1.0
-Peru,5.0
-Philippines,25.0
-Poland,7.0
-Portugal,14.0
-Puerto Rico,1.0
-Romania,3.0
-San Marino,20.0
-Serbia,2.0
-Singapore,2.0
-Slovakia,1.0
-Slovenia,2.0
-Spain,1772.0
-Sudan,1.0
-Sweden,21.0
-Switzerland,98.0
-Taiwan*,2.0
-Thailand,1.0
-Tunisia,3.0
-Turkey,30.0
-US,417.0
-Ukraine,3.0
-United Arab Emirates,2.0
-United Kingdom,282.0
+Albania,5
+Algeria,19
+Argentina,6
+Australia,8
+Austria,28
+Bahrain,3
+Bangladesh,4
+Belgium,122
+Bosnia and Herzegovina,3
+Brazil,46
+Bulgaria,3
+Burkina Faso,4
+Canada,26
+Chile,2
+China,3281
+Colombia,3
+Congo (Kinshasa),2
+Costa Rica,2
+Cyprus,3
+Czechia,3
+Denmark,32
+Diamond Princess,10
+Dominican Republic,6
+Ecuador,27
+Egypt,20
+France,1102
+Germany,157
+Ghana,2
+Greece,20
+Hungary,9
+Iceland,2
+India,10
+Indonesia,55
+Iran,1934
+Iraq,27
+Ireland,7
+Israel,3
+Italy,6820
+Japan,43
+"Korea, South",120
+Lebanon,4
+Lithuania,2
+Luxembourg,8
+Malaysia,16
+Mauritius,2
+Mexico,4
+Morocco,5
+Netherlands,277
+North Macedonia,2
+Norway,12
+Pakistan,7
+Panama,6
+Paraguay,2
+Peru,7
+Philippines,35
+Poland,10
+Portugal,33
+Romania,11
+San Marino,21
+Serbia,3
+Singapore,2
+Slovenia,4
+Spain,2808
+Sweden,36
+Switzerland,122
+Taiwan*,2
+Thailand,4
+Tunisia,4
+Turkey,44
+US,706
+Ukraine,3
+United Arab Emirates,2
+United Kingdom,423

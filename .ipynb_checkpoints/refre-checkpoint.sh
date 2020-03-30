@@ -16,5 +16,5 @@ do
     git push
     
     echo "Press <CTRL+C> to exit."
-    sleep 36000
+    sleep 3600
 done

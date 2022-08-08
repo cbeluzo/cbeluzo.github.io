@@ -1,4 +1,0 @@
-git add .
-git commit -m "Save"
-git pull
-git push

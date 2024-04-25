@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CursoIntroducaoPython</title>
+  <style>
+  @font-face {
+  font-family: octicons-link;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff');
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.markdown-body .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #24292e;
+  line-height: 1.5;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body .pl-c {
+  color: #6a737d;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6f42c1;
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #24292e;
+}
+
+.markdown-body .pl-ent {
+  color: #22863a;
+}
+
+.markdown-body .pl-k {
+  color: #d73a49;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.markdown-body .pl-smw,
+.markdown-body .pl-v {
+  color: #e36209;
+}
+
+.markdown-body .pl-bu {
+  color: #b31d28;
+}
+
+.markdown-body .pl-ii {
+  background-color: #b31d28;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2 {
+  background-color: #d73a49;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2:before {
+  content: "^M";
+}
+
+.markdown-body .pl-sr .pl-cce {
+  color: #22863a;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ml {
+  color: #735c0f;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.markdown-body .pl-mi {
+  color: #24292e;
+  font-style: italic;
+}
+
+.markdown-body .pl-mb {
+  color: #24292e;
+  font-weight: 700;
+}
+
+.markdown-body .pl-md {
+  background-color: #ffeef0;
+  color: #b31d28;
+}
+
+.markdown-body .pl-mi1 {
+  background-color: #f0fff4;
+  color: #22863a;
+}
+
+.markdown-body .pl-mc {
+  background-color: #ffebda;
+  color: #e36209;
+}
+
+.markdown-body .pl-mi2 {
+  background-color: #005cc5;
+  color: #f6f8fa;
+}
+
+.markdown-body .pl-mdr {
+  color: #6f42c1;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ba {
+  color: #586069;
+}
+
+.markdown-body .pl-sg {
+  color: #959da5;
+}
+
+.markdown-body .pl-corl {
+  color: #032f62;
+  text-decoration: underline;
+}
+
+.markdown-body details {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body a {
+  background-color: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline-width: 0;
+}
+
+.markdown-body strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.markdown-body img {
+  border-style: none;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body input {
+  overflow: visible;
+}
+
+.markdown-body [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body * {
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body hr {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.markdown-body hr:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body hr:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body h1 {
+  font-size: 32px;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  font-weight: 600;
+}
+
+.markdown-body h2 {
+  font-size: 24px;
+}
+
+.markdown-body h3 {
+  font-size: 20px;
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 16px;
+}
+
+.markdown-body h5 {
+  font-size: 14px;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+}
+
+.markdown-body h6 {
+  font-size: 12px;
+}
+
+.markdown-body p {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol ol ol,
+.markdown-body ol ul ol,
+.markdown-body ul ol ol,
+.markdown-body ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body input::-webkit-inner-spin-button,
+.markdown-body input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.markdown-body .border {
+  border: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .border-0 {
+  border: 0!important;
+}
+
+.markdown-body .border-bottom {
+  border-bottom: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .rounded-1 {
+  border-radius: 3px!important;
+}
+
+.markdown-body .bg-white {
+  background-color: #fff!important;
+}
+
+.markdown-body .bg-gray-light {
+  background-color: #fafbfc!important;
+}
+
+.markdown-body .text-gray-light {
+  color: #6a737d!important;
+}
+
+.markdown-body .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.markdown-body .my-2 {
+  margin-bottom: 8px!important;
+  margin-top: 8px!important;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .py-0 {
+  padding-bottom: 0!important;
+  padding-top: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .py-2 {
+  padding-bottom: 8px!important;
+  padding-top: 8px!important;
+}
+
+.markdown-body .pl-3,
+.markdown-body .px-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .px-3 {
+  padding-right: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .f6 {
+  font-size: 12px!important;
+}
+
+.markdown-body .lh-condensed {
+  line-height: 1.25!important;
+}
+
+.markdown-body .text-bold {
+  font-weight: 600!important;
+}
+
+.markdown-body:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body>:first-child {
+  margin-top: 0!important;
+}
+
+.markdown-body>:last-child {
+  margin-bottom: 0!important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body blockquote,
+.markdown-body dl,
+.markdown-body ol,
+.markdown-body p,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body ul {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.markdown-body hr {
+  background-color: #e1e4e8;
+  border: 0;
+  height: .25em;
+  margin: 24px 0;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  border-left: .25em solid #dfe2e5;
+  color: #6a737d;
+  padding: 0 1em;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+  color: #444d56;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: .3em;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  color: #6a737d;
+  font-size: .85em;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body li {
+  word-wrap: break-all;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.markdown-body dl dd {
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.markdown-body table {
+  display: block;
+  overflow: auto;
+  width: 100%;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body img {
+  background-color: #fff;
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body code {
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre>code {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  overflow: visible;
+  padding: 0;
+  word-wrap: normal;
+}
+
+.markdown-body .commit-tease-sha {
+  color: #444d56;
+  display: inline-block;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 90%;
+}
+
+.markdown-body .blob-wrapper {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown-body .blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.markdown-body .blob-num {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: rgba(27,31,35,.3);
+  cursor: pointer;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.markdown-body .blob-num:hover {
+  color: rgba(27,31,35,.6);
+}
+
+.markdown-body .blob-num:before {
+  content: attr(data-line-number);
+}
+
+.markdown-body .blob-code {
+  line-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  vertical-align: top;
+}
+
+.markdown-body .blob-code-inner {
+  color: #24292e;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  overflow: visible;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.markdown-body .pl-token.active,
+.markdown-body .pl-token:hover {
+  background: #ffea7f;
+  cursor: pointer;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+  color: #444d56;
+  display: inline-block;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body :checked+.radio-label {
+  border-color: #0366d6;
+  position: relative;
+  z-index: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="1"] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="2"] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.markdown-body .tab-size[data-tab-size="3"] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.markdown-body .tab-size[data-tab-size="4"] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.markdown-body .tab-size[data-tab-size="5"] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.markdown-body .tab-size[data-tab-size="6"] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.markdown-body .tab-size[data-tab-size="7"] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.markdown-body .tab-size[data-tab-size="8"] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.markdown-body .tab-size[data-tab-size="9"] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.markdown-body .tab-size[data-tab-size="10"] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.markdown-body .tab-size[data-tab-size="11"] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.markdown-body .tab-size[data-tab-size="12"] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body hr {
+  border-bottom-color: #eee;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .pl-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .pl-7 {
+  padding-left: 48px!important;
+}
+
+.markdown-body .pl-8 {
+  padding-left: 64px!important;
+}
+
+.markdown-body .pl-9 {
+  padding-left: 80px!important;
+}
+
+.markdown-body .pl-10 {
+  padding-left: 96px!important;
+}
+
+.markdown-body .pl-11 {
+  padding-left: 112px!important;
+}
+
+.markdown-body .pl-12 {
+  padding-left: 128px!important;
+}
+
+  </style>
+  <style>
+  /**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #9a6e3a;
+	/* This background color was intended by the author of this theme. */
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function,
+.token.class-name {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+  </style>
+  <style>
+  
+  </style>
+  <style>
+    .markdown-body {
+      font-family: -apple-system,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+
+    @media not print {
+      .markdown-body {
+        padding: 45px;
+      }
+
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
+      }
+    }
+
+    .hf-container {
+      color: #24292e;
+      line-height: 1.3;
+    }
+
+    .markdown-body .highlight pre,
+    .markdown-body pre {
+      white-space: pre-wrap;
+    }
+    .markdown-body table {
+      display: table;
+    }
+    .markdown-body img[data-align="center"] {
+      display: block;
+      margin: 0 auto;
+    }
+    .markdown-body img[data-align="right"] {
+      display: block;
+      margin: 0 0 0 auto;
+    }
+    .markdown-body li.task-list-item {
+      list-style-type: none;
+    }
+    .markdown-body li > [type=checkbox] {
+      margin: 0 0 0 -1.3em;
+    }
+    .markdown-body input[type="checkbox"] ~ p {
+      margin-top: 0;
+      display: inline-block;
+    }
+    .markdown-body ol ol,
+    .markdown-body ul ol {
+      list-style-type: decimal;
+    }
+    .markdown-body ol ol ol,
+    .markdown-body ol ul ol,
+    .markdown-body ul ol ol,
+    .markdown-body ul ul ol {
+      list-style-type: decimal;
+    }
+  </style>
+  <style>.markdown-body a.footnote-ref {
+  text-decoration: none;
+}
+
+.footnotes {
+  font-size: .85em;
+  opacity: .8;
+}
+
+.footnotes li[role="doc-endnote"] {
+  position: relative;
+}
+
+.footnotes .footnote-back {
+  position: absolute;
+  font-family: initial;
+  top: .2em;
+  right: 1em;
+  text-decoration: none;
+}
+
+.inline-math.invalid,
+.multiple-math.invalid {
+  color: rgb(255, 105, 105);
+}
+
+.toc-container {
+  width: 100%;
+}
+
+.toc-container .toc-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.toc-container li,
+.toc-container ul,
+.toc-container ul li {
+  list-style: none !important;
+}
+
+.toc-container > ul {
+  padding-left: 0;
+}
+
+.toc-container ul li span {
+  display : flex;
+}
+
+.toc-container ul li span a {
+  color: inherit;
+  text-decoration: none;
+}
+.toc-container ul li span a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.toc-container ul li span span.dots {
+  flex: 1;
+  height: 0.65em;
+  margin: 0 10px;
+  border-bottom: 2px dotted black;
+}
+</style>
+  
+  
+</head>
+<body>
+  <article class="markdown-body"><h1 class="atx" id="introducao-a-programacao-em-python">Introdução à Programação em Python</h1>
+<p><em>Material concebido e organizado por Carlos Beluzo</em></p>
+<p><em>Conteúdo gerado com apoio de IA Generativa (ChatGPT) e revisado por Carlos Beluzo</em></p>
+<p></p>
+<h2 class="atx" id="sumario">SUMÁRIO</h2>
+<ol>
+<li><p><a href="#Intro"><strong>Introdução ao Python</strong></a></p>
+<ul>
+<li>Breve história e características da linguagem Python.</li>
+<li>Exploração da estrutura básica de um programa Python e execução de scripts.</li>
+</ul>
+</li>
+<li><p><a href="#Vars"><strong>Variáveis e Tipos de Dados</strong></a></p>
+<ul>
+<li>Declaração e atribuição de variáveis.</li>
+<li>Estudo dos tipos de dados básicos: inteiros, flutuantes, strings e booleanos.</li>
+<li>Demonstração da conversão de tipos e realização de operações básicas.</li>
+</ul>
+</li>
+<li><p><a href="#Structures"><strong>Estruturas Condicionais e de Repetição</strong></a></p>
+<ul>
+<li>Utilização do <code>if</code>, <code>else</code> e <code>elif</code> para controle de fluxo.</li>
+<li>Abordagem dos laços de repetição com <code>for</code> e <code>while</code>.</li>
+<li>Exemplificação por meio de exemplos práticos com estruturas condicionais e de repetição.</li>
+</ul>
+</li>
+<li><p><a href="#Functions"><strong>Funções</strong></a></p>
+<ul>
+<li>Definição e chamada de funções.</li>
+<li>Explanação sobre parâmetros, argumentos e retorno de valores.</li>
+<li>Discussão sobre o escopo de variáveis e funções aninhadas.</li>
+</ul>
+</li>
+<li><p><a href="#Collections"><strong>Coleções em Python</strong></a></p>
+<ul>
+<li>Estudo das listas, tuplas e dicionários.</li>
+<li>Apresentação das operações comuns com coleções, como indexação, fatiamento e iteração.</li>
+<li>Introdução às compreensões de lista e expressões geradoras.</li>
+</ul>
+</li>
+<li><p><a href="#DataAnalysis"><strong>Introdução às Bibliotecas de Análise de Dados</strong></a></p>
+<ul>
+<li>Exploração da biblioteca <strong>Pandas</strong> para manipulação e análise de dados com DataFrames e Series, bem como recursos adicionais.</li>
+<li>Demonstração do <strong>NumPy</strong> para computação científica e operações com arrays numéricos, além de funcionalidades avançadas.</li>
+<li>Utilização do <strong>Seaborn</strong> para visualização de dados estatísticos de forma atrativa e informativa, incluindo gráficos de linhas, barras e KDE.</li>
+</ul>
+</li>
+<li><p><a href="#Assigment"><strong>Atividade Prática</strong></a></p>
+<ul>
+<li>Exploração da biblioteca <strong>Pandas</strong> para manipulação e análise de dados com DataFrames e Series, bem como recursos adicionais.</li>
+<li>Demonstração do <strong>NumPy</strong> para computação científica e operações com arrays numéricos, além de funcionalidades avançadas.</li>
+<li>Utilização do <strong>Seaborn</strong> para visualização de dados estatísticos de forma atrativa e informativa, incluindo gráficos de linhas, barras e KDE.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quoteintrodouble-quotegreater1-introducao-ao-pythonlessagreater"><a name="Intro">1. Introdução ao Python</a></h2>
+<p>Sejam bem-vindos ao curso de Introdução ao Python utilizando o Jupyter Notebook. Estarei conduzindo vocês ao longo desta jornada emocionante de aprendizado em uma das linguagens de programação mais populares do mundo.</p>
+<p></p>
+<p><strong>Objetivo do Curso</strong>
+O objetivo neste curso é fornecer a vocês uma compreensão sólida dos conceitos fundamentais de Python e como aplicá-los na prática, especialmente para análise de dados. Ao final do curso, vocês serão capazes de escrever scripts Python eficientes, manipular dados e criar visualizações atrativas.</p>
+<p></p>
+<p><strong>Por que Python?</strong>
+Antes de começarmos, vocês devem estar se perguntando: 'Por que aprender Python?' Bem, Python é uma linguagem versátil que é amplamente utilizada em diversas áreas, como desenvolvimento web, ciência de dados, automação, inteligência artificial e muito mais. Sua sintaxe simples e legibilidade tornam-na uma escolha popular para iniciantes e profissionais experientes.</p>
+<p></p>
+<p><strong>História de Python</strong></p>
+<p>Python foi criada por Guido van Rossum em 1991, e desde então tem sido constantemente desenvolvida por uma comunidade global de desenvolvedores. Seu nome foi inspirado no programa de televisão britânico 'Monty Python's Flying Circus', refletindo a filosofia de diversão e simplicidade da linguagem.</p>
+<p></p>
+<p><strong>Principais Características de Python</strong></p>
+<p>Python é conhecida por sua sintaxe limpa, legibilidade e simplicidade. É uma linguagem interpretada, o que significa que você pode escrever e executar o código linha por linha, facilitando a depuração e o desenvolvimento iterativo.</p>
+<p></p>
+<p><strong>Exemplo 1 - Hello World</strong></p>
+<p>Vamos começar com o exemplo clássico de 'Hello World':</p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello, world!"</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Exemplo 2 - Operações Matemáticas</strong></p>
+<p>Python também pode ser usado para realizar operações matemáticas. Veja este exemplo:</p>
+<pre><code class="fenced-code-block language-python">resultado <span class="token operator">=</span> <span class="token number">5</span> <span class="token operator">+</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token number">2</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Estrutura Básica de um Programa Python</strong></p>
+<p>Agora, vamos entender a estrutura básica de um programa Python, incluindo a definição de funções, variáveis e a lógica de execução do código.</p>
+<p></p>
+<p><strong>Exemplo 3 - Estrutura de um Script (para Jupyter Notebook)</strong></p>
+<p>Vamos criar um pequeno script Python para vocês. Observem a estrutura:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Definição de função</span>
+<span class="token keyword">def</span> <span class="token function">saudacao</span><span class="token punctuation">(</span>nome<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">return</span> <span class="token string">"Olá, "</span> <span class="token operator">+</span> nome <span class="token operator">+</span> <span class="token string">"!"</span>
+
+<span class="token comment">#Execução do código principal</span>
+nome_usuario <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Digite seu nome: "</span><span class="token punctuation">)</span>
+mensagem <span class="token operator">=</span> saudacao<span class="token punctuation">(</span>nome_usuario<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>mensagem<span class="token punctuation">)</span></code></pre>
+<p></p>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quotevarsdouble-quotegreater2-variaveis-e-tipos-de-dadoslessagreater"><a name="Vars">2. Variáveis e Tipos de Dados</a></h2>
+<p>Neste tópico, vamos explorar as variáveis e tipos de dados em Python, que são fundamentais para a construção de programas. Vamos começar entendendo como declarar e atribuir valores às variáveis.</p>
+<p></p>
+<p><strong>Declaração e Atribuição de Variáveis</strong></p>
+<p>Em Python, as variáveis são espaços de armazenamento que nos permitem guardar e manipular dados. Vamos ver como declarar e atribuir valores a variáveis:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Declaração e atribuição de variáveis</span>
+idade <span class="token operator">=</span> <span class="token number">25</span>
+nome <span class="token operator">=</span> <span class="token string">"Maria"</span>
+altura <span class="token operator">=</span> <span class="token number">1.75</span>
+is_estudante <span class="token operator">=</span> <span class="token boolean">True</span></code></pre>
+<p></p>
+<p><strong>Estudo dos Tipos de Dados Básicos</strong></p>
+<p>Existem quatro tipos de dados básicos em Python: inteiros, flutuantes, strings e booleanos. Vamos explorar cada um deles:</p>
+<ul>
+<li><p><strong>Inteiros:</strong></p>
+<pre><code class="fenced-code-block language-python">idade <span class="token operator">=</span> <span class="token number">25</span></code></pre>
+</li>
+<li><p><strong>Flutuantes:</strong></p>
+<pre><code class="fenced-code-block language-python">altura <span class="token operator">=</span> <span class="token number">1.75</span></code></pre>
+</li>
+<li><p><strong>Strings:</strong></p>
+<pre><code class="fenced-code-block language-python">nome <span class="token operator">=</span> <span class="token string">"Maria"</span></code></pre>
+</li>
+<li><p><strong>Booleanos:</strong></p>
+<pre><code class="fenced-code-block language-python">is_estudante <span class="token operator">=</span> <span class="token boolean">True</span></code></pre>
+<p></p>
+</li>
+</ul>
+<p><strong>Demonstração da Conversão de Tipos</strong></p>
+<p>Às vezes, precisamos converter um tipo de dado em outro para realizar operações ou satisfazer requisitos específicos. Vamos ver como fazer isso em Python:</p>
+<ul>
+<li><p><strong>Exemplo de Conversão de Inteiro para String:</strong></p>
+<pre><code class="fenced-code-block language-python">idade <span class="token operator">=</span> <span class="token number">25</span>
+idade_str <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>idade<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Conversão de String para Inteiro:</strong></p>
+<pre><code class="fenced-code-block language-python">altura_str <span class="token operator">=</span> <span class="token string">"175"</span>
+altura_int <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>altura_str<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Conversão de Flutuante para Inteiro:</strong></p>
+<pre><code class="fenced-code-block language-python">altura <span class="token operator">=</span> <span class="token number">1.75</span>
+altura_int <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>altura<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Conversão de Inteiro para Flutuante:</strong></p>
+<pre><code class="fenced-code-block language-python">idade <span class="token operator">=</span> <span class="token number">25</span>
+idade_float <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span>idade<span class="token punctuation">)</span></code></pre>
+<p></p>
+</li>
+</ul>
+<p><strong>Realização de Operações Básicas</strong></p>
+<p>Vamos agora realizar algumas operações básicas com os tipos de dados que aprendemos até agora:</p>
+<ul>
+<li><p><strong>Operações com Inteiros:</strong></p>
+<pre><code class="fenced-code-block language-python">a <span class="token operator">=</span> <span class="token number">10</span>
+b <span class="token operator">=</span> <span class="token number">5</span>
+soma <span class="token operator">=</span> a <span class="token operator">+</span> b
+subtracao <span class="token operator">=</span> a <span class="token operator">-</span> b
+multiplicacao <span class="token operator">=</span> a <span class="token operator">*</span> b
+divisao <span class="token operator">=</span> a <span class="token operator">/</span> b</code></pre>
+</li>
+<li><p><strong>Operações com Flutuantes:</strong></p>
+<pre><code class="fenced-code-block language-python">altura1 <span class="token operator">=</span> <span class="token number">1.75</span>
+altura2 <span class="token operator">=</span> <span class="token number">1.65</span>
+diferenca_altura <span class="token operator">=</span> altura1 <span class="token operator">-</span> altura2</code></pre>
+</li>
+<li><p><strong>Operações com Strings:</strong></p>
+<pre><code class="fenced-code-block language-python">nome_completo <span class="token operator">=</span> <span class="token string">"João Silva"</span>
+cumprimento <span class="token operator">=</span> <span class="token string">"Olá, "</span> <span class="token operator">+</span> nome_completo <span class="token operator">+</span> <span class="token string">"!"</span></code></pre>
+</li>
+<li><p><strong>Operações com Booleanos:</strong></p>
+<pre><code class="fenced-code-block language-python">is_estudante <span class="token operator">=</span> <span class="token boolean">True</span>
+is_trabalhando <span class="token operator">=</span> <span class="token boolean">False</span>
+is_estudante_e_trabalhando <span class="token operator">=</span> is_estudante <span class="token keyword">and</span> is_trabalhando</code></pre>
+<p></p>
+</li>
+</ul>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quotestructuresdouble-quotegreater3-estruturas-condicionais-e-de-repeticaolessagreater"><a name="Structures">3. Estruturas Condicionais e de Repetição</a></h2>
+<p>Neste tópico, vamos aprender sobre as estruturas condicionais e de repetição em Python, que são fundamentais para controlar o fluxo de execução de um programa e para automatizar tarefas repetitivas.</p>
+<p></p>
+<p><strong>Utilização do <code>if</code>, <code>else</code> e <code>elif</code> para Controle de Fluxo</strong></p>
+<p>As estruturas condicionais <code>if</code>, <code>else</code> e <code>elif</code> permitem que você tome decisões com base em condições específicas. Vejamos como elas funcionam em Python:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de estrutura condicional if-else</span>
+idade <span class="token operator">=</span> <span class="token number">18</span>
+<span class="token keyword">if</span> idade <span class="token operator">&gt;=</span> <span class="token number">18</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Você é maior de idade."</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Você é menor de idade."</span><span class="token punctuation">)</span></code></pre>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de estrutura condicional if-elif-else</span>
+nota <span class="token operator">=</span> <span class="token number">75</span>
+<span class="token keyword">if</span> nota <span class="token operator">&gt;=</span> <span class="token number">90</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Aprovado com A"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> nota <span class="token operator">&gt;=</span> <span class="token number">80</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Aprovado com B"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> nota <span class="token operator">&gt;=</span> <span class="token number">70</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Aprovado com C"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Reprovado"</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Abordagem dos Laços de Repetição com <code>for</code> e <code>while</code></strong></p>
+<p>Os laços de repetição <code>for</code> e <code>while</code> permitem que você execute um bloco de código repetidamente. Vejamos como utilizá-los:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de laço de repetição for</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de laço de repetição while</span>
+contador <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> contador <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>contador<span class="token punctuation">)</span>
+    contador <span class="token operator">+=</span> <span class="token number">1</span></code></pre>
+<p></p>
+<p><strong>Exemplificação por Meio de Exemplos Práticos</strong></p>
+<p>A melhor maneira de entender estruturas condicionais e de repetição é através de exemplos práticos. Vamos ver alguns exemplos que combinam essas estruturas:</p>
+<ul>
+<li><p><strong>Exemplo de Verificação de Número Par ou Ímpar:</strong></p>
+<pre><code class="fenced-code-block language-python">numero <span class="token operator">=</span> <span class="token number">7</span>
+<span class="token keyword">if</span> numero <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"O número é par."</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"O número é ímpar."</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Laço de Repetição com Lista:</strong></p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> num <span class="token keyword">in</span> numeros<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Utilização do <code>break</code> em um Laço de Repetição:</strong></p>
+<pre><code class="fenced-code-block language-python">contador <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>contador<span class="token punctuation">)</span>
+    contador <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> contador <span class="token operator">&gt;=</span> <span class="token number">5</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span></code></pre>
+</li>
+<li><p><strong>Exemplo de Utilização do <code>continue</code> em um Laço de Repetição:</strong></p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">continue</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre>
+<p></p>
+</li>
+</ul>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quotefunctionsdouble-quotegreater4-funcoeslessagreater"><a name="Functions">4. Funções</a></h2>
+<p>Neste tópico, vamos explorar as funções em Python, que são blocos de código reutilizáveis projetados para realizar uma tarefa específica. Vamos entender como definir, chamar e trabalhar com funções.</p>
+<p></p>
+<p><strong>Definição e Chamada de Funções</strong></p>
+<p>As funções em Python nos permitem encapsular blocos de código para que possam ser reutilizados facilmente. Vejamos como definir e chamar uma função:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de definição de função</span>
+<span class="token keyword">def</span> <span class="token function">saudacao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Olá, mundo!"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Chamada da função</span>
+saudacao<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Explanação sobre Parâmetros, Argumentos e Retorno de Valores</strong></p>
+<p>As funções podem receber dados chamados de parâmetros e retornar resultados. Vamos entender como funcionam os parâmetros, argumentos e retorno de valores em Python:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de função com parâmetros e retorno de valor</span>
+<span class="token keyword">def</span> <span class="token function">somar</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+
+<span class="token comment"># Chamada da função com argumentos</span>
+resultado <span class="token operator">=</span> somar<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Discussão sobre o Escopo de Variáveis e Funções Aninhadas</strong></p>
+<p>O escopo em Python refere-se à acessibilidade de variáveis ​​e funções em diferentes partes do código. Vamos discutir sobre o escopo de variáveis e funções aninhadas em Python:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Exemplo de escopo de variáveis</span>
+x <span class="token operator">=</span> <span class="token number">10</span>  <span class="token comment"># Variável global</span>
+
+<span class="token keyword">def</span> <span class="token function">minha_funcao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    y <span class="token operator">=</span> <span class="token number">5</span>  <span class="token comment"># Variável local</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span>  <span class="token comment"># Variável global pode ser acessada dentro da função</span>
+
+minha_funcao<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Exemplo de função aninhada</span>
+<span class="token keyword">def</span> <span class="token function">externa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    x <span class="token operator">=</span> <span class="token number">10</span>
+
+    <span class="token keyword">def</span> <span class="token function">interna</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token number">2</span>
+
+    <span class="token keyword">return</span> interna<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>externa<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Exemplos de funções básicas e nativas do Python que são frequentemente utilizadas</strong></p>
+<p></p>
+<ol>
+<li><p><strong><code>print()</code>:</strong> Utilizada para exibir mensagens ou valores no console.</p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Olá, mundo!"</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>input()</code>:</strong> Permite que o usuário insira dados pelo teclado.</p>
+<pre><code class="fenced-code-block language-python">nome <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Digite seu nome: "</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>len()</code>:</strong> Retorna o comprimento (número de elementos) de um objeto, como uma lista, tupla ou string.</p>
+<pre><code class="fenced-code-block language-python">minha_lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+tamanho <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>minha_lista<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>range()</code>:</strong> Gera uma sequência de números dentro de um intervalo especificado.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>sum()</code>:</strong> Retorna a soma de todos os itens em uma lista ou outros iteráveis.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+soma <span class="token operator">=</span> <span class="token builtin">sum</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>max()</code>:</strong> Retorna o maior item em um iterável.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+maior <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>min()</code>:</strong> Retorna o menor item em um iterável.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+menor <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>sorted()</code>:</strong> Retorna uma nova lista ordenada a partir dos elementos de um iterável.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+numeros_ordenados <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>enumerate()</code>:</strong> Retorna um objeto enumerado que contém pares de índice-valor de um iterável.</p>
+<pre><code class="fenced-code-block language-python">minha_lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> indice<span class="token punctuation">,</span> valor <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>minha_lista<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"O valor '</span><span class="token interpolation"><span class="token punctuation">{</span>valor<span class="token punctuation">}</span></span><span class="token string">' está no índice </span><span class="token interpolation"><span class="token punctuation">{</span>indice<span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>zip()</code>:</strong> Combina elementos de iteráveis em tuplas.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+letras <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span>
+combinados <span class="token operator">=</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>numeros<span class="token punctuation">,</span> letras<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>type()</code>:</strong> Retorna o tipo de um objeto.</p>
+<pre><code class="fenced-code-block language-python">numero <span class="token operator">=</span> <span class="token number">10</span>
+tipo <span class="token operator">=</span> <span class="token builtin">type</span><span class="token punctuation">(</span>numero<span class="token punctuation">)</span>  <span class="token comment"># Retorna &lt;class 'int'&gt;</span></code></pre>
+</li>
+<li><p><strong><code>str()</code>, <code>int()</code>, <code>float()</code>:</strong> Converte um valor para uma string, inteiro ou ponto flutuante, respectivamente.</p>
+<pre><code class="fenced-code-block language-python">numero <span class="token operator">=</span> <span class="token number">10</span>
+numero_str <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>numero<span class="token punctuation">)</span>
+numero_float <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span>numero<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>abs()</code>:</strong> Retorna o valor absoluto de um número.</p>
+<pre><code class="fenced-code-block language-python">valor <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">10</span>
+absoluto <span class="token operator">=</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>valor<span class="token punctuation">)</span>  <span class="token comment"># Retorna 10</span></code></pre>
+</li>
+<li><p><strong><code>round()</code>:</strong> Arredonda um número para um número especificado de casas decimais (por padrão, para 0 casas decimais).</p>
+<pre><code class="fenced-code-block language-python">valor <span class="token operator">=</span> <span class="token number">3.14159</span>
+arredondado <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>valor<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment"># Retorna 3.14</span></code></pre>
+</li>
+<li><p><strong><code>any()</code>:</strong> Retorna True se algum dos elementos em um iterável for verdadeiro.</p>
+<pre><code class="fenced-code-block language-python">lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">]</span>
+resultado <span class="token operator">=</span> <span class="token builtin">any</span><span class="token punctuation">(</span>lista<span class="token punctuation">)</span>  <span class="token comment"># Retorna True</span></code></pre>
+</li>
+<li><p><strong><code>all()</code>:</strong> Retorna True se todos os elementos em um iterável forem verdadeiros.</p>
+<pre><code class="fenced-code-block language-python">lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">]</span>
+resultado <span class="token operator">=</span> <span class="token builtin">all</span><span class="token punctuation">(</span>lista<span class="token punctuation">)</span>  <span class="token comment"># Retorna True</span></code></pre>
+</li>
+<li><p><strong><code>map()</code>:</strong> Aplica uma função a todos os itens em um iterável.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+quadrados <span class="token operator">=</span> <span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>filter()</code>:</strong> Filtra os elementos de um iterável com base em uma função de filtro.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+pares <span class="token operator">=</span> <span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">,</span> numeros<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>open()</code>:</strong> Abre um arquivo e retorna um objeto de arquivo.</p>
+<pre><code class="fenced-code-block language-python">arquivo <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'arquivo.txt'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span>
+conteudo <span class="token operator">=</span> arquivo<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+arquivo<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong><code>range()</code>:</strong> Gera uma sequência de números dentro de um intervalo especificado.</p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+</li>
+</ol>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quotecollectionsdouble-quotegreater5-colecoes-em-pythonlessagreater"><a name="Collections">5. Coleções em Python</a></h2>
+<p>Neste tópico, vamos explorar as coleções em Python, que são estruturas de dados que permitem armazenar múltiplos itens em uma única variável. Vamos entender como funcionam as listas, tuplas e dicionários, bem como as operações comuns e técnicas avançadas de manipulação de coleções.</p>
+<p></p>
+<p>As listas, tuplas e dicionários são tipos de coleções em Python, cada uma com suas próprias características e métodos de acesso aos elementos."</p>
+<ul>
+<li><strong>Listas:</strong> Mutáveis e ordenadas, representadas por colchetes <code>[]</code>.</li>
+<li><strong>Tuplas:</strong> Imutáveis e ordenadas, representadas por parênteses <code>()</code>.</li>
+<li><strong>Dicionários:</strong> Mutáveis e desordenados, representados por chaves <code>{}</code> e pares de chave-valor.<p></p>
+</li>
+</ul>
+<h3 class="atx" id="apresentacao-das-operacoes-comuns-com-colecoes">Apresentação das Operações Comuns com Coleções</h3>
+<p>Vamos agora explorar algumas operações comuns que podemos realizar com coleções, como indexação, fatiamento e iteração.</p>
+<ul>
+<li><p><strong>Indexação e Fatiamento:</strong></p>
+<pre><code class="fenced-code-block language-python">minha_lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+elemento <span class="token operator">=</span> minha_lista<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># Acesso ao primeiro elemento</span>
+fatia <span class="token operator">=</span> minha_lista<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span>  <span class="token comment"># Fatiamento</span></code></pre>
+</li>
+<li><p><strong>Iteração:</strong></p>
+<pre><code class="fenced-code-block language-python">minha_tupla <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> elemento <span class="token keyword">in</span> minha_tupla<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>elemento<span class="token punctuation">)</span></code></pre>
+<p></p>
+</li>
+</ul>
+<h3 class="atx" id="introducao-as-compreensoes-de-lista-e-expressoes-geradoras">Introdução às Compreensões de Lista e Expressões Geradoras</h3>
+<p>Compreensões de lista e expressões geradoras são técnicas poderosas para criar e manipular coleções de forma concisa e eficiente.</p>
+<ul>
+<li><p><strong>Compreensões de Lista:</strong></p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+quadrados <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token operator">**</span> <span class="token number">2</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> numeros<span class="token punctuation">]</span></code></pre>
+</li>
+<li><p><strong>Expressões Geradoras:</strong></p>
+<pre><code class="fenced-code-block language-python">numeros <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+quadrados <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">**</span> <span class="token number">2</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> numeros<span class="token punctuation">)</span></code></pre>
+<p></p>
+</li>
+</ul>
+<h3 class="atx" id="exemplos-praticos-envolvendo-colecoes">Exemplos práticos envolvendo Coleções</h3>
+<ol>
+<li><p><strong>Manipulação de Listas:</strong></p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando uma lista</span>
+minha_lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Adicionando um elemento ao final da lista</span>
+minha_lista<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Removendo o primeiro elemento da lista</span>
+primeiro_elemento <span class="token operator">=</span> minha_lista<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Verificando se um elemento está na lista</span>
+<span class="token keyword">if</span> <span class="token number">3</span> <span class="token keyword">in</span> minha_lista<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"O elemento 3 está na lista."</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Manipulação de Tuplas:</strong></p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando uma tupla</span>
+minha_tupla <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Acessando elementos da tupla</span>
+primeiro_elemento <span class="token operator">=</span> minha_tupla<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+ultimo_elemento <span class="token operator">=</span> minha_tupla<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Convertendo uma tupla em uma lista</span>
+lista_da_tupla <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>minha_tupla<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Manipulação de Dicionários:</strong></p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando um dicionário</span>
+meu_dicionario <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'nome'</span><span class="token punctuation">:</span> <span class="token string">'João'</span><span class="token punctuation">,</span> <span class="token string">'idade'</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token string">'cidade'</span><span class="token punctuation">:</span> <span class="token string">'São Paulo'</span><span class="token punctuation">}</span>
+
+<span class="token comment"># Acessando valores do dicionário</span>
+nome <span class="token operator">=</span> meu_dicionario<span class="token punctuation">[</span><span class="token string">'nome'</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Adicionando um novo par chave-valor ao dicionário</span>
+meu_dicionario<span class="token punctuation">[</span><span class="token string">'profissao'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Engenheiro'</span>
+
+<span class="token comment"># Iterando sobre as chaves e valores do dicionário</span>
+<span class="token keyword">for</span> chave<span class="token punctuation">,</span> valor <span class="token keyword">in</span> meu_dicionario<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>chave<span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>valor<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Compreensões de Lista:</strong></p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando uma lista de números pares usando compreensão de lista</span>
+numeros_pares <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">if</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">]</span></code></pre>
+</li>
+<li><p><strong>Expressões Geradoras:</strong></p>
+<pre><code class="fenced-code-block language-python">   <span class="token comment"># Criando uma expressão geradora para calcular o quadrado de cada número</span>
+quadrados <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">**</span> <span class="token number">2</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Ordenação e Remoção em Listas</strong>
+Considerande a seguinte lista em Python:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando uma lista vazia</span>
+minha_lista <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Inserindo elementos no final da lista</span>
+minha_lista<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+minha_lista<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Inserindo elementos em uma posição específica</span>
+minha_lista<span class="token punctuation">.</span>insert<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># Insere o número 3 na posição 1</span></code></pre>
+<p>Ordenando elementos de uma lista:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Ordenando a lista em ordem crescente</span>
+minha_lista<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Ordenando a lista em ordem decrescente</span>
+minha_lista<span class="token punctuation">.</span>sort<span class="token punctuation">(</span>reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<p>Removendo elementos de uma lista:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Removendo o último elemento da lista</span>
+elemento_removido <span class="token operator">=</span> minha_lista<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Removendo o primeiro elemento igual a um valor específico</span>
+minha_lista<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Removendo um elemento em uma posição específica</span>
+<span class="token keyword">del</span> minha_lista<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre>
+<p></p>
+</li>
+</ol>
+<ol start="7">
+<li><strong>Considerações sobre Tuplas</strong></li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Inserção</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;As tuplas são imutáveis, então não é possível adicionar ou remover elementos depois que são criadas. No entanto, é possível criar uma nova tupla com os elementos desejados.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ordenação</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Tuplas são imutáveis, portanto, não podem ser ordenadas diretamente. Você pode converter a tupla em uma lista, ordenar a lista e depois converter de volta para uma tupla, se necessário.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Remoção</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Não é possível remover elementos de uma tupla depois que ela é criada, pois tuplas são imutáveis.</p>
+<p></p>
+<ol start="8">
+<li><strong>Ordenação em Dicionários</strong></li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Considere o seguinte dicionário em Python:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando um dicionário vazio</span>
+meu_dicionario <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># Inserindo elementos no dicionário</span>
+meu_dicionario<span class="token punctuation">[</span><span class="token string">'chave1'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'valor1'</span>
+meu_dicionario<span class="token punctuation">[</span><span class="token string">'chave2'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'valor2'</span></code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ordenação por chave</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Quando ordenamos um dicionário por <strong>chave</strong>, estamos reorganizando seus elementos com base nas chaves, em ordem crescente ou decrescente, conforme desejado.</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Ordenando o dicionário pelas chaves em ordem crescente</span>
+dicionario_ordenado_chave <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>meu_dicionario<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Ordenando o dicionário pelas chaves em ordem decrescente</span>
+dicionario_ordenado_chave_decrescente <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>meu_dicionario<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;No código acima, <code>sorted()</code> é uma função que ordena os itens do dicionário com base nas chaves. A função <code>items()</code> retorna uma lista de tuplas onde cada tupla contém uma chave e seu respectivo valor. Em seguida, <code>sorted()</code> classifica essas tuplas com base nas chaves. Finalmente, <code>dict()</code> converte a lista ordenada de tuplas de volta em um dicionário.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ordenação por Valor</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Quando ordenamos um dicionário por <strong>valor</strong>, estamos reorganizando seus elementos com base nos valores associados às chaves, em ordem crescente ou decrescente, conforme desejado.</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Ordenando o dicionário pelos valores em ordem crescente</span>
+dicionario_ordenado_valor <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>meu_dicionario<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> item<span class="token punctuation">:</span> item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Ordenando o dicionário pelos valores em ordem decrescente</span>
+dicionario_ordenado_valor_decrescente <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>meu_dicionario<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> item<span class="token punctuation">:</span> item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Neste caso, <code>sorted()</code> é uma função que ordena os itens do dicionário com base nos valores. O parâmetro <code>key=lambda item: item[1]</code> especifica que a ordenação deve ser realizada com base no segundo elemento de cada tupla (ou seja, nos valores). Novamente, <code>dict()</code> converte a lista ordenada de tuplas de volta em um dicionário.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Remoção de elementos de um dicionário</strong></p>
+<pre><code class="fenced-code-block language-python">   <span class="token comment"># Removendo um elemento com uma chave específica</span>
+   <span class="token keyword">del</span> meu_dicionario<span class="token punctuation">[</span><span class="token string">'chave1'</span><span class="token punctuation">]</span>
+
+   <span class="token comment"># Removendo e obtendo um elemento com uma chave específica</span>
+   valor_removido <span class="token operator">=</span> meu_dicionario<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token string">'chave2'</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quotedataanalysisdouble-quotegreater6-introducao-as-bibliotecas-de-analise-de-dadoslessagreater"><a name="DataAnalysis">6. <strong>Introdução às Bibliotecas de Análise de Dados</strong></a></h2>
+<h2 class="atx" id="61-introducao-a-biblioteca-pandas">6.1 Introdução à Biblioteca Pandas</h2>
+<p>Neste tópico, vamos explorar a biblioteca Pandas, uma poderosa ferramenta para manipulação e análise de dados em Python. Vamos aprender sobre as operações básicas e principais funcionalidades oferecidas pelo Pandas.</p>
+<p><strong>Instalação e Importação da Biblioteca Pandas</strong></p>
+<p>Antes de começarmos, é importante garantir que a biblioteca Pandas esteja instalada em seu ambiente Python. Você pode instalá-la usando pip:</p>
+<pre><code class="fenced-code-block">pip install pandas</code></pre>
+<p> Em seguida, vamos importar a biblioteca Pandas em nosso ambiente de trabalho:</p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd</code></pre>
+<p><strong>Criação de DataFrames</strong></p>
+<p>O DataFrame é a estrutura de dados central do Pandas, que nos permite representar e manipular conjuntos de dados tabulares. Vamos aprender a criar DataFrames a partir de diferentes fontes de dados:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando um DataFrame a partir de um dicionário</span>
+dados <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'Nome'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'Alice'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Charlie'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+         <span class="token string">'Idade'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>dados<span class="token punctuation">)</span></code></pre>
+<p><strong>Leitura e Escrita de Dados</strong></p>
+<p>O Pandas oferece suporte para ler e escrever dados de e para vários formatos, como CSV, Excel, SQL, JSON, entre outros. Vamos aprender como fazer isso:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Leitura de um arquivo CSV para um DataFrame</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'dados.csv'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Escrita de um DataFrame para um arquivo CSV</span>
+df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'novo_dados.csv'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Exploração de Dados</strong></p>
+<p>Uma vez que tenhamos nossos dados carregados em um DataFrame, podemos realizar uma variedade de operações para explorar e entender nossos dados melhor:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Visualizando as primeiras linhas do DataFrame</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Obtendo informações sobre o DataFrame</span>
+df<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Resumo estatístico do DataFrame</span>
+df<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Seleção e Fatiamento de Dados</strong></p>
+<p>Podemos selecionar e fatiar dados de um DataFrame de várias maneiras para realizar análises específicas:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Selecionando uma coluna específica</span>
+coluna_idade <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token string">'Idade'</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Fatiando linhas e colunas</span>
+subconjunto <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Nome'</span><span class="token punctuation">,</span> <span class="token string">'Idade'</span><span class="token punctuation">]</span><span class="token punctuation">]</span></code></pre>
+<p><strong>Manipulação de Dados</strong></p>
+<p>O Pandas oferece uma variedade de métodos para manipular e transformar os dados em um DataFrame conforme necessário:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Adicionando uma nova coluna</span>
+df<span class="token punctuation">[</span><span class="token string">'Sexo'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'F'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Renomeando colunas</span>
+df<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'Idade'</span><span class="token punctuation">:</span> <span class="token string">'Anos'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Preenchendo valores ausentes</span>
+df<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Visualização de Dados</strong></p>
+<p>Por fim, podemos visualizar nossos dados de maneira clara e informativa usando as capacidades de visualização do Pandas e outras bibliotecas, como Matplotlib e Seaborn:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Gráfico de barras da contagem de valores em uma coluna</span>
+df<span class="token punctuation">[</span><span class="token string">'Sexo'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>plot<span class="token punctuation">(</span>kind<span class="token operator">=</span><span class="token string">'bar'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Gráfico de dispersão entre duas variáveis</span>
+df<span class="token punctuation">.</span>plot<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'Idade'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'Salário'</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Documentação Oficial</strong>: <a href="https://pandas.pydata.org/docs/user_guide/index.html">User Guide — pandas 2.2.1 documentation (pydata.org)</a></p>
+<p></p>
+<h2 class="atx" id="62-introducao-a-biblioteca-numpy">6.2 Introdução à Biblioteca NumPy</h2>
+<p>Neste tópico, vamos explorar a biblioteca NumPy, uma poderosa ferramenta para computação científica e operações com arrays numéricos em Python. Vamos aprender sobre as operações básicas e principais funcionalidades oferecidas pelo NumPy.</p>
+<p></p>
+<p><strong>Instalação e Importação da Biblioteca NumPy</strong></p>
+<p>Antes de começarmos, é importante garantir que a biblioteca NumPy esteja instalada em seu ambiente Python. Você pode instalá-la usando pip:</p>
+<pre><code class="fenced-code-block">pip install numpy</code></pre>
+<p>Em seguida, vamos importar a biblioteca NumPy em nosso ambiente de trabalho:"</p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np</code></pre>
+<p><strong>Criação de Arrays</strong></p>
+<p>O array NumPy é a estrutura de dados central do NumPy, que nos permite representar e manipular arrays multidimensionais de forma eficiente. Vamos aprender a criar arrays NumPy:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Criando um array NumPy a partir de uma lista</span>
+arr <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Criando um array NumPy com valores aleatórios</span>
+arr_aleatorio <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Operações Básicas com Arrays</strong></p>
+<p>Podemos realizar uma variedade de operações básicas com arrays NumPy, como aritmética, manipulação de forma e indexação:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Operações aritméticas entre arrays</span>
+resultado <span class="token operator">=</span> arr <span class="token operator">*</span> <span class="token number">2</span>
+
+<span class="token comment"># Manipulação de forma de arrays</span>
+arr_reshape <span class="token operator">=</span> arr<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Indexação de arrays</span>
+elemento <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></code></pre>
+<p><strong>Funções Matemáticas e Estatísticas</strong></p>
+<p>O NumPy oferece uma ampla gama de funções matemáticas e estatísticas para trabalhar com arrays NumPy:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Funções matemáticas</span>
+media <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+maximo <span class="token operator">=</span> np<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+raiz_quadrada <span class="token operator">=</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+
+<span class="token comment"># Funções estatísticas</span>
+mediana <span class="token operator">=</span> np<span class="token punctuation">.</span>median<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+desvio_padrao <span class="token operator">=</span> np<span class="token punctuation">.</span>std<span class="token punctuation">(</span>arr<span class="token punctuation">)</span></code></pre>
+<p><strong>Operações de Álgebra Linear</strong></p>
+<p>O NumPy possui suporte abrangente para operações de álgebra linear, como multiplicação de matriz e decomposição de matriz:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Multiplicação de matriz</span>
+matriz1 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+matriz2 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+produto <span class="token operator">=</span> np<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>matriz1<span class="token punctuation">,</span> matriz2<span class="token punctuation">)</span>
+
+<span class="token comment"># Decomposição de matriz</span>
+autovalores<span class="token punctuation">,</span> autovetores <span class="token operator">=</span> np<span class="token punctuation">.</span>linalg<span class="token punctuation">.</span>eig<span class="token punctuation">(</span>matriz<span class="token punctuation">)</span></code></pre>
+<p><strong>Indexação Avançada e Fatiamento</strong></p>
+<p>Podemos realizar indexação avançada e fatiamento de arrays NumPy para acessar e manipular partes específicas dos dados:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Indexação avançada</span>
+elementos_indices <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Fatiamento</span>
+sub_array <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">]</span></code></pre>
+<p><strong>Funções do NumPy úteis para análise de dados e computação científica</strong></p>
+<ol>
+<li><p><strong><code>np.arange()</code>:</strong> Cria um array com uma sequência de números.</p>
+<pre><code class="fenced-code-block language-python">arr <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment"># Cria um array de 0 a 10 (exclusive) com passo 2</span></code></pre>
+</li>
+<li><p><strong><code>np.linspace()</code>:</strong> Cria um array com uma sequência de números espaçados de forma uniforme.</p>
+<pre><code class="fenced-code-block language-python">arr <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># Cria um array de 0 a 10 com 5 elementos igualmente espaçados</span></code></pre>
+</li>
+<li><p><strong><code>np.zeros()</code>:</strong> Cria um array preenchido com zeros.</p>
+<pre><code class="fenced-code-block language-python">arr <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Cria uma matriz 3x3 preenchida com zeros</span></code></pre>
+</li>
+<li><p><strong><code>np.ones()</code>:</strong> Cria um array preenchido com uns.</p>
+<pre><code class="fenced-code-block language-python">arr <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Cria uma matriz 2x2 preenchida com uns</span></code></pre>
+</li>
+<li><p><strong><code>np.eye()</code>:</strong> Cria uma matriz identidade.</p>
+<pre><code class="fenced-code-block language-python">matriz_identidade <span class="token operator">=</span> np<span class="token punctuation">.</span>eye<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># Cria uma matriz identidade 3x3</span></code></pre>
+</li>
+<li><p><strong><code>np.concatenate()</code>:</strong> Concatena arrays ao longo de um eixo especificado.</p>
+<pre><code class="fenced-code-block language-python">arr1 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+arr2 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+concatenado <span class="token operator">=</span> np<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">(</span>arr1<span class="token punctuation">,</span> arr2<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Concatena os arrays</span></code></pre>
+</li>
+<li><p><strong><code>np.unique()</code>:</strong> Retorna os valores únicos em um array.</p>
+<pre><code class="fenced-code-block language-python">valores_unicos <span class="token operator">=</span> np<span class="token punctuation">.</span>unique<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>  <span class="token comment"># Retorna os valores únicos no array</span></code></pre>
+</li>
+<li><p><strong><code>np.where()</code>:</strong> Retorna os índices onde uma condição é verdadeira.</p>
+<pre><code class="fenced-code-block language-python">indices <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span>arr <span class="token operator">&gt;</span> <span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># Retorna os índices onde os valores são maiores que 5</span></code></pre>
+</li>
+<li><p><strong><code>np.random.randint()</code>:</strong> Gera números inteiros aleatórios dentro de um intervalo especificado.</p>
+<pre><code class="fenced-code-block language-python">numeros_aleatorios <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># Gera 5 números inteiros aleatórios entre 0 e 10</span></code></pre>
+</li>
+<li><p><strong><code>np.random.normal()</code>:</strong> Gera números aleatórios de acordo com uma distribuição normal.</p>
+<pre><code class="fenced-code-block language-python">dados_normal <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span>loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Gera uma matriz 3x3 de números aleatórios com média 0 e desvio padrão 1</span></code></pre>
+<p></p>
+</li>
+</ol>
+<p><strong>Documentação oficial:</strong> <a href="https://numpy.org/doc/stable/user/absolute_beginners.html">NumPy: the absolute basics for beginners — NumPy v1.26 Manual</a></p>
+<p></p>
+<h2 class="atx" id="63-introdudcao-a-biblioteca-seaborn">6.3 Introdudção a biblioteca Seaborn</h2>
+<p>Neste tópico, vamos explorar a biblioteca Seaborn, uma poderosa ferramenta de visualização de dados estatísticos em Python. Vamos aprender sobre as operações básicas e principais funcionalidades oferecidas pelo Seaborn.</p>
+<p><strong>Instalação e Importação da Biblioteca Seaborn</strong></p>
+<p>Antes de começarmos, é importante garantir que a biblioteca Seaborn esteja instalada em seu ambiente Python. Você pode instalá-la usando pip:</p>
+<pre><code class="fenced-code-block">pip install seaborn</code></pre>
+<p>Em seguida, vamos importar a biblioteca Seaborn em nosso ambiente de trabalho:</p>
+<pre><code class="fenced-code-block language-python"><span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt  <span class="token comment"># Importando também o Matplotlib para personalização adicional</span></code></pre>
+<p><strong>Carregamento de Dados de Exemplo</strong></p>
+<p>O Seaborn oferece conjuntos de dados de exemplo para praticar visualização. Vamos carregar um desses conjuntos de dados para uso nos exemplos a seguir:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Carregando o conjunto de dados 'iris' (dados de flores)</span>
+dados_iris <span class="token operator">=</span> sns<span class="token punctuation">.</span>load_dataset<span class="token punctuation">(</span><span class="token string">'iris'</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Visualizações Básicas com Seaborn</strong></p>
+<p>Podemos criar uma variedade de visualizações básicas com o Seaborn para explorar os dados e entender as relações entre as variáveis:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Gráfico de dispersão para visualizar a relação entre duas variáveis</span>
+sns<span class="token punctuation">.</span>scatterplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'sepal_length'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'sepal_width'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Histograma para visualizar a distribuição de uma variável</span>
+sns<span class="token punctuation">.</span>histplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'petal_length'</span><span class="token punctuation">,</span> kde<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Gráfico de barras para comparar categorias</span>
+sns<span class="token punctuation">.</span>countplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'species'</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Visualizações Avançadas com Seaborn</strong></p>
+<p>Além das visualizações básicas, o Seaborn oferece uma variedade de gráficos avançados para análise exploratória de dados, incluindo gráficos de distribuição, gráficos de categorias, gráficos de relacionamento e gráficos de matriz:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Gráfico de caixa para comparar distribuições entre diferentes categorias</span>
+sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'species'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'petal_length'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Gráfico de violino para comparar distribuições e densidades</span>
+sns<span class="token punctuation">.</span>violinplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'species'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'sepal_length'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Gráfico de matriz para visualizar relações entre múltiplas variáveis</span>
+sns<span class="token punctuation">.</span>pairplot<span class="token punctuation">(</span>data<span class="token operator">=</span>dados_iris<span class="token punctuation">,</span> hue<span class="token operator">=</span><span class="token string">'species'</span><span class="token punctuation">)</span></code></pre>
+<p><strong>Personalização de Visualizações</strong></p>
+<p> O Seaborn oferece muitas opções de personalização para ajustar a aparência das visualizações de acordo com suas necessidades:</p>
+<pre><code class="fenced-code-block language-python"><span class="token comment"># Personalizando o estilo dos gráficos</span>
+sns<span class="token punctuation">.</span>set_style<span class="token punctuation">(</span><span class="token string">'whitegrid'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Adicionando título e rótulos aos eixos</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Relação entre Comprimento e Largura das Sépalas'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Comprimento da Sépala'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Largura da Sépala'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Exibindo a legenda</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Exibindo o gráfico</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p></p>
+<p><strong>Documentação oficial:</strong> <a href="https://seaborn.pydata.org/">seaborn: statistical data visualization — seaborn 0.13.2 documentation (pydata.org)</a></p>
+<hr>
+<h2 class="atx" id="lessa-namedouble-quoteassigmentdouble-quotegreater7-atividade-praticalessagreater"><a name="Assigment">7. <strong>Atividade Prática</strong></a></h2>
+<p>Atividade prática de análise de dados utilizando os dados do SIM datasus:</p>
+<p><strong>Atividade Prática: Análise de Dados do SIM Datasus</strong></p>
+<p><strong>Objetivo:</strong></p>
+<ul>
+<li>Realizar uma análise exploratória dos dados do Sistema de Informações sobre Mortalidade (SIM) do Datasus.</li>
+<li>Utilizar as bibliotecas Pandas, NumPy e Seaborn para manipulação, análise e visualização dos dados.</li>
+</ul>
+<p><strong>Passos:</strong></p>
+<ol>
+<li><p><strong>Download e Carregamento dos Dados:</strong></p>
+<ul>
+<li>Baixe os dados em CSV do SIM datasus do link fornecido<ul>
+<li><a href="https://dados.gov.br/dados/conjuntos-dados/sim-1979-2019">Sistemas de Mortalidade - DATASUS</a></li>
+</ul>
+</li>
+<li>Carregue os dados em um DataFrame do Pandas.</li>
+</ul>
+<pre><code class="fenced-code-block language-python">  SIM_2022 <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"DO22OPEN.csv"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"ISO-8859-1"</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">";"</span><span class="token punctuation">)</span></code></pre>
+</li>
+<li><p><strong>Exploração Inicial dos Dados:</strong></p>
+<ul>
+<li>Utilize métodos como <code>head()</code>, <code>info()</code> e <code>describe()</code> para entender a estrutura dos dados e identificar possíveis problemas (valores ausentes, dados incorretos, etc.).</li>
+</ul>
+</li>
+<li><p><strong>Limpeza e Preparação dos Dados:</strong></p>
+<ul>
+<li>Trate os dados ausentes, se houver, escolhendo uma estratégia apropriada (remover, preencher com valores médios, etc.).</li>
+<li>Converta os tipos de dados, se necessário (por exemplo, converter colunas de datas para o tipo datetime).</li>
+</ul>
+</li>
+<li><p><strong>Análise Exploratória:</strong></p>
+<ul>
+<li>Explore padrões nos dados usando visualizações do Seaborn, como gráficos de barras, histogramas, gráficos de dispersão, etc.</li>
+<li>Analise as relações entre diferentes variáveis, como idade, sexo, causa da morte, etc.</li>
+<li>Identifique tendências ao longo do tempo, se aplicável.</li>
+</ul>
+</li>
+<li><p><strong>Análise Estatística com NumPy:</strong></p>
+<ul>
+<li>Utilize funções do NumPy para calcular estatísticas descritivas, como média, mediana, desvio padrão, etc., sobre os dados relevantes.</li>
+<li>Identifique outliers ou valores extremos nos dados.</li>
+</ul>
+</li>
+<li><p><strong>Análise Específica:</strong></p>
+<ul>
+<li>Escolha uma questão específica para investigar mais a fundo (por exemplo, qual a principal causa de morte em uma determinada faixa etária ou região?).</li>
+<li>Realize análises mais detalhadas e visualizações específicas para responder à sua pergunta.</li>
+</ul>
+</li>
+<li><p><strong>Visualização Avançada:</strong></p>
+<ul>
+<li>Experimente visualizações avançadas do Seaborn, como mapas de calor, pair plots, etc., para explorar relações complexas entre múltiplas variáveis.</li>
+</ul>
+</li>
+<li><p><strong>Conclusões e Comunicação dos Resultados:</strong></p>
+<ul>
+<li>Recapitule as principais descobertas e conclusões da sua análise.</li>
+<li>Prepare visualizações claras e informativas para comunicar seus resultados de forma eficaz.</li>
+<li>Sugira possíveis próximos passos ou áreas de pesquisa adicionais.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Observações:</strong></p>
+<ul>
+<li>Durante o processo, não hesite em consultar a documentação do Pandas, NumPy e Seaborn para aproveitar ao máximo as funcionalidades dessas bibliotecas.</li>
+<li>A atividade pode ser adaptada e expandida de acordo com o nível de experiência dos participantes e os objetivos específicos da análise.</li>
+</ul>
+</article>
+  
+</body>
+</html>

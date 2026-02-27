@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capítulo 1 — Orientação a Objetos como Modelo Mental</title>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: #0f1621;
+      --text: #e7eef8;
+      --muted: #a9b4c3;
+      --border: rgba(231,238,248,.14);
+      --codebg: rgba(255,255,255,.06);
+      --accent: #7fb4ff;
+      --accent2:#86f0c8;
+      --warn: #ffd38a;
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px circle at 20% 10%, rgba(127,180,255,.18), transparent 50%),
+                  radial-gradient(900px circle at 80% 30%, rgba(134,240,200,.14), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header{
+      padding: 40px 18px 18px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(255,255,255,.04), transparent);
+    }
+    .container{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 70px;
+    }
+    h1{
+      margin: 0 0 8px;
+      font-size: clamp(1.35rem, 2vw + 1rem, 2.1rem);
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+    nav.toc{
+      margin: 18px 0 0;
+      padding: 14px 14px 10px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    nav.toc strong{
+      display:block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: .98rem;
+    }
+    nav.toc a{
+      color: var(--accent);
+      text-decoration: none;
+    }
+    nav.toc a:hover{ text-decoration: underline; }
+    nav.toc ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    main{
+      padding-top: 18px;
+    }
+    section{
+      margin: 22px 0;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+    }
+    section h2{
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      letter-spacing: .2px;
+    }
+    section h3{
+      margin: 16px 0 8px;
+      font-size: 1.08rem;
+      color: var(--text);
+    }
+    p{ margin: 10px 0; }
+    .callout{
+      margin: 14px 0;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(127,180,255,.08);
+    }
+    .callout strong{ color: var(--accent); }
+    .goalgrid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 12px 0 0;
+    }
+    @media (min-width: 820px){
+      .goalgrid{ grid-template-columns: 1fr 1fr; }
+    }
+    .goal{
+      padding: 12px 12px 10px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+    }
+    .goal .label{
+      display:inline-block;
+      font-size: .84rem;
+      letter-spacing: .2px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .goal .text{ margin: 0; }
+    pre, code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .94rem;
+    }
+    pre{
+      margin: 12px 0;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--codebg);
+      overflow:auto;
+    }
+    .diagram-title{
+      margin: 12px 0 6px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .pillrow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+    .pill{
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .88rem;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .pill b{ color: var(--text); font-weight: 600; }
+    .refs{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .96rem;
+    }
+    .refs em{ color: var(--text); font-style: normal; }
+    footer{
+      margin-top: 26px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+    }
+    .small{ font-size: .92rem; color: var(--muted); }
+    .warn{
+      background: rgba(255,211,138,.10);
+      border-color: rgba(255,211,138,.35);
+    }
+    .warn strong{ color: var(--warn); }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Capítulo 1 — Orientação a Objetos como Modelo Mental para Sistemas Digitais Contemporâneos</h1>
+      <p class="subtitle">
+        Material didático para graduação, com fundamentação teórica clássica, diagramas estruturais e exemplos em pseudocódigo comentado.
+        Exercícios foram removidos para compartilhamento direto com os estudantes.
+      </p>
+
+      <nav class="toc" aria-label="Sumário">
+        <strong>Sumário</strong>
+        <ul>
+          <li><a href="#sec1">1. Complexidade como problema estrutural</a></li>
+          <li><a href="#sec2">2. Abstração e classe como unidade de responsabilidade</a></li>
+          <li><a href="#sec3">3. Encapsulamento como garantia de coesão</a></li>
+          <li><a href="#sec4">4. Herança: generalização estrutural e limites</a></li>
+          <li><a href="#sec5">5. Problemas da herança excessiva</a></li>
+          <li><a href="#sec6">6. Composição e estratégias como alternativa arquitetural</a></li>
+          <li><a href="#sec7">7. Polimorfismo e ligação dinâmica</a></li>
+          <li><a href="#refs">Referências clássicas</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="sec1">
+      <h2>1. Complexidade como problema estrutural</h2>
+
+      <p>
+        A orientação a objetos não deve ser compreendida primariamente como um conjunto de recursos sintáticos, mas como uma resposta
+        teórica e prática ao problema de organizar a complexidade em sistemas de larga escala. Em sistemas contemporâneos, a dificuldade
+        central raramente é “escrever código”, mas estruturar responsabilidades e dependências de modo que o sistema permaneça compreensível,
+        verificável e evolutivo ao longo do tempo.
+      </p>
+
+      <p>
+        Na tradição da análise e do projeto orientados a objetos, a modelagem enfatiza entidades relevantes do domínio e seus papéis
+        (responsabilidades), bem como as relações e variações de comportamento. Booch defende que a modelagem orientada a objetos desloca o foco
+        da sequência de procedimentos para a estrutura de abstrações e colaborações. Meyer, ao formular o <em>Design by Contract</em>,
+        enfatiza que classes devem explicitar e proteger regras que garantem consistência comportamental. Martin reforça que decisões estruturais
+        determinam manutenibilidade, e Liskov formaliza a substituibilidade necessária para hierarquias semanticamente válidas.
+      </p>
+
+      <div class="callout">
+        <strong>Ideia central.</strong>
+        <p class="small" style="margin:8px 0 0;">
+          Orientação a objetos é um <em>modelo mental</em> para organizar sistemas complexos por responsabilidades e contratos, antes de ser um
+          estilo de codificação.
+        </p>
+      </div>
+
+      <div class="pillrow" aria-label="Pilares conceituais">
+        <span class="pill"><b>Modelagem</b> como decisão de responsabilidades</span>
+        <span class="pill"><b>Abstração</b> para reduzir complexidade cognitiva</span>
+        <span class="pill"><b>Contrato</b> para preservar consistência</span>
+        <span class="pill"><b>Estrutura</b> condiciona evolução futura</span>
+      </div>
+    </section>
+
+
+    <section id="sec2">
+      <h2>2. Abstração e classe como unidade de responsabilidade</h2>
+
+      <p>
+        Considere um cenário de plataforma de streaming com personalização por recomendação. Um primeiro passo de modelagem é identificar
+        abstrações fundamentais, isto é, entidades do domínio com propriedades e comportamentos coerentes. Abstrair, nesse contexto, consiste
+        em capturar características essenciais e excluir detalhes acidentais, de forma a permitir raciocínio estável sobre o sistema.
+      </p>
+
+      <p class="diagram-title">Diagrama estrutural inicial (abstrações principais)</p>
+      <pre aria-label="Diagrama: Usuário e Conteúdo (estrutura inicial)">
++----------------+
+|    Usuário     |
++----------------+
+| id             |
+| perfil         |
+| histórico      |
++----------------+
+| consumir()     |
+| recomendar()   |
++----------------+
+
++----------------+
+|   Conteúdo     |
++----------------+
+| título         |
+| duração        |
+| classificação  |
++----------------+
+| exibir()       |
+| calcularRel()  |
++----------------+</pre>
+
+      <div class="goalgrid" role="group" aria-label="Objetivo e resultado esperado do exemplo">
+        <div class="goal">
+          <div class="label">Objetivo do exemplo</div>
+          <p class="text">
+            Compreender que <strong>classe</strong> representa uma abstração com <strong>estado</strong> e <strong>comportamento</strong>
+            integrados sob uma <strong>responsabilidade</strong>, e não apenas um “molde de dados”.
+          </p>
+        </div>
+        <div class="goal">
+          <div class="label">O que se espera alcançar</div>
+          <p class="text">
+            Que o estudante consiga justificar a presença de atributos e métodos como parte de uma decisão de modelagem: “quem sabe o quê”
+            e “quem faz o quê” no domínio.
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo com pseudocódigo: responsabilidade de registrar consumo</h3>
+
+      <p>
+        O comportamento “registrar consumo” pertence naturalmente ao usuário, pois se relaciona ao histórico e a regras de consistência (por exemplo,
+        evitar duplicações ou registrar apenas conteúdos válidos). Ao concentrar esse comportamento na entidade responsável, reduz-se o risco de regras
+        dispersas, o que tende a fragilizar a evolução do sistema.
+      </p>
+
+      <pre aria-label="Pseudocódigo: classe Usuario com consumo e histórico">
+// Classe que representa a entidade Usuário
+classe Usuario {
+
+    privado historicoConsumo
+
+    // Método responsável por registrar o consumo de um conteúdo
+    metodo consumir(conteudo) {
+
+        // Regra de negócio: impedir duplicação no histórico
+        se (!historicoConsumo.contem(conteudo)) {
+            historicoConsumo.adicionar(conteudo)
+        }
+    }
+
+    metodo recomendar() {
+        // Em versões futuras, delegar para uma estratégia de recomendação
+    }
+}</pre>
+
+      <p class="small">
+        Observação conceitual: em uma perspectiva de contrato (Meyer), o método <code>consumir</code> é um ponto natural para impor
+        pré-condições (conteúdo válido) e preservar invariantes (consistência do histórico).
+      </p>
+    </section>
+
+
+    <section id="sec3">
+      <h2>3. Encapsulamento como garantia de coesão</h2>
+
+      <p>
+        Encapsulamento é frequentemente reduzido à ideia de ocultar atributos. Contudo, seu papel conceitual é preservar invariantes do domínio,
+        isto é, condições que devem permanecer verdadeiras ao longo do ciclo de vida do objeto. Se regras forem aplicadas por múltiplos componentes
+        externos, a classe perde controle sobre sua consistência, e o sistema passa a depender de disciplina informal — o que é frágil em sistemas reais.
+      </p>
+
+      <p class="diagram-title">Diagrama: responsabilidade concentrada no Usuário</p>
+      <pre aria-label="Diagrama: Usuário com histórico e consumo">
++----------------+
+|    Usuário     |
++----------------+
+| histórico      |
++----------------+
+| consumir()     |
+| validar()      |
++----------------+</pre>
+
+      <div class="goalgrid" role="group" aria-label="Objetivo e resultado esperado do exemplo de encapsulamento">
+        <div class="goal">
+          <div class="label">Objetivo do exemplo</div>
+          <p class="text">
+            Demonstrar que encapsulamento é a <strong>proteção de invariantes</strong> e a manutenção de <strong>coesão</strong>, e não
+            apenas “esconder variáveis”.
+          </p>
+        </div>
+        <div class="goal">
+          <div class="label">O que se espera alcançar</div>
+          <p class="text">
+            Que o estudante identifique onde regras de negócio devem residir e reconheça que a dispersão de regras aumenta fragilidade e custo de mudança.
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo com pseudocódigo: validação como proteção de invariantes</h3>
+
+      <p>
+        A validação pode ser tratada como parte do contrato da classe. A ideia é que o objeto imponha condições mínimas para preservar sua consistência.
+        Em termos de projeto, isso reduz dependências externas e torna o comportamento previsível sob uma interface estável.
+      </p>
+
+      <pre aria-label="Pseudocódigo: encapsulamento com validação">
+// Exemplo: encapsulamento de validações na própria entidade
+classe Usuario {
+
+    privado historico
+
+    metodo consumir(conteudo) {
+
+        // Pré-condição: conteúdo deve ser válido
+        validarConteudo(conteudo)
+
+        // A atualização do histórico é responsabilidade do próprio Usuário
+        historico.adicionar(conteudo)
+    }
+
+    metodo validarConteudo(conteudo) {
+        se (conteudo == nulo) {
+            lançar ErroDominio("Conteúdo inválido")
+        }
+    }
+}</pre>
+    </section>
+
+
+    <section id="sec4">
+      <h2>4. Herança: generalização estrutural e limites</h2>
+
+      <p>
+        Herança é um mecanismo de generalização estrutural: permite expressar que certos tipos especializados compartilham estado e comportamento
+        de uma abstração mais geral. A interpretação conceitual adequada é a relação “é-um” (subtipo). Por exemplo, “Filme é um Conteúdo” expressa
+        identidade estrutural: um filme pode ser tratado como conteúdo quando o sistema opera em termos gerais.
+      </p>
+
+      <p class="diagram-title">Diagrama: Conteúdo e especializações</p>
+      <pre aria-label="Diagrama: Conteúdo com Filme, Série e Live">
+           Conteúdo
+              |
+    ------------------------
+    |          |           |
+  Filme       Série       Live</pre>
+
+      <div class="callout warn">
+        <strong>Critério semântico.</strong>
+        <p class="small" style="margin:8px 0 0;">
+          Em termos do princípio de substituição de Liskov, uma subclasse deve preservar propriedades esperadas da superclasse.
+          Herança deixa de ser apropriada quando a especialização viola expectativas comportamentais do tipo mais geral.
+        </p>
+      </div>
+
+      <div class="goalgrid" role="group" aria-label="Objetivo e resultado esperado do exemplo de herança">
+        <div class="goal">
+          <div class="label">Objetivo do exemplo</div>
+          <p class="text">
+            Compreender herança como <strong>generalização estrutural</strong> coerente (subtipagem), e não como “recurso para reaproveitar código”.
+          </p>
+        </div>
+        <div class="goal">
+          <div class="label">O que se espera alcançar</div>
+          <p class="text">
+            Que o estudante saiba avaliar se uma hierarquia é semanticamente válida, distinguindo <strong>identidade</strong> de <strong>variação comportamental</strong>.
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo com pseudocódigo: polimorfismo em cálculo de relevância</h3>
+
+      <p>
+        Considere a necessidade de calcular relevância de conteúdos para recomendação. Diferentes tipos podem adotar critérios distintos, porém o
+        sistema deseja operar por meio de uma interface comum (<code>calcularRelevancia</code>). Polimorfismo permite que cada tipo responda à mesma
+        mensagem com comportamento apropriado, sem condicionais espalhados.
+      </p>
+
+      <pre aria-label="Pseudocódigo: Conteudo e subclasses com calcularRelevancia">
+// Classe geral: Conteúdo
+classe Conteudo {
+
+    // Método definido no tipo geral (interface comum)
+    metodo calcularRelevancia() {
+        retornar 0
+    }
+}
+
+// Especialização: Filme
+classe Filme herda Conteudo {
+
+    // Relevância baseada, por exemplo, em avaliações
+    metodo calcularRelevancia() {
+        retornar mediaAvaliacoes()
+    }
+}
+
+// Especialização: Série
+classe Serie herda Conteudo {
+
+    // Relevância baseada, por exemplo, em retenção (episódios assistidos)
+    metodo calcularRelevancia() {
+        retornar taxaRetencao()
+    }
+}</pre>
+    </section>
+
+
+    <section id="sec5">
+      <h2>5. Problemas da herança excessiva</h2>
+
+      <p>
+        Embora poderosa, herança cria uma relação estrutural forte. Em sistemas reais, o uso indiscriminado tende a produzir rigidez arquitetural.
+        A literatura de projeto enfatiza que decisões estruturais devem considerar evolução futura e custo de mudança. O ponto central é que herança
+        é adequada para identidade estrutural estável, mas frequentemente é usada indevidamente para modelar variações combinatórias de comportamento.
+      </p>
+
+      <h3>5.1 Acoplamento estrutural rígido</h3>
+
+      <p class="diagram-title">Diagrama: hierarquia profunda e dependência vertical</p>
+      <pre aria-label="Diagrama: Conteúdo -> Filme -> FilmePremium">
+Conteúdo
+  |
+  +-- Filme
+        |
+        +-- FilmePremium</pre>
+
+      <p>
+        Em hierarquias profundas, mudanças na superclasse podem impactar várias subclasses. Esse efeito é um caso típico de acoplamento estrutural:
+        a evolução de um conceito “central” tende a propagar-se para especializações, elevando o risco de regressões e exigindo refatorações amplas.
+        Martin discute, em termos arquiteturais, que dependências mal posicionadas reduzem a elasticidade do sistema.
+      </p>
+
+      <h3>5.2 Explosão combinatória de subclasses</h3>
+
+      <p class="diagram-title">Diagrama: combinação de variações como subclasses</p>
+      <pre aria-label="Diagrama: explosão de subclasses por combinação">
+FilmeInterativo
+SerieInterativa
+LiveInterativa
+FilmePremium
+SeriePremium
+LivePremium</pre>
+
+      <p>
+        Quando características como “premium”, “offline” ou “interativo” são tratadas como tipos fundamentais, a hierarquia tende a crescer por
+        combinação. Isso torna o modelo difícil de compreender e manter. O problema decorre de representar comportamento variável como identidade.
+      </p>
+
+      <h3>5.3 Confusão entre identidade e comportamento</h3>
+
+      <p>
+        “Filme” costuma ser identidade estrutural (“é-um conteúdo”). Já “premium” e “offline” tendem a representar políticas de acesso ou capacidades,
+        isto é, variações de comportamento. Ao usar herança para comportamento variável, perde-se clareza semântica e aumenta-se rigidez.
+      </p>
+
+      <div class="callout">
+        <strong>Síntese conceitual.</strong>
+        <p class="small" style="margin:8px 0 0;">
+          Herança é apropriada para identidade estrutural estável. Para comportamento variável, a tendência arquitetural mais robusta é separar o
+          comportamento em componentes/estratégias (composição).
+        </p>
+      </div>
+    </section>
+
+
+    <section id="sec6">
+      <h2>6. Composição e estratégias como alternativa arquitetural</h2>
+
+      <p>
+        Quando o comportamento pode variar independentemente da identidade estrutural, a composição tende a oferecer maior extensibilidade. Em termos
+        de projeto, isso significa que o objeto “tem-um” componente responsável por uma política (estratégia), em vez de “ser-um” tipo específico
+        rigidamente codificado na hierarquia. Essa abordagem se alinha ao princípio de dependência em abstrações (Martin) e reduz a necessidade de
+        modificar classes centrais quando novas variações surgem.
+      </p>
+
+      <p class="diagram-title">Diagrama: estratégia de recomendação (contrato + implementações)</p>
+      <pre aria-label="Diagrama: EstrategiaRecomendacao e implementações">
++----------------------+
+| EstrategiaRecomend.  |
++----------------------+
+| recomendar()         |
++----------------------+
+
+       ▲
+       |
+------------------------------
+|            |               |
+Historico  Popularidade   Cluster</pre>
+
+      <p class="diagram-title">Diagrama: Usuário compõe uma estratégia</p>
+      <pre aria-label="Diagrama: Usuário com estratégia">
++----------------+
+|    Usuário     |
++----------------+
+| estrategia     |
++----------------+
+| recomendar()   |
++----------------+</pre>
+
+      <div class="goalgrid" role="group" aria-label="Objetivo e resultado esperado do exemplo de estratégia">
+        <div class="goal">
+          <div class="label">Objetivo do exemplo</div>
+          <p class="text">
+            Evidenciar a separação entre <strong>estrutura</strong> (identidade do objeto) e <strong>comportamento variável</strong> (políticas),
+            por meio de interfaces/contratos.
+          </p>
+        </div>
+        <div class="goal">
+          <div class="label">O que se espera alcançar</div>
+          <p class="text">
+            Que o estudante compreenda como estratégias reduzem acoplamento e tornam o sistema extensível sem crescimento hierárquico.
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo com pseudocódigo: usuário delega recomendação</h3>
+
+      <p>
+        A classe Usuário passa a depender apenas de um contrato (<code>EstrategiaRecomendacao</code>) e não de implementações específicas.
+        Isso permite introduzir novos algoritmos (por exemplo, baseados em aprendizado de máquina) sem reescrever a classe Usuário.
+      </p>
+
+      <pre aria-label="Pseudocódigo: interface e estratégias de recomendação">
+// Contrato: define o que significa "recomendar"
+interface EstrategiaRecomendacao {
+    metodo recomendar(usuario)
+}
+
+// Implementação 1: baseada em histórico
+classe RecomendacaoPorHistorico implementa EstrategiaRecomendacao {
+
+    metodo recomendar(usuario) {
+        // Política: derivar recomendações do histórico do usuário
+        retornar analisarHistorico(usuario)
+    }
+}
+
+// Implementação 2: baseada em popularidade
+classe RecomendacaoPorPopularidade implementa EstrategiaRecomendacao {
+
+    metodo recomendar(usuario) {
+        // Política: recomendar itens mais consumidos globalmente
+        retornar listarMaisPopulares()
+    }
+}
+
+// Usuário compõe uma estratégia e delega o comportamento variável
+classe Usuario {
+
+    privado estrategia
+
+    metodo definirEstrategia(e) {
+        estrategia = e
+    }
+
+    metodo recomendar() {
+        // Delegação: Usuário não "sabe" como recomendar; ele delega para a estratégia
+        retornar estrategia.recomendar(this)
+    }
+}</pre>
+    </section>
+
+
+    <section id="sec7">
+      <h2>7. Polimorfismo e ligação dinâmica</h2>
+
+      <p>
+        Polimorfismo permite que diferentes objetos respondam à mesma mensagem por meio de uma interface comum. Em termos operacionais, a decisão
+        sobre qual implementação executar ocorre em tempo de execução (ligação dinâmica). Isso é particularmente relevante para extensibilidade:
+        o sistema pode ser estendido com novos tipos sem necessidade de modificar o código que opera sobre o tipo geral.
+      </p>
+
+      <p class="diagram-title">Diagrama: polimorfismo em Conteúdo</p>
+      <pre aria-label="Diagrama: Conteúdo e especializações para polimorfismo">
+Conteúdo
+   |
+----------------
+|      |       |
+Filme Série   Live</pre>
+
+      <p class="diagram-title">Chamada polimórfica (mesma mensagem, comportamentos distintos)</p>
+      <pre aria-label="Diagrama: chamada polimórfica">
+listaConteudos.calcularRelevancia()</pre>
+
+      <div class="goalgrid" role="group" aria-label="Objetivo e resultado esperado do exemplo de polimorfismo">
+        <div class="goal">
+          <div class="label">Objetivo do exemplo</div>
+          <p class="text">
+            Demonstrar como polimorfismo substitui condicionais estruturais e apoia o princípio aberto-fechado (extensão sem modificação).
+          </p>
+        </div>
+        <div class="goal">
+          <div class="label">O que se espera alcançar</div>
+          <p class="text">
+            Que o estudante consiga explicar, conceitualmente, por que a ligação dinâmica melhora extensibilidade e reduz complexidade de controle.
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo com pseudocódigo: eliminando condicionais</h3>
+
+      <p>
+        Em vez de centralizar decisões em estruturas condicionais (que crescem a cada novo tipo), o sistema chama um método comum definido no tipo
+        geral. Cada subtipo fornece sua própria implementação. Isso concentra variações nos próprios tipos e reduz a necessidade de alterar código
+        existente ao introduzir novos tipos.
+      </p>
+
+      <pre aria-label="Pseudocódigo: operação polimórfica sobre lista de conteúdos">
+// Operação em termos do tipo geral
+metodo ranquearConteudos(listaDeConteudos) {
+
+    para cada c em listaDeConteudos {
+        // A mesma mensagem é enviada a objetos possivelmente diferentes
+        score = c.calcularRelevancia()
+        registrar(score)
+    }
+
+    retornar ordenarPorScore()
+}</pre>
+    </section>
+
+
+    <section id="refs">
+      <h2>Referências clássicas</h2>
+      <div class="refs">
+        <p>
+          <em>BOOCH, G.</em> <strong>Object-Oriented Analysis and Design with Applications</strong>. Addison-Wesley, 1994.
+        </p>
+        <p>
+          <em>MEYER, B.</em> <strong>Object-Oriented Software Construction</strong>. 2nd ed. Prentice Hall, 1997.
+        </p>
+        <p>
+          <em>MARTIN, R. C.</em> <strong>Agile Software Development: Principles, Patterns, and Practices</strong>. Prentice Hall, 2002.
+        </p>
+        <p>
+          <em>LISKOV, B.; WING, J.</em> <strong>A Behavioral Notion of Subtyping</strong>. ACM Transactions on Programming Languages and Systems, 1994.
+        </p>
+        <p class="small">
+          Nota: o princípio de substituição de Liskov (LSP) é frequentemente apresentado em livros-texto e literatura de engenharia de software
+          como condição semântica para subtipagem segura: objetos de subtipos devem poder substituir objetos do tipo base sem comprometer propriedades
+          desejáveis do programa.
+        </p>
+      </div>
+    </section>
+
+
+    <footer>
+      <p style="margin:0;">
+        Este material foi estruturado para leitura autônoma: introduz conceitos, apresenta diagramas como âncoras de modelagem e inclui pseudocódigo
+        comentado após explicação conceitual. Para adaptação didática, recomenda-se usar os diagramas como “mapas” e discutir a motivação de cada
+        decisão estrutural (responsabilidades, contratos, extensibilidade).
+      </p>
+    </footer>
+
+  </main>
+</body>
+</html>

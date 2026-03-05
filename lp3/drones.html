@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Correção Orientada — Modelagem Conceitual de Entregas com Drones</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f1621; --text:#e7eef8; --muted:#a9b4c3;
+      --border:rgba(231,238,248,.14); --codebg:rgba(255,255,255,.06);
+      --accent:#7fb4ff; --accent2:#86f0c8; --warn:#ffd38a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px circle at 18% 10%, rgba(127,180,255,.18), transparent 50%),
+        radial-gradient(900px circle at 82% 30%, rgba(134,240,200,.14), transparent 55%),
+        var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    header{
+      padding:40px 18px 18px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to bottom, rgba(255,255,255,.04), transparent);
+    }
+    .container{max-width:980px; margin:0 auto; padding:0 18px 70px;}
+    h1{margin:0 0 8px; font-size:clamp(1.35rem,2vw + 1rem,2.1rem); letter-spacing:.2px;}
+    .subtitle{margin:0; color:var(--muted); max-width:80ch;}
+    nav.toc{
+      margin:18px 0 0;
+      padding:14px 14px 10px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+    }
+    nav.toc strong{display:block; margin-bottom:8px; font-size:.98rem;}
+    nav.toc ul{margin:0; padding-left:18px; color:var(--muted);}
+    nav.toc a{color:var(--accent); text-decoration:none;}
+    nav.toc a:hover{text-decoration:underline;}
+    main{padding-top:18px;}
+    section{
+      margin:22px 0;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+    }
+    section h2{margin:0 0 10px; font-size:1.25rem;}
+    section h3{margin:16px 0 8px; font-size:1.06rem;}
+    p{margin:10px 0;}
+    pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.94rem;}
+    pre{
+      margin:12px 0; padding:14px;
+      border:1px solid var(--border);
+      border-radius:14px; background:var(--codebg);
+      overflow:auto;
+    }
+    .callout{
+      margin:14px 0;
+      padding:14px 14px 12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(127,180,255,.08);
+    }
+    .callout strong{color:var(--accent);}
+    .warn{
+      background:rgba(255,211,138,.10);
+      border-color:rgba(255,211,138,.35);
+    }
+    .warn strong{color:var(--warn);}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:12px 0 0;
+    }
+    @media (min-width:820px){ .grid{grid-template-columns:1fr 1fr;} }
+    .card{
+      padding:12px 12px 10px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .label{display:inline-block; font-size:.84rem; letter-spacing:.2px; color:var(--muted); margin-bottom:6px;}
+    .small{font-size:.92rem; color:var(--muted);}
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0;}
+    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:.88rem; color:var(--muted); background:rgba(255,255,255,.02);}
+    .pill b{color:var(--text); font-weight:600;}
+    .refs{
+      margin-top:10px; padding-top:10px; border-top:1px solid var(--border);
+      color:var(--muted); font-size:.96rem;
+    }
+    footer{
+      margin-top:26px;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+    }
+    .pdfbox{
+      margin:14px 0 0;
+      padding:14px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .pdfbox a{color:var(--accent); text-decoration:none;}
+    .pdfbox a:hover{text-decoration:underline;}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <h1>Correção Orientada do Exercício — Modelagem Conceitual de Sistema de Entregas com Drones</h1>
+    <p class="subtitle">
+      Material de leitura para graduação, focado em justificar decisões de modelagem OO: abstrações, responsabilidades e pontos de variação,
+      com diagramas e exemplos em pseudocódigo comentado.
+    </p>
+
+    <nav class="toc" aria-label="Sumário">
+      <strong>Sumário</strong>
+      <ul>
+        <li><a href="#sec1">1. Retomada do problema</a></li>
+        <li><a href="#sec2">2. Abstrações fundamentais</a></li>
+        <li><a href="#sec3">3. Responsabilidades por abstração (Drone)</a></li>
+        <li><a href="#sec4">4. Pontos de variação no domínio</a></li>
+        <li><a href="#sec5">5. Variação 1: tipos de drone (herança)</a></li>
+        <li><a href="#sec6">6. Variação 2: tipos de entrega (risco de herança)</a></li>
+        <li><a href="#sec7">7. Modelagem por composição: Entrega + Prioridade</a></li>
+        <li><a href="#sec8">8. Variação 3: sensores (composição + polimorfismo)</a></li>
+        <li><a href="#sec9">9. Evolução futura e impacto arquitetural</a></li>
+        <li><a href="#sec10">10. Conclusão</a></li>
+      </ul>
+    </nav>
+
+    <div class="pdfbox">
+      <div class="small">
+        Fonte base deste conteúdo: <b>“Correção Orientada do Exercício — Modelagem Conceitual de Sistema de Entregas com Drones”</b>.
+        Consulte o PDF original para a versão diagramada (páginas 1–8). <!-- citation required in chat; included below outside HTML -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="sec1">
+    <h2>1. Retomada do problema</h2>
+    <p>
+      O sistema em análise é uma plataforma de entregas urbanas utilizando drones autônomos. Esses drones transportam diferentes tipos de carga,
+      operam sob condições ambientais distintas e devem permitir evolução futura do sistema. O objetivo desta correção orientada não é produzir
+      uma única “solução correta”, mas avaliar decisões de modelagem — isto é, a qualidade estrutural do modelo proposto.
+    </p>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Delimitar o domínio e explicitar critérios de avaliação: clareza de abstrações, responsabilidades consistentes e preparação para mudança.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Que o estudante consiga justificar escolhas de modelagem com base em responsabilidade, coesão, acoplamento e extensibilidade.
+        </p>
+      </div>
+    </div>
+
+    <div class="pillrow" aria-label="Requisitos do domínio">
+      <span class="pill"><b>Drones</b> com capacidades distintas</span>
+      <span class="pill"><b>Entregas</b> (expressa, médica, econômica)</span>
+      <span class="pill"><b>Sensores</b> e <b>clima</b></span>
+      <span class="pill"><b>Evolução futura</b> do sistema</span>
+    </div>
+  </section>
+
+
+  <section id="sec2">
+    <h2>2. Identificando abstrações fundamentais</h2>
+    <p>
+      O primeiro passo de qualquer modelagem orientada a objetos é identificar entidades do domínio que apareçam naturalmente no problema.
+      Em geral, emergem conceitos como <em>Drone</em>, <em>Entrega</em>, <em>Pacote</em>, <em>Rota</em>, <em>Sensor</em> e <em>Clima</em>.
+      A ideia é representar conceitos do mundo real como abstrações computacionais com estado e comportamento.
+    </p>
+
+    <pre aria-label="Diagrama: estrutura inicial de classes (abstrações do domínio)">
++----------------+     +----------------+     +----------------+
+|     Drone      |     |     Entrega    |     |     Sensor     |
++----------------+     +----------------+     +----------------+
+| id             |     | id             |     | tipo           |
+| bateria        |     | pacote         |     | valor          |
+| capacidade     |     | rota           |     +----------------+
+| sensores[]     |     | prioridade(*)  |     | lerDados()     |
++----------------+     +----------------+     +----------------+
+| voar()         |     | calcularPrazo()| 
+| calcularRota() |     | calcularCusto()|
+| monitorarBat() |     +----------------+
++----------------+
+
+(*) prioridade tende a variar: candidata a estratégia (composição).</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Aprender a partir do enunciado a extrair um “núcleo” de abstrações do domínio, evitando antecipar detalhes de implementação.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um modelo inicial que permita discussão: o que é central, o que é acessório e onde haverá variação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec3">
+    <h2>3. Analisando responsabilidades de cada abstração: o caso da classe <em>Drone</em></h2>
+    <p>
+      Uma vez identificadas as abstrações, o passo seguinte é traduzir responsabilidades em atributos (estado) e métodos (comportamento).
+      A pergunta guia é: “se existe uma classe Drone, o que ela deveria saber e o que deveria fazer?”. No domínio, responsabilidades típicas
+      incluem voar, calcular rota, monitorar bateria e transportar carga.
+    </p>
+
+    <pre aria-label="Diagrama: Drone — estado e comportamento (com relação de posse de sensores)">
++------------------------------+
+|            Drone             |
++------------------------------+
+| capacidadeCarga : double     |
+| bateria        : double      |
+| sensores       : List<Sensor>|
++------------------------------+
+| voar()                       |
+| calcularRota(destino)        |
+| monitorarBateria()           |
+| transportarCarga(pacote)     |
++------------------------------+
+            1
+            |
+          possui
+            |
+           0..*
++----------------+
+|     Sensor     |
++----------------+
+| tipo           |
+| valor          |
++----------------+
+| lerDados()     |
++----------------+</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Demonstrar a ligação entre responsabilidade e design: o que a classe “assume” determina seus atributos e operações.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um Drone que seja coeso: dados e operações relacionadas ao voo e ao monitoramento pertencem ao próprio objeto.
+        </p>
+      </div>
+    </div>
+
+    <h3>Pseudocódigo comentado</h3>
+    <p>
+      O pseudocódigo abaixo ilustra como responsabilidades podem ser expressas como operações do próprio objeto, preservando coesão.
+      O foco não é a sintaxe, mas o encapsulamento da lógica essencial.
+    </p>
+
+    <pre aria-label="Pseudocódigo: Drone com responsabilidades fundamentais">
+classe Drone {
+
+    privado capacidadeCarga
+    privado bateria
+    privado sensores : Lista<Sensor>
+
+    metodo voar() {
+        // Responsabilidade: executar voo (nível alto; detalhes ficam em módulos de navegação)
+        consumirBateria(estimativaConsumoBasica())
+    }
+
+    metodo calcularRota(destino) {
+        // Responsabilidade: delegar a decisão de rota
+        // (pode evoluir para usar estratégia Roteamento)
+        retornar Rota.basica(geoAtual(), destino)
+    }
+
+    metodo monitorarBateria() {
+        // Responsabilidade: avaliar estado e acionar alertas
+        se (bateria < 0.15) {
+            emitirAlerta("Bateria crítica")
+        }
+    }
+
+    metodo transportarCarga(pacote) {
+        // Invariante: não exceder capacidade
+        se (pacote.peso > capacidadeCarga) {
+            lançar ErroDominio("Carga excede capacidade do drone")
+        }
+        // Ação de transporte pode depender de rota, clima e sensores
+    }
+
+    metodo consumirBateria(valor) { bateria = max(0, bateria - valor) }
+}</pre>
+  </section>
+
+
+  <section id="sec4">
+    <h2>4. Identificando pontos de variação no domínio</h2>
+    <p>
+      Um passo decisivo para modelagem orientada a objetos é identificar onde o sistema tende a variar. Pontos de variação são aspectos do domínio
+      que podem mudar com frequência ou se multiplicar em tipos/regra. Em geral, são locais em que herança, polimorfismo e/ou composição serão
+      considerados.
+    </p>
+
+    <pre aria-label="Diagrama: pontos de variação (visão geral)">
+Pontos de variação típicos:
+  1) Tipo de drone
+  2) Tipo/regra de entrega (prioridade)
+  3) Tipo de sensor
+  4) Condições ambientais (clima)
+
+Esses pontos indicam “locais” onde o modelo deve ser preparado para mudança.</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Ensinar a reconhecer variação antes de escolher mecanismos (herança vs composição), reduzindo retrabalho estrutural.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um mapa de evolução: decisões arquiteturais passam a ser tomadas com base em onde o sistema mudará.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec5">
+    <h2>5. Variação 1: tipos de drone — quando herança pode fazer sentido</h2>
+    <p>
+      Para tipos de drone (leve, pesado, longa distância, médico), herança pode ser apropriada quando as diferenças forem especializações estruturais
+      e a relação “é-um” for legítima. Isto é, cada tipo continua sendo um Drone e preserva propriedades esperadas do tipo base.
+    </p>
+
+    <pre aria-label="Diagrama: hierarquia de drones (especialização estrutural)">
+                Drone
+                  |
+     ---------------------------------
+     |               |               |
+   DroneLeve   DroneCargaPesada  DroneLongaDistancia
+                                   |
+                                DroneMedico (opcional)</pre>
+
+    <div class="callout warn">
+      <strong>Critério prático.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Herança é mais defensável quando a variação muda limites/capacidades estruturais (carga máxima, alcance, sensores obrigatórios),
+        e não apenas “políticas” ou regras combinatórias.
+      </p>
+    </div>
+
+    <h3>Pseudocódigo comentado</h3>
+    <p>
+      A seguir, um exemplo de especialização estrutural: drones variam por capacidade e alcance. O tipo base define um contrato mínimo e subclasses
+      refinam limites, mantendo coerência.
+    </p>
+
+    <pre aria-label="Pseudocódigo: herança para tipos de Drone">
+classe Drone {
+    protegido capacidadeCargaMax
+    protegido alcanceMaxKm
+
+    metodo podeAceitar(pacote, distanciaKm) {
+        retornar (pacote.peso <= capacidadeCargaMax) e (distanciaKm <= alcanceMaxKm)
+    }
+}
+
+classe DroneLeve herda Drone {
+    construtor() { capacidadeCargaMax = 2; alcanceMaxKm = 10; }
+}
+
+classe DroneCargaPesada herda Drone {
+    construtor() { capacidadeCargaMax = 20; alcanceMaxKm = 8; }
+}
+
+classe DroneLongaDistancia herda Drone {
+    construtor() { capacidadeCargaMax = 5; alcanceMaxKm = 120; }
+}</pre>
+  </section>
+
+
+  <section id="sec6">
+    <h2>6. Variação 2: tipos de entrega — risco de herança e explosão combinatória</h2>
+    <p>
+      Tipos de entrega (expressa, médica, econômica) podem ser modelados como subclasses, mas essa decisão costuma introduzir rigidez se, no futuro,
+      múltiplas características precisarem coexistir (por exemplo, “médica e expressa ao mesmo tempo”). Nesses casos, a hierarquia tende a explodir
+      em combinações, e o modelo perde flexibilidade.
+    </p>
+
+    <pre aria-label="Diagrama: risco de explosão por combinações (exemplo conceitual)">
+EntregaExpressa
+EntregaMedica
+EntregaEconomica
+
+(Quando surgem combinações)
+EntregaMedicaExpressa
+EntregaEconomicaExpressa
+EntregaMedicaEconomica
+... (crescimento combinatório)</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Mostrar que “tipo de entrega” frequentemente é uma <strong>regra de prioridade</strong> (comportamento variável), não identidade estrutural.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Que o estudante reconheça quando migrar de herança para composição para evitar rigidez e facilitar evolução.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec7">
+    <h2>7. Modelagem por composição: <em>Entrega</em> + Estratégia de Prioridade</h2>
+    <p>
+      Uma alternativa robusta é separar a entidade Entrega da regra de priorização. A entrega não “é” expressa ou médica; ela <em>usa</em> uma estratégia
+      de prioridade que pode variar independentemente. Isso permite introduzir novas regras (VIP, hospitalar etc.) sem modificar a classe Entrega,
+      alinhando-se ao princípio aberto-fechado (OCP).
+    </p>
+
+    <pre aria-label="Diagrama: composição — Entrega possui PrioridadeEntrega (estratégia)">
++----------------------+
+|        Entrega       |
++----------------------+
+| id                   |
+| prazo                |
+| prioridade : PrioridadeEntrega |
++----------------------+
+| calcularPrioridade() |
++----------------------+
+          |
+       composição
+          |
+          v
++---------------------------+
+|     PrioridadeEntrega     |
++---------------------------+
+| calcularPrioridade(e)     |
++---------------------------+
+     ^          ^           ^
+     |          |           |
+PrioridadeExpressa  PrioridadeMedica  PrioridadeEconomica</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Evidenciar composição como mecanismo preferencial para <strong>comportamento variável</strong>, evitando explosão de subclasses.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um modelo extensível: novas prioridades são adicionadas por novas classes, sem alterar Entrega.
+        </p>
+      </div>
+    </div>
+
+    <h3>Pseudocódigo comentado</h3>
+    <p>
+      O pseudocódigo abaixo ilustra delegação: Entrega preserva identidade e delega a priorização a uma estratégia.
+    </p>
+
+    <pre aria-label="Pseudocódigo: Entrega delega prioridade para uma estratégia">
+interface PrioridadeEntrega {
+    metodo calcularPrioridade(entrega) : inteiro
+}
+
+classe PrioridadeExpressa implementa PrioridadeEntrega {
+    metodo calcularPrioridade(entrega) {
+        // Expressa: prioriza tempo (prazo menor => prioridade maior)
+        retornar 100 - entrega.prazoEmMinutos()
+    }
+}
+
+classe PrioridadeMedica implementa PrioridadeEntrega {
+    metodo calcularPrioridade(entrega) {
+        // Médica: prioriza segurança (pode ponderar risco/clima/rota)
+        retornar 1000
+    }
+}
+
+classe PrioridadeEconomica implementa PrioridadeEntrega {
+    metodo calcularPrioridade(entrega) {
+        // Econômica: prioriza custo (pode preferir rotas mais baratas)
+        retornar 10
+    }
+}
+
+classe Entrega {
+    privado prioridade : PrioridadeEntrega
+    privado prazo
+
+    metodo calcularPrioridade() {
+        // Delegação: Entrega não codifica todas as regras; ela usa uma estratégia
+        retornar prioridade.calcularPrioridade(this)
+    }
+}</pre>
+
+    <div class="callout">
+      <strong>Regra de decisão.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Herança tende a representar “o que algo é”. Composição tende a representar “o que algo usa para se comportar”.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="sec8">
+    <h2>8. Variação 3: sensores e condições climáticas — composição + polimorfismo</h2>
+    <p>
+      Sensores representam capacidades adicionais que um drone possui. Por isso, modelá-los como componentes (o drone <em>tem</em> sensores) tende a ser
+      mais flexível do que transformar cada combinação em subclasse de Drone. Cada sensor implementa um contrato comum, de modo que o drone não precisa
+      conhecer detalhes de tipos específicos.
+    </p>
+
+    <pre aria-label="Diagrama: Drone possui lista de Sensor (interface) e sensores concretos">
++------------------------------+
+|            Drone             |
++------------------------------+
+| sensores : List<Sensor>      |
++------------------------------+
+| voar()                       |
+| monitorarBateria()           |
++------------------------------+
+             |
+           possui
+             |
+            0..*
++------------------+
+|      Sensor      |
++------------------+
+| lerDados()       |
++------------------+
+   ^       ^        ^         ^
+   |       |        |         |
+SensorGPS SensorVento SensorTemperatura SensorObstaculo</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Demonstrar como interfaces + composição permitem adicionar novos sensores sem alterar a classe Drone.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um Drone que opera sobre o contrato Sensor, mantendo baixo acoplamento com tipos concretos.
+        </p>
+      </div>
+    </div>
+
+    <h3>Pseudocódigo comentado</h3>
+    <p>
+      A seguir, um exemplo de leitura polimórfica: o drone percorre sensores e coleta dados de forma uniforme.
+    </p>
+
+    <pre aria-label="Pseudocódigo: sensores polimórficos em composição">
+interface Sensor {
+    metodo lerDados() : Medicao
+}
+
+classe SensorGPS implementa Sensor {
+    metodo lerDados() { retornar Medicao("gps", lerCoordenadas()) }
+}
+
+classe SensorVento implementa Sensor {
+    metodo lerDados() { retornar Medicao("vento", velocidadeVento()) }
+}
+
+classe Drone {
+    privado sensores : Lista<Sensor>
+
+    metodo coletarTelemetria() : Lista<Medicao> {
+        telemetria = []
+        para cada s em sensores {
+            // Polimorfismo: mesma mensagem, diferentes implementações
+            telemetria.adicionar(s.lerDados())
+        }
+        retornar telemetria
+    }
+}</pre>
+
+    <p class="small">
+      Consequência arquitetural: se surgir “SensorPressaoAtmosferica”, ele pode ser adicionado criando-se uma nova classe que implementa Sensor,
+      sem necessidade de modificar Drone.
+    </p>
+  </section>
+
+
+  <section id="sec9">
+    <h2>9. Evolução futura do sistema e impacto arquitetural</h2>
+    <p>
+      Uma validação importante do modelo é perguntar como ele se comporta diante de mudanças previsíveis. Por exemplo: se surgirem drones aquáticos,
+      drones híbridos ou novas políticas regulatórias, quais partes do sistema precisarão ser alteradas? Se a hierarquia for rígida e expressar
+      variações combinatórias, mudanças tendem a afetar múltiplas classes. Se o modelo separar identidade estrutural de comportamento variável por
+      interfaces e composição, mudanças tendem a ser localizadas.
+    </p>
+
+    <div class="callout">
+      <strong>Critério de qualidade.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Arquitetura OO pode ser entendida como estratégia para controlar o impacto da mudança: reduzir o “raio de explosão” de alterações futuras.
+      </p>
+    </div>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Conectar decisões de modelagem a custos de evolução: onde a mudança “bate” determina o custo de manutenção e refatoração.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Que o estudante consiga prever impacto de mudanças e preferir mecanismos que preservem extensibilidade.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec10">
+    <h2>10. Conclusão</h2>
+    <p>
+      A correção orientada enfatiza que o objetivo não é desenhar “classes perfeitas”, mas pensar estruturalmente. Em modelagem OO, o núcleo do
+      raciocínio é decidir responsabilidades, reduzir complexidade por abstração e tomar decisões estruturais que determinam a capacidade de evolução
+      do sistema.
+    </p>
+
+    <pre aria-label="Síntese conceitual (três ideias finais)">
+1) Modelar é decidir responsabilidades (quem faz o quê).
+2) Abstração reduz complexidade (seleciona o que é relevante).
+3) Boas decisões estruturais determinam evolução (custo de mudança futura).</pre>
+
+    <div class="refs">
+      <p><b>Observação de origem:</b> esta página foi estruturada com base no PDF “Correção Orientada do Exercício — Modelagem Conceitual de Sistema de Entregas com Drones” (páginas 1–8).</p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0;">
+      Sugestão de uso didático: apresente primeiro as abstrações (sec. 2) e depois discuta pontos de variação (sec. 4) antes de escolher herança
+      ou composição. Use os diagramas como “mapas” para justificar decisões de modelagem e antecipar evolução do sistema.
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>

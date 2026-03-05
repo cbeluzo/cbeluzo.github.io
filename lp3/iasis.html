@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Correção Orientada — Modelagem OO de Assistente Pessoal de IA</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f1621; --text:#e7eef8; --muted:#a9b4c3;
+      --border:rgba(231,238,248,.14); --codebg:rgba(255,255,255,.06);
+      --accent:#7fb4ff; --accent2:#86f0c8; --warn:#ffd38a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px circle at 18% 10%, rgba(127,180,255,.18), transparent 50%),
+        radial-gradient(900px circle at 82% 30%, rgba(134,240,200,.14), transparent 55%),
+        var(--bg);
+      color:var(--text); line-height:1.65;
+    }
+    header{
+      padding:40px 18px 18px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to bottom, rgba(255,255,255,.04), transparent);
+    }
+    .container{max-width:1020px; margin:0 auto; padding:0 18px 72px;}
+    h1{margin:0 0 8px; font-size:clamp(1.35rem,2vw + 1rem,2.2rem); letter-spacing:.2px;}
+    .subtitle{margin:0; color:var(--muted); max-width:90ch;}
+    nav.toc{
+      margin:18px 0 0;
+      padding:14px 14px 10px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+    }
+    nav.toc strong{display:block; margin-bottom:8px; font-size:.98rem;}
+    nav.toc ul{margin:0; padding-left:18px; color:var(--muted);}
+    nav.toc a{color:var(--accent); text-decoration:none;}
+    nav.toc a:hover{text-decoration:underline;}
+    main{padding-top:18px;}
+    section{
+      margin:22px 0;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+    }
+    section h2{margin:0 0 10px; font-size:1.25rem;}
+    section h3{margin:16px 0 8px; font-size:1.06rem;}
+    p{margin:10px 0;}
+    pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.94rem;}
+    pre{
+      margin:12px 0; padding:14px;
+      border:1px solid var(--border);
+      border-radius:14px; background:var(--codebg);
+      overflow:auto;
+    }
+    .callout{
+      margin:14px 0;
+      padding:14px 14px 12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(127,180,255,.08);
+    }
+    .callout strong{color:var(--accent);}
+    .warn{
+      background:rgba(255,211,138,.10);
+      border-color:rgba(255,211,138,.35);
+    }
+    .warn strong{color:var(--warn);}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:12px 0 0;
+    }
+    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr;} }
+    .card{
+      padding:12px 12px 10px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .label{display:inline-block; font-size:.84rem; letter-spacing:.2px; color:var(--muted); margin-bottom:6px;}
+    .small{font-size:.92rem; color:var(--muted);}
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0;}
+    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:.88rem; color:var(--muted); background:rgba(255,255,255,.02);}
+    .pill b{color:var(--text); font-weight:600;}
+    .refs{margin-top:10px; padding-top:10px; border-top:1px solid var(--border); color:var(--muted); font-size:.96rem;}
+    footer{
+      margin-top:26px;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+    }
+    .note{
+      margin:14px 0 0;
+      padding:14px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <h1>Correção Orientada — Plataforma de Assistente Pessoal de IA para Profissionais Autônomos</h1>
+    <p class="subtitle">
+      Página de leitura baseada na correção orientada do desafio de modelagem OO. O foco é justificar decisões estruturais: abstrações centrais,
+      multiplicidades, responsabilidades e pontos de variação (perfil, integrações externas e dispositivos), de modo a controlar mudança arquitetural.
+    </p>
+
+    <nav class="toc" aria-label="Sumário">
+      <strong>Sumário</strong>
+      <ul>
+        <li><a href="#sec1">1. Reenquadrando o problema</a></li>
+        <li><a href="#sec2">2. Passo 1 — Abstrações centrais do domínio</a></li>
+        <li><a href="#sec3">3. Passo 2 — Relações e multiplicidades</a></li>
+        <li><a href="#sec4">4. Passo 3 — Responsabilidades sem inflar o modelo</a></li>
+        <li><a href="#sec5">5. Passo 4 — Pontos de variação</a></li>
+        <li><a href="#sec6">6. Passo 5 — Variação 1: Perfil do usuário (Strategy)</a></li>
+        <li><a href="#sec7">7. Passo 6 — Variação 2: Integrações externas (interfaces / Ports & Adapters)</a></li>
+        <li><a href="#sec8">8. Passo 7 — Variação 3: Canais e dispositivos (interfaces)</a></li>
+        <li><a href="#sec9">9. Passo 8 — Visão integrada (modelo final)</a></li>
+        <li><a href="#sec10">10. Passo 9 — Riscos de acoplamento excessivo</a></li>
+        <li><a href="#sec11">11. Passo 10 — Checklist de qualidade</a></li>
+      </ul>
+    </nav>
+
+    <div class="note">
+      <div class="small">
+        Conteúdo estruturado a partir do PDF “Correção do Desafio — Modelagem OO: Assistente IA” (páginas 1–11).
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="sec1">
+    <h2>1. Reenquadrando o problema</h2>
+    <p>
+      Antes de desenhar classes, a correção orientada recomenda transformar o enunciado em perguntas de engenharia:
+      (1) quais são as entidades centrais; (2) onde existe variação; (3) como o sistema deve evoluir sem “quebrar tudo”;
+      (4) onde pode surgir acoplamento excessivo. O objetivo não é maximizar quantidade de classes, mas decidir responsabilidades
+      e controlar o impacto de mudanças futuras no núcleo do domínio.
+    </p>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Estabelecer um critério de correção: avaliar o modelo pelo controle da mudança, e não por volume de elementos.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um raciocínio estruturado que separa domínio (estável) de infraestrutura (mutável), reduzindo acoplamento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec2">
+    <h2>2. Passo 1 — Identificar as abstrações centrais do domínio</h2>
+    <p>
+      O núcleo do domínio da plataforma de assistente pessoal deve representar, no mínimo: o profissional (usuário), seus clientes,
+      suas tarefas e os compromissos/eventos que podem estar associados a tarefas. A integração com serviços externos (agenda, mensageria)
+      é importante, mas pertence à infraestrutura; por isso, deve permanecer separada do domínio.
+    </p>
+
+    <pre aria-label="Diagrama UML 1 — Núcleo mínimo do domínio (representação textual)">
+Diagrama UML 1 — Núcleo mínimo do domínio
+
++----------------+     +----------------+     +----------------+     +-------------------+
+|    Usuario     |     |     Cliente    |     |     Tarefa     |     |   EventoAgenda    |
++----------------+     +----------------+     +----------------+     +-------------------+
+| id             |     | id             |     | id             |     | id                |
+| nome           |     | nome           |     | descricao      |     | inicio            |
++----------------+     +----------------+     | status         |     | fim               |
+| ...            |     | ...            |     | prazo          |     | local             |
++----------------+     +----------------+     +----------------+     +-------------------+</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Definir um conjunto mínimo de classes do domínio, evitando introduzir tecnologia (APIs externas) como se fosse parte do negócio.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Um domínio “sem tecnologia”: classes representam conceitos do mundo real, preservando independência de infraestrutura.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec3">
+    <h2>3. Passo 2 — Relacionar as classes com multiplicidades</h2>
+    <p>
+      O passo seguinte é estabelecer relações e multiplicidades, porque isso costuma revelar complexidade e decisões de regra de negócio.
+      Em geral, um usuário gerencia vários clientes; um cliente possui várias tarefas; e algumas tarefas geram eventos de agenda.
+      A correção destaca que o evento é opcional: nem toda tarefa vira compromisso.
+    </p>
+
+    <pre aria-label="Diagrama UML 2 — Relações e multiplicidades (representação textual)">
+Diagrama UML 2 — Relações e multiplicidades
+
+Usuario 1  --- gerencia --- 0..* Cliente
+Cliente 1 --- possui    --- 0..* Tarefa
+Tarefa  1 --- agenda    --- 0..1 EventoAgenda
+
+Observação: EventoAgenda é opcional (0..1) porque nem toda tarefa vira compromisso.</pre>
+
+    <div class="callout">
+      <strong>Ponto de decisão.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Multiplicidades ajudam a explicitar perguntas de domínio: “tarefa sem cliente existe?” A resposta depende do modelo e das regras do contexto.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="sec4">
+    <h2>4. Passo 3 — Atribuir responsabilidades sem “inflar” o modelo</h2>
+    <p>
+      Nesta etapa, atribui-se a cada classe o mínimo coerente de estado e comportamento. A correção enfatiza evitar o padrão “objeto Deus”
+      (colocar tudo em Usuario). Cada classe deve oferecer operações alinhadas à sua responsabilidade, preservando coesão.
+      Também se destaca que Cliente não deveria conter métodos de “enviar mensagem” ou integração com WhatsApp; isso é infraestrutura.
+    </p>
+
+    <pre aria-label="Diagrama UML 3 — Responsabilidades (atributos e operações essenciais)">
+Diagrama UML 3 — Classes com atributos e operações essenciais (exemplo mínimo)
+
+Usuario
+  - id: String
+  - nome: String
+  + cadastrarCliente(c: Cliente)
+  + criarTarefa(c: Cliente, t: Tarefa)
+
+Cliente
+  - id: String
+  - nome: String
+  - contato: String
+  + adicionarTarefa(t: Tarefa)
+
+Tarefa
+  - id: String
+  - descricao: String
+  - status: String
+  - prazo: DateTime
+  + concluir()
+  + reagendar(novoPrazo: DateTime)
+
+EventoAgenda
+  - id: String
+  - inicio: DateTime
+  - fim: DateTime
+  - local: String</pre>
+
+    <h3>Pseudocódigo comentado (exemplo de coesão e encapsulamento)</h3>
+    <p>
+      O pseudocódigo a seguir ilustra um desenho mínimo coerente: Usuario gerencia agregação de clientes; Cliente gerencia suas tarefas;
+      Tarefa controla transições básicas (concluir, reagendar). A intenção é concentrar regras onde a responsabilidade é natural.
+    </p>
+
+    <pre aria-label="Pseudocódigo: responsabilidades essenciais no domínio">
+classe Usuario {
+    privado clientes : Lista<Cliente>
+
+    metodo cadastrarCliente(c: Cliente) {
+        // responsabilidade: manter coleção de clientes do profissional
+        clientes.adicionar(c)
+    }
+
+    metodo criarTarefa(c: Cliente, t: Tarefa) {
+        // delegação: tarefa pertence ao cliente no domínio (pode variar conforme regra do curso)
+        c.adicionarTarefa(t)
+    }
+}
+
+classe Cliente {
+    privado tarefas : Lista<Tarefa>
+
+    metodo adicionarTarefa(t: Tarefa) {
+        tarefas.adicionar(t)
+    }
+}
+
+classe Tarefa {
+    privado status
+    privado prazo
+
+    metodo concluir() {
+        status = "CONCLUIDA"
+    }
+
+    metodo reagendar(novoPrazo) {
+        // regra mínima: novo prazo precisa ser futuro (exemplo)
+        se (novoPrazo <= agora()) lançar ErroDominio("Prazo inválido")
+        prazo = novoPrazo
+    }
+}</pre>
+
+    <div class="callout warn">
+      <strong>Nota de correção recorrente.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Se o domínio contiver chamadas diretas a APIs (WhatsApp, Google Calendar), o modelo fica preso à tecnologia e perde capacidade de troca futura.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="sec5">
+    <h2>5. Passo 4 — Identificar pontos de variação</h2>
+    <p>
+      A correção explicita pelo menos quatro frentes de variação: (i) adaptação conforme perfil do usuário; (ii) integrações com serviços externos;
+      (iii) extensão para novos dispositivos/canais; e (iv) evolução futura (que engloba as anteriores). A medida prática de qualidade do modelo é:
+      quando surgir uma mudança, ela deve ser absorvida por componentes adicionados, e não por reescrita do núcleo.
+    </p>
+
+    <pre aria-label="Pontos de variação (lista estruturada)">
+Pontos de variação típicos:
+1) Perfil do usuário (consultor, advogado, designer...)
+2) Integrações externas (Google, Outlook, WhatsApp...)
+3) Dispositivos / canais (mobile, smartwatch, voz...)
+4) Novas funcionalidades de IA (recomendação, automação)</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">Tornar explícito onde o sistema tende a mudar, antes de escolher herança, interfaces ou composição.</p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">Um “mapa” de evolução: domínio estável + pontos de extensão que absorvem mudança inevitável.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec6">
+    <h2>6. Passo 5 — Variação 1: Perfil do usuário como Strategy</h2>
+    <p>
+      A correção recomenda evitar herança para perfis (UsuarioConsultor, UsuarioAdvogado etc.), pois perfil tende a ser comportamento, não identidade estrutural.
+      Além disso, perfis podem crescer e combinar. A alternativa é o usuário <em>possuir</em> uma estratégia associada ao perfil.
+    </p>
+
+    <pre aria-label="Diagrama UML 4 — Perfil como Strategy (representação textual)">
+Diagrama UML 4 — Perfil como Strategy
+
+Usuario
+  - perfil : PerfilProfissional
+  + sugerirProximasAcoes() : String[]
+
+PerfilProfissional (interface)
+  + sugerirTarefasContextuais(u: Usuario) : String[]
+  + regrasDeAtendimento() : String
+
+Implementações:
+  PerfilConsultor, PerfilAdvogado, PerfilDesigner
+
+Ideia: o usuário não é um perfil; ele tem um perfil (estratégia).</pre>
+
+    <h3>Pseudocódigo comentado (Strategy)</h3>
+    <p>
+      No desenho abaixo, Usuario depende apenas do contrato PerfilProfissional. Para adicionar um novo perfil, cria-se uma nova implementação,
+      sem modificar a classe Usuario.
+    </p>
+
+    <pre aria-label="Pseudocódigo: perfil como Strategy">
+interface PerfilProfissional {
+    metodo sugerirTarefasContextuais(u: Usuario) : Lista<String>
+    metodo regrasDeAtendimento() : String
+}
+
+classe PerfilConsultor implementa PerfilProfissional {
+    metodo sugerirTarefasContextuais(u) {
+        retornar ["Preparar proposta", "Revisar contrato", "Agendar follow-up"]
+    }
+    metodo regrasDeAtendimento() { retornar "Atendimento por sessão; registrar decisões." }
+}
+
+classe Usuario {
+    privado perfil : PerfilProfissional
+
+    metodo sugerirProximasAcoes() {
+        retornar perfil.sugerirTarefasContextuais(this)
+    }
+}</pre>
+  </section>
+
+
+  <section id="sec7">
+    <h2>7. Passo 6 — Variação 2: Integrações externas por interfaces (Ports & Adapters)</h2>
+    <p>
+      Integrações com agenda e mensageria mudam com frequência. Se o domínio conhecer diretamente Google Calendar, ficará preso a essa tecnologia.
+      A correção propõe contratos (interfaces) e implementações como adaptadores. Se surgir Outlook, adiciona-se um novo adaptador, sem alterar o domínio.
+    </p>
+
+    <pre aria-label="Diagrama UML 5 — Integrações externas por interfaces (representação textual)">
+Diagrama UML 5 — Integração com agenda e mensageria por interfaces
+
+IntegracaoAgenda (interface)
+  + criarEvento(e: EventoAgenda)
+  + atualizarEvento(e: EventoAgenda)
+
+Implementações (adapters):
+  GoogleCalendarAdapter
+  OutlookCalendarAdapter
+
+IntegracaoMensageria (interface)
+  + enviarMensagem(destino: String, msg: String)
+
+Implementações (adapters):
+  EmailAdapter
+  WhatsAppAdapter</pre>
+
+    <h3>Pseudocódigo comentado (adapters)</h3>
+    <p>
+      O serviço de aplicação (camada acima do domínio) pode depender das interfaces de integração. As classes de domínio não devem invocar APIs externas diretamente.
+    </p>
+
+    <pre aria-label="Pseudocódigo: interfaces de integração e adaptadores">
+interface IntegracaoAgenda {
+    metodo criarEvento(e: EventoAgenda)
+}
+
+classe GoogleCalendarAdapter implementa IntegracaoAgenda {
+    metodo criarEvento(e) {
+        // chamada para API do Google (infraestrutura)
+    }
+}
+
+classe OutlookCalendarAdapter implementa IntegracaoAgenda {
+    metodo criarEvento(e) {
+        // chamada para API do Outlook (infraestrutura)
+    }
+}
+
+// Serviço de aplicação (orquestra, não é "domínio puro")
+classe ServicoAgenda {
+    privado agenda : IntegracaoAgenda
+
+    metodo agendarCompromisso(e: EventoAgenda) {
+        agenda.criarEvento(e)
+    }
+}</pre>
+
+    <div class="callout warn">
+      <strong>Pergunta de correção típica.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Se o grupo desenhou “Usuario → GoogleCalendar”, o que acontece quando o cliente pede Outlook?
+        Se a resposta for “preciso editar várias classes”, há acoplamento excessivo.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="sec8">
+    <h2>8. Passo 7 — Variação 3: Canais e dispositivos (interfaces de notificação)</h2>
+    <p>
+      O enunciado exige extensão futura para novos dispositivos. A correção trata isso como ponto de variação clássico: o sistema produz notificações,
+      mas o canal pode variar (mobile, smartwatch, voz). Introduz-se um contrato CanalNotificacao. Adicionar um novo dispositivo significa criar
+      uma nova implementação, sem alterar o restante.
+    </p>
+
+    <pre aria-label="Diagrama UML 6 — Canal de notificação como ponto de extensão (representação textual)">
+Diagrama UML 6 — CanalNotificacao como ponto de extensão
+
+ServicoNotificacao
+  - canal : CanalNotificacao
+  + notificar(u: Usuario, msg: String)
+
+CanalNotificacao (interface)
+  + enviar(destino: Usuario, msg: String)
+
+Implementações:
+  NotificacaoMobile
+  NotificacaoSmartwatch
+  NotificacaoVoz</pre>
+
+    <h3>Pseudocódigo comentado (canais)</h3>
+    <pre aria-label="Pseudocódigo: CanalNotificacao e serviço de notificação">
+interface CanalNotificacao {
+    metodo enviar(destino: Usuario, msg: String)
+}
+
+classe NotificacaoMobile implementa CanalNotificacao {
+    metodo enviar(destino, msg) { /* push no app */ }
+}
+
+classe NotificacaoVoz implementa CanalNotificacao {
+    metodo enviar(destino, msg) { /* saída por assistente de voz */ }
+}
+
+classe ServicoNotificacao {
+    privado canal : CanalNotificacao
+
+    metodo notificar(u: Usuario, msg: String) {
+        canal.enviar(u, msg)
+    }
+}</pre>
+  </section>
+
+
+  <section id="sec9">
+    <h2>9. Passo 8 — Consolidar a solução: visão integrada</h2>
+    <p>
+      A correção recomenda consolidar o modelo em uma visão arquitetural integrada composta por quatro blocos conectados:
+      (1) domínio (Usuario–Cliente–Tarefa–EventoAgenda); (2) perfil como estratégia; (3) integrações externas por interfaces;
+      (4) canais/dispositivos por interfaces. O objetivo é responder: onde o sistema é estável e onde ele precisa ser flexível.
+    </p>
+
+    <pre aria-label="Diagrama UML 7 — Visão integrada (representação textual resumida)">
+Diagrama UML 7 — Visão integrada (resumo)
+
+[Domínio]
+Usuario 1 -- 0..* Cliente 1 -- 0..* Tarefa 1 -- 0..1 EventoAgenda
+
+[Pontos de variação]
+Usuario possui PerfilProfissional (Strategy)
+ServicoAgenda usa IntegracaoAgenda (Interface -> Adapters)
+ServicoMensageria usa IntegracaoMensageria (Interface -> Adapters)
+ServicoNotificacao usa CanalNotificacao (Interface -> Implementações)
+
+Princípio: domínio é o que permanece; interfaces e estratégias absorvem mudança.</pre>
+
+    <div class="callout">
+      <strong>Regra operacional de extensibilidade.</strong>
+      <p class="small" style="margin:8px 0 0;">
+        Se amanhã for necessário adicionar um novo perfil profissional, um novo provedor de agenda ou um novo dispositivo, o modelo deve permitir
+        isso por adição de componentes, sem modificar as entidades centrais do domínio.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="sec10">
+    <h2>10. Passo 9 — Onde há risco de acoplamento excessivo</h2>
+    <p>
+      A correção sugere perguntas diagnósticas para avaliar separação entre responsabilidades e níveis de abstração. Em um bom modelo,
+      o domínio permanece estável, enquanto elementos sujeitos a mudança (integrações, perfis, canais) são isolados por abstrações apropriadas.
+    </p>
+
+    <pre aria-label="Perguntas diagnósticas (acoplamento excessivo)">
+1) Dependência direta do domínio em tecnologias externas:
+   - Usuario/Cliente/Tarefa chamam APIs (Google Calendar, WhatsApp, e-mail)?
+   -> Se sim, domínio ficou acoplado.
+
+2) Uso inadequado de herança para perfis:
+   - Existem muitas subclasses de Usuario para perfis profissionais?
+   -> Indício de rigidez e baixa escalabilidade.
+
+3) Dependência de um único canal:
+   - Notificação acoplada apenas a mobile?
+   -> Novos dispositivos exigirão mudanças espalhadas.
+
+4) Classe central com responsabilidades excessivas (God Object):
+   - Uma classe faz: usuários + comunicação externa + agenda + regras de negócio?
+   -> Baixa coesão e alto acoplamento.</pre>
+
+    <div class="grid" role="group" aria-label="Objetivo e resultado esperado">
+      <div class="card">
+        <div class="label">Objetivo</div>
+        <p style="margin:0">
+          Oferecer critérios objetivos para avaliar modelos: sinais práticos de acoplamento, rigidez e baixa coesão.
+        </p>
+      </div>
+      <div class="card">
+        <div class="label">O que se espera alcançar</div>
+        <p style="margin:0">
+          Que o estudante consiga “diagnosticar” fragilidades estruturais a partir do diagrama, antes da implementação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="sec11">
+    <h2>11. Passo 10 — Checklist final de qualidade da modelagem</h2>
+    <p>
+      A análise do modelo pode ser conduzida por critérios estruturais que indicam baixo acoplamento, alta coesão e capacidade de evolução.
+      O checklist abaixo sintetiza os critérios finais apresentados na correção.
+    </p>
+
+    <pre aria-label="Checklist de qualidade (síntese)">
+• Independência do domínio em relação à infraestrutura
+  - Usuario/Cliente/Tarefa não dependem diretamente de APIs específicas.
+
+• Representação explícita dos pontos de variação
+  - Perfis, integrações e canais modelados por interfaces/estratégias.
+
+• Extensibilidade por adição de componentes
+  - Evolução ocorre criando novas classes/implementações, não alterando o núcleo.
+
+• Distribuição adequada de responsabilidades
+  - Evitar God Object; cada classe com propósito claro.
+
+• Isolamento de comportamentos variáveis
+  - Aspectos com alta probabilidade de mudança encapsulados em contratos.
+
+• Foco no controle da mudança arquitetural
+  - Mudanças futuras devem ter impacto limitado e previsível.</pre>
+
+    <div class="refs">
+      <p><b>Origem:</b> conteúdo estruturado a partir do PDF “Correção do Desafio — Modelagem OO: Assistente IA” (páginas 1–11).</p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0;">
+      Sugestão de leitura: primeiro compreenda o “domínio sem tecnologia” (Usuario–Cliente–Tarefa–EventoAgenda). Em seguida, identifique os pontos de variação
+      e observe como Strategy e interfaces absorvem mudanças inevitáveis com impacto mínimo no núcleo.
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>index.html - Simulação de Comitê de Governança de TI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 32px auto;
+      background: #ffffff;
+      padding: 42px 54px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+    }
+
+    h1, h2, h3 {
+      color: #1f3c5b;
+    }
+
+    h1 {
+      margin-top: 0;
+      border-bottom: 3px solid #1f3c5b;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin-top: 34px;
+    }
+
+    p {
+      text-align: justify;
+      margin: 14px 0;
+    }
+
+    ul, ol {
+      margin: 12px 0 12px 24px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .destaque {
+      background: #f7fbff;
+      border-left: 5px solid #1f3c5b;
+      padding: 18px 20px;
+      margin: 24px 0;
+      border-radius: 6px;
+    }
+
+    .bloco {
+      background: #fcfcfc;
+      border: 1px solid #d9e2ec;
+      padding: 22px;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+
+    .grid-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .card-link {
+      display: block;
+      text-decoration: none;
+      color: #222;
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      border-left: 6px solid #365d84;
+      padding: 20px 22px;
+      border-radius: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-link h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #1f3c5b;
+      font-size: 1.05rem;
+    }
+
+    .card-link p {
+      margin: 0;
+      text-align: left;
+      color: #333;
+    }
+
+    .sequencia {
+      background: #fffaf0;
+      border: 1px solid #ead8a5;
+      border-left: 6px solid #c58b00;
+      padding: 18px 20px;
+      margin: 26px 0;
+      border-radius: 8px;
+    }
+
+    .arquivo {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .rodape {
+      margin-top: 38px;
+      padding-top: 16px;
+      border-top: 1px solid #d0d7de;
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .card-link {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simulação de Comitê de Governança de TI</h1>
+
+    <p>
+      Este material foi organizado para estudo orientado e realização de uma atividade prática de análise e tomada de
+      decisão em governança de tecnologia da informação. A proposta é que os estudantes avancem além da leitura
+      conceitual e passem a trabalhar com uma situação organizacional simulada, na qual será necessário interpretar um
+      contexto institucional, comparar demandas concorrentes, considerar diferentes papéis decisórios e construir uma
+      resposta justificada.
+    </p>
+
+    <p>
+      Em ambientes organizacionais reais, decisões sobre tecnologia raramente dependem apenas de critérios técnicos.
+      Questões relacionadas a crescimento, continuidade operacional, integração de processos, proteção de informações,
+      exigências externas, atendimento ao cliente e uso de recursos costumam aparecer simultaneamente. Por essa razão,
+      a governança de TI exige análise estruturada, definição de prioridades, clareza de responsabilidades e capacidade
+      de justificar escolhas de forma institucionalmente coerente.
+    </p>
+
+    <div class="destaque">
+      <p>
+        Este conjunto de páginas foi pensado para <strong>autoaprendizagem</strong>. Cada seção apresenta explicações,
+        elementos de contexto e perguntas orientadoras para ajudar o estudante a construir o raciocínio necessário para
+        a atividade. A leitura deve ser feita de forma progressiva.
+      </p>
+    </div>
+
+    <h2>Visão geral da atividade</h2>
+
+    <p>
+      A atividade simula o funcionamento de um comitê de governança de TI em uma organização fictícia. Ao longo do
+      percurso, os estudantes deverão compreender os objetivos da proposta, analisar cuidadosamente o contexto
+      organizacional, entender como diferentes papéis institucionais influenciam a tomada de decisão, examinar um
+      conjunto de demandas submetidas ao comitê e, por fim, preencher uma folha de resposta em formato HTML com a
+      deliberação do grupo.
+    </p>
+
+    <p>
+      O foco não está em encontrar uma resposta única ou automática, mas em desenvolver a capacidade de leitura
+      institucional, análise comparativa e argumentação. Em outras palavras, a atividade pretende mostrar que, em
+      governança de TI, boas decisões não decorrem apenas de intuição, mas de interpretação do cenário, comparação de
+      critérios e responsabilização clara.
+    </p>
+
+    <div class="bloco">
+      <h3>O que se espera do estudante</h3>
+      <ul>
+        <li>ler o material de forma sequencial e atenta;</li>
+        <li>identificar relações entre contexto, papéis, demandas e responsabilidades;</li>
+        <li>comparar prioridades com base em critérios organizacionais;</li>
+        <li>construir justificativas coerentes para as escolhas realizadas;</li>
+        <li>registrar a resposta final de forma clara e fundamentada.</li>
+      </ul>
+    </div>
+
+    <h2>Como utilizar este material</h2>
+
+    <p>
+      O estudo deve começar pela página de objetivos, que apresenta a finalidade formativa da atividade e os tipos de
+      competência que se pretende desenvolver. Em seguida, a página de contexto descreve a organização fictícia e traz
+      situações que devem ser interpretadas pelos alunos. Depois disso, a leitura deve avançar para a página dos
+      papéis, na qual são explicadas as diferentes perspectivas institucionais presentes no comitê. Na sequência, a
+      página de demandas apresenta as iniciativas que deverão ser analisadas e comparadas. Por fim, a página de
+      respostas contém o formulário HTML que permite registrar a decisão do grupo e gerar automaticamente a folha final
+      de resposta.
+    </p>
+
+    <div class="sequencia">
+      <strong>Sequência sugerida de estudo:</strong>
+      <ol>
+        <li>Objetivos da atividade</li>
+        <li>Contexto da organização</li>
+        <li>Papéis dos participantes</li>
+        <li>Demandas a serem avaliadas</li>
+        <li>Formulário e folha de resposta</li>
+      </ol>
+    </div>
+
+    <h2>Páginas da atividade</h2>
+
+    <div class="grid-links">
+      <a class="card-link" href="01_Objetivos.html">
+        <h3>01_Objetivos.html</h3>
+        <p>
+          Apresenta os objetivos de aprendizagem da atividade, a lógica da proposta e os principais elementos que o
+          estudante deve observar ao longo do percurso.
+        </p>
+      </a>
+
+      <a class="card-link" href="02_Contexto.html">
+        <h3>02_Contexto.html</h3>
+        <p>
+          Descreve a organização fictícia, seu ambiente institucional e um conjunto de situações que devem ser lidas
+          analiticamente para que os estudantes identifiquem questões relevantes de governança.
+        </p>
+      </a>
+
+      <a class="card-link" href="03_Papeis.html">
+        <h3>03_Papeis.html</h3>
+        <p>
+          Explica os papéis institucionais envolvidos na simulação, suas responsabilidades, seus focos de atenção e a
+          maneira como cada função tende a interpretar prioridades e riscos.
+        </p>
+      </a>
+
+      <a class="card-link" href="04_Demandas.html">
+        <h3>04_Demandas.html</h3>
+        <p>
+          Apresenta as demandas submetidas ao comitê, com elementos para comparação, interpretação e deliberação
+          fundamentada.
+        </p>
+      </a>
+
+      <a class="card-link" href="05_respostas.html">
+        <h3>05_respostas.html</h3>
+        <p>
+          Contém o formulário HTML para preenchimento da resposta do grupo e a geração automática da folha final de
+          resposta.
+        </p>
+      </a>
+    </div>
+
+    <h2>Orientação final ao estudante</h2>
+
+    <p>
+      Recomenda-se que cada página seja lida integralmente antes de avançar para a próxima. Embora o material tenha sido
+      dividido em partes, a compreensão adequada da atividade depende da articulação entre elas. O contexto organiza a
+      interpretação das demandas; os papéis ajudam a compreender como diferentes critérios podem entrar em tensão; e o
+      formulário final exige que a decisão seja apresentada com justificativa, responsabilidades e mecanismos de
+      governança.
+    </p>
+
+    <p>
+      Assim, esta página inicial funciona como ponto de entrada e visão geral do percurso. Seu objetivo é orientar o
+      estudo e facilitar a navegação entre os arquivos, permitindo que a atividade seja desenvolvida de forma autônoma,
+      progressiva e reflexiva.
+    </p>
+
+    <div class="rodape">
+      Arquivo: <strong>index.html</strong>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05_demandas_avaliadas.html</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 32px auto;
+      background: #ffffff;
+      padding: 42px 54px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #1f3c5b;
+    }
+
+    h1 {
+      margin-top: 0;
+      border-bottom: 3px solid #1f3c5b;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin-top: 34px;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      text-align: justify;
+      margin: 14px 0;
+    }
+
+    ul {
+      margin: 12px 0 12px 24px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .destaque {
+      background: #f7fbff;
+      border-left: 5px solid #1f3c5b;
+      padding: 18px 20px;
+      margin: 24px 0;
+      border-radius: 6px;
+    }
+
+    .bloco {
+      background: #fcfcfc;
+      border: 1px solid #d9e2ec;
+      padding: 22px;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+
+    .demanda {
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      border-left: 6px solid #365d84;
+      padding: 22px 24px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+
+    .subbloco {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .pergunta {
+      margin: 10px 0;
+      padding: 12px 14px;
+      background: #f9fbfc;
+      border: 1px solid #dbe4ea;
+      border-radius: 6px;
+    }
+
+    .restricao {
+      background: #fff8e8;
+      border-left: 6px solid #c58b00;
+      border: 1px solid #ecd9a1;
+      padding: 18px 20px;
+      margin: 28px 0;
+      border-radius: 8px;
+    }
+
+    .rodape {
+      margin-top: 38px;
+      padding-top: 16px;
+      border-top: 1px solid #d0d7de;
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Demandas a Serem Avaliadas pelo Comitê</h1>
+
+    <p>
+      Nesta etapa da atividade, o grupo passa a analisar um conjunto de demandas institucionais que chegaram ao
+      comitê de governança de TI da organização. Essas demandas não devem ser tratadas como itens isolados nem como
+      respostas automáticas. Cada uma delas representa um tipo de necessidade organizacional que pode parecer
+      prioritária sob determinados pontos de vista e menos urgente sob outros. O objetivo da simulação é justamente
+      observar como essas demandas competem por atenção, recursos, tempo e legitimidade decisória.
+    </p>
+
+    <p>
+      Em organizações reais, decisões sobre tecnologia raramente ocorrem em um cenário de abundância plena de
+      recursos. Ao contrário, normalmente há simultaneidade de pressões: crescimento do negócio, necessidade de
+      estabilidade, exigências externas, demandas de clientes, evolução tecnológica, limitações orçamentárias e
+      capacidade operacional finita. Isso significa que a qualidade da governança depende da capacidade de comparar
+      demandas distintas, compreender seus efeitos e justificar prioridades com base em critérios institucionais.
+    </p>
+
+    <div class="destaque">
+      <p>
+        O grupo não deve procurar apenas qual demanda “parece mais importante” à primeira vista. A tarefa é analisar
+        o significado de cada demanda para a organização, identificar implicações, relacioná-las ao contexto
+        anteriormente estudado e construir uma decisão justificada.
+      </p>
+    </div>
+
+    <h2>1. Como ler as demandas desta atividade</h2>
+
+    <p>
+      As demandas apresentadas a seguir foram formuladas de modo a representar situações típicas de organizações que
+      dependem fortemente de tecnologia. Algumas se associam mais diretamente à expansão do negócio, outras à
+      sustentação do ambiente, outras à necessidade de formalização e aderência a exigências externas. Em todos os
+      casos, o grupo deverá interpretar o que está em jogo, quais efeitos podem estar associados à decisão e como cada
+      papel do comitê tende a perceber a questão.
+    </p>
+
+    <p>
+      É importante observar que nenhuma demanda aparece em um vazio organizacional. Toda iniciativa consome recursos,
+      produz efeitos sobre outras áreas, pode exigir coordenação adicional, pode trazer benefícios relevantes e pode
+      também introduzir novas tensões. Em alguns casos, o benefício é mais imediatamente visível; em outros, a
+      relevância da demanda se torna mais clara quando se considera continuidade, exposição institucional, capacidade
+      de resposta ou coerência do ambiente organizacional.
+    </p>
+
+    <div class="bloco">
+      <h3>Orientação de leitura</h3>
+      <ul>
+        <li>Leia cada demanda como uma decisão institucional, e não apenas como uma tarefa operacional.</li>
+        <li>Procure identificar que tipo de valor, necessidade ou pressão está associado à iniciativa.</li>
+        <li>Considere impactos de curto, médio e longo prazo.</li>
+        <li>Reflita sobre dependências, recursos, riscos e responsabilidades relacionados a cada escolha.</li>
+        <li>Observe como diferentes papéis do comitê podem interpretar a mesma demanda de formas distintas.</li>
+      </ul>
+    </div>
+
+    <h2>2. Demandas em análise</h2>
+
+    <div class="demanda">
+      <h3>Demanda 1 – Implementação de um novo sistema ERP</h3>
+
+      <p>
+        A diretoria recebeu proposta para substituição ou reestruturação significativa do atual ambiente de gestão
+        empresarial por meio da implementação de um novo sistema ERP. A justificativa apresentada é que a organização
+        cresceu de forma relevante nos últimos anos e passou a operar com maior volume de dados, mais áreas
+        interdependentes e maior necessidade de visão integrada sobre processos administrativos, operacionais e
+        gerenciais.
+      </p>
+
+      <p>
+        Segundo os defensores dessa iniciativa, o novo sistema poderia contribuir para melhorar a integração entre
+        informações, reduzir retrabalho, ampliar a consistência dos registros e oferecer suporte mais robusto ao
+        crescimento institucional. A proposta também é vista como oportunidade de revisar fluxos internos, aumentar a
+        padronização de procedimentos e criar bases mais confiáveis para decisões futuras.
+      </p>
+
+      <p>
+        Ao mesmo tempo, trata-se de uma iniciativa que exigiria investimento expressivo, tempo significativo de
+        implantação, participação de diferentes áreas, revisão de rotinas e atenção especial ao período de transição.
+        Em projetos desse tipo, não se decide apenas sobre aquisição de sistema, mas também sobre esforço
+        organizacional, capacidade de absorção da mudança e impacto sobre a operação em curso.
+      </p>
+
+      <div class="subbloco">
+        <strong>Elementos informados ao comitê:</strong>
+        <ul>
+          <li>alto custo estimado para implantação;</li>
+          <li>promessa de maior integração de dados e processos internos;</li>
+          <li>prazo aproximado de doze meses para execução;</li>
+          <li>necessidade de participação de várias áreas da organização;</li>
+          <li>potencial impacto estrutural sobre a forma de operar da empresa.</li>
+        </ul>
+      </div>
+
+      <div class="subbloco">
+        <strong>Pontos para reflexão do grupo:</strong>
+        <div class="pergunta">Que tipo de problema organizacional uma iniciativa como essa procura enfrentar?</div>
+        <div class="pergunta">Os benefícios esperados são imediatos ou mais estruturais e de longo prazo?</div>
+        <div class="pergunta">A organização parece estar em um momento adequado para absorver uma transformação dessa
+          magnitude?</div>
+        <div class="pergunta">Como essa decisão afeta recursos, prioridades e capacidade de execução das demais
+          demandas?</div>
+      </div>
+    </div>
+
+    <div class="demanda">
+      <h3>Demanda 2 – Investimento em segurança da informação</h3>
+
+      <p>
+        Em razão de ocorrências recentes no ambiente tecnológico e do aumento da dependência dos sistemas para a
+        operação da empresa, passou a ser discutida a necessidade de ampliar investimentos relacionados à segurança da
+        informação. A proposta não se restringe à aquisição de uma ferramenta específica, mas envolve revisão de
+        práticas, rotinas, acessos, monitoramento, proteção de dados e mecanismos de continuidade.
+      </p>
+
+      <p>
+        Parte dos gestores entende que esse tipo de iniciativa se tornou mais importante à medida que a organização
+        cresceu, aumentou o número de usuários, ampliou o volume de dados tratados e passou a atender clientes com
+        expectativas mais elevadas em termos de confiabilidade e estabilidade. Outros reconhecem a importância do tema,
+        mas observam que seus benefícios podem não ser percebidos da mesma forma que iniciativas associadas diretamente
+        a receita ou expansão comercial.
+      </p>
+
+      <p>
+        Em ambientes organizacionais complexos, decisões relacionadas à segurança costumam envolver uma questão central:
+        como justificar institucionalmente investimentos cujo valor nem sempre aparece como ganho imediato, mas como
+        preservação da operação, redução de exposição e fortalecimento da confiança no ambiente tecnológico.
+      </p>
+
+      <div class="subbloco">
+        <strong>Elementos informados ao comitê:</strong>
+        <ul>
+          <li>a iniciativa foi motivada por eventos recentes e por preocupação crescente com a proteção do ambiente;
+          </li>
+          <li>inclui revisão de acessos, monitoramento, rotinas de proteção e mecanismos de backup;</li>
+          <li>não apresenta retorno financeiro direto e imediato de forma evidente;</li>
+          <li>pode exigir revisão de práticas já consolidadas no cotidiano operacional;</li>
+          <li>se relaciona à continuidade e à confiabilidade dos serviços prestados.</li>
+        </ul>
+      </div>
+
+      <div class="subbloco">
+        <strong>Pontos para reflexão do grupo:</strong>
+        <div class="pergunta">Como avaliar a relevância de uma demanda cujo benefício principal pode ser a redução de
+          vulnerabilidade?</div>
+        <div class="pergunta">Em que medida o crescimento da organização altera o significado dessa iniciativa?</div>
+        <div class="pergunta">Que consequências poderiam surgir se a organização mantivesse a situação atual sem reforço
+          estrutural nessa área?</div>
+        <div class="pergunta">Como cada papel do comitê tende a perceber uma proposta cujo valor está ligado mais à
+          proteção do que à expansão imediata?</div>
+      </div>
+    </div>
+
+    <div class="demanda">
+      <h3>Demanda 3 – Desenvolvimento de um novo módulo para clientes</h3>
+
+      <p>
+        A área comercial apresentou ao comitê a proposta de desenvolvimento de um novo módulo para a plataforma
+        oferecida aos clientes. Segundo essa área, a funcionalidade foi solicitada em negociações recentes e pode
+        contribuir para ampliar receita, fortalecer a percepção de inovação e sustentar a posição competitiva da
+        empresa em um mercado que valoriza respostas rápidas e evolução contínua dos produtos.
+      </p>
+
+      <p>
+        A demanda é defendida como oportunidade concreta de geração de valor e aproximação com necessidades atuais do
+        mercado. Em contrapartida, sua priorização pode exigir mobilização significativa da equipe técnica, definição
+        de escopo, testes, integração com componentes já existentes e eventual postergação de outras iniciativas em
+        andamento.
+      </p>
+
+      <p>
+        Em muitos contextos, esse tipo de demanda parece naturalmente atraente porque está vinculado a crescimento,
+        diferenciação e atendimento a expectativas externas. Ainda assim, o comitê deverá considerar de que maneira
+        essa oportunidade se relaciona à capacidade real da organização e ao conjunto mais amplo de necessidades já
+        identificadas no cenário.
+      </p>
+
+      <div class="subbloco">
+        <strong>Elementos informados ao comitê:</strong>
+        <ul>
+          <li>a demanda foi fortemente defendida pela área comercial;</li>
+          <li>há expectativa de impacto positivo sobre receita e competitividade;</li>
+          <li>o mercado demonstra pressão por inovação e agilidade de resposta;</li>
+          <li>a implementação exigirá capacidade técnica e integração ao ambiente atual;</li>
+          <li>o benefício tende a ser percebido mais claramente no relacionamento com clientes e oportunidades de
+            negócio.</li>
+        </ul>
+      </div>
+
+      <div class="subbloco">
+        <strong>Pontos para reflexão do grupo:</strong>
+        <div class="pergunta">Até que ponto a pressão do mercado deve influenciar a ordem das prioridades
+          institucionais?</div>
+        <div class="pergunta">Quais benefícios dessa iniciativa são mais visíveis? Existem custos ou implicações menos
+          aparentes?</div>
+        <div class="pergunta">O cenário atual da organização favorece ou dificulta absorver mais uma frente de evolução
+          do produto?</div>
+        <div class="pergunta">Como equilibrar oportunidade comercial com sustentação e coordenação do ambiente
+          tecnológico?</div>
+      </div>
+    </div>
+
+    <div class="demanda">
+      <h3>Demanda 4 – Adequação a requisitos regulatórios</h3>
+
+      <p>
+        A organização foi informada sobre a necessidade de atender novos requisitos regulatórios e contratuais
+        associados ao seu contexto de atuação e a determinados clientes institucionais. Essa adequação envolve revisão
+        de práticas, registros, procedimentos e possivelmente ajustes em elementos do ambiente tecnológico e de gestão
+        da informação.
+      </p>
+
+      <p>
+        O núcleo responsável por conformidade ressaltou que a empresa precisará demonstrar aderência a determinadas
+        exigências dentro de prazo definido, o que torna a iniciativa particularmente sensível do ponto de vista
+        institucional. Ainda que parte da organização não perceba essa demanda da mesma forma que enxerga expansão
+        comercial ou inovação de produto, o tema possui implicações relevantes para a legitimidade da operação e para a
+        relação com clientes e exigências externas.
+      </p>
+
+      <p>
+        Demandas dessa natureza costumam exigir articulação entre diferentes áreas, clareza de responsabilidades,
+        produção de evidências e maior formalização de procedimentos. Por isso, a análise do grupo deverá ir além da
+        ideia genérica de “cumprir uma obrigação”, examinando o que esse tipo de exigência revela sobre maturidade
+        institucional, capacidade de demonstração e coerência dos mecanismos internos.
+      </p>
+
+      <div class="subbloco">
+        <strong>Elementos informados ao comitê:</strong>
+        <ul>
+          <li>trata-se de exigência associada a requisitos externos e contratuais;</li>
+          <li>há prazo obrigatório para atendimento;</li>
+          <li>o não atendimento pode gerar sanções, restrições ou fragilização institucional;</li>
+          <li>a adequação pode envolver ajustes de processo, registros, responsabilidades e sistemas;</li>
+          <li>a demanda exige coordenação entre áreas e produção de evidências organizacionais.</li>
+        </ul>
+      </div>
+
+      <div class="subbloco">
+        <strong>Pontos para reflexão do grupo:</strong>
+        <div class="pergunta">Como o comitê deve tratar uma demanda cuja urgência decorre de exigência externa e prazo
+          definido?</div>
+        <div class="pergunta">Essa iniciativa diz respeito apenas a cumprir formalidades ou também a fortalecer a
+          organização internamente?</div>
+        <div class="pergunta">Quais papéis do comitê tenderão a reconhecer mais rapidamente a relevância dessa demanda?
+        </div>
+        <div class="pergunta">Como a necessidade de conformidade se relaciona com reputação, continuidade e confiança
+          institucional?</div>
+      </div>
+    </div>
+
+    <h2>3. Comparação entre as demandas</h2>
+
+    <p>
+      Ao comparar as quatro demandas, o grupo deve evitar uma análise simplificada baseada apenas em “gostar mais” de
+      determinada iniciativa ou em escolher a alternativa aparentemente mais óbvia. O exercício exige leitura
+      relacional. Cada demanda apresenta uma lógica distinta: uma tende a operar no plano estrutural da organização;
+      outra se vincula mais claramente à proteção e continuidade; outra enfatiza valor percebido pelo mercado e pelo
+      cliente; e outra decorre de exigências externas e da necessidade de formalização institucional.
+    </p>
+
+    <p>
+      Em termos de governança, a comparação entre demandas deve considerar não apenas o mérito de cada proposta, mas
+      também o contexto em que a organização se encontra. Isso inclui observar o estágio de crescimento da empresa, a
+      criticidade dos serviços, a maturidade de seus processos, a limitação de recursos, a necessidade de coordenação
+      entre áreas e a exposição a diferentes tipos de consequência institucional.
+    </p>
+
+    <div class="bloco">
+      <h3>Eixos sugeridos para comparação</h3>
+      <ul>
+        <li>potencial geração de valor para o negócio;</li>
+        <li>impacto sobre estabilidade e continuidade operacional;</li>
+        <li>grau de urgência institucional;</li>
+        <li>risco associado à não priorização da demanda;</li>
+        <li>consumo de recursos e tempo de implementação;</li>
+        <li>dependência de coordenação entre áreas;</li>
+        <li>efeitos estruturais de longo prazo;</li>
+        <li>pressão externa ou interna associada à iniciativa.</li>
+      </ul>
+    </div>
+
+    <div class="restricao">
+      <p>
+        <strong>Restrição da atividade:</strong> o comitê poderá aprovar apenas <strong>duas demandas
+          prioritárias</strong>
+        para encaminhamento imediato. Essa limitação existe para representar uma condição organizacional real: recursos,
+        tempo e capacidade de execução não são ilimitados. Portanto, não basta reconhecer que todas as demandas são
+        relevantes; será necessário justificar por que algumas devem ser tratadas antes das outras.
+      </p>
+    </div>
+
+    <h2>4. Questões orientadoras para o trabalho do grupo</h2>
+
+    <div class="pergunta">
+      Qual demanda parece produzir benefício mais visível no curto prazo? Isso é suficiente para colocá-la em primeiro
+      lugar?
+    </div>
+    <div class="pergunta">
+      Qual demanda parece lidar com consequências que podem não ser imediatamente percebidas, mas que podem ser
+      institucionalmente críticas?
+    </div>
+    <div class="pergunta">
+      Há demandas que respondem mais a oportunidades e outras que respondem mais a necessidade de sustentação ou
+      conformidade?
+    </div>
+    <div class="pergunta">
+      A organização parece ter capacidade de absorver qualquer uma dessas iniciativas com o mesmo esforço?
+    </div>
+    <div class="pergunta">
+      Se duas demandas forem escolhidas, quais critérios o grupo usará para justificar que elas devem vir antes das
+      demais?
+    </div>
+
+    <h2>5. Encaminhamento</h2>
+
+    <p>
+      Esta página deve servir de base para a deliberação do comitê simulado. O grupo deverá utilizar as descrições,
+      os elementos informados e os pontos de reflexão como apoio para construir uma análise própria. Não há uma única
+      resposta mecânica, mas há decisões mais ou menos justificadas do ponto de vista da governança de TI.
+    </p>
+
+    <p>
+      Nas próximas etapas da atividade, espera-se que os estudantes articulem as demandas aqui apresentadas com o
+      contexto organizacional estudado anteriormente e com os diferentes papéis dos participantes. O foco não está
+      apenas em selecionar duas iniciativas, mas em demonstrar capacidade de leitura institucional, comparação de
+      critérios e justificativa argumentativa.
+    </p>
+
+    <div class="rodape">
+      <a class="card-link" href="00_Jogo_da_Governanca.html">
+        <h3>Home</h3>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

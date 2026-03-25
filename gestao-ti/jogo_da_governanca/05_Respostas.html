@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06_07_tarefa_grupos_e_formulario_resposta.html</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 32px auto;
+      background: #ffffff;
+      padding: 42px 54px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #1f3c5b;
+    }
+
+    h1 {
+      margin-top: 0;
+      border-bottom: 3px solid #1f3c5b;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin-top: 34px;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      text-align: justify;
+      margin: 14px 0;
+    }
+
+    ul,
+    ol {
+      margin: 12px 0 12px 24px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .destaque {
+      background: #f7fbff;
+      border-left: 5px solid #1f3c5b;
+      padding: 18px 20px;
+      margin: 24px 0;
+      border-radius: 6px;
+    }
+
+    .bloco {
+      background: #fcfcfc;
+      border: 1px solid #d9e2ec;
+      padding: 22px;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+
+    .etapa {
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      border-left: 6px solid #365d84;
+      padding: 20px 22px;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+
+    .pergunta {
+      margin: 10px 0;
+      padding: 12px 14px;
+      background: #f9fbfc;
+      border: 1px solid #dbe4ea;
+      border-radius: 6px;
+    }
+
+    form {
+      margin-top: 28px;
+    }
+
+    .campo {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #1f3c5b;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      background: #f8fafc;
+      border: 1px solid #dbe4ea;
+      padding: 14px 16px;
+      border-radius: 8px;
+    }
+
+    .check-item label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: normal;
+      margin: 0;
+      color: #222;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    button {
+      background: #1f3c5b;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button.secundario {
+      background: #6b7280;
+    }
+
+    button:hover {
+      opacity: 0.95;
+    }
+
+    .resposta-gerada {
+      margin-top: 36px;
+      border-top: 3px solid #1f3c5b;
+      padding-top: 28px;
+    }
+
+    .folha {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 36px;
+      border-radius: 8px;
+    }
+
+    .folha h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #1f3c5b;
+      padding-bottom: 10px;
+    }
+
+    .folha h3 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      color: #1f3c5b;
+    }
+
+    .linha-resposta {
+      white-space: pre-wrap;
+      text-align: justify;
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      padding: 14px 16px;
+      border-radius: 8px;
+      min-height: 48px;
+    }
+
+    .mini {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .rodape {
+      margin-top: 38px;
+      padding-top: 16px;
+      border-top: 1px solid #d0d7de;
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #folhaResposta,
+      #folhaResposta * {
+        visibility: visible;
+      }
+
+      #folhaResposta {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Tarefa dos Grupos e Formulário de Resposta</h1>
+
+    <p>
+      Nesta etapa da atividade, o grupo deverá transformar a leitura do contexto, dos papéis institucionais e das
+      demandas em uma deliberação justificada. O foco não está apenas em escolher alternativas, mas em demonstrar que
+      o grupo foi capaz de analisar o cenário de forma articulada, identificar critérios relevantes, comparar
+      prioridades e construir uma decisão coerente com a lógica da governança de TI.
+    </p>
+
+    <p>
+      A tarefa foi organizada de modo a simular o funcionamento de um comitê. Isso significa que a resposta final deve
+      refletir um processo de discussão, comparação de pontos de vista e consolidação argumentativa. O grupo deverá
+      explicitar não apenas <strong>o que decidiu</strong>, mas também <strong>por que decidiu</strong>,
+      <strong>quem deve assumir responsabilidades</strong> e <strong>quais mecanismos de governança são
+        necessários</strong>
+      para sustentar a decisão.
+    </p>
+
+    <div class="destaque">
+      <p>
+        Uma resposta consistente não é aquela que apenas escolhe duas demandas, mas aquela que demonstra leitura
+        institucional do cenário, clareza de raciocínio e coerência entre prioridade, responsabilidade e mecanismo de
+        acompanhamento.
+      </p>
+    </div>
+
+    <h2>1. Tarefa dos grupos</h2>
+
+    <p>
+      Cada grupo deverá atuar como um comitê responsável por deliberar sobre as demandas apresentadas anteriormente.
+      Para isso, os integrantes deverão mobilizar os papéis assumidos na dinâmica, discutir as prioridades da
+      organização e consolidar uma resposta comum. A seguir, estão descritas as tarefas que precisam ser realizadas.
+    </p>
+
+    <div class="etapa">
+      <h3>Etapa 1 – Selecionar as duas demandas prioritárias</h3>
+      <p>
+        O grupo deverá escolher <strong>apenas duas demandas</strong> para encaminhamento prioritário. A escolha deve
+        considerar o contexto da organização, a limitação de recursos, a criticidade do ambiente, as consequências
+        institucionais e os diferentes pontos de vista representados no comitê.
+      </p>
+      <div class="pergunta">
+        A decisão do grupo considera apenas o que parece mais urgente à primeira vista ou resulta de comparação entre
+        critérios institucionais distintos?
+      </div>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 2 – Justificar a decisão</h3>
+      <p>
+        Após selecionar as duas demandas, o grupo deverá apresentar uma justificativa articulada. Essa justificativa
+        deve mostrar por que tais demandas foram consideradas prioritárias em relação às demais. Espera-se que a
+        resposta dialogue com elementos como alinhamento estratégico, impacto no negócio, risco organizacional,
+        conformidade, continuidade operacional, limitação de recursos e capacidade de execução.
+      </p>
+      <div class="pergunta">
+        O grupo conseguiu explicar claramente por que as demandas escolhidas devem vir antes das outras neste momento?
+      </div>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 3 – Definir responsabilidades</h3>
+      <p>
+        A resposta deverá indicar como as responsabilidades se distribuem em torno da decisão. Não basta apontar a
+        iniciativa prioritária; é preciso explicitar quem deve deliberar formalmente, quem conduz a execução e quem
+        responde institucionalmente pelos resultados. Esta etapa é importante porque governança de TI depende de
+        clareza sobre papéis, autoridade e accountability.
+      </p>
+      <div class="pergunta">
+        A distribuição proposta diferencia adequadamente decisão, execução e responsabilização?
+      </div>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 4 – Propor mecanismos de governança</h3>
+      <p>
+        O grupo deverá indicar quais mecanismos de governança ajudariam a sustentar as decisões tomadas. Esses
+        mecanismos podem envolver, por exemplo, políticas, procedimentos, controles, indicadores, comitês, fluxos de
+        aprovação, critérios de acompanhamento, registros e práticas de revisão periódica.
+      </p>
+      <div class="pergunta">
+        Os mecanismos sugeridos ajudam a transformar a decisão em prática institucional estável ou permanecem apenas no
+        plano da intenção?
+      </div>
+    </div>
+
+    <div class="bloco">
+      <h3>Critérios esperados na elaboração da resposta</h3>
+      <ul>
+        <li>coerência entre análise do contexto e prioridades escolhidas;</li>
+        <li>capacidade de justificar a decisão com argumentos organizacionais;</li>
+        <li>clareza na definição de responsabilidades;</li>
+        <li>adequação dos mecanismos de governança propostos;</li>
+        <li>qualidade da articulação entre negócio, risco, estrutura e conformidade.</li>
+      </ul>
+    </div>
+
+    <h2>2. Como preencher o formulário</h2>
+
+    <p>
+      O formulário abaixo foi construído para funcionar como instrumento de registro da decisão do grupo. Ao final do
+      preenchimento, o sistema gera automaticamente uma <strong>folha de resposta em HTML</strong>, organizada para
+      leitura, apresentação e impressão. Essa folha reúne as informações preenchidas e pode ser utilizada como entrega
+      do grupo.
+    </p>
+
+    <p>
+      Recomenda-se que o grupo discuta coletivamente antes de preencher cada campo. O formulário deve refletir a
+      posição consolidada do comitê, e não respostas fragmentadas de participantes isolados.
+    </p>
+
+    <div class="bloco">
+      <h3>Instruções de preenchimento</h3>
+      <ol>
+        <li>Informe a identificação do grupo e, se desejado, os nomes dos integrantes.</li>
+        <li>Marque exatamente duas demandas prioritárias.</li>
+        <li>Escreva uma justificativa explicando por que essas demandas foram escolhidas.</li>
+        <li>Indique quem decide, quem executa e quem responde pelos resultados.</li>
+        <li>Descreva os mecanismos de governança que o grupo considera necessários.</li>
+        <li>Clique em <strong>Gerar folha de resposta</strong>.</li>
+        <li>Revise o resultado gerado. Se necessário, ajuste o formulário e gere novamente.</li>
+        <li>Para imprimir ou salvar em PDF, utilize a função de impressão do navegador após gerar a folha.</li>
+      </ol>
+    </div>
+
+    <h2>3. Formulário de resposta do grupo</h2>
+
+    <form id="formResposta">
+      <div class="campo">
+        <label for="grupo">Identificação do grupo</label>
+        <input type="text" id="grupo" name="grupo" placeholder="Ex.: Grupo 1" />
+      </div>
+
+      <div class="campo">
+        <label for="integrantes">Integrantes do grupo</label>
+        <textarea id="integrantes" name="integrantes"
+          placeholder="Informe os nomes dos integrantes do grupo."></textarea>
+      </div>
+
+      <div class="campo">
+        <label>Demandas prioritárias escolhidas (marque exatamente duas)</label>
+        <div class="checkbox-grid">
+          <div class="check-item">
+            <label>
+              <input type="checkbox" name="demandas" value="Demanda 1 – Implementação de um novo sistema ERP" />
+              <span><strong>Demanda 1</strong> – Implementação de um novo sistema ERP</span>
+            </label>
+          </div>
+          <div class="check-item">
+            <label>
+              <input type="checkbox" name="demandas" value="Demanda 2 – Investimento em segurança da informação" />
+              <span><strong>Demanda 2</strong> – Investimento em segurança da informação</span>
+            </label>
+          </div>
+          <div class="check-item">
+            <label>
+              <input type="checkbox" name="demandas"
+                value="Demanda 3 – Desenvolvimento de um novo módulo para clientes" />
+              <span><strong>Demanda 3</strong> – Desenvolvimento de um novo módulo para clientes</span>
+            </label>
+          </div>
+          <div class="check-item">
+            <label>
+              <input type="checkbox" name="demandas" value="Demanda 4 – Adequação a requisitos regulatórios" />
+              <span><strong>Demanda 4</strong> – Adequação a requisitos regulatórios</span>
+            </label>
+          </div>
+        </div>
+        <p class="mini">O formulário foi projetado para aceitar duas escolhas. Caso o grupo selecione quantidade
+          diferente, será exibido um aviso.</p>
+      </div>
+
+      <div class="campo">
+        <label for="justificativa">Justificativa da decisão</label>
+        <textarea id="justificativa" name="justificativa"
+          placeholder="Explique por que o grupo escolheu essas duas demandas. Considere contexto organizacional, impacto no negócio, riscos, conformidade, continuidade, recursos e capacidade de execução."></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="quemDecide">Quem decide</label>
+        <textarea id="quemDecide" name="quemDecide"
+          placeholder="Indique qual instância, papel ou composição deve deliberar formalmente sobre a priorização."></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="quemExecuta">Quem executa</label>
+        <textarea id="quemExecuta" name="quemExecuta"
+          placeholder="Indique quais áreas, equipes ou responsáveis conduzem a execução das demandas escolhidas."></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="quemResponde">Quem responde pelos resultados</label>
+        <textarea id="quemResponde" name="quemResponde"
+          placeholder="Indique quem assume a responsabilização institucional pelos resultados, acompanhamento e prestação de contas."></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="mecanismos">Mecanismos de governança propostos</label>
+        <textarea id="mecanismos" name="mecanismos"
+          placeholder="Descreva políticas, controles, indicadores, comitês, fluxos de aprovação, registros ou outros mecanismos que o grupo considera necessários para sustentar a decisão."></textarea>
+      </div>
+
+      <div class="acoes">
+        <button type="button" onclick="gerarResposta()">Gerar folha de resposta</button>
+        <button type="reset" class="secundario" onclick="limparResposta()">Limpar formulário</button>
+        <button type="button" class="secundario" onclick="window.print()">Imprimir / Salvar em PDF</button>
+      </div>
+    </form>
+
+    <div class="resposta-gerada" id="secaoResposta" style="display: none;">
+      <div class="bloco bloco-instrucoes-impressao">
+        <h3>Folha de resposta gerada</h3>
+        <p>
+          A seção abaixo foi montada automaticamente a partir dos dados preenchidos no formulário. Revise o conteúdo.
+          Caso queira corrigir algo, altere os campos acima e gere novamente. Para entregar em formato digital, o grupo
+          pode imprimir esta página em PDF pelo navegador.
+        </p>
+      </div>
+
+      <div class="folha" id="folhaResposta">
+        <!-- Conteúdo gerado via JavaScript -->
+      </div>
+    </div>
+
+    <div class="rodape">
+      <a class="card-link" href="00_Jogo_da_Governanca.html">
+        <h3>Home</h3>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function escaparHtml(texto) {
+      return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function obterTextoOuPadrao(valor, padrao) {
+      const texto = valor.trim();
+      return texto ? escaparHtml(texto) : "<em>" + padrao + "</em>";
+    }
+
+    function gerarResposta() {
+      const grupo = document.getElementById("grupo").value;
+      const integrantes = document.getElementById("integrantes").value;
+      const justificativa = document.getElementById("justificativa").value;
+      const quemDecide = document.getElementById("quemDecide").value;
+      const quemExecuta = document.getElementById("quemExecuta").value;
+      const quemResponde = document.getElementById("quemResponde").value;
+      const mecanismos = document.getElementById("mecanismos").value;
+
+      const demandasSelecionadas = Array.from(document.querySelectorAll('input[name="demandas"]:checked'))
+        .map(item => item.value);
+
+      if (demandasSelecionadas.length !== 2) {
+        alert("Selecione exatamente duas demandas prioritárias antes de gerar a folha de resposta.");
+        return;
+      }
+
+      const folha = document.getElementById("folhaResposta");
+
+      folha.innerHTML = `
+        <h2>Folha de Resposta do Grupo</h2>
+
+        <p><strong>Grupo:</strong> ${obterTextoOuPadrao(grupo, "Grupo não informado.")}</p>
+
+        <h3>Integrantes</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(integrantes, "Integrantes não informados.")}</div>
+
+        <h3>Demandas prioritárias escolhidas</h3>
+        <div class="linha-resposta">
+          <ol>
+            <li>${escaparHtml(demandasSelecionadas[0])}</li>
+            <li>${escaparHtml(demandasSelecionadas[1])}</li>
+          </ol>
+        </div>
+
+        <h3>Justificativa da decisão</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(justificativa, "Justificativa não informada.")}</div>
+
+        <h3>Quem decide</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(quemDecide, "Responsável pela decisão não informado.")}</div>
+
+        <h3>Quem executa</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(quemExecuta, "Responsável pela execução não informado.")}</div>
+
+        <h3>Quem responde pelos resultados</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(quemResponde, "Responsável pelos resultados não informado.")}</div>
+
+        <h3>Mecanismos de governança propostos</h3>
+        <div class="linha-resposta">${obterTextoOuPadrao(mecanismos, "Mecanismos de governança não informados.")}</div>
+      `;
+
+      document.getElementById("secaoResposta").style.display = "block";
+      document.getElementById("secaoResposta").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function limparResposta() {
+      document.getElementById("folhaResposta").innerHTML = "";
+      document.getElementById("secaoResposta").style.display = "none";
+    }
+  </script>
+</body>
+
+</html>

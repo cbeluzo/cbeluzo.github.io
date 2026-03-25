@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02_contexto.html</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 32px auto;
+      background: #ffffff;
+      padding: 42px 50px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #1f3c5b;
+    }
+
+    h1 {
+      margin-top: 0;
+      border-bottom: 3px solid #1f3c5b;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin-top: 34px;
+    }
+
+    p {
+      text-align: justify;
+      margin: 14px 0;
+    }
+
+    .destaque {
+      background: #f7fbff;
+      border-left: 5px solid #1f3c5b;
+      padding: 18px 20px;
+      margin: 24px 0;
+      border-radius: 6px;
+    }
+
+    .bloco {
+      background: #fcfcfc;
+      border: 1px solid #d9e2ec;
+      padding: 22px;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+
+    .situacao {
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      border-left: 6px solid #365d84;
+      padding: 20px 22px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .situacao h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin: 12px 0 12px 24px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .pergunta {
+      margin: 12px 0;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .rodape {
+      margin-top: 38px;
+      padding-top: 16px;
+      border-top: 1px solid #d0d7de;
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Contexto da Organização e Situações para Análise</h1>
+
+    <p>
+      A atividade prática desta aula está situada em uma organização fictícia chamada
+      <strong>EduTech Solutions</strong>, empresa de médio porte especializada no desenvolvimento e manutenção de
+      plataformas digitais voltadas ao setor educacional. A organização oferece serviços para instituições de ensino,
+      empresas de treinamento corporativo e programas de capacitação profissional, atuando com produtos como ambientes
+      virtuais de aprendizagem, sistemas de avaliação online, painéis de acompanhamento acadêmico e módulos de gestão
+      de conteúdos.
+    </p>
+
+    <p>
+      Nos primeiros anos de operação, a empresa concentrou seus esforços no desenvolvimento de soluções específicas
+      para poucos clientes, com equipes pequenas e comunicação bastante direta entre fundadores, área técnica e área
+      comercial. Esse formato funcionou adequadamente enquanto o volume de contratos era limitado e a variedade de
+      demandas ainda era reduzida. À medida que a organização expandiu sua base de clientes, ampliou o portfólio de
+      serviços e passou a lidar com contratos simultâneos, a estrutura interna tornou-se mais complexa, exigindo maior
+      coordenação entre áreas, padronização de procedimentos, definição de prioridades e mecanismos mais formais de
+      acompanhamento.
+    </p>
+
+    <p>
+      Atualmente, a EduTech Solutions possui clientes com perfis distintos. Alguns demandam elevada disponibilidade dos
+      sistemas, outros valorizam rapidez na entrega de novas funcionalidades, outros exigem relatórios detalhados e
+      rastreabilidade das operações, e alguns atuam em ambientes institucionais sujeitos a regras mais rigorosas de
+      conformidade e proteção de dados. Em consequência, a área de tecnologia passou a receber solicitações frequentes
+      e variadas, nem sempre convergentes entre si. Em vários momentos, decisões precisam ser tomadas sem que todos os
+      envolvidos tenham a mesma percepção sobre urgência, impacto, custo e consequência institucional.
+    </p>
+
+    <div class="destaque">
+      <p>
+        O objetivo desta página não é apresentar uma lista pronta de falhas da organização. Ao contrário, a proposta é
+        oferecer elementos de contexto e situações observáveis para que o grupo leia o cenário com atenção, identifique
+        padrões e deduza quais aspectos merecem análise do ponto de vista da governança de TI.
+      </p>
+    </div>
+
+    <h2>1. Caracterização geral da organização</h2>
+
+    <p>
+      A estrutura organizacional da empresa é composta, de forma simplificada, por diretoria executiva, área comercial,
+      área de operações, equipe de tecnologia da informação, suporte ao cliente, financeiro e um núcleo responsável por
+      aspectos jurídicos e de conformidade contratual. Embora essas áreas existam formalmente, seus processos de
+      interação ainda refletem parte da cultura inicial da empresa, marcada por informalidade, decisões rápidas e forte
+      dependência de contatos diretos entre gestores.
+    </p>
+
+    <p>
+      A área de TI, em particular, assumiu ao longo do tempo responsabilidades bastante amplas. Além do desenvolvimento
+      e manutenção dos sistemas, participa de decisões sobre infraestrutura, atendimento de chamados internos,
+      implantação de módulos contratados pelos clientes, integração de dados, suporte à operação e acompanhamento de
+      incidentes. Em períodos de maior demanda, a equipe técnica também é acionada para responder a solicitações
+      urgentes de outras áreas, elaborar estimativas rápidas, adaptar funcionalidades já existentes e apoiar a produção
+      de informações para contratos em andamento.
+    </p>
+
+    <p>
+      A diretoria reconhece que a tecnologia é essencial para a continuidade e o crescimento do negócio. No entanto,
+      nem sempre há consenso interno sobre como transformar essa percepção em critérios estáveis de decisão. Algumas
+      escolhas são feitas com base em oportunidade de mercado; outras são motivadas por solicitações de clientes; em
+      certos casos, a decisão decorre da necessidade de resposta rápida a eventos operacionais; e, em outros, surge de
+      recomendações técnicas ou de exigências contratuais específicas. Como resultado, diferentes áreas tendem a
+      interpretar a prioridade das ações a partir de perspectivas próprias.
+    </p>
+
+    <h2>2. Dinâmica de crescimento e aumento da complexidade</h2>
+
+    <p>
+      Nos últimos dois anos, a empresa ampliou significativamente sua carteira de clientes e passou a operar com maior
+      volume de acessos, mais integrações entre sistemas e mais solicitações de personalização. Com isso, aumentou
+      também o número de projetos simultaneamente em andamento. Alguns desses projetos envolvem melhorias estruturais;
+      outros dizem respeito a demandas específicas de clientes; outros ainda surgem da necessidade de adaptar o ambiente
+      tecnológico a novos requisitos operacionais, contratuais ou normativos.
+    </p>
+
+    <p>
+      O crescimento trouxe benefícios evidentes para a organização, como ampliação de receita, ganho de visibilidade no
+      mercado e expansão do portfólio. Contudo, ele também passou a exigir maior previsibilidade sobre prazos,
+      capacidade de entrega, uso de recursos e critérios de priorização. Em determinados momentos, gestores de áreas
+      diferentes entendem que suas respectivas demandas deveriam ser tratadas primeiro. Em outros, surgem dúvidas sobre
+      quem deve validar uma decisão, quem deve acompanhar sua execução e quem deve responder quando os resultados não
+      correspondem ao esperado.
+    </p>
+
+    <p>
+      Em reuniões internas, tornou-se comum o uso de expressões como “isso é urgente”, “o cliente está cobrando”,
+      “precisamos resolver ainda esta semana”, “isso impacta receita”, “isso precisa entrar em produção agora” ou
+      “isso precisa ser tratado com prioridade”. Entretanto, nem sempre tais expressões vêm acompanhadas de critérios
+      institucionais compartilhados para comparar demandas distintas entre si. Dessa forma, o grupo de tecnologia
+      frequentemente recebe pressões simultâneas, com justificativas que fazem sentido dentro de cada área, mas que nem
+      sempre são compatíveis quando analisadas em conjunto.
+    </p>
+
+    <div class="bloco">
+      <h3>Leitura analítica do cenário</h3>
+      <p>
+        Ao analisar esse contexto, o grupo deve observar que o crescimento de uma organização geralmente amplia não
+        apenas a quantidade de trabalho, mas também a necessidade de coordenação, formalização e definição de critérios.
+        Em empresas de base tecnológica, a expansão tende a tornar mais visíveis as interdependências entre negócio,
+        processos, riscos, contratos, dados e infraestrutura.
+      </p>
+    </div>
+
+    <h2>3. Situações observáveis no cotidiano da organização</h2>
+
+    <p>
+      A seguir, são apresentadas situações que têm ocorrido com alguma frequência na EduTech Solutions. Elas não devem
+      ser lidas como respostas prontas, mas como indícios do funcionamento atual da organização. Caberá ao grupo
+      interpretar o conjunto dessas situações, identificar relações entre elas e formular uma leitura consistente sobre
+      o cenário.
+    </p>
+
+    <div class="situacao">
+      <h3>Situação 1 – Demandas que chegam por múltiplos canais</h3>
+      <p>
+        As solicitações dirigidas à área de TI chegam por diferentes meios: mensagens instantâneas, reuniões
+        improvisadas, e-mails, conversas diretas com gestores, chamados formais e pedidos repassados por outras áreas.
+        Em alguns casos, o mesmo pedido aparece em mais de um canal; em outros, a equipe técnica toma conhecimento da
+        solicitação já em estágio adiantado, quando o prazo esperado pela área solicitante está próximo de se encerrar.
+      </p>
+      <p>
+        Como consequência, algumas demandas são tratadas rapidamente devido à insistência ou proximidade com quem
+        solicitou, enquanto outras ficam aguardando definição mais clara. Nem sempre os registros apresentam o mesmo
+        nível de detalhe sobre objetivo, prazo, impacto esperado e dependências envolvidas.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 2 – Pressão por novas entregas e ajustes rápidos</h3>
+      <p>
+        A área comercial argumenta que determinados clientes valorizam rapidez na entrega de novas funcionalidades e
+        que atrasos podem comprometer renovações contratuais ou oportunidades futuras. Em função disso, pedidos de
+        adaptação do produto são frequentemente apresentados como decisivos para a competitividade da empresa.
+      </p>
+      <p>
+        Em certos momentos, pequenas alterações solicitadas por clientes são incorporadas ao ambiente produtivo em
+        ritmo acelerado, especialmente quando a percepção predominante é de que o mercado exige respostas imediatas.
+        Posteriormente, outras equipes observam que essas mudanças podem demandar ajustes adicionais, revisões técnicas
+        ou novos ciclos de validação.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 3 – Uso intensivo dos sistemas e necessidade de estabilidade</h3>
+      <p>
+        O aumento da base de usuários elevou a criticidade de alguns serviços digitais oferecidos pela empresa. Há
+        períodos do calendário em que a plataforma concentra grande volume de acessos simultâneos, especialmente em
+        momentos de avaliações, fechamento de atividades ou geração de relatórios para clientes institucionais.
+      </p>
+      <p>
+        Nessas fases, qualquer indisponibilidade, lentidão ou comportamento inesperado do sistema tende a produzir
+        repercussão imediata em clientes e equipes internas. A preocupação com continuidade operacional passou a ser
+        recorrente em reuniões, embora nem sempre as discussões avancem para uma visão integrada entre operação,
+        prevenção e capacidade de resposta.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 4 – Crescimento do volume de dados e dos acessos</h3>
+      <p>
+        A organização passou a armazenar volumes maiores de dados acadêmicos, operacionais e contratuais. Paralelamente,
+        aumentou o número de pessoas com algum tipo de acesso a relatórios, cadastros, áreas administrativas e ambientes
+        de suporte. Ao longo do tempo, perfis de acesso foram sendo criados para atender necessidades pontuais de
+        operação, implantação e atendimento.
+      </p>
+      <p>
+        Em revisões internas, observou-se que certos acessos permanecem ativos mesmo após mudanças de função ou término
+        de participação em projetos específicos. Em outros casos, a própria concessão de acesso foi feita como medida
+        prática para viabilizar tarefas urgentes, sem que necessariamente houvesse posterior reavaliação da necessidade
+        daquele perfil.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 5 – Integrações, retrabalho e dificuldade de visão consolidada</h3>
+      <p>
+        Parte dos sistemas utilizados pela empresa foi construída em momentos diferentes e para finalidades específicas.
+        Alguns módulos trocam informações entre si; outros dependem de procedimentos intermediários para sincronização
+        de dados. Com o crescimento da operação, certas equipes passaram a relatar divergências entre informações
+        visualizadas em relatórios distintos ou necessidade de conferência manual antes de encaminhar dados a clientes.
+      </p>
+      <p>
+        Quando surgem diferenças de informação, o tratamento costuma envolver várias pessoas, incluindo equipe técnica,
+        operação e atendimento. O esforço de esclarecimento consome tempo relevante e, em alguns casos, impacta outras
+        entregas em andamento.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 6 – Reuniões com percepções divergentes sobre prioridade</h3>
+      <p>
+        Em reuniões gerenciais, diferentes áreas apresentam argumentos plausíveis para defender suas respectivas
+        necessidades. A área comercial enfatiza crescimento e relacionamento com clientes. A equipe técnica chama
+        atenção para capacidade de execução, estabilidade do ambiente e dependências entre sistemas. O suporte destaca
+        a experiência do usuário e o volume de ocorrências. O núcleo de conformidade lembra obrigações contratuais e
+        exigências formais de determinados clientes.
+      </p>
+      <p>
+        Ainda que todos reconheçam a importância do trabalho das demais áreas, nem sempre existe um método consensual
+        para comparar essas demandas e transformá-las em uma fila institucionalmente legitimada de prioridades.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 7 – Ajustes operacionais motivados por eventos recentes</h3>
+      <p>
+        Após determinados eventos operacionais e ocorrências técnicas, surgiram discussões sobre a conveniência de
+        revisar rotinas de monitoramento, procedimentos de resposta, formas de acompanhamento e práticas relacionadas à
+        proteção do ambiente tecnológico. Entretanto, parte das ações propostas foi conduzida de maneira pontual, em
+        resposta a fatos específicos, sem que necessariamente se consolidasse uma visão integrada de médio prazo.
+      </p>
+      <p>
+        Em alguns casos, o tratamento dos eventos concentrou-se em restaurar rapidamente a normalidade operacional,
+        deixando em segundo plano discussões mais amplas sobre prevenção, critérios permanentes e definição de
+        responsabilidades organizacionais.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 8 – Auditoria e necessidade de maior formalização</h3>
+      <p>
+        Recentemente, uma revisão conduzida a partir de exigências de um cliente institucional solicitou evidências
+        sobre procedimentos, registros, responsabilidades e práticas relacionadas ao ambiente tecnológico. Durante a
+        preparação dessas evidências, diferentes áreas precisaram reunir informações dispersas, esclarecer fluxos e
+        confirmar quem era responsável por determinadas aprovações ou rotinas.
+      </p>
+      <p>
+        Embora a organização tenha conseguido apresentar parte do que foi solicitado, o processo revelou que vários
+        conhecimentos estavam concentrados em pessoas específicas ou distribuídos de forma pouco sistematizada entre
+        documentos, mensagens e práticas informais.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 9 – Dependência de pessoas-chave</h3>
+      <p>
+        Alguns processos da empresa se apoiam fortemente na experiência acumulada de profissionais que conhecem o
+        histórico dos sistemas, os acordos informais com clientes, as particularidades das implantações e as rotinas
+        internas que foram se consolidando ao longo dos anos. Isso faz com que determinadas decisões ou verificações
+        dependam da consulta a pessoas específicas, mesmo quando o tema já deveria estar suficientemente registrado ou
+        institucionalizado.
+      </p>
+      <p>
+        Quando esses profissionais estão sobrecarregados, em férias ou envolvidos em outras demandas, a fluidez de
+        certas atividades é reduzida e surgem dúvidas sobre sequência, validação ou autorização de procedimentos.
+      </p>
+    </div>
+
+    <div class="situacao">
+      <h3>Situação 10 – Limitação de recursos e necessidade de escolha</h3>
+      <p>
+        Apesar do crescimento da empresa, o volume de recursos disponíveis para executar simultaneamente todas as
+        iniciativas desejadas continua sendo limitado. Orçamento, tempo, capacidade técnica e disponibilidade de
+        pessoas precisam ser distribuídos entre manutenção do ambiente, atendimento a clientes, melhoria de processos,
+        evolução tecnológica e obrigações formais assumidas pela organização.
+      </p>
+      <p>
+        Esse quadro torna inevitável a realização de escolhas. Entretanto, quanto menos claros forem os critérios de
+        comparação entre iniciativas, maior tende a ser a percepção de que determinadas decisões resultam mais de
+        pressão circunstancial do que de orientação institucional.
+      </p>
+    </div>
+
+    <h2>4. Tópicos para identificação dos problemas pelo grupo</h2>
+
+    <p>
+      A partir do contexto e das situações descritas, o grupo deverá realizar uma leitura crítica da organização.
+      Nesta etapa, não se espera apenas a repetição de trechos do texto, mas a formulação de uma interpretação. Para
+      apoiar esse processo, os possíveis problemas a serem identificados devem ser procurados nos seguintes tópicos de
+      análise.
+    </p>
+
+    <ul>
+      <li><strong>Critérios de priorização:</strong> observar se a organização dispõe, ou não, de bases claras para
+        decidir o que deve ser tratado antes.</li>
+      <li><strong>Fluxo de entrada de demandas:</strong> examinar como as solicitações chegam à TI, se há padronização,
+        registro, triagem e comparabilidade.</li>
+      <li><strong>Distribuição de responsabilidades:</strong> verificar se está claro quem decide, quem autoriza, quem
+        executa e quem responde pelos resultados.</li>
+      <li><strong>Integração entre áreas:</strong> analisar como comercial, operação, suporte, tecnologia e conformidade
+        interagem nas decisões.</li>
+      <li><strong>Capacidade de coordenação institucional:</strong> perceber se a organização decide de forma articulada
+        ou predominantemente reativa.</li>
+      <li><strong>Estabilidade e continuidade operacional:</strong> refletir sobre a relação entre crescimento da
+        operação, criticidade dos serviços e preparo institucional para sustentar o ambiente.</li>
+      <li><strong>Controles de acesso e proteção do ambiente:</strong> examinar indícios relacionados a concessão,
+        manutenção e revisão de acessos e práticas de proteção.</li>
+      <li><strong>Formalização de processos e políticas:</strong> identificar sinais de dependência excessiva de
+        informalidade, memória individual ou acordos não documentados.</li>
+      <li><strong>Confiabilidade das informações e integração de sistemas:</strong> observar se existem evidências de
+        retrabalho, divergência de dados ou necessidade de validação manual recorrente.</li>
+      <li><strong>Resposta a eventos e visão de longo prazo:</strong> analisar se as ações são apenas pontuais ou se há
+        indícios de necessidade de mecanismos permanentes de acompanhamento e prevenção.</li>
+      <li><strong>Conformidade e evidências organizacionais:</strong> perceber se a empresa consegue demonstrar com
+        clareza seus procedimentos, responsabilidades e controles.</li>
+      <li><strong>Dependência de pessoas-chave:</strong> avaliar o quanto conhecimentos críticos estão
+        institucionalizados ou concentrados em indivíduos específicos.</li>
+      <li><strong>Uso de recursos escassos:</strong> refletir sobre a relação entre limitação de recursos e necessidade
+        de decisões legitimadas por critérios compartilhados.</li>
+      <li><strong>Alinhamento entre tecnologia e objetivos do negócio:</strong> examinar se as escolhas sobre TI parecem
+        conectadas a uma orientação estratégica comum ou se predominam respostas fragmentadas.</li>
+    </ul>
+
+    <div class="bloco">
+      <h3>Importante</h3>
+      <p>
+        Os tópicos acima não são respostas fechadas. Eles funcionam como eixos de observação. O grupo deverá ler o
+        contexto, relacionar situações entre si e, a partir disso, formular quais problemas percebe na organização,
+        em que medida esses problemas se conectam e por que eles são relevantes do ponto de vista da governança de TI.
+      </p>
+    </div>
+
+    <h2>5. Questões orientadoras para a discussão em grupo</h2>
+
+    <div class="pergunta">
+      Quais situações descritas parecem decorrer apenas do aumento natural da operação e quais sugerem necessidade de
+      maior coordenação institucional?
+    </div>
+
+    <div class="pergunta">
+      Há indícios de que diferentes áreas tomam decisões a partir de critérios distintos? Como isso aparece no texto?
+    </div>
+
+    <div class="pergunta">
+      Em quais trechos o cenário sugere ausência de padronização, formalização ou clareza sobre responsabilidades?
+    </div>
+
+    <div class="pergunta">
+      O contexto mostra apenas desafios técnicos, ou também desafios de decisão, organização e controle?
+    </div>
+
+    <div class="pergunta">
+      Quais elementos do texto sugerem tensões entre curto prazo e longo prazo, entre agilidade e estabilidade, ou
+      entre oportunidade e controle?
+    </div>
+
+    <div class="pergunta">
+      Se o grupo tivesse que explicar, em poucas frases, por que essa organização precisaria fortalecer sua governança
+      de TI, quais evidências do contexto usaria?
+    </div>
+
+    <h2>6. Encaminhamento</h2>
+
+    <p>
+      Esta página deve servir como base para as próximas etapas da atividade. O grupo deverá utilizar este contexto
+      para interpretar os papéis dos participantes, avaliar as demandas apresentadas posteriormente e construir sua
+      argumentação. Quanto mais cuidadosa for a leitura desta seção, mais consistente tende a ser a análise produzida
+      nas páginas seguintes.
+    </p>
+
+    <p>
+      Em síntese, a EduTech Solutions não deve ser analisada apenas como uma empresa que utiliza tecnologia, mas como
+      uma organização na qual a tecnologia atravessa decisões estratégicas, operacionais, contratuais e institucionais.
+      Por isso, o desafio dos estudantes será compreender não somente “o que está acontecendo”, mas também “o que o
+      cenário revela” sobre prioridades, papéis, mecanismos de coordenação e necessidade de governança.
+    </p>
+
+    <div class="rodape">
+      <a class="card-link" href="00_Jogo_da_Governanca.html">
+        <h3>Home</h3>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

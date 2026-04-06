@@ -604,13 +604,20 @@
               {
                 badge: { label: "Aula 7", className: "text-bg-primary" },
                 title: "Inovação, Criatividade e Propriedade Intelectual",
-                search: "aula 7 inovação criatividade propriedade intelectual formulário atividade",
+                search: "aula 7 inovação criatividade propriedade intelectual formulário atividade estudo de caso neuroassist",
                 actions: [
                   {
                     label: "Apresentação",
                     href: "https://gamma.app/docs/07-Inovacao-Criatividade-e-Propriedade-Intelectual-5saa5qocl4v69sr",
                     className: "btn btn-primary btn-sm",
                     icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  },
+                  {
+                    label: "Estudo de Caso",
+                    href: "Aula07_estudo_caso_neuroassist.docx",
+                    className: "btn btn-outline-primary btn-sm",
+                    icon: "bi-file-earmark-text",
                     newTab: true
                   },
                   {

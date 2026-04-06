@@ -1,6 +1,3 @@
-<!-- =========================
-File: apresentacoes.html
-========================= -->
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -11,154 +8,47 @@ File: apresentacoes.html
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
 
     <style>
-      .page-hero {
-        background: radial-gradient(1200px circle at 20% 10%, rgba(220,53,69,.14), transparent 45%),
-                    radial-gradient(1200px circle at 80% 30%, rgba(13,110,253,.10), transparent 45%);
+      :root {
+        --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(220,53,69,.14), transparent 45%),
+                        radial-gradient(1200px circle at 80% 30%, rgba(13,110,253,.10), transparent 45%);
       }
     </style>
   </head>
 
   <body class="bg-light">
-    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-      <div class="container">
-        <a class="navbar-brand fw-semibold" href="../index.html">
-          <i class="bi bi-arrow-left me-2"></i>Início
-        </a>
-        <div class="ms-auto d-flex flex-wrap gap-2 justify-content-end">
-          <a class="btn btn-outline-secondary btn-sm" href="../admin/admin.html"><i class="bi bi-journal-bookmark me-1"></i>Administração</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../gestao-ti/gestao-ti.html"><i class="bi bi-diagram-3 me-1"></i>Gestão de TI</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../gestao-projetos/gestao-projetos.html"><i class="bi bi-kanban me-1"></i>Gestão de Projetos</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../pesquisa/pesquisa.html"><i class="bi bi-flask me-1"></i>Pesquisa</a>
-        </div>
+    <div id="site-nav"></div>
+
+    <noscript>
+      <div class="container py-3">
+        <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e a grade de conteúdo.</div>
       </div>
-    </nav>
+    </noscript>
 
     <header class="page-hero py-4 border-bottom">
       <div class="container">
-        <h1 class="h3 mb-1"><i class="bi bi-easel2 me-2"></i>Apresentações</h1>
-        <div class="text-muted">Slides organizados com busca (Google Slides).</div>
+        <h1 class="h3 mb-1" id="section-title"></h1>
+        <div class="text-muted" id="section-subtitle"></div>
       </div>
     </header>
 
-    <main class="container my-4">
-      <div class="row g-2 align-items-center mb-3">
-        <div class="col-12 col-md-7">
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input id="pSearch" type="text" class="form-control" placeholder="Buscar (ex.: 'ENIAC', 'ALAP', 'malária', 'neonatal')">
-            <button id="pClear" class="btn btn-outline-secondary" type="button" title="Limpar busca">
-              <i class="bi bi-x-lg"></i>
-            </button>
-          </div>
-          <div class="form-text">A busca filtra os cards abaixo.</div>
-        </div>
-      </div>
+    <main class="container my-4" id="section-content"></main>
 
-      <div class="row g-3" id="pGrid">
-
-        <div class="col-12 col-lg-6">
-          <div class="p-item card border-0 rounded-4" data-search="eniac 2022 modelos previsão malária amazônia legal brasileira">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="fw-semibold">ENIAC 2022</div>
-                <span class="badge text-bg-light text-muted">Slides</span>
-              </div>
-              <div class="text-muted mt-2">
-                MODELOS DE PREVISÃO PARA AVALIAÇÃO DE CASOS DE MALÁRIA NA AMAZÔNIA LEGAL BRASILEIRA
-              </div>
-              <div class="mt-3">
-                <a href="https://docs.google.com/presentation/d/1RxtfHLCbfOSJUQ3C9x7Li6gguDRghXv75Xbw7b552v8/edit?usp=sharing"
-                   class="btn btn-danger btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Abrir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-lg-6">
-          <div class="p-item card border-0 rounded-4" data-search="alap 2022 neonatal mortality public private são paulo 2012 2017">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="fw-semibold">ALAP 2022</div>
-                <span class="badge text-bg-light text-muted">Slides</span>
-              </div>
-              <div class="text-muted mt-2">
-                ALAP 2022-01 - Insights on neonatal mortality: differences between public and private health access at São Paulo city between 2012 and 2017
-              </div>
-              <div class="mt-3">
-                <a href="https://docs.google.com/presentation/d/1OR-C8sg3UIrwOxPoqyMmShVp9lsZGV4eQmoiQb_Oaxg/edit?usp=sharing"
-                   class="btn btn-danger btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Abrir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-lg-6">
-          <div class="p-item card border-0 rounded-4" data-search="alap 2022 maternal assistance profile neonatal mortality preventable causes machine learning administrative data">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="fw-semibold">ALAP 2022</div>
-                <span class="badge text-bg-light text-muted">Slides</span>
-              </div>
-              <div class="text-muted mt-2">
-                ALAP 2022-02 - Maternal And Assistance Profile Associated With Neonatal Mortality Preventable Underlying Causes Of Death Using Machine Learning And Administrative Health Data
-              </div>
-              <div class="mt-3">
-                <a href="https://docs.google.com/presentation/d/1RfI7m55CDXLCko0CZwQ_y0bsfYyD4J8HY1oBeFcdgGk/edit?usp=sharing"
-                   class="btn btn-danger btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Abrir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </main>
-
-    <footer class="border-top bg-white">
-      <div class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
-        <div class="text-muted small">© Carlos Eduardo Beluzo</div>
-        <a class="text-muted small text-decoration-none" href="../index.html"><i class="bi bi-grid-1x2-fill me-1"></i>Voltar ao portal</a>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
-
+    <script src="../assets/js/portal-data.js"></script>
+    <script src="../assets/js/site.js"></script>
     <script>
-      (function () {
-        const searchInput = document.getElementById('pSearch');
-        const clearBtn = document.getElementById('pClear');
-        const items = Array.from(document.querySelectorAll('.p-item'));
-
-        function normalize(s) {
-          return (s || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        }
-
-        function apply() {
-          const q = normalize(searchInput.value).trim();
-          items.forEach(el => {
-            const hay = normalize(el.getAttribute('data-search') || el.innerText);
-            el.parentElement.classList.toggle('d-none', q && !hay.includes(q));
-          });
-        }
-
-        searchInput.addEventListener('input', apply);
-        clearBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          apply();
-          searchInput.focus();
-        });
-
-        apply();
-      })();
+      PortalUI.renderCollectionPage({
+        sectionKey: "apresentacoes",
+        rootRelative: "..",
+        idPrefix: "p"
+      });
     </script>
   </body>
 </html>

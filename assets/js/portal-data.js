@@ -1,0 +1,1493 @@
+(function () {
+  window.PortalData = {
+    site: {
+      owner: "Carlos Eduardo Beluzo",
+      emailLabel: "beluzo @ ifsp",
+      footerLinks: [
+        {
+          label: "LinkedIn",
+          href: "https://linkedin.com/in/cbeluzo",
+          newTab: true
+        },
+        {
+          label: "CV Lattes",
+          href: "http://lattes.cnpq.br/0351306309236913",
+          newTab: true
+        }
+      ],
+      navItems: [
+        {
+          key: "admin",
+          label: "Administração",
+          icon: "bi-journal-bookmark",
+          href: "admin/admin.html"
+        },
+        {
+          key: "gestao-ti",
+          label: "Gestão de TI",
+          icon: "bi-diagram-3",
+          href: "gestao-ti/gestao-ti.html"
+        },
+        {
+          key: "gestao-projetos",
+          label: "Gestão de Projetos",
+          icon: "bi-kanban",
+          href: "gestao-projetos/gestao-projetos.html"
+        },
+        {
+          key: "pesquisa",
+          label: "Pesquisa",
+          icon: "bi-flask",
+          href: "pesquisa/pesquisa.html"
+        },
+        {
+          key: "apresentacoes",
+          label: "Apresentações",
+          icon: "bi-easel2",
+          href: "apresentacoes/apresentacoes.html"
+        }
+      ],
+      home: {
+        title: "Prof. Carlos Ed Beluzo",
+        subtitle: "Acesso rápido às disciplinas, materiais de pesquisa, apresentações e acervo histórico.",
+        highlight: {
+          icon: "bi-lightning-charge",
+          title: "Navegação por páginas",
+          text: "Cada área possui busca e organização interativa quando aplicável."
+        },
+        cards: [
+          {
+            title: "Introdução à Administração",
+            description: "Aulas organizadas por módulos, com busca, apresentações e formulário do plano de negócios.",
+            href: "admin/admin.html",
+            icon: "bi-journal-bookmark",
+            pillClass: "icon-pill text-primary",
+            buttonClass: "btn btn-outline-primary btn-sm"
+          },
+          {
+            title: "Gestão de TI",
+            description: "Plano completo com 20 aulas, dinâmica de grupo e materiais de apoio já publicados.",
+            href: "gestao-ti/gestao-ti.html",
+            icon: "bi-diagram-3",
+            pillClass: "icon-pill icon-pill-success text-success",
+            buttonClass: "btn btn-outline-success btn-sm"
+          },
+          {
+            title: "Gestão de Projetos",
+            description: "Estrutura da disciplina com módulos, estudos de caso, quiz e conteúdos Gamma em expansão.",
+            href: "gestao-projetos/gestao-projetos.html",
+            icon: "bi-kanban",
+            pillClass: "icon-pill icon-pill-info text-info",
+            buttonClass: "btn btn-outline-info btn-sm"
+          },
+          {
+            title: "Pesquisa",
+            description: "Projetos, produção e materiais de pesquisa organizados com filtros por busca e tags.",
+            href: "pesquisa/pesquisa.html",
+            icon: "bi-flask",
+            pillClass: "icon-pill icon-pill-warning text-warning",
+            buttonClass: "btn btn-outline-warning btn-sm"
+          },
+          {
+            title: "Apresentações",
+            description: "Slides e palestras organizados com busca, com links para apresentações em Google Slides.",
+            href: "apresentacoes/apresentacoes.html",
+            icon: "bi-easel2",
+            pillClass: "icon-pill icon-pill-danger text-danger",
+            buttonClass: "btn btn-outline-danger btn-sm"
+          },
+          {
+            title: "Acervo e Históricos",
+            description: "Materiais preservados do repositório, incluindo páginas antigas, exercícios e conteúdos temáticos.",
+            href: "legacy/index.html",
+            icon: "bi-archive",
+            pillClass: "icon-pill text-secondary",
+            buttonClass: "btn btn-outline-secondary btn-sm"
+          }
+        ]
+      },
+      legacy: {
+        title: "Acervo e Materiais Históricos",
+        subtitle: "Área de preservação do repositório para páginas antigas, exercícios, cursos e materiais temáticos que não fazem parte do portal principal.",
+        cards: [
+          {
+            title: "Python 101",
+            badge: "Curso",
+            badgeClass: "text-bg-primary",
+            description: "Curso introdutório de Python com material HTML publicado no próprio site.",
+            href: "python-101/CursoIntroducaoPython.html",
+            icon: "bi-terminal",
+            buttonClass: "btn btn-outline-primary btn-sm"
+          },
+          {
+            title: "DM017",
+            badge: "Exercícios",
+            badgeClass: "text-bg-success",
+            description: "Coleção de exercícios em HTML para capítulos da disciplina DM017.",
+            href: "DM017/Exercicios_Capitulo_02.html",
+            icon: "bi-calculator",
+            buttonClass: "btn btn-outline-success btn-sm"
+          },
+          {
+            title: "LP3",
+            badge: "Material",
+            badgeClass: "text-bg-warning text-dark",
+            description: "Páginas temáticas e conteúdos de apoio preservados da disciplina LP3.",
+            href: "lp3/cap01.html",
+            icon: "bi-code-slash",
+            buttonClass: "btn btn-outline-warning btn-sm"
+          },
+          {
+            title: "Tese",
+            badge: "Arquivo",
+            badgeClass: "text-bg-secondary",
+            description: "Página HTML histórica relacionada à tese e materiais acadêmicos anteriores.",
+            href: "tese.html",
+            icon: "bi-journal-richtext",
+            buttonClass: "btn btn-outline-secondary btn-sm"
+          }
+        ],
+        note: "Os diretórios code/, data/ e outros materiais auxiliares continuam versionados no repositório, mas não fazem parte da navegação principal do portal."
+      }
+    },
+    sections: {
+      pesquisa: {
+        key: "pesquisa",
+        title: "Pesquisa",
+        icon: "bi-flask",
+        description: "Estrutura para organizar projetos, publicações e links, com busca e tags.",
+        searchPlaceholder: "Buscar (ex.: 'RAG', 'CVM', 'embeddings', 'dashboards')",
+        tags: [
+          {
+            key: "ia",
+            label: "IA",
+            icon: "bi-cpu",
+            className: "badge rounded-pill text-bg-warning text-dark tag"
+          },
+          {
+            key: "dados",
+            label: "Dados",
+            icon: "bi-database",
+            className: "badge rounded-pill text-bg-primary tag"
+          },
+          {
+            key: "governanca",
+            label: "Governança",
+            icon: "bi-shield-check",
+            className: "badge rounded-pill text-bg-success tag"
+          },
+          {
+            key: "publicacoes",
+            label: "Publicações",
+            icon: "bi-journal-text",
+            className: "badge rounded-pill text-bg-secondary tag"
+          }
+        ],
+        items: [
+          {
+            title: "Projetos em IA / NLP",
+            icon: "bi-cpu",
+            badge: {
+              label: "em construção",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Espaço para descrever linhas de pesquisa, projetos, repositórios e relatórios técnicos.",
+            search: "projeto ia rag embeddings nlp cvm governanca",
+            tags: ["ia", "dados", "governanca"],
+            actions: [
+              {
+                label: "Repositório",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-github"
+              },
+              {
+                label: "Link",
+                className: "btn btn-outline-secondary btn-sm",
+                icon: "bi-link-45deg"
+              }
+            ]
+          },
+          {
+            title: "Engenharia de Dados e Analytics",
+            icon: "bi-database",
+            badge: {
+              label: "em construção",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Espaço para pipelines, governança de métricas, data quality e dashboards.",
+            search: "projeto dados engenharia sql pipelines dashboards",
+            tags: ["dados"],
+            actions: [
+              {
+                label: "Material",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              },
+              {
+                label: "Link",
+                className: "btn btn-outline-secondary btn-sm",
+                icon: "bi-link-45deg"
+              }
+            ]
+          },
+          {
+            title: "Publicações",
+            icon: "bi-journal-text",
+            badge: {
+              label: "em construção",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Lista de artigos, preprints e capítulos, podendo incluir DOI, PDF e links.",
+            search: "publicações artigos scielo ieee demografia mortalidade",
+            tags: ["publicacoes"],
+            actions: [
+              {
+                label: "Currículo/Perfil",
+                className: "btn btn-outline-secondary btn-sm",
+                icon: "bi-link-45deg"
+              }
+            ]
+          },
+          {
+            title: "Governança / GRC",
+            icon: "bi-shield-check",
+            badge: {
+              label: "em construção",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Materiais e evidências: políticas, auditoria, conformidade, frameworks e estudos de caso.",
+            search: "projetos governança ti grc frameworks cobit itil",
+            tags: ["governanca"],
+            actions: [
+              {
+                label: "Documentos",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          }
+        ]
+      },
+      apresentacoes: {
+        key: "apresentacoes",
+        title: "Apresentações",
+        icon: "bi-easel2",
+        description: "Slides organizados com busca (Google Slides).",
+        searchPlaceholder: "Buscar (ex.: 'ENIAC', 'ALAP', 'malária', 'neonatal')",
+        items: [
+          {
+            title: "ENIAC 2022",
+            badge: {
+              label: "Slides",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "MODELOS DE PREVISÃO PARA AVALIAÇÃO DE CASOS DE MALÁRIA NA AMAZÔNIA LEGAL BRASILEIRA",
+            search: "eniac 2022 modelos previsão malária amazônia legal brasileira",
+            actions: [
+              {
+                label: "Abrir",
+                href: "https://docs.google.com/presentation/d/1RxtfHLCbfOSJUQ3C9x7Li6gguDRghXv75Xbw7b552v8/edit?usp=sharing",
+                className: "btn btn-danger btn-sm",
+                icon: "bi-box-arrow-up-right",
+                newTab: true
+              }
+            ]
+          },
+          {
+            title: "ALAP 2022",
+            badge: {
+              label: "Slides",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "ALAP 2022-01 - Insights on neonatal mortality: differences between public and private health access at São Paulo city between 2012 and 2017",
+            search: "alap 2022 neonatal mortality public private são paulo 2012 2017",
+            actions: [
+              {
+                label: "Abrir",
+                href: "https://docs.google.com/presentation/d/1OR-C8sg3UIrwOxPoqyMmShVp9lsZGV4eQmoiQb_Oaxg/edit?usp=sharing",
+                className: "btn btn-danger btn-sm",
+                icon: "bi-box-arrow-up-right",
+                newTab: true
+              }
+            ]
+          },
+          {
+            title: "ALAP 2022",
+            badge: {
+              label: "Slides",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "ALAP 2022-02 - Maternal And Assistance Profile Associated With Neonatal Mortality Preventable Underlying Causes Of Death Using Machine Learning And Administrative Health Data",
+            search: "alap 2022 maternal assistance profile neonatal mortality preventable causes machine learning administrative data",
+            actions: [
+              {
+                label: "Abrir",
+                href: "https://docs.google.com/presentation/d/1RfI7m55CDXLCko0CZwQ_y0bsfYyD4J8HY1oBeFcdgGk/edit?usp=sharing",
+                className: "btn btn-danger btn-sm",
+                icon: "bi-box-arrow-up-right",
+                newTab: true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    courses: {
+      "intro-adm": {
+        key: "admin",
+        prefix: "adm",
+        title: "Introdução à Administração",
+        icon: "bi-journal-bookmark",
+        description: "Aulas organizadas por módulos com busca e links.",
+        theme: "primary",
+        searchPlaceholder: "Buscar por aula/tema (ex.: 'Canvas', 'Estrutura', 'Pessoas', 'Financeira')",
+        leadCard: {
+          imageHref: "https://loja.editoradialetica.com/humanidades/introducao-a-administracao-para-profissionais-de-informatica-material-didatico-completo",
+          imageSrc: "https://images.tcdn.com.br/img/img_prod/791959/180_introduo_administrao_para_profissionais_de_inform_1_20251114140218_123b6f1a2aea.jpg",
+          imageAlt: "Capa do Livro Introdução à Administração para Profissionais de Informática",
+          title: "Introdução à Administração para Profissionais de Informática",
+          text: "Obra utilizada como referência central da disciplina, abordando fundamentos da administração com aplicação específica ao contexto organizacional da área de tecnologia da informação.",
+          action: {
+            label: "Adquirir Livro",
+            href: "https://loja.editoradialetica.com/humanidades/introducao-a-administracao-para-profissionais-de-informatica-material-didatico-completo",
+            className: "btn btn-primary px-4",
+            icon: "bi-cart3",
+            newTab: true
+          }
+        },
+        modules: [
+          {
+            icon: "bi-compass",
+            title: "Módulo 1 — Fundamentos e organizações (Aulas 1–4)",
+            open: true,
+            items: [
+              {
+                badge: { label: "Aula 1", className: "text-bg-primary" },
+                title: "Fundamentos da Administração",
+                search: "aula 1 fundamentos da administração guia completo iniciantes",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/Fundamentos-da-Administracao-Guia-Completo-para-Iniciantes-tdv7qy5buawojwn/preview",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  },
+                  {
+                    label: "Material de Apoio para Leitura",
+                    href: "../intro-adm/Aula%2001%20-%20Material%20de%20Apoio.docx",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 2", className: "text-bg-primary" },
+                title: "As Organizações e o Papel da Administração",
+                search: "aula 2 organizações papel da administração",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/02-As-Organizacoes-e-o-Papel-da-Administracao-umd0b4x94slwg5k",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 3", className: "text-bg-primary" },
+                title: "Valores Organizacionais e Cultura Empresarial",
+                search: "aula 3 valores organizacionais cultura empresarial",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/03-Valores-Organizacionais-e-Cultura-Empresarial-kuj2wm8p0ipvzm5",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 4", className: "text-bg-primary" },
+                title: "Tipos de Empresas e Formas Jurídicas no Brasil",
+                search: "aula 4 tipos de empresas formas jurídicas brasil",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/04-Tipos-de-Empresas-e-Formas-Juridicas-no-Brasil-184i82bn00qfyvo",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-bar-chart-steps",
+            title: "Módulo 2 — Modelos, planejamento e estratégia (Aulas 5–9)",
+            items: [
+              {
+                badge: { label: "Aula 5", className: "text-bg-primary" },
+                title: "Modelos de Negócio e o Business Model Canvas",
+                search: "aula 5 modelos de negócio business model canvas",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/05-Modelos-de-Negocio-e-o-Business-Model-Canvas-w5ybyy5wtrxy4fc",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 6", className: "text-bg-primary" },
+                title: "Plano de Negócios: Estrutura e Elaboração",
+                search: "aula 6 plano de negócios estrutura elaboração",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/06-Plano-de-Negocios-Estrutura-e-Elaboracao-vl9pjk539p9fxwy",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  },
+                  {
+                    label: "Formulário",
+                    href: "plano_negocios_modal_wizard_ifsp.html",
+                    className: "btn btn-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 7", className: "text-bg-primary" },
+                title: "Inovação, Criatividade e Propriedade Intelectual",
+                search: "aula 7 inovação criatividade propriedade intelectual",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/07-Inovacao-Criatividade-e-Propriedade-Intelectual-5saa5qocl4v69sr",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 8", className: "text-bg-primary" },
+                title: "Aceleração de Startups e Investimento Anjo",
+                search: "aula 8 aceleração startups investimento anjo",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/08-Aceleracao-de-Startups-e-Investimento-Anjo-dcqer0gz7scyfr6",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 9", className: "text-bg-primary" },
+                title: "Gestão Estratégica nas Organizações",
+                search: "aula 9 gestão estratégica nas organizações",
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/09-Gestao-Estrategica-nas-Organizacoes-o3bghnj5wyemfug",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-building",
+            title: "Módulo 3 — Estrutura e funções (Aulas 10–13)",
+            items: [
+              {
+                badge: { label: "Aula 10", className: "text-bg-primary" },
+                title: "Estrutura Organizacional",
+                search: "aula 10 estrutura organizacional conceitos modelos estudo de caso agrot",
+                inlineActions: [
+                  {
+                    label: "Estudo de Caso",
+                    href: "https://gamma.app/docs/10-Estrutura-Organizacional-Estudo-de-Caso-A-Estrutura-da-AgroT-20t5mcaok8f6led",
+                    className: "btn btn-outline-info btn-sm",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/10-Estrutura-Organizacional-Conceitos-e-Modelos-9ppjj8ftypt0y2n",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 11", className: "text-bg-primary" },
+                title: "Gestão de Pessoas nas Organizações",
+                search: "aula 11 gestão de pessoas estudo de caso google doc",
+                inlineActions: [
+                  {
+                    label: "Estudo de Caso",
+                    href: "https://docs.google.com/document/d/1mBpfoZE3L1nS7_gueiPNkavYYm4bWL1AX4Yv0UuNS9M/edit?usp=sharing",
+                    className: "btn btn-outline-info btn-sm",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/11-Gestao-de-Pessoas-nas-Organizacoes-bw2w7hetlxx487e",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 12", className: "text-bg-primary" },
+                title: "Gestão da Produção e da Qualidade",
+                search: "aula 12 gestão da produção qualidade estudo de caso google doc",
+                inlineActions: [
+                  {
+                    label: "Estudo de Caso",
+                    href: "https://docs.google.com/document/d/1p4u1X-yX3ra9aAibkZLQOQfQBvETNczC08lK32pPO3U/edit?usp=sharing",
+                    className: "btn btn-outline-info btn-sm",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/12-Gestao-da-Producao-e-da-Qualidade-dmxaffw7e214ywj",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 13", className: "text-bg-primary" },
+                title: "Administração Financeira e Orçamentária",
+                search: "aula 13 administração financeira orçamentária glossário conceitos indicadores financeiros",
+                inlineActions: [
+                  {
+                    label: "Glossário",
+                    href: "https://gamma.app/docs/13-Glossario-de-Conceitos-e-Indicadores-Financeiros-570hvmz6lj22fj0",
+                    className: "btn btn-outline-info btn-sm",
+                    icon: "bi-book",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Apresentação",
+                    href: "https://gamma.app/docs/13-Administracao-Financeira-e-Orcamentaria-t3vimf8gavczphe",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gestao-ti": {
+        key: "gestao-ti",
+        prefix: "gt",
+        title: "Gestão de TI",
+        icon: "bi-diagram-3",
+        theme: "success",
+        searchPlaceholder: "Buscar por aula/tema (ex.: 'COBIT', 'ITIL', 'Atividade 7', 'Prova')",
+        heroActions: [
+          {
+            label: "Plano da Disciplina em PDF",
+            href: "Plano de aulas da disciplina Gestao de TI.pdf",
+            className: "btn btn-outline-secondary btn-sm",
+            icon: "bi-file-earmark-pdf",
+            newTab: true
+          }
+        ],
+        legend: [
+          {
+            label: "Atividade",
+            className: "badge text-bg-warning text-dark",
+            icon: "bi-clipboard-check"
+          },
+          {
+            label: "Estudo de caso",
+            className: "badge text-bg-info",
+            icon: "bi-chat-left-text"
+          },
+          {
+            label: "Prova",
+            className: "badge text-bg-danger",
+            icon: "bi-pencil-square"
+          }
+        ],
+        modules: [
+          {
+            icon: "bi-compass",
+            title: "Módulo 1 — Fundamentos e alinhamento (Aulas 1–5)",
+            open: true,
+            items: [
+              {
+                badge: { label: "Aula 1", className: "text-bg-primary" },
+                title: "Apresentação da disciplina; panorama de Gestão de TI e objetivos",
+                search: "aula 1 apresentação panorama gestão de ti objetivos estudo de caso discussão guiada",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    href: "Aula 01 - Estudo de Caso - A Empresa Orion Digital e o Crescimento Desordenado da TI.pdf",
+                    className: "badge text-bg-info text-decoration-none",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  },
+                  {
+                    label: "Atividade de Fixação",
+                    href: "Aula 01 - Atividade Pratica 01 - Governanca Orion Digital.pdf",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
+                    icon: "bi-clipboard-check",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Aula-01-GESTAO-DE-TI-INTRODUCAO-1u5nvejrkzis5qb",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 2", className: "text-bg-primary" },
+                title: "Conceitos-base: Gestão de TI × Governança de TI; valor, risco e responsabilização",
+                search: "aula 2 conceitos-base gestão governança valor risco responsabilização ativ 1 stakeholders",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    href: "Aula 02 - Estudo de Caso - A Empresa Orion Digital e o Crescimento Desordenado da TI.docx",
+                    className: "badge text-bg-info text-decoration-none",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  },
+                  {
+                    label: "Atividade 1",
+                    href: "Aula 02 - Atividade Pratica – Diagnostico Estruturado de Governanca – DataNova Servicos Digitais.docx",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
+                    icon: "bi-clipboard-check",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Aula-02-FUNDAMENTOS-DE-GOVERNANCA-E-GESTAO-DE-TI-BASES-CONCEITU-5aqt88006uwqcrx",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 3", className: "text-bg-primary" },
+                title: "Planejamento estratégico e alinhamento TI–negócio; objetivos e priorização",
+                search: "aula 3 planejamento estratégico alinhamento ti negócio objetivos priorização ativ 2 mapa de objetivos",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    href: "Aula 03 - Estudo de Caso Alinhamento Estrategico TI DataNova.docx",
+                    className: "badge text-bg-info text-decoration-none",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  },
+                  {
+                    label: "Atividade 2",
+                    href: "Aula 03 - Atividade Pratica – Alinhamento_Estrategico_TI.docx",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
+                    icon: "bi-clipboard-check",
+                    newTab: true
+                  },
+                  {
+                    label: "Material de Apoio",
+                    href: "Aula 03 - Planejamento Estrategico Empresarial e Alinhamento Estrategico de TI.pdf",
+                    className: "badge text-bg-light text-dark border text-decoration-none",
+                    icon: "bi-file-earmark-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Planejamento-Estrategico-Empresarial-e-Alinhamento-Estrategico-de-dlwmrjisyptt8e9",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 4", className: "text-bg-primary" },
+                title: "Modelo genérico de governança em TI: estruturas decisórias, papéis e fluxos",
+                search: "aula 4 modelo genérico governança estruturas decisórias papéis fluxos ativ 3 raci",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    href: "Aula 04 - Estudo de Caso - Estruturas Organizacionais de TI, Papeis e Direitos de Decisao.docx",
+                    className: "badge text-bg-info text-decoration-none",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  },
+                  {
+                    label: "Atividade 3",
+                    href: "Aula 04 - Atividade Pratica – Estruturas Organizacionais de TI, Papeis e Direitos de Decisao.docx",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
+                    icon: "bi-clipboard-check",
+                    newTab: true
+                  },
+                  {
+                    label: "Material de Apoio",
+                    href: "Aula 04 - Estruturas Organizacionais de TI, Papeis e Direitos de Decisao.pdf",
+                    className: "badge text-bg-light text-dark border text-decoration-none",
+                    icon: "bi-file-earmark-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Aula-04-Estruturas-Organizacionais-de-TI-Papeis-e-Direitos-de-D-eukwxk2a74b6o74",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 5", className: "text-bg-primary" },
+                title: "Mecanismos de governança: comitês, políticas, accountability e comunicação",
+                search: "aula 5 mecanismos governança comitês políticas accountability comunicação ativ 4 princípios",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    href: "Aula 05 - Estudo de Caso.docx",
+                    className: "badge text-bg-info text-decoration-none",
+                    icon: "bi-chat-left-text",
+                    newTab: true
+                  },
+                  {
+                    label: "Atividade 5",
+                    href: "Aula 05 - Atividade Pratica.docx",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
+                    icon: "bi-clipboard-check",
+                    newTab: true
+                  },
+                  {
+                    label: "Material de Apoio",
+                    href: "Aula 05.pdf",
+                    className: "badge text-bg-light text-dark border text-decoration-none",
+                    icon: "bi-file-earmark-text",
+                    newTab: true
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Aula-05-Regulamentacoes-Compliance-Etica-Controles-Internos-e-M-g8tgzibrti0dm2q",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-shield-check",
+            title: "Módulo 2 — Conformidade e frameworks (Aulas 6–10)",
+            items: [
+              {
+                badge: { label: "Aula 6", className: "text-bg-primary" },
+                title: "Regulamentações, conformidade e ética aplicadas à TI (GRC)",
+                search: "aula 6 regulamentações conformidade ética grc ativ 5 controles auditoria evidências",
+                metaText: ["Compliance, auditoria e evidências"],
+                actions: [
+                  {
+                    label: "Dinâmica de Grupo",
+                    href: "jogo_da_governanca/00_Jogo_da_Governanca.html",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  },
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/Roteiro-de-Discussao-Jogo-da-Governanca-8awgfetc0kn8nws",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 7", className: "text-bg-primary" },
+                title: "COBIT, ITIL e modelos complementares",
+                search: "aula 7 cobit itil modelos complementares ativ 6 seleção frameworks escopo",
+                inlineActions: [
+                  {
+                    label: "Atividade 6",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-clipboard-check"
+                  }
+                ],
+                metaText: ["Seleção justificada (escopo)"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 8", className: "text-bg-primary" },
+                title: "ITIL e gestão de serviços",
+                search: "aula 8 itil gestão de serviços ciclo de vida ativ 7 catálogo slas olas",
+                inlineActions: [
+                  {
+                    label: "Atividade 7",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-clipboard-check"
+                  }
+                ],
+                metaText: ["Catálogo, SLAs/OLAs e práticas"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 9", className: "text-bg-primary" },
+                title: "COBIT: objetivos de governança e gestão",
+                search: "aula 9 cobit objetivos governança gestão metas corporativas ativ 8 mapeamento",
+                inlineActions: [
+                  {
+                    label: "Atividade 8",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-clipboard-check"
+                  }
+                ],
+                metaText: ["Mapeamento de objetivos/processos"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 10", className: "text-bg-primary" },
+                title: "Implantação e maturidade da governança",
+                search: "aula 10 implantação governança maturidade roadmap ativ 9 fases responsáveis riscos",
+                inlineActions: [
+                  {
+                    label: "Atividade 9",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-clipboard-check"
+                  }
+                ],
+                metaText: ["Roadmap + critérios de maturidade"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-journal-check",
+            title: "Módulo 3 — Avaliação e gestão aplicada (Aulas 11–17)",
+            items: [
+              {
+                badge: { label: "Aula 11", className: "text-bg-danger" },
+                title: "Avaliação somativa",
+                search: "aula 11 avaliação somativa prova objetiva 1",
+                inlineActions: [
+                  {
+                    label: "PROVA OBJETIVA 1",
+                    className: "badge text-bg-danger",
+                    icon: "bi-pencil-square"
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 12", className: "text-bg-primary" },
+                title: "Portfólio de TI e priorização de iniciativas",
+                search: "aula 12 portfólio de ti priorização iniciativas",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 13", className: "text-bg-primary" },
+                title: "Gestão integrada: processos, projetos e interface com desenvolvimento e operação",
+                search: "aula 13 gestão integrada processos projetos desenvolvimento operação",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 14", className: "text-bg-primary" },
+                title: "Gestão de fornecedores, terceirização e contratos (governança de terceiros)",
+                search: "aula 14 fornecedores terceirização contratos governança de terceiros ativ 10 riscos consolidação",
+                inlineActions: [
+                  {
+                    label: "Atividade 10",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-clipboard-check"
+                  }
+                ],
+                metaText: ["Diretrizes e riscos + consolidação final"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 15", className: "text-bg-primary" },
+                title: "Gestão de infraestrutura e ativos de TI",
+                search: "aula 15 infraestrutura ativos inventário ciclo de vida configuração",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 16", className: "text-bg-primary" },
+                title: "Indicadores de desempenho (KPIs), SLAs e monitoramento",
+                search: "aula 16 indicadores kpis slas monitoramento",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 17", className: "text-bg-primary" },
+                title: "Auditoria de TI, avaliação de desempenho/valor e melhoria contínua",
+                search: "aula 17 auditoria ti melhoria contínua valor desempenho",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-layers",
+            title: "Módulo 4 — Integração, revisão e encerramento (Aulas 18–20)",
+            items: [
+              {
+                badge: { label: "Aula 18", className: "text-bg-info" },
+                title: "Estudo de caso integrador + revisão orientada",
+                search: "aula 18 estudo de caso integrador revisão orientada prova",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    className: "badge text-bg-info",
+                    icon: "bi-chat-left-text"
+                  }
+                ],
+                metaText: ["Revisão para prova"],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 19", className: "text-bg-danger" },
+                title: "Avaliação somativa",
+                search: "aula 19 avaliação somativa prova objetiva 2",
+                inlineActions: [
+                  {
+                    label: "PROVA OBJETIVA 2",
+                    className: "badge text-bg-danger",
+                    icon: "bi-pencil-square"
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 20", className: "text-bg-secondary" },
+                title: "Encerramento acadêmico",
+                description: "Revisão de notas e encerramento.",
+                search: "aula 20 encerramento acadêmico revisão de notas encerramento",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gestao-projetos": {
+        key: "gestao-projetos",
+        prefix: "gp",
+        title: "Gestão de Projetos",
+        icon: "bi-kanban",
+        description: "Estrutura inicial da disciplina, com busca por aulas e espaço preparado para receber os links do Gamma.",
+        theme: "primary",
+        searchPlaceholder: "Buscar por aula/tema (ex.: 'EAP', 'Gantt', 'HealthCare.gov', 'Riscos')",
+        legend: [
+          {
+            label: "Plano",
+            className: "badge text-bg-secondary",
+            icon: "bi-journal-text"
+          },
+          {
+            label: "Estudo de caso",
+            className: "badge text-bg-info",
+            icon: "bi-chat-left-text"
+          },
+          {
+            label: "Quiz",
+            className: "badge text-bg-warning text-dark",
+            icon: "bi-patch-question"
+          },
+          {
+            label: "Tópico complementar",
+            className: "badge text-bg-light text-dark border",
+            icon: "bi-diagram-2"
+          }
+        ],
+        modules: [
+          {
+            icon: "bi-compass",
+            title: "Módulo 1 — Introdução e fundamentos",
+            open: true,
+            items: [
+              {
+                badge: { label: "Plano 00", className: "text-bg-secondary" },
+                title: "Gestão de Projetos: Plano da Disciplina",
+                search: "plano 00 disciplina ementa cronograma avaliação gestão de projetos",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/aft7sr1675nl3v2",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Plano 00B", className: "text-bg-secondary" },
+                title: "Gestão de Projetos: Plano da Disciplina - B",
+                search: "plano b disciplina ementa cronograma avaliação gestão de projetos",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/uff1xai89b8b869",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 01", className: "text-bg-primary" },
+                title: "Gestão de Projetos: O que é um Projeto?",
+                search: "aula 01 o que é um projeto conceitos definição objetivo entrega temporário",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/ltcbqweotrj0kul",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 02", className: "text-bg-primary" },
+                title: "Gestão de Projetos: Desvendando o Ciclo de Vida",
+                search: "aula 02 ciclo de vida fases iniciação planejamento execução monitoramento encerramento",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/pqclm1uv7gc2lc6",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 03", className: "text-bg-primary" },
+                title: "Gestão de Projetos: Papel do Gerente de Projetos",
+                search: "aula 03 papel do gerente de projetos liderança responsabilidades competências",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/zahcq9jmol8tt08",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 04", className: "text-bg-primary" },
+                title: "Gestão de Projetos: Desvendando a Gestão de Projetos de TI",
+                search: "aula 04 gestão de projetos de ti tecnologia informação contexto organizacional",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/e6a7yephnapdzbp",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-journal-check",
+            title: "Módulo 2 — Casos, revisão, escopo e riscos",
+            items: [
+              {
+                badge: { label: "Caso 05", className: "text-bg-info" },
+                title: "Estudo de Caso: Desenvolvendo um Aplicativo no IF",
+                search: "aula 05 estudo de caso desenvolvendo um aplicativo no if",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    className: "badge text-bg-info",
+                    icon: "bi-chat-left-text"
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/hekp1usf4m5z9qe",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Quiz 06", className: "text-bg-warning text-dark" },
+                title: "Quiz de Revisão - Gestão de Projetos",
+                search: "aula 06 quiz revisão fundamentos gestão de projetos",
+                inlineActions: [
+                  {
+                    label: "Revisão",
+                    className: "badge text-bg-warning text-dark",
+                    icon: "bi-patch-question"
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    href: "https://gamma.app/docs/69yqw5o0tscdbe1",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 07", className: "text-bg-primary" },
+                title: "Fundamentos de Gestão de Projetos",
+                search: "aula 07 fundamentos gestão de projetos processos áreas de conhecimento",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 08", className: "text-bg-primary" },
+                title: "Fundamentos do Ciclo de Vida em Gestão de Projetos",
+                search: "aula 08 fundamentos do ciclo de vida em gestão de projetos fases entregas",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 09", className: "text-bg-primary" },
+                title: "Gerenciamento de Escopo de Projetos",
+                search: "aula 09 gerenciamento de escopo projetos requisitos entregas eap",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Caso 10", className: "text-bg-info" },
+                title: "Estudo de Caso: Falha no HealthCare.gov",
+                search: "aula 10 estudo de caso falha no healthcare.gov",
+                inlineActions: [
+                  {
+                    label: "Estudo de caso",
+                    className: "badge text-bg-info",
+                    icon: "bi-chat-left-text"
+                  }
+                ],
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Solução 10", className: "text-bg-success" },
+                title: "Estudo de Caso: Falha no HealthCare.gov - Solução",
+                search: "aula 10 solução estudo de caso falha no healthcare.gov",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 10", className: "text-bg-primary" },
+                title: "Gerenciamento de Riscos em Projetos",
+                search: "aula 10 gerenciamento de riscos em projetos matriz probabilidade impacto respostas",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-calendar2-range",
+            title: "Módulo 3 — Tempo e planejamento do projeto",
+            items: [
+              {
+                badge: { label: "11A", className: "text-bg-light text-dark border" },
+                title: "Estrutura Analítica do Projeto (EAP)",
+                search: "11a estrutura analítica do projeto eap decomposição pacote de trabalho",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "11B", className: "text-bg-light text-dark border" },
+                title: "Gráfico de Gantt",
+                search: "11b gráfico de gantt cronograma sequência duração",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "11C", className: "text-bg-light text-dark border" },
+                title: "Caminho Crítico (CPM) e PERT",
+                search: "11c caminho crítico cpm pert rede cronograma",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 11", className: "text-bg-primary" },
+                title: "Gerenciamento do Tempo do Projeto",
+                search: "aula 11 gerenciamento do tempo do projeto cronograma duração caminho crítico",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            icon: "bi-people",
+            title: "Módulo 4 — Aquisições, comunicação e priorização",
+            items: [
+              {
+                badge: { label: "12A", className: "text-bg-light text-dark border" },
+                title: "Tipos de Contratos em Projetos de Tecnologia",
+                search: "12a tipos de contratos em projetos de tecnologia aquisição fornecedor",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "12B", className: "text-bg-light text-dark border" },
+                title: "Guia Completo para Request for Proposal (RFP)",
+                search: "12b request for proposal rfp propostas fornecedores contratação",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 12", className: "text-bg-primary" },
+                title: "Gerenciamento de Aquisições em Projetos",
+                search: "aula 12 gerenciamento de aquisições em projetos contratação fornecedores",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 13", className: "text-bg-primary" },
+                title: "Gerenciamento de Comunicações em Projetos",
+                search: "aula 13 gerenciamento de comunicações em projetos plano comunicação canais relatórios",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 14", className: "text-bg-primary" },
+                title: "Gerenciamento de Partes Interessadas em Projetos",
+                search: "aula 14 gerenciamento de partes interessadas stakeholders engajamento",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Aula 15", className: "text-bg-primary" },
+                title: "Gerenciamento do Custo do Projeto",
+                search: "aula 15 gerenciamento do custo do projeto orçamento estimativas valor agregado",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              },
+              {
+                badge: { label: "Tema Extra", className: "text-bg-success" },
+                title: "Seleção e Priorização de Projetos em Organizações",
+                search: "seleção priorização projetos organizações portfólio valor estratégico",
+                actions: [
+                  {
+                    label: "Abrir (Gamma)",
+                    className: "btn btn-outline-secondary btn-sm",
+                    icon: "bi-box-arrow-up-right"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  };
+})();

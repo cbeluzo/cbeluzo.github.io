@@ -1,6 +1,3 @@
-<!-- =========================
-File: admin.html
-========================= -->
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -11,429 +8,43 @@ File: admin.html
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
 
     <style>
-      .page-hero {
-        background: radial-gradient(1200px circle at 20% 10%, rgba(13,110,253,.18), transparent 45%),
-                    radial-gradient(1200px circle at 80% 30%, rgba(13,202,240,.14), transparent 45%);
+      :root {
+        --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(13,110,253,.18), transparent 45%),
+                        radial-gradient(1200px circle at 80% 30%, rgba(13,202,240,.14), transparent 45%);
       }
     </style>
   </head>
 
   <body class="bg-light">
-    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-      <div class="container">
-        <a class="navbar-brand fw-semibold" href="../index.html">
-          <i class="bi bi-arrow-left me-2"></i>Início
-        </a>
-        <div class="ms-auto d-flex flex-wrap gap-2 justify-content-end">
-          <a class="btn btn-outline-secondary btn-sm" href="../gestao-ti/gestao-ti.html"><i class="bi bi-diagram-3 me-1"></i>Gestão de TI</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../gestao-projetos/gestao-projetos.html"><i class="bi bi-kanban me-1"></i>Gestão de Projetos</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../pesquisa/pesquisa.html"><i class="bi bi-flask me-1"></i>Pesquisa</a>
-          <a class="btn btn-outline-secondary btn-sm" href="../apresentacoes/apresentacoes.html"><i class="bi bi-easel2 me-1"></i>Apresentações</a>
-        </div>
+    <div id="site-nav"></div>
+
+    <noscript>
+      <div class="container py-3">
+        <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e a listagem da disciplina.</div>
       </div>
-    </nav>
+    </noscript>
 
     <header class="page-hero py-4 border-bottom">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <div>
-            <h1 class="h3 mb-1"><i class="bi bi-journal-bookmark me-2"></i>Introdução à Administração</h1>
-            <div class="text-muted">Aulas organizadas por módulos com busca e links.</div>
-          </div>
-        </div>
-      </div>
+      <div class="container" id="course-hero"></div>
     </header>
 
-    <main class="container my-4">
-      <main class="container my-4">
+    <main class="container my-4" id="course-content"></main>
 
-      <!-- Livro Didático -->
-<!-- Livro Didático -->
-<section class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-
-      <div class="card shadow border-0 rounded-4 overflow-hidden">
-
-        <div class="row g-0 align-items-center">
-          
-          <!-- Imagem -->
-          <div class="col-md-5 text-center p-4 bg-light">
-            <a href="https://loja.editoradialetica.com/humanidades/introducao-a-administracao-para-profissionais-de-informatica-material-didatico-completo"
-               target="_blank">
-              <img src="https://images.tcdn.com.br/img/img_prod/791959/180_introduo_administrao_para_profissionais_de_inform_1_20251114140218_123b6f1a2aea.jpg"
-                   class="img-fluid rounded shadow-sm"
-                   style="max-height: 260px;"
-                   alt="Capa do Livro Introdução à Administração para Profissionais de Informática">
-            </a>
-          </div>
-
-          <!-- Conteúdo -->
-          <div class="col-md-7">
-            <div class="card-body p-4">
-
-              <h4 class="card-title fw-bold mb-3">
-                Introdução à Administração para Profissionais de Informática
-              </h4>
-
-              <p class="card-text text-muted">
-                Obra utilizada como referência central da disciplina, abordando
-                fundamentos da administração com aplicação específica ao contexto
-                organizacional da área de tecnologia da informação.
-              </p>
-
-              <div class="mt-3">
-                <a href="https://loja.editoradialetica.com/humanidades/introducao-a-administracao-para-profissionais-de-informatica-material-didatico-completo"
-                   target="_blank"
-                   class="btn btn-primary px-4">
-                  <i class="bi bi-cart3 me-2"></i> Adquirir Livro
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-    
-      <!-- Controles -->
-
-      <!-- Controles -->
-      <div class="row g-2 align-items-center mb-3">
-        <div class="col-12 col-md-6">
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input id="admSearch" type="text" class="form-control"
-              placeholder="Buscar por aula/tema (ex.: 'Canvas', 'Estrutura', 'Pessoas', 'Financeira')">
-            <button id="admClear" class="btn btn-outline-secondary" type="button" title="Limpar busca">
-              <i class="bi bi-x-lg"></i>
-            </button>
-          </div>
-          <div class="form-text">A busca filtra aulas e expande automaticamente o módulo correspondente.</div>
-        </div>
-        <div class="col-12 col-md-6 d-flex gap-2 justify-content-md-end">
-          <button id="admExpandAll" class="btn btn-outline-primary" type="button">
-            <i class="bi bi-arrows-expand me-1"></i> Expandir tudo
-          </button>
-          <button id="admCollapseAll" class="btn btn-outline-primary" type="button">
-            <i class="bi bi-arrows-collapse me-1"></i> Recolher tudo
-          </button>
-        </div>
-      </div>
-
-      <!-- Accordion -->
-      <div class="accordion" id="admAccordion">
-
-        <!-- Módulo 1 (1–4) -->
-        <div class="accordion-item adm-module">
-          <h2 class="accordion-header" id="admHead1">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#admMod1"
-              aria-expanded="true" aria-controls="admMod1">
-              <i class="bi bi-compass me-2"></i> Módulo 1 — Fundamentos e organizações (Aulas 1–4)
-            </button>
-          </h2>
-          <div id="admMod1" class="accordion-collapse collapse show" aria-labelledby="admHead1" data-bs-parent="#admAccordion">
-            <div class="accordion-body">
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 1 fundamentos da administração guia completo iniciantes">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 1</span>
-                  <div class="fw-semibold">Fundamentos da Administração</div>
-                </div>
-                <a href="https://gamma.app/docs/Fundamentos-da-Administracao-Guia-Completo-para-Iniciantes-tdv7qy5buawojwn/preview"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-                <a href="https://cbeluzo.github.io/intro-adm/Aula%2001%20-%20Material%20de%20Apoio.docx"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Material de Apoio para Leitura
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 2 organizações papel da administração">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 2</span>
-                  <div class="fw-semibold">As Organizações e o Papel da Administração</div>
-                </div>
-                <a href="https://gamma.app/docs/02-As-Organizacoes-e-o-Papel-da-Administracao-umd0b4x94slwg5k"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 3 valores organizacionais cultura empresarial">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 3</span>
-                  <div class="fw-semibold">Valores Organizacionais e Cultura Empresarial</div>
-                </div>
-                <a href="https://gamma.app/docs/03-Valores-Organizacionais-e-Cultura-Empresarial-kuj2wm8p0ipvzm5"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-0 bg-white"
-                   data-search="aula 4 tipos de empresas formas jurídicas brasil">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 4</span>
-                  <div class="fw-semibold">Tipos de Empresas e Formas Jurídicas no Brasil</div>
-                </div>
-                <a href="https://gamma.app/docs/04-Tipos-de-Empresas-e-Formas-Juridicas-no-Brasil-184i82bn00qfyvo"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Módulo 2 (5–9) -->
-        <div class="accordion-item adm-module">
-          <h2 class="accordion-header" id="admHead2">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#admMod2"
-              aria-expanded="false" aria-controls="admMod2">
-              <i class="bi bi-bar-chart-steps me-2"></i> Módulo 2 — Modelos, planejamento e estratégia (Aulas 5–9)
-            </button>
-          </h2>
-          <div id="admMod2" class="accordion-collapse collapse" aria-labelledby="admHead2" data-bs-parent="#admAccordion">
-            <div class="accordion-body">
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 5 modelos de negócio business model canvas">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 5</span>
-                  <div class="fw-semibold">Modelos de Negócio e o Business Model Canvas</div>
-                </div>
-                <a href="https://gamma.app/docs/05-Modelos-de-Negocio-e-o-Business-Model-Canvas-w5ybyy5wtrxy4fc"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 6 plano de negócios estrutura elaboração">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 6</span>
-                  <div class="fw-semibold">Plano de Negócios: Estrutura e Elaboração</div>
-                </div>
-                
-                <a href="https://gamma.app/docs/06-Plano-de-Negocios-Estrutura-e-Elaboracao-vl9pjk539p9fxwy"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-                <a href="plano_negocios_modal_wizard_ifsp.html"
-                   class="btn btn-secondary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Fomulário
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 7 inovação criatividade propriedade intelectual">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 7</span>
-                  <div class="fw-semibold">Inovação, Criatividade e Propriedade Intelectual</div>
-                </div>
-                <a href="https://gamma.app/docs/07-Inovacao-Criatividade-e-Propriedade-Intelectual-5saa5qocl4v69sr"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 8 aceleração startups investimento anjo">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 8</span>
-                  <div class="fw-semibold">Aceleração de Startups e Investimento Anjo</div>
-                </div>
-                <a href="https://gamma.app/docs/08-Aceleracao-de-Startups-e-Investimento-Anjo-dcqer0gz7scyfr6"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-0 bg-white"
-                   data-search="aula 9 gestão estratégica nas organizações">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 9</span>
-                  <div class="fw-semibold">Gestão Estratégica nas Organizações</div>
-                </div>
-                <a href="https://gamma.app/docs/09-Gestao-Estrategica-nas-Organizacoes-o3bghnj5wyemfug"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Módulo 3 (10–13) -->
-        <div class="accordion-item adm-module">
-          <h2 class="accordion-header" id="admHead3">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#admMod3"
-              aria-expanded="false" aria-controls="admMod3">
-              <i class="bi bi-building me-2"></i> Módulo 3 — Estrutura e funções (Aulas 10–13)
-            </button>
-          </h2>
-          <div id="admMod3" class="accordion-collapse collapse" aria-labelledby="admHead3" data-bs-parent="#admAccordion">
-            <div class="accordion-body">
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 10 estrutura organizacional conceitos modelos estudo de caso agrot">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 10</span>
-                  <div>
-                    <div class="fw-semibold">Estrutura Organizacional</div>
-                    <div class="small mt-1">
-                      <a href="https://gamma.app/docs/10-Estrutura-Organizacional-Estudo-de-Caso-A-Estrutura-da-AgroT-20t5mcaok8f6led"
-                         class="btn btn-outline-info btn-sm">
-                        <i class="bi bi-chat-left-text me-1"></i> Estudo de Caso
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <a href="https://gamma.app/docs/10-Estrutura-Organizacional-Conceitos-e-Modelos-9ppjj8ftypt0y2n"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 11 gestão de pessoas estudo de caso google doc">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 11</span>
-                  <div>
-                    <div class="fw-semibold">Gestão de Pessoas nas Organizações</div>
-                    <div class="small mt-1">
-                      <a href="https://docs.google.com/document/d/1mBpfoZE3L1nS7_gueiPNkavYYm4bWL1AX4Yv0UuNS9M/edit?usp=sharing"
-                         class="btn btn-outline-info btn-sm">
-                        <i class="bi bi-chat-left-text me-1"></i> Estudo de Caso
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <a href="https://gamma.app/docs/11-Gestao-de-Pessoas-nas-Organizacoes-bw2w7hetlxx487e"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-2 bg-white"
-                   data-search="aula 12 gestão da produção qualidade estudo de caso google doc">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 12</span>
-                  <div>
-                    <div class="fw-semibold">Gestão da Produção e da Qualidade</div>
-                    <div class="small mt-1">
-                      <a href="https://docs.google.com/document/d/1p4u1X-yX3ra9aAibkZLQOQfQBvETNczC08lK32pPO3U/edit?usp=sharing"
-                         class="btn btn-outline-info btn-sm">
-                        <i class="bi bi-chat-left-text me-1"></i> Estudo de Caso
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <a href="https://gamma.app/docs/12-Gestao-da-Producao-e-da-Qualidade-dmxaffw7e214ywj"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-              <div class="adm-item d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded p-3 mb-0 bg-white"
-                   data-search="aula 13 administração financeira orçamentária glossário conceitos indicadores financeiros">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="badge text-bg-primary">Aula 13</span>
-                  <div>
-                    <div class="fw-semibold">Administração Financeira e Orçamentária</div>
-                    <div class="small mt-1">
-                      <a href="https://gamma.app/docs/13-Glossario-de-Conceitos-e-Indicadores-Financeiros-570hvmz6lj22fj0"
-                         class="btn btn-outline-info btn-sm">
-                        <i class="bi bi-book me-1"></i> Glossário
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <a href="https://gamma.app/docs/13-Administracao-Financeira-e-Orcamentaria-t3vimf8gavczphe"
-                   class="btn btn-primary btn-sm">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Apresentação
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </main>
-
-    <footer class="border-top bg-white">
-      <div class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
-        <div class="text-muted small">© Carlos Eduardo Beluzo</div>
-        <a class="text-muted small text-decoration-none" href="../index.html"><i class="bi bi-grid-1x2-fill me-1"></i>Voltar ao portal</a>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
-
+    <script src="../assets/js/portal-data.js"></script>
+    <script src="../assets/js/site.js"></script>
     <script>
-      (function () {
-        const searchInput = document.getElementById('admSearch');
-        const clearBtn = document.getElementById('admClear');
-        const expandAllBtn = document.getElementById('admExpandAll');
-        const collapseAllBtn = document.getElementById('admCollapseAll');
-
-        const accordion = document.getElementById('admAccordion');
-        const items = Array.from(accordion.querySelectorAll('.adm-item'));
-        const moduleCollapses = Array.from(accordion.querySelectorAll('.accordion-collapse'));
-
-        function normalize(s) {
-          return (s || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        }
-        function showAll() { items.forEach(el => el.classList.remove('d-none')); }
-        function expandCollapse(el, shouldShow) {
-          const bs = bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
-          shouldShow ? bs.show() : bs.hide();
-        }
-        function expandAll() { moduleCollapses.forEach(c => expandCollapse(c, true)); }
-        function collapseAll() { moduleCollapses.forEach(c => expandCollapse(c, false)); }
-
-        function filter(qRaw) {
-          const q = normalize(qRaw).trim();
-          if (!q) { showAll(); return; }
-          items.forEach(el => {
-            const hay = normalize(el.getAttribute('data-search') || el.innerText);
-            el.classList.toggle('d-none', !hay.includes(q));
-          });
-          const modules = Array.from(accordion.querySelectorAll('.adm-module'));
-          modules.forEach(mod => {
-            const collapse = mod.querySelector('.accordion-collapse');
-            const visibleCount = mod.querySelectorAll('.adm-item:not(.d-none)').length;
-            expandCollapse(collapse, visibleCount > 0);
-          });
-        }
-
-        searchInput.addEventListener('input', (e) => filter(e.target.value));
-        clearBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          showAll();
-          moduleCollapses.forEach((c, idx) => expandCollapse(c, idx === 0));
-          searchInput.focus();
-        });
-        expandAllBtn.addEventListener('click', expandAll);
-        collapseAllBtn.addEventListener('click', collapseAll);
-      })();
+      PortalUI.renderCoursePage({
+        courseKey: "intro-adm",
+        rootRelative: ".."
+      });
     </script>
   </body>
 </html>

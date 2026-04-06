@@ -11,9 +11,11 @@ O ponto de entrada do site é [`index.html`](./index.html).
 - `admin/`: área consolidada de Introdução à Administração, com página da disciplina, formulário e material auxiliar.
 - `gestao-ti/`: disciplina Gestão de TI.
 - `gestao-projetos/`: disciplina Gestão de Projetos.
-- `pesquisa/`: página de pesquisa com busca e filtro por tags.
+- `pesquisa/`: página de pesquisa com busca e filtro por tags, incluindo o caminho canônico da tese em `pesquisa/tese/`.
+- `prototipos-conceituais/`: seção para protótipos front-end de sistemas em desenvolvimento.
 - `apresentacoes/`: página de apresentações com busca.
 - `legacy/`: entrada organizada para materiais históricos preservados no repositório.
+
 ## Organização do portal
 
 - Navegação e footer são compartilhados por todas as páginas principais.
@@ -31,9 +33,9 @@ Os diretórios abaixo permanecem no repositório como acervo, materiais temátic
 - `pibisfp/`
 - `code/`
 - `data/`
-- `tese.html`
 
 Parte do conteúdo HTML legado foi agrupada na navegação pública em [`legacy/index.html`](./legacy/index.html).
+O acesso legado em [`tese.html`](./tese.html) foi mantido como redirecionamento para o caminho canônico em [`pesquisa/tese/`](./pesquisa/tese/).
 
 ## Tecnologias
 

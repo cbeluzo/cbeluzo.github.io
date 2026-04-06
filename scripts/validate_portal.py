@@ -18,9 +18,11 @@ TARGET_FILES = [
   ROOT / "gestao-ti" / "jogo_da_governanca" / "00_Jogo_da_Governanca.html",
   ROOT / "gestao-projetos" / "gestao-projetos.html",
   ROOT / "pesquisa" / "pesquisa.html",
+  ROOT / "pesquisa" / "tese" / "index.html",
+  ROOT / "pesquisa" / "tese" / "tese-notebook.html",
   ROOT / "apresentacoes" / "apresentacoes.html",
+  ROOT / "prototipos-conceituais" / "index.html",
   ROOT / "legacy" / "index.html",
-  ROOT / "legacy" / "tese-notebook.html",
   ROOT / "tese.html",
 ]
 IGNORED_PREFIXES = ("http://", "https://", "mailto:", "tel:", "javascript:", "data:", "//", "#")

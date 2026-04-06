@@ -45,11 +45,17 @@
           label: "Apresentações",
           icon: "bi-easel2",
           href: "apresentacoes/apresentacoes.html"
+        },
+        {
+          key: "prototipos-conceituais",
+          label: "Protótipos Conceituais",
+          icon: "bi-window-stack",
+          href: "prototipos-conceituais/index.html"
         }
       ],
       home: {
         title: "Prof. Carlos Ed Beluzo",
-        subtitle: "Acesso rápido às disciplinas, materiais de pesquisa, apresentações e acervo histórico.",
+        subtitle: "Acesso rápido às disciplinas, materiais de pesquisa, protótipos conceituais, apresentações e acervo histórico.",
         highlight: {
           icon: "bi-lightning-charge",
           title: "Navegação por páginas",
@@ -97,6 +103,14 @@
             buttonClass: "btn btn-outline-danger btn-sm"
           },
           {
+            title: "Protótipos Conceituais",
+            description: "Catálogo dos protótipos front-end de sistemas em desenvolvimento, organizados por conceito e objetivo.",
+            href: "prototipos-conceituais/index.html",
+            icon: "bi-window-stack",
+            pillClass: "icon-pill text-secondary",
+            buttonClass: "btn btn-outline-secondary btn-sm"
+          },
+          {
             title: "Acervo e Históricos",
             description: "Materiais preservados do repositório, incluindo páginas antigas, exercícios e conteúdos temáticos.",
             href: "legacy/index.html",
@@ -136,15 +150,6 @@
             href: "lp3/cap01.html",
             icon: "bi-code-slash",
             buttonClass: "btn btn-outline-warning btn-sm"
-          },
-          {
-            title: "Tese",
-            badge: "Arquivo",
-            badgeClass: "text-bg-secondary",
-            description: "Página HTML histórica relacionada à tese e materiais acadêmicos anteriores.",
-            href: "tese.html",
-            icon: "bi-journal-richtext",
-            buttonClass: "btn btn-outline-secondary btn-sm"
           }
         ],
         note: "Os diretórios code/, data/ e outros materiais auxiliares continuam versionados no repositório, mas não fazem parte da navegação principal do portal."
@@ -249,6 +254,31 @@
             ]
           },
           {
+            title: "Tese de Doutorado",
+            icon: "bi-journal-richtext",
+            badge: {
+              label: "Pesquisa",
+              className: "badge text-bg-secondary"
+            },
+            description: "Página padronizada com acesso ao export HTML completo da tese dentro da área de pesquisa.",
+            search: "tese doutorado pesquisa publicação modelo análise",
+            tags: ["publicacoes", "dados"],
+            actions: [
+              {
+                label: "Abrir Tese",
+                href: "./tese/",
+                className: "btn btn-outline-secondary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              },
+              {
+                label: "Export HTML",
+                href: "./tese/tese-notebook.html",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-file-earmark-richtext"
+              }
+            ]
+          },
+          {
             title: "Governança / GRC",
             icon: "bi-shield-check",
             badge: {
@@ -326,6 +356,113 @@
                 className: "btn btn-danger btn-sm",
                 icon: "bi-box-arrow-up-right",
                 newTab: true
+              }
+            ]
+          }
+        ]
+      },
+      "prototipos-conceituais": {
+        key: "prototipos-conceituais",
+        title: "Protótipos Conceituais",
+        icon: "bi-window-stack",
+        description: "Espaço para reunir protótipos front-end de sistemas em desenvolvimento, com foco em conceito, fluxo e experiência.",
+        searchPlaceholder: "Buscar (ex.: 'dashboard', 'portal', 'workflow', 'painel')",
+        tags: [
+          {
+            key: "dashboard",
+            label: "Dashboards",
+            icon: "bi-speedometer2",
+            className: "badge rounded-pill text-bg-primary tag"
+          },
+          {
+            key: "portal",
+            label: "Portais",
+            icon: "bi-window",
+            className: "badge rounded-pill text-bg-success tag"
+          },
+          {
+            key: "workflow",
+            label: "Fluxos",
+            icon: "bi-diagram-3",
+            className: "badge rounded-pill text-bg-warning text-dark tag"
+          },
+          {
+            key: "ux",
+            label: "UX",
+            icon: "bi-bezier2",
+            className: "badge rounded-pill text-bg-secondary tag"
+          }
+        ],
+        items: [
+          {
+            title: "Painel Executivo Acadêmico",
+            icon: "bi-speedometer2",
+            badge: {
+              label: "conceito inicial",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Protótipo para visualização de indicadores acadêmicos, metas, alertas e acompanhamento gerencial.",
+            search: "painel executivo academico dashboard indicadores metas alertas gerencial",
+            tags: ["dashboard", "ux"],
+            actions: [
+              {
+                label: "Protótipo em breve",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          },
+          {
+            title: "Portal Integrado de Projetos",
+            icon: "bi-window",
+            badge: {
+              label: "estrutura",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Conceito de portal para submissão, acompanhamento e comunicação de projetos em andamento.",
+            search: "portal integrado projetos submissao acompanhamento comunicacao",
+            tags: ["portal", "workflow"],
+            actions: [
+              {
+                label: "Protótipo em breve",
+                className: "btn btn-outline-success btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          },
+          {
+            title: "Fluxo de Atendimento e Triagem",
+            icon: "bi-diagram-3",
+            badge: {
+              label: "workflow",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Protótipo conceitual para jornadas de atendimento, classificação, prioridade e histórico de solicitações.",
+            search: "fluxo atendimento triagem jornada classificacao prioridade historico solicitacoes",
+            tags: ["workflow", "ux"],
+            actions: [
+              {
+                label: "Protótipo em breve",
+                className: "btn btn-outline-warning btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          },
+          {
+            title: "Workspace de Sistema em Evolução",
+            icon: "bi-bezier2",
+            badge: {
+              label: "laboratório",
+              className: "badge text-bg-light text-muted"
+            },
+            description: "Espaço para reunir experimentos de navegação, componentes e fluxos antes de virarem produto.",
+            search: "workspace sistema evolucao laboratorio navegacao componentes fluxos frontend",
+            tags: ["portal", "ux"],
+            actions: [
+              {
+                label: "Protótipo em breve",
+                className: "btn btn-outline-secondary btn-sm",
+                icon: "bi-box-arrow-up-right"
               }
             ]
           }

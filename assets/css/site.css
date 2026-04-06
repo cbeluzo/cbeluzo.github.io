@@ -65,3 +65,10 @@
 .portal-book-cover {
   max-height: 260px;
 }
+
+.legacy-embed-frame {
+  width: 100%;
+  min-height: 75vh;
+  border: 0;
+  background: #fff;
+}

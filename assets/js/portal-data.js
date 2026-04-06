@@ -604,7 +604,7 @@
               {
                 badge: { label: "Aula 7", className: "text-bg-primary" },
                 title: "Inovação, Criatividade e Propriedade Intelectual",
-                search: "aula 7 inovação criatividade propriedade intelectual",
+                search: "aula 7 inovação criatividade propriedade intelectual formulário atividade",
                 actions: [
                   {
                     label: "Apresentação",
@@ -612,6 +612,12 @@
                     className: "btn btn-primary btn-sm",
                     icon: "bi-box-arrow-up-right",
                     newTab: true
+                  },
+                  {
+                    label: "Formulário da Atividade",
+                    href: "formulario_inovacao.html",
+                    className: "btn btn-secondary btn-sm",
+                    icon: "bi-ui-checks-grid"
                   }
                 ]
               },

@@ -8,14 +8,12 @@ O ponto de entrada do site é [`index.html`](./index.html).
 
 - `index.html`: página inicial do portal.
 - `assets/`: CSS, JavaScript compartilhado e dados estruturados do portal.
-- `admin/`: área canônica de Introdução à Administração.
+- `admin/`: área consolidada de Introdução à Administração, com página da disciplina, formulário e material auxiliar.
 - `gestao-ti/`: disciplina Gestão de TI.
 - `gestao-projetos/`: disciplina Gestão de Projetos.
 - `pesquisa/`: página de pesquisa com busca e filtro por tags.
 - `apresentacoes/`: página de apresentações com busca.
 - `legacy/`: entrada organizada para materiais históricos preservados no repositório.
-- `intro-adm/`: alias de compatibilidade para material auxiliar antigo de Introdução à Administração.
-
 ## Organização do portal
 
 - Navegação e footer são compartilhados por todas as páginas principais.

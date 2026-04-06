@@ -333,7 +333,7 @@
       }
     },
     courses: {
-      "intro-adm": {
+      admin: {
         key: "admin",
         prefix: "adm",
         title: "Introdução à Administração",
@@ -375,7 +375,7 @@
                   },
                   {
                     label: "Material de Apoio para Leitura",
-                    href: "../intro-adm/Aula%2001%20-%20Material%20de%20Apoio.docx",
+                    href: "Aula%2001%20-%20Material%20de%20Apoio.docx",
                     className: "btn btn-primary btn-sm",
                     icon: "bi-box-arrow-up-right",
                     newTab: true

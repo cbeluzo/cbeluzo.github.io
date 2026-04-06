@@ -20,8 +20,6 @@ TARGET_FILES = [
   ROOT / "pesquisa" / "pesquisa.html",
   ROOT / "apresentacoes" / "apresentacoes.html",
   ROOT / "legacy" / "index.html",
-  ROOT / "intro-adm" / "index.html",
-  ROOT / "intro-adm" / "plano_negocios_modal_wizard_ifsp.html",
 ]
 IGNORED_PREFIXES = ("http://", "https://", "mailto:", "tel:", "javascript:", "data:", "//", "#")
 

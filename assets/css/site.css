@@ -62,6 +62,85 @@
   margin-left: auto;
 }
 
+.course-module {
+  --module-accent: #0d6efd;
+  --module-bg: #f8fbff;
+  --module-bg-open: #eef5ff;
+  --module-text: #15304b;
+  --module-border: rgba(13, 110, 253, .16);
+  --module-focus: rgba(13, 110, 253, .18);
+  border: 1px solid var(--module-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 .35rem 1rem rgba(15, 23, 42, .04);
+}
+
+.course-module + .course-module {
+  margin-top: .9rem;
+}
+
+.course-module-button {
+  background: linear-gradient(135deg, var(--module-bg), #ffffff 78%);
+  border-left: .45rem solid var(--module-accent);
+  color: var(--module-text);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.course-module-button:not(.collapsed) {
+  background: linear-gradient(135deg, var(--module-bg-open), #ffffff 82%);
+  color: var(--module-text);
+  box-shadow: none;
+}
+
+.course-module-button:focus {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35), 0 0 0 .2rem var(--module-focus);
+}
+
+.course-module-button::after {
+  opacity: .75;
+}
+
+.course-module .accordion-body {
+  background: #fff;
+}
+
+.module-theme-amber {
+  --module-accent: #d97706;
+  --module-bg: #fff7e8;
+  --module-bg-open: #ffefcf;
+  --module-text: #6b3f00;
+  --module-border: rgba(217, 119, 6, .20);
+  --module-focus: rgba(217, 119, 6, .18);
+}
+
+.module-theme-cyan {
+  --module-accent: #0891b2;
+  --module-bg: #ecfeff;
+  --module-bg-open: #d7f8fb;
+  --module-text: #0f4c5c;
+  --module-border: rgba(8, 145, 178, .18);
+  --module-focus: rgba(8, 145, 178, .18);
+}
+
+.module-theme-green {
+  --module-accent: #2f855a;
+  --module-bg: #eefbf3;
+  --module-bg-open: #dcf6e5;
+  --module-text: #1f5137;
+  --module-border: rgba(47, 133, 90, .18);
+  --module-focus: rgba(47, 133, 90, .18);
+}
+
+.module-theme-rose {
+  --module-accent: #be185d;
+  --module-bg: #fff1f6;
+  --module-bg-open: #ffe0eb;
+  --module-text: #7a1f46;
+  --module-border: rgba(190, 24, 93, .18);
+  --module-focus: rgba(190, 24, 93, .18);
+}
+
 .portal-book-cover {
   max-height: 260px;
 }

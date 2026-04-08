@@ -408,15 +408,16 @@
     const expanded = module.open ? "true" : "false";
     const showClass = module.open ? " show" : "";
     const collapsedClass = module.open ? "" : " collapsed";
+    const moduleClass = module.className ? " " + module.className : "";
     const itemsHtml = module.items.map(function (item, itemIndex) {
       const spacingClass = itemIndex === module.items.length - 1 ? "" : "mb-2";
       return renderCourseItem(item, spacingClass);
     }).join("");
 
     return [
-      '<div class="accordion-item course-module">',
+      '<div class="accordion-item course-module' + escapeHtml(moduleClass) + '">',
       '  <h2 class="accordion-header" id="' + escapeHtml(headingId) + '">',
-      '    <button class="accordion-button' + collapsedClass + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + escapeHtml(collapseId) + '" aria-expanded="' + expanded + '" aria-controls="' + escapeHtml(collapseId) + '">',
+      '    <button class="accordion-button course-module-button' + collapsedClass + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + escapeHtml(collapseId) + '" aria-expanded="' + expanded + '" aria-controls="' + escapeHtml(collapseId) + '">',
       '      <i class="bi ' + escapeHtml(module.icon) + ' me-2"></i>' + escapeHtml(module.title),
       "    </button>",
       "  </h2>",
@@ -552,12 +553,14 @@
 
     const itemSelector = config.itemSelector;
     const moduleSelector = config.moduleSelector;
-    const initialOpenIndex = config.initialOpenIndex ?? 0;
     const items = Array.from(accordion.querySelectorAll(itemSelector));
     const modules = Array.from(accordion.querySelectorAll(moduleSelector));
     const moduleCollapses = modules
       .map(function (mod) { return mod.querySelector(".accordion-collapse"); })
       .filter(Boolean);
+    const initialStates = moduleCollapses.map(function (collapse) {
+      return collapse.classList.contains("show");
+    });
 
     function showAll() {
       items.forEach(function (item) {
@@ -615,7 +618,7 @@
       searchInput.value = "";
       showAll();
       moduleCollapses.forEach(function (collapse, index) {
-        expandCollapse(collapse, index === initialOpenIndex);
+        expandCollapse(collapse, !!initialStates[index]);
       });
       searchInput.focus();
     });

@@ -496,7 +496,7 @@
           {
             icon: "bi-compass",
             title: "Módulo 1 — Fundamentos e organizações (Aulas 1–4)",
-            open: true,
+            className: "module-theme-amber",
             items: [
               {
                 badge: { label: "Aula 1", className: "text-bg-primary" },
@@ -566,6 +566,7 @@
           {
             icon: "bi-bar-chart-steps",
             title: "Módulo 2 — Modelos, planejamento e estratégia (Aulas 5–9)",
+            className: "module-theme-cyan",
             items: [
               {
                 badge: { label: "Aula 5", className: "text-bg-primary" },
@@ -661,6 +662,7 @@
           {
             icon: "bi-building",
             title: "Módulo 3 — Estrutura e funções (Aulas 10–13)",
+            className: "module-theme-green",
             items: [
               {
                 badge: { label: "Aula 10", className: "text-bg-primary" },
@@ -795,7 +797,7 @@
           {
             icon: "bi-compass",
             title: "Módulo 1 — Fundamentos e alinhamento (Aulas 1–5)",
-            open: true,
+            className: "module-theme-amber",
             items: [
               {
                 badge: { label: "Aula 1", className: "text-bg-primary" },
@@ -973,6 +975,7 @@
           {
             icon: "bi-shield-check",
             title: "Módulo 2 — Conformidade e frameworks (Aulas 6–10)",
+            className: "module-theme-cyan",
             items: [
               {
                 badge: { label: "Aula 6", className: "text-bg-primary" },
@@ -1081,6 +1084,7 @@
           {
             icon: "bi-journal-check",
             title: "Módulo 3 — Avaliação e gestão aplicada (Aulas 11–17)",
+            className: "module-theme-green",
             items: [
               {
                 badge: { label: "Aula 11", className: "text-bg-danger" },
@@ -1186,6 +1190,7 @@
           {
             icon: "bi-layers",
             title: "Módulo 4 — Integração, revisão e encerramento (Aulas 18–20)",
+            className: "module-theme-rose",
             items: [
               {
                 badge: { label: "Aula 18", className: "text-bg-info" },

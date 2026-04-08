@@ -1277,7 +1277,7 @@
           {
             icon: "bi-compass",
             title: "Módulo 1 — Introdução e fundamentos",
-            open: true,
+            className: "module-theme-amber",
             items: [
               {
                 badge: { label: "Plano 00", className: "text-bg-secondary" },
@@ -1368,6 +1368,7 @@
           {
             icon: "bi-journal-check",
             title: "Módulo 2 — Casos, revisão, escopo e riscos",
+            className: "module-theme-cyan",
             items: [
               {
                 badge: { label: "Caso 05", className: "text-bg-info" },
@@ -1413,13 +1414,28 @@
               },
               {
                 badge: { label: "Aula 07", className: "text-bg-primary" },
-                title: "Fundamentos de Gestão de Projetos",
-                search: "aula 07 fundamentos gestão de projetos processos áreas de conhecimento",
+                title: "Termo de Abertura de Projeto",
+                search: "aula 07 termo de abertura de projeto project charter objetivos justificativa premissas restrições stakeholders",
                 actions: [
                   {
-                    label: "Abrir (Gamma)",
+                    label: "Professor",
+                    href: "https://gamma.app/docs/07-Termo-de-Abertura-de-Projeto-Professor-e6rkx2zxg7gxfc3",
+                    className: "btn btn-primary btn-sm",
+                    icon: "bi-easel",
+                    newTab: true
+                  },
+                  {
+                    label: "Material do Aluno",
+                    href: "https://gamma.app/docs/07-Termo-de-Abertura-de-Projeto-Aluno-x41hkl5cg4ogeot",
+                    className: "btn btn-outline-primary btn-sm",
+                    icon: "bi-box-arrow-up-right",
+                    newTab: true
+                  },
+                  {
+                    label: "Template",
+                    href: "01%20-%20Termo%20de%20Abertura%20do%20Projeto.docx",
                     className: "btn btn-outline-secondary btn-sm",
-                    icon: "bi-box-arrow-up-right"
+                    icon: "bi-download"
                   }
                 ]
               },
@@ -1495,6 +1511,7 @@
           {
             icon: "bi-calendar2-range",
             title: "Módulo 3 — Tempo e planejamento do projeto",
+            className: "module-theme-green",
             items: [
               {
                 badge: { label: "11A", className: "text-bg-light text-dark border" },
@@ -1549,6 +1566,7 @@
           {
             icon: "bi-people",
             title: "Módulo 4 — Aquisições, comunicação e priorização",
+            className: "module-theme-rose",
             items: [
               {
                 badge: { label: "12A", className: "text-bg-light text-dark border" },

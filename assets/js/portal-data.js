@@ -523,6 +523,9 @@
                 badge: { label: "Aula 2", className: "text-bg-primary" },
                 title: "As Organizações e o Papel da Administração",
                 search: "aula 2 organizações papel da administração",
+                titleAction: {
+                  href: "./aula-2-organizacoes.html"
+                },
                 actions: [
                   {
                     label: "Apresentação",

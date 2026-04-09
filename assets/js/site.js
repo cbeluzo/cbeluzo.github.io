@@ -375,8 +375,21 @@
     return '<div class="small mt-1 d-flex flex-wrap gap-2 align-items-center">' + parts.join("") + "</div>";
   }
 
+  function renderCourseItemTitle(item) {
+    if (!item.titleAction || !item.titleAction.href) {
+      return '<div class="fw-semibold">' + escapeHtml(item.title) + "</div>";
+    }
+
+    const href = item.titleAction.href;
+    const openInNewTab = item.titleAction.newTab !== undefined ? !!item.titleAction.newTab : isExternalHref(href);
+    const attrs = openInNewTab ? ' target="_blank" rel="noopener"' : "";
+
+    return '<a class="course-item-title-link fw-semibold" href="' + escapeHtml(href) + '"' + attrs + ">" + escapeHtml(item.title) + "</a>";
+  }
+
   function renderCourseItem(item, extraClass) {
     const badgeHtml = '<span class="badge ' + escapeHtml(item.badge.className) + '">' + escapeHtml(item.badge.label) + "</span>";
+    const titleHtml = renderCourseItemTitle(item);
     const descriptionHtml = item.description ? '<div class="text-muted small mt-1">' + escapeHtml(item.description) + "</div>" : "";
     const metaHtml = renderInlineMeta(item);
     const actions = (item.actions || []).map(function (action) {
@@ -390,7 +403,7 @@
       '  <div class="course-item-body d-flex align-items-start gap-3">',
       badgeHtml,
       "    <div>",
-      '      <div class="fw-semibold">' + escapeHtml(item.title) + "</div>",
+      "      " + titleHtml,
       descriptionHtml,
       metaHtml,
       "    </div>",

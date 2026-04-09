@@ -162,15 +162,14 @@
 }
 
 .lesson-embed-shell {
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 .lesson-embed-frame {
-  width: 700px;
-  max-width: 100%;
+  width: 100%;
   height: 450px;
   border: 0;
+  display: block;
   background: #fff;
 }
 

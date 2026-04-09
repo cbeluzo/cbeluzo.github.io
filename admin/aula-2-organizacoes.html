@@ -47,7 +47,12 @@
   <main class="container-fluid my-4 px-0">
     <section class="card border-0 shadow-sm rounded-0">
       <div class="card-body p-0">
-        <div class="lesson-embed-shell">
+        <div class="lesson-embed-toolbar">
+          <button id="lesson-embed-scroll-down" class="btn btn-outline-primary" type="button">
+            <i class="bi bi-arrow-down me-1"></i>Próximo
+          </button>
+        </div>
+        <div id="lesson-embed-shell" class="lesson-embed-shell">
           <iframe class="lesson-embed-frame"
             src="https://gamma.app/embed/umd0b4x94slwg5k"
             allow="fullscreen" title="02 As Organizações e o Papel da Administração"></iframe>
@@ -73,6 +78,18 @@
       rootRelative: "..",
       showHomeLink: true
     });
+
+    const embedShell = document.getElementById("lesson-embed-shell");
+    const scrollDownButton = document.getElementById("lesson-embed-scroll-down");
+
+    if (embedShell && scrollDownButton) {
+      scrollDownButton.addEventListener("click", function () {
+        embedShell.scrollBy({
+          top: 600,
+          behavior: "smooth"
+        });
+      });
+    }
   </script>
 </body>
 

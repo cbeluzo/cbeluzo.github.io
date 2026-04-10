@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial Completo NestJS: Formulários HTML com Salvamento em TXT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body { background: #f8f9fa; color: #212529; }
+    .container-main { max-width: 1180px; }
+    .hero, .box, .explanation-box {
+      background: #fff; border-radius: 12px; padding: 1.25rem; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .hero { margin-top: 2rem; margin-bottom: 2rem; }
+    .section-title {
+      margin-top: 2.5rem; margin-bottom: 1rem; padding-left: .75rem;
+      border-left: 6px solid #0d6efd;
+    }
+    .code-block {
+      background: #212529; color: #f8f9fa; padding: 1rem; border-radius: 8px;
+      overflow-x: auto; white-space: pre-wrap; font-family: Consolas, Monaco, monospace;
+    }
+    .note-box {
+      background: #fff3cd; border-left: 5px solid #ffc107; padding: 1rem;
+      border-radius: 8px; margin: 1rem 0;
+    }
+    .concept-box {
+      background: #fff; border-left: 5px solid #198754; padding: 1rem;
+      border-radius: 8px; margin: 1rem 0;
+    }
+    code { color: #b30059; }
+    table { background: #fff; }
+    .file-tag {
+      display: inline-block; background: #e9ecef; border-radius: 8px;
+      padding: .25rem .6rem; margin: .2rem .2rem .2rem 0; font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container container-main py-4">
+
+    <section class="hero">
+      <h1 class="display-6 fw-bold">Tutorial completo: criando um sistema básico de formulários em NestJS com salvamento em arquivos TXT</h1>
+      <p class="lead mb-0">
+        Neste tutorial, vamos construir passo a passo uma aplicação web muito simples em NestJS. O sistema terá uma página inicial, dois formulários HTML, processamento dos dados enviados pelo usuário e salvamento dessas informações em arquivos <code>.txt</code>. Ao final, também teremos páginas para listar os registros salvos e visualizar o conteúdo de cada arquivo. O objetivo é apresentar uma base clara, simples e funcional, desde a criação do projeto até sua execução no navegador.
+      </p>
+    </section>
+
+    <h2 class="section-title">1. O que será construído</h2>
+    <p>
+      O projeto final será uma aplicação web com as seguintes funcionalidades: uma página inicial com links de navegação, um formulário de cadastro de pessoa, um formulário de solicitação, salvamento dos dados enviados em arquivos de texto, uma página de listagem dos arquivos salvos e uma página de visualização detalhada de cada registro.
+    </p>
+
+    <div class="concept-box">
+      <strong>Resumo do fluxo:</strong> o usuário abre uma página HTML, preenche um formulário, envia os dados ao servidor, o NestJS processa as informações, salva um arquivo <code>.txt</code> e depois exibe uma resposta no navegador.
+    </div>
+
+    <h2 class="section-title">2. Tecnologias utilizadas</h2>
+    <p>
+      Vamos utilizar NestJS, Node.js, TypeScript, Handlebars para renderização de views HTML e o módulo <code>fs</code> do Node.js para gravar e ler arquivos de texto no disco.
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Tecnologia</th>
+          <th>Função no projeto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Node.js</td>
+          <td>Ambiente de execução JavaScript/TypeScript no servidor</td>
+        </tr>
+        <tr>
+          <td>NestJS</td>
+          <td>Framework para organizar a aplicação</td>
+        </tr>
+        <tr>
+          <td>Handlebars (hbs)</td>
+          <td>Engine de views HTML</td>
+        </tr>
+        <tr>
+          <td>fs</td>
+          <td>Leitura e escrita de arquivos TXT</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">3. Pré-requisitos</h2>
+    <p>
+      Antes de começar, é necessário ter instalado em seu computador: Node.js, NPM, Git e Visual Studio Code.
+    </p>
+
+    <div class="code-block">node -v
+npm -v
+git --version
+code --version</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação:</strong></p>
+      <p><code>node -v</code> mostra a versão do Node.js.</p>
+      <p><code>npm -v</code> mostra a versão do gerenciador de pacotes.</p>
+      <p><code>git --version</code> mostra a versão do Git.</p>
+      <p><code>code --version</code> verifica se o Visual Studio Code está disponível no terminal.</p>
+    </div>
+
+    <h2 class="section-title">4. Criando a pasta do projeto</h2>
+    <div class="code-block">mkdir nest-form-txt
+cd nest-form-txt
+code .</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>mkdir nest-form-txt</code>: cria a pasta do projeto.</p>
+      <p><code>cd nest-form-txt</code>: entra na pasta criada.</p>
+      <p><code>code .</code>: abre a pasta atual no Visual Studio Code.</p>
+    </div>
+
+    <h2 class="section-title">5. Instalando a CLI do NestJS e criando o projeto</h2>
+    <div class="code-block">npm install -g @nestjs/cli
+nest new .</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação:</strong></p>
+      <p><code>npm install -g @nestjs/cli</code> instala a ferramenta de linha de comando do NestJS no computador.</p>
+      <p><code>nest new .</code> cria um novo projeto NestJS dentro da pasta atual.</p>
+    </div>
+
+    <div class="note-box">
+      Durante a criação do projeto, o NestJS pode perguntar qual gerenciador de pacotes você deseja usar. Escolha o padrão sugerido, normalmente <code>npm</code>.
+    </div>
+
+    <h2 class="section-title">6. Instalando a dependência para views HTML</h2>
+    <div class="code-block">npm install hbs</div>
+
+    <p>
+      Essa dependência será usada para renderizar páginas HTML com Handlebars.
+    </p>
+
+    <h2 class="section-title">7. Gerando o módulo, o controller e o service de formulários</h2>
+    <div class="code-block">nest generate module form
+nest generate controller form
+nest generate service form</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação:</strong></p>
+      <p><code>module</code>: agrupa os arquivos da funcionalidade de formulários.</p>
+      <p><code>controller</code>: define as rotas e recebe as requisições.</p>
+      <p><code>service</code>: concentra a lógica de gravação e leitura dos arquivos.</p>
+    </div>
+
+    <h2 class="section-title">8. Criando as pastas necessárias</h2>
+    <div class="code-block">mkdir views
+mkdir data
+mkdir data\forms</div>
+
+    <p>
+      A pasta <code>views</code> guardará os arquivos HTML em formato Handlebars. A pasta <code>data/forms</code> guardará os arquivos <code>.txt</code> gerados pelo sistema.
+    </p>
+
+    <h2 class="section-title">9. Estrutura final esperada do projeto</h2>
+    <div class="code-block">nest-form-txt/
+├── src/
+│   ├── form/
+│   │   ├── form.controller.ts
+│   │   ├── form.module.ts
+│   │   └── form.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+├── views/
+│   ├── home.hbs
+│   ├── person-form.hbs
+│   ├── request-form.hbs
+│   ├── success.hbs
+│   ├── records.hbs
+│   └── record-detail.hbs
+├── data/
+│   └── forms/
+└── package.json</div>
+
+    <h2 class="section-title">10. Configurando o arquivo <code>main.ts</code></h2>
+    <p>
+      O arquivo <code>main.ts</code> é o ponto de entrada da aplicação. É nele que o NestJS é inicializado. Também é nele que vamos informar onde estão as views e qual engine será usada para renderizar as páginas HTML.
+    </p>
+
+    <p>Substitua o conteúdo de <code>src/main.ts</code> por:</p>
+
+    <div class="code-block">import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { join } from 'path';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+
+  await app.listen(3000);
+}
+bootstrap();</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>import { NestFactory } from '@nestjs/core';</code>: importa a função que cria a aplicação NestJS.</p>
+      <p><code>import { AppModule } from './app.module';</code>: importa o módulo principal do projeto.</p>
+      <p><code>import { join } from 'path';</code>: importa a função usada para montar caminhos de pastas.</p>
+      <p><code>const app = await NestFactory.create(AppModule);</code>: cria a aplicação.</p>
+      <p><code>app.setBaseViewsDir(...)</code>: informa onde estão os arquivos de views.</p>
+      <p><code>app.setViewEngine('hbs')</code>: define Handlebars como mecanismo de renderização.</p>
+      <p><code>await app.listen(3000)</code>: inicia o servidor na porta 3000.</p>
+    </div>
+
+    <h2 class="section-title">11. Criando o service de formulários</h2>
+    <p>
+      O service ficará responsável por salvar os dados em arquivos TXT, listar os arquivos gravados e ler um arquivo específico.
+    </p>
+
+    <p>Substitua o conteúdo de <code>src/form/form.service.ts</code> por:</p>
+
+    <div class="code-block">import { Injectable } from '@nestjs/common';
+import * as fs from 'fs';
+import * as path from 'path';
+
+@Injectable()
+export class FormService {
+  private readonly basePath = path.resolve(process.cwd(), 'data', 'forms');
+
+  constructor() {
+    if (!fs.existsSync(this.basePath)) {
+      fs.mkdirSync(this.basePath, { recursive: true });
+    }
+  }
+
+  savePersonForm(data: { nome: string; email: string; telefone: string; cidade: string }) {
+    const id = Date.now().toString();
+    const filename = `person-${id}.txt`;
+    const filePath = path.join(this.basePath, filename);
+
+    const content = `Tipo: cadastro_pessoa
+ID: ${id}
+Nome: ${data.nome}
+Email: ${data.email}
+Telefone: ${data.telefone}
+Cidade: ${data.cidade}
+`;
+
+    fs.writeFileSync(filePath, content, 'utf-8');
+    return filename;
+  }
+
+  saveRequestForm(data: { nome: string; assunto: string; descricao: string; data: string }) {
+    const id = Date.now().toString();
+    const filename = `request-${id}.txt`;
+    const filePath = path.join(this.basePath, filename);
+
+    const content = `Tipo: solicitacao
+ID: ${id}
+Nome: ${data.nome}
+Assunto: ${data.assunto}
+Descricao: ${data.descricao}
+Data: ${data.data}
+`;
+
+    fs.writeFileSync(filePath, content, 'utf-8');
+    return filename;
+  }
+
+  listRecords() {
+    if (!fs.existsSync(this.basePath)) {
+      return [];
+    }
+
+    return fs.readdirSync(this.basePath).filter((file) => file.endsWith('.txt'));
+  }
+
+  readRecord(filename: string) {
+    if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
+      throw new Error('Nome de arquivo inválido.');
+    }
+
+    const filePath = path.join(this.basePath, filename);
+
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`Arquivo não encontrado: ${filename}`);
+    }
+
+    return fs.readFileSync(filePath, 'utf-8');
+  }
+}</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação do código:</strong></p>
+      <p><code>@Injectable()</code> marca a classe como um serviço que pode ser usado pelo NestJS.</p>
+      <p><code>basePath</code> define, de forma explícita, a pasta onde os arquivos TXT serão gravados e lidos.</p>
+      <p>O <code>constructor()</code> garante que a pasta <code>data/forms</code> exista. Isso evita falhas de gravação em ambientes limpos, nos quais o diretório ainda não foi criado.</p>
+      <p><code>savePersonForm(...)</code> recebe os dados do formulário de pessoa, monta o conteúdo textual e grava um arquivo.</p>
+      <p><code>saveRequestForm(...)</code> faz a mesma coisa para o formulário de solicitação.</p>
+      <p><code>listRecords()</code> lista os arquivos TXT existentes na pasta. Se a pasta não existir, retorna um vetor vazio.</p>
+      <p><code>readRecord(filename)</code> lê o conteúdo de um arquivo específico, mas antes valida o nome informado e verifica se o arquivo realmente existe.</p>
+    </div>
+
+    <h2 class="section-title">12. Criando o controller de formulários</h2>
+    <p>
+      O controller definirá as rotas do sistema. Ele será responsável por exibir as páginas HTML, receber os dados enviados pelos formulários e chamar o service para salvar ou recuperar informações.
+    </p>
+
+    <p>Substitua o conteúdo de <code>src/form/form.controller.ts</code> por:</p>
+
+    <div class="code-block">import { Body, Controller, Get, Param, Post, Render } from '@nestjs/common';
+import { FormService } from './form.service';
+
+@Controller()
+export class FormController {
+  constructor(private readonly formService: FormService) {}
+
+  @Get()
+  @Render('home')
+  home() {
+    return {};
+  }
+
+  @Get('forms/person')
+  @Render('person-form')
+  personForm() {
+    return {};
+  }
+
+  @Post('forms/person')
+  @Render('success')
+  submitPersonForm(
+    @Body() body: { nome: string; email: string; telefone: string; cidade: string },
+  ) {
+    const filename = this.formService.savePersonForm(body);
+    return {
+      mensagem: 'Cadastro de pessoa salvo com sucesso.',
+      filename,
+    };
+  }
+
+  @Get('forms/request')
+  @Render('request-form')
+  requestForm() {
+    return {};
+  }
+
+  @Post('forms/request')
+  @Render('success')
+  submitRequestForm(
+    @Body() body: { nome: string; assunto: string; descricao: string; data: string },
+  ) {
+    const filename = this.formService.saveRequestForm(body);
+    return {
+      mensagem: 'Solicitação salva com sucesso.',
+      filename,
+    };
+  }
+
+  @Get('records')
+  @Render('records')
+  records() {
+    const files = this.formService.listRecords();
+    return { files };
+  }
+
+  @Get('records/:filename')
+  @Render('record-detail')
+  recordDetail(@Param('filename') filename: string) {
+    const content = this.formService.readRecord(filename);
+    return { filename, content };
+  }
+}</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação detalhada:</strong></p>
+      <p><code>@Controller()</code> indica que a classe agrupa rotas da aplicação.</p>
+      <p><code>@Get()</code> define rotas acessadas por requisições GET, normalmente usadas para abrir páginas.</p>
+      <p><code>@Post()</code> define rotas usadas para receber dados enviados por formulário.</p>
+      <p><code>@Render('home')</code>, <code>@Render('person-form')</code>, <code>@Render('request-form')</code> e demais usos de <code>@Render</code> informam qual view será mostrada.</p>
+      <p><code>@Body()</code> captura os dados enviados pelo formulário.</p>
+      <p><code>@Param('filename')</code> captura o nome do arquivo informado na URL.</p>
+      <p>Quando o formulário é enviado, o controller chama o método correspondente do service, grava o TXT e retorna uma página de sucesso.</p>
+    </div>
+
+    <div class="note-box">
+      <strong>Observação importante sobre a leitura dos arquivos:</strong> o controller está adequado para a listagem e a leitura. Em geral, quando a funcionalidade <code>/records</code> não mostra arquivos, o problema costuma estar no serviço, especialmente no caminho da pasta, na ausência do diretório <code>data/forms</code> ou na tentativa de ler um nome de arquivo inexistente.
+    </div>
+
+    <h2 class="section-title">13. Criando a view da página inicial</h2>
+    <p>Crie o arquivo <span class="file-tag">views/home.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Página inicial&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Sistema de formulários em NestJS&lt;/h1&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/forms/person"&gt;Cadastro de pessoa&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/forms/request"&gt;Formulário de solicitação&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/records"&gt;Listar registros salvos&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <p>
+      Essa página será a entrada principal do sistema. Ela apenas exibe links para navegação.
+    </p>
+
+    <h2 class="section-title">14. Criando a view do formulário de pessoa</h2>
+    <p>Crie o arquivo <span class="file-tag">views/person-form.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Cadastro de pessoa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Cadastro de pessoa&lt;/h1&gt;
+
+  &lt;form action="/forms/person" method="post"&gt;
+    &lt;div&gt;
+      &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+      &lt;input type="text" id="nome" name="nome" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+      &lt;input type="email" id="email" name="email" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="telefone"&gt;Telefone:&lt;/label&gt;
+      &lt;input type="text" id="telefone" name="telefone"&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="cidade"&gt;Cidade:&lt;/label&gt;
+      &lt;input type="text" id="cidade" name="cidade"&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit"&gt;Salvar cadastro&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;p&gt;&lt;a href="/"&gt;Voltar para a página inicial&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação:</strong></p>
+      <p><code>action="/forms/person"</code> indica para qual rota os dados serão enviados.</p>
+      <p><code>method="post"</code> informa que o formulário enviará dados ao servidor.</p>
+      <p>Cada campo possui um atributo <code>name</code>. É esse nome que o NestJS usará para montar o objeto recebido em <code>@Body()</code>.</p>
+    </div>
+
+    <h2 class="section-title">15. Criando a view do formulário de solicitação</h2>
+    <p>Crie o arquivo <span class="file-tag">views/request-form.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Formulário de solicitação&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Formulário de solicitação&lt;/h1&gt;
+
+  &lt;form action="/forms/request" method="post"&gt;
+    &lt;div&gt;
+      &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+      &lt;input type="text" id="nome" name="nome" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="assunto"&gt;Assunto:&lt;/label&gt;
+      &lt;input type="text" id="assunto" name="assunto" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="descricao"&gt;Descrição:&lt;/label&gt;
+      &lt;textarea id="descricao" name="descricao" rows="5"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="data"&gt;Data:&lt;/label&gt;
+      &lt;input type="date" id="data" name="data"&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit"&gt;Salvar solicitação&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;p&gt;&lt;a href="/"&gt;Voltar para a página inicial&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <h2 class="section-title">16. Criando a view de sucesso</h2>
+    <p>Crie o arquivo <span class="file-tag">views/success.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Sucesso&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Operação realizada com sucesso&lt;/h1&gt;
+
+  &lt;p&gt;{{mensagem}}&lt;/p&gt;
+  &lt;p&gt;Arquivo gerado: &lt;strong&gt;{{filename}}&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href="/records"&gt;Ver lista de registros&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href="/"&gt;Voltar para a página inicial&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <p>
+      Essa página usa variáveis vindas do controller: <code>{{mensagem}}</code> e <code>{{filename}}</code>.
+    </p>
+
+    <h2 class="section-title">17. Criando a view de listagem de registros</h2>
+    <p>Crie o arquivo <span class="file-tag">views/records.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Registros salvos&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Registros salvos&lt;/h1&gt;
+
+  {{#if files.length}}
+    &lt;ul&gt;
+      {{#each files}}
+        &lt;li&gt;
+          &lt;a href="/records/{{this}}"&gt;{{this}}&lt;/a&gt;
+        &lt;/li&gt;
+      {{/each}}
+    &lt;/ul&gt;
+  {{else}}
+    &lt;p&gt;Nenhum registro encontrado.&lt;/p&gt;
+  {{/if}}
+
+  &lt;p&gt;&lt;a href="/"&gt;Voltar para a página inicial&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <div class="note-box">
+      Se a página de listagem abrir, mas não mostrar nenhum item, verifique se houve gravação efetiva de arquivos na pasta <code>data/forms</code>. A rota de listagem depende diretamente do retorno de <code>listRecords()</code>.
+    </div>
+
+    <div class="explanation-box mt-3">
+      <p><strong>Explicação:</strong></p>
+      <p><code>{{#if files.length}}</code> verifica se existem arquivos para exibir.</p>
+      <p><code>{{#each files}}</code> percorre a lista de nomes de arquivos enviada pelo controller.</p>
+      <p><code>{{this}}</code> representa o item atual do laço.</p>
+    </div>
+
+    <h2 class="section-title">18. Criando a view de detalhe do registro</h2>
+    <p>Crie o arquivo <span class="file-tag">views/record-detail.hbs</span> com o conteúdo abaixo:</p>
+
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Detalhe do registro&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Detalhe do registro&lt;/h1&gt;
+
+  &lt;p&gt;&lt;strong&gt;Arquivo:&lt;/strong&gt; {{filename}}&lt;/p&gt;
+  &lt;pre&gt;{{content}}&lt;/pre&gt;
+
+  &lt;p&gt;&lt;a href="/records"&gt;Voltar para a lista de registros&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href="/"&gt;Voltar para a página inicial&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <p>
+      O elemento <code>&lt;pre&gt;</code> preserva a quebra de linhas do conteúdo do arquivo TXT.
+    </p>
+
+    <h2 class="section-title">19. Verificando o módulo principal</h2>
+    <p>
+      Normalmente, ao gerar o módulo e o controller, o NestJS já atualiza o <code>app.module.ts</code>. Mesmo assim, é importante conferir.
+    </p>
+
+    <p>O arquivo <code>src/app.module.ts</code> deve estar semelhante a isto:</p>
+
+    <div class="code-block">import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { FormModule } from './form/form.module';
+
+@Module({
+  imports: [FormModule],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}</div>
+
+    <p>
+      O ponto principal é que o módulo <code>FormModule</code> apareça dentro de <code>imports</code>.
+    </p>
+
+    <h2 class="section-title">20. Executando a aplicação</h2>
+    <div class="code-block">npm run start</div>
+
+    <p>Depois, abra o navegador no endereço:</p>
+
+    <div class="code-block">http://localhost:3000</div>
+
+    <h2 class="section-title">21. Testando o sistema</h2>
+    <p>
+      Ao abrir a aplicação, a página inicial deverá mostrar três links. Primeiro, acesse o cadastro de pessoa e preencha o formulário. Em seguida, envie os dados e verifique se a página de sucesso aparece. Depois, abra a lista de registros e confirme se o arquivo TXT foi criado. Clique no nome do arquivo para visualizar seu conteúdo. Repita o mesmo processo com o formulário de solicitação.
+    </p>
+
+    <h2 class="section-title">22. O que acontece internamente quando o formulário é enviado</h2>
+    <p>
+      Quando o usuário preenche um formulário e clica no botão de envio, o navegador cria uma requisição HTTP do tipo <code>POST</code> e envia os dados para a rota definida no atributo <code>action</code>. O NestJS recebe essa requisição no método do controller correspondente. Esse método usa <code>@Body()</code> para acessar os campos enviados. Em seguida, o controller chama o service. O service monta um texto com os valores recebidos, grava o arquivo no disco e devolve o nome do arquivo criado. Por fim, o controller retorna uma view HTML de sucesso para o navegador.
+    </p>
+
+    <div class="concept-box">
+      <strong>Fluxo resumido:</strong> formulário HTML → requisição POST → controller → service → gravação do TXT → resposta HTML.
+    </div>
+
+    <h2 class="section-title">23. Possíveis erros básicos e como verificar</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Problema</th>
+          <th>Causa comum</th>
+          <th>Como verificar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Página não encontrada</td>
+          <td>Nome incorreto da rota ou da view</td>
+          <td>Conferir o nome usado em <code>@Get</code>, <code>@Post</code> e <code>@Render</code></td>
+        </tr>
+        <tr>
+          <td>View não renderiza</td>
+          <td>Arquivo <code>.hbs</code> ausente ou em pasta errada</td>
+          <td>Confirmar se o arquivo está em <code>views/</code></td>
+        </tr>
+        <tr>
+          <td>Arquivo TXT não aparece na listagem</td>
+          <td>Pasta <code>data/forms</code> não foi criada ou o salvamento falhou</td>
+          <td>Confirmar se o diretório existe e se o <code>constructor()</code> do service está criando a pasta automaticamente</td>
+        </tr>
+        <tr>
+          <td>Listagem vazia mesmo após salvar</td>
+          <td>Caminho incorreto da pasta de dados</td>
+          <td>Conferir o valor de <code>basePath</code> e, se necessário, registrar esse caminho no console durante os testes</td>
+        </tr>
+        <tr>
+          <td>Erro ao abrir um registro</td>
+          <td>Arquivo inexistente ou nome inválido na URL</td>
+          <td>Verificar a implementação de <code>readRecord(filename)</code> e testar o tratamento para arquivos ausentes</td>
+        </tr>
+        <tr>
+          <td>Dados vazios</td>
+          <td>Campo <code>name</code> do HTML não corresponde ao esperado no controller</td>
+          <td>Comparar os nomes dos campos do formulário com o objeto recebido em <code>@Body()</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">24. Ajustes de robustez recomendados</h2>
+    <p>
+      Após testar o projeto completo, recomenda-se adotar três medidas no serviço de arquivos. A primeira é garantir a criação automática da pasta <code>data/forms</code> no <code>constructor()</code>. A segunda é utilizar um caminho absoluto resolvido a partir da raiz de execução, reduzindo problemas relacionados ao diretório corrente do processo. A terceira é validar o nome do arquivo antes da leitura e verificar explicitamente se o arquivo existe, evitando erros inesperados e melhorando a segurança da aplicação.
+    </p>
+
+    <div class="concept-box">
+      <strong>Em termos práticos:</strong> o controller pode permanecer praticamente igual. O ganho principal está em tornar o <code>FormService</code> mais confiável para gravação, listagem e leitura dos arquivos.
+    </div>
+
+    <h2 class="section-title">25. Resultado esperado</h2>
+    <p>
+      Ao final do tutorial, você terá um sistema básico, mas completo, capaz de exibir formulários, receber dados do usuário, salvar essas informações em arquivos TXT, listar os registros existentes e mostrar o conteúdo detalhado de cada arquivo. Esse projeto serve como base para evoluções futuras, como validação mais avançada, edição de registros, exclusão de arquivos e uso de banco de dados.
+    </p>
+
+    <h2 class="section-title">26. Resumo dos arquivos criados e editados</h2>
+    <p>Ao final, os principais arquivos trabalhados serão:</p>
+
+    <div>
+      <span class="file-tag">src/main.ts</span>
+      <span class="file-tag">src/form/form.controller.ts</span>
+      <span class="file-tag">src/form/form.service.ts</span>
+      <span class="file-tag">views/home.hbs</span>
+      <span class="file-tag">views/person-form.hbs</span>
+      <span class="file-tag">views/request-form.hbs</span>
+      <span class="file-tag">views/success.hbs</span>
+      <span class="file-tag">views/records.hbs</span>
+      <span class="file-tag">views/record-detail.hbs</span>
+    </div>
+
+    <footer class="mt-5 text-secondary">
+      Tutorial revisado em HTML para construção de um sistema de formulários em NestJS com persistência inicial em arquivos TXT, incluindo melhorias de robustez na leitura e listagem dos arquivos.
+    </footer>
+  </div>
+</body>
+</html>

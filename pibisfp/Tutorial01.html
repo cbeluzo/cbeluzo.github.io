@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial Completo - Fundamentos de Sistemas Web e NestJS com CSV</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container-main {
+      max-width: 1150px;
+    }
+    .section-title {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-left: 0.75rem;
+      border-left: 6px solid #0d6efd;
+    }
+    .code-block {
+      background: #212529;
+      color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .explanation-box {
+      background: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    .note-box {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+    .concept-box {
+      background: #ffffff;
+      border-left: 5px solid #198754;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .objective-box {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 2rem;
+    }
+    code {
+      color: #b30059;
+    }
+    table {
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container container-main py-5">
+
+    <header class="mb-4">
+      <h1 class="display-6 fw-bold">Tutorial Prático: fundamentos de sistemas web e desenvolvimento de aplicação NestJS para upload e visualização de CSV</h1>
+      <p class="lead">
+        Este tutorial foi elaborado para estudantes iniciantes, que ainda não possuem familiaridade com a estrutura de aplicações web. Por essa razão, o material começa com uma explicação teórica sobre como sistemas web são organizados e como seus componentes interagem. Em seguida, apresenta-se o desenvolvimento prático de uma aplicação em NestJS capaz de receber um arquivo CSV, armazená-lo no servidor e exibir seu conteúdo em uma tabela HTML.
+      </p>
+    </header>
+
+    <section class="objective-box">
+      <h2 class="h4">Objetivos da atividade</h2>
+      <p>
+        Ao final deste estudo, o aluno deverá compreender a estrutura básica de um sistema web, distinguir os papéis do navegador e do servidor, reconhecer a função de rotas, controllers, services e views, preparar um projeto no Windows com Visual Studio Code, integrar GitHub e GitHub Copilot ao processo de desenvolvimento e implementar uma aplicação funcional em NestJS para upload e visualização de arquivos CSV.
+      </p>
+    </section>
+
+    <h2 class="section-title">1. Antes de programar: o que é uma aplicação web?</h2>
+    <p>
+      Uma aplicação web é um sistema acessado por meio de um navegador, como Chrome, Edge ou Firefox. Quando o usuário digita um endereço ou clica em um botão, o navegador envia uma solicitação para um servidor. O servidor processa essa solicitação, executa alguma lógica e devolve uma resposta. Essa resposta pode ser uma página HTML, dados em formato JSON, uma imagem, um arquivo ou uma mensagem de erro.
+    </p>
+
+    <div class="concept-box">
+      <strong>Ideia central:</strong> em uma aplicação web, o navegador faz pedidos e o servidor responde.
+    </div>
+
+    <p>
+      Por exemplo, quando o usuário acessa uma página de upload de arquivo, o navegador solicita ao servidor a página HTML correspondente. Depois, quando o usuário seleciona um arquivo e clica em enviar, o navegador envia esse arquivo ao servidor, que o recebe, processa e devolve uma nova resposta.
+    </p>
+
+    <h2 class="section-title">2. Como navegador e servidor se comunicam</h2>
+    <p>
+      A comunicação entre navegador e servidor normalmente ocorre por meio do protocolo HTTP. Esse protocolo organiza a troca de mensagens em dois elementos principais: a <strong>requisição</strong> e a <strong>resposta</strong>.
+    </p>
+
+    <div class="concept-box">
+      <strong>Requisição:</strong> mensagem enviada pelo cliente ao servidor.<br>
+      <strong>Resposta:</strong> mensagem enviada pelo servidor ao cliente.
+    </div>
+
+    <p>
+      O navegador atua como cliente. O servidor executa a aplicação. Quando o navegador precisa de alguma coisa, ele envia uma requisição. Quando o servidor termina o processamento, ele envia uma resposta.
+    </p>
+
+    <p>
+      Algumas requisições pedem apenas para visualizar uma página. Outras enviam dados ao servidor. É por isso que existem diferentes métodos HTTP, como <code>GET</code> e <code>POST</code>.
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Método</th>
+          <th>Uso mais comum</th>
+          <th>Exemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>Solicitar dados ou páginas</td>
+          <td>Acessar a página de upload</td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>Enviar dados ao servidor</td>
+          <td>Enviar um arquivo CSV</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">3. Front-end e back-end</h2>
+    <p>
+      Em sistemas web, costuma-se dividir a aplicação em duas grandes partes. A primeira é o <strong>front-end</strong>, que corresponde à interface visível ao usuário. A segunda é o <strong>back-end</strong>, que executa a lógica do sistema, processa dados, salva arquivos e responde às solicitações.
+    </p>
+
+    <div class="concept-box">
+      <strong>Front-end:</strong> parte visual com a qual o usuário interage.<br>
+      <strong>Back-end:</strong> parte lógica que processa requisições e manipula dados.
+    </div>
+
+    <p>
+      Nesta atividade, a página HTML de upload e a tabela exibida no navegador são parte da experiência visível ao usuário. Já o NestJS, que recebe o arquivo, salva no disco e lê o CSV, corresponde ao back-end.
+    </p>
+
+    <h2 class="section-title">4. O que significa modelar um sistema web</h2>
+    <p>
+      Modelar um sistema web significa organizar suas partes de modo que cada componente tenha uma responsabilidade clara. Em vez de escrever todo o programa em um único arquivo, a aplicação é dividida em elementos com funções específicas. Essa organização facilita a leitura, a manutenção, a correção de erros e a evolução do sistema.
+    </p>
+
+    <p>
+      Em termos didáticos, pode-se pensar no sistema como um fluxo:
+    </p>
+
+    <div class="concept-box">
+      Usuário → Navegador → Rota → Controller → Service → Arquivo ou dado → Resposta → Navegador
+    </div>
+
+    <p>
+      Cada parte do fluxo cumpre uma função específica. O aluno precisa entender esse caminho antes de começar a programar, porque o código em NestJS reflete exatamente essa organização.
+    </p>
+
+    <h2 class="section-title">5. Componentes básicos de uma aplicação em NestJS</h2>
+    <p>
+      O NestJS é um framework para desenvolvimento de aplicações no lado do servidor com TypeScript. Ele organiza o sistema em módulos, controllers e services. Para um iniciante, é importante entender cada um desses elementos separadamente.
+    </p>
+
+    <div class="concept-box">
+      <strong>Módulo:</strong> agrupa partes relacionadas do sistema.<br>
+      <strong>Controller:</strong> recebe a requisição e define o que será feito.<br>
+      <strong>Service:</strong> executa a lógica de negócio ou processamento.<br>
+      <strong>View:</strong> página HTML que será mostrada ao usuário.
+    </div>
+
+    <p>
+      Nesta atividade, o controller será responsável por receber o arquivo enviado e por chamar o service. O service será responsável por ler o CSV. A view será responsável por mostrar o formulário de upload e depois exibir os dados em tabela.
+    </p>
+
+    <h2 class="section-title">6. Entendendo o papel das rotas</h2>
+    <p>
+      Uma rota é um endereço da aplicação que representa uma funcionalidade. Quando o navegador acessa esse endereço, o servidor executa o código associado a ele.
+    </p>
+
+    <p>
+      Por exemplo:
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Rota</th>
+          <th>Método</th>
+          <th>Função</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>/csv/upload</code></td>
+          <td>GET</td>
+          <td>Exibir a página com o formulário de upload</td>
+        </tr>
+        <tr>
+          <td><code>/csv/upload</code></td>
+          <td>POST</td>
+          <td>Receber o arquivo enviado pelo usuário</td>
+        </tr>
+        <tr>
+          <td><code>/csv/view/:filename</code></td>
+          <td>GET</td>
+          <td>Ler o arquivo salvo e mostrar a tabela</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Observe que a mesma rota pode existir com métodos diferentes. Isso acontece porque uma coisa é pedir a página para envio do arquivo, e outra é efetivamente enviar o arquivo ao servidor.
+    </p>
+
+    <h2 class="section-title">7. Como os dados circulam nesta atividade</h2>
+    <p>
+      O fluxo completo da atividade pode ser entendido em etapas.
+    </p>
+
+    <ol>
+      <li>O usuário abre a página de upload no navegador.</li>
+      <li>O navegador faz uma requisição ao servidor.</li>
+      <li>O servidor responde com uma página HTML contendo um formulário.</li>
+      <li>O usuário escolhe um arquivo CSV e envia o formulário.</li>
+      <li>O navegador envia o arquivo ao servidor.</li>
+      <li>O controller recebe esse arquivo.</li>
+      <li>O sistema salva o arquivo na pasta <code>uploads</code>.</li>
+      <li>O usuário acessa uma rota de visualização.</li>
+      <li>O controller chama o service para ler o arquivo CSV.</li>
+      <li>O service transforma o conteúdo em dados estruturados.</li>
+      <li>O controller envia esses dados para uma view.</li>
+      <li>A view gera uma tabela HTML e a exibe no navegador.</li>
+    </ol>
+
+    <div class="note-box">
+      Antes de programar, é essencial que o aluno consiga explicar esse fluxo com suas próprias palavras. Isso reduz a chance de copiar código sem compreender sua função.
+    </div>
+
+    <h2 class="section-title">8. O que é um arquivo CSV e por que ele é útil</h2>
+    <p>
+      CSV significa <em>Comma-Separated Values</em>, ou valores separados por vírgula. Trata-se de um formato de arquivo textual usado para representar dados tabulares. Cada linha normalmente representa um registro, e os valores de cada coluna são separados por vírgulas.
+    </p>
+
+    <p>Exemplo:</p>
+
+    <div class="code-block">nome,idade,cidade
+Ana,21,Campinas
+Bruno,22,São Paulo
+Carla,20,Valinhos</div>
+
+    <p>
+      Nesse exemplo, a primeira linha contém os nomes das colunas: <code>nome</code>, <code>idade</code> e <code>cidade</code>. As linhas seguintes contêm os dados.
+    </p>
+
+    <h2 class="section-title">9. Estrutura lógica da solução que será construída</h2>
+    <p>
+      A aplicação desta atividade será organizada em quatro camadas simples:
+    </p>
+
+    <ol>
+      <li><strong>Interface de upload</strong>: uma página HTML com formulário para envio do arquivo.</li>
+      <li><strong>Recebimento e armazenamento</strong>: uma rota no back-end que recebe o arquivo e salva na pasta do projeto.</li>
+      <li><strong>Leitura do CSV</strong>: um service que abre o arquivo e interpreta suas linhas.</li>
+      <li><strong>Exibição em tabela</strong>: uma view que recebe os dados e monta a tabela HTML.</li>
+    </ol>
+
+    <h2 class="section-title">10. Ambiente de desenvolvimento no Windows</h2>
+    <p>
+      Nesta atividade, os alunos utilizarão Windows como plataforma. O desenvolvimento será realizado no Visual Studio Code, com controle de versão por Git e sincronização com um repositório GitHub. O GitHub Copilot será usado como ferramenta de apoio, mas não substitui a necessidade de compreender a estrutura do sistema.
+    </p>
+
+    <h2 class="section-title">11. Softwares necessários</h2>
+    <ul>
+      <li>Node.js</li>
+      <li>Git for Windows</li>
+      <li>Visual Studio Code</li>
+      <li>NestJS CLI</li>
+      <li>Conta GitHub</li>
+      <li>Acesso ao GitHub Copilot</li>
+    </ul>
+
+    <h2 class="section-title">12. Verificando o ambiente</h2>
+    <div class="code-block">node -v
+npm -v
+git --version
+code --version</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação:</strong></p>
+      <p><code>node -v</code>: mostra a versão do Node.js instalada.</p>
+      <p><code>npm -v</code>: mostra a versão do NPM.</p>
+      <p><code>git --version</code>: mostra a versão do Git.</p>
+      <p><code>code --version</code>: mostra a versão do VS Code disponível no terminal.</p>
+    </div>
+
+    <h2 class="section-title">13. Criando a pasta do projeto</h2>
+    <div class="code-block">mkdir csv-nest-app
+cd csv-nest-app
+code .</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>mkdir csv-nest-app</code>: cria a pasta do projeto.</p>
+      <p><code>cd csv-nest-app</code>: entra na pasta criada.</p>
+      <p><code>code .</code>: abre a pasta atual no Visual Studio Code.</p>
+    </div>
+
+    <h2 class="section-title">14. Criando o repositório Git e conectando ao GitHub</h2>
+    <div class="code-block">git init
+git add .
+git commit -m "chore: inicia estrutura do projeto"
+git branch -M main
+git remote add origin https://github.com/SEU-USUARIO/nestjs-csv-upload.git
+git push -u origin main</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>git init</code>: inicializa o repositório local.</p>
+      <p><code>git add .</code>: adiciona os arquivos para o próximo commit.</p>
+      <p><code>git commit -m "..."</code>: grava um ponto de versão do projeto.</p>
+      <p><code>git branch -M main</code>: define a branch principal como <code>main</code>.</p>
+      <p><code>git remote add origin ...</code>: associa o projeto local ao repositório remoto no GitHub.</p>
+      <p><code>git push -u origin main</code>: envia o conteúdo para o GitHub.</p>
+    </div>
+
+    <h2 class="section-title">15. Criando o projeto NestJS</h2>
+    <div class="code-block">npm install -g @nestjs/cli
+nest new .</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>npm install -g @nestjs/cli</code>: instala a interface de linha de comando do NestJS.</p>
+      <p><code>nest new .</code>: cria um novo projeto NestJS na pasta atual.</p>
+    </div>
+
+    <h2 class="section-title">16. Entendendo a estrutura do projeto gerado</h2>
+    <p>
+      Quando o NestJS cria o projeto, ele gera uma estrutura inicial com vários arquivos. Nem todos precisam ser compreendidos em profundidade neste primeiro momento. Para esta atividade, os mais importantes são:
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Arquivo ou pasta</th>
+          <th>Função</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>src/main.ts</code></td>
+          <td>Ponto de entrada da aplicação</td>
+        </tr>
+        <tr>
+          <td><code>src/app.module.ts</code></td>
+          <td>Módulo principal do sistema</td>
+        </tr>
+        <tr>
+          <td><code>src/</code></td>
+          <td>Pasta principal dos arquivos de código</td>
+        </tr>
+        <tr>
+          <td><code>views/</code></td>
+          <td>Pasta que conterá os arquivos de view <code>upload.hbs</code> e <code>table.hbs</code></td>
+        </tr>
+        <tr>
+          <td><code>uploads/</code></td>
+          <td>Pasta onde os arquivos CSV enviados serão salvos</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">17. Instalando dependências do projeto</h2>
+    <div class="code-block">npm install multer csv-parser
+npm install @nestjs/platform-express hbs</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação:</strong></p>
+      <p><code>multer</code>: biblioteca para upload de arquivos.</p>
+      <p><code>csv-parser</code>: biblioteca para ler e interpretar arquivos CSV.</p>
+      <p><code>@nestjs/platform-express</code>: integração do NestJS com a plataforma Express.</p>
+      <p><code>hbs</code>: mecanismo de template que será usado para renderizar HTML.</p>
+    </div>
+
+    <h2 class="section-title">18. Criando módulo, controller e service</h2>
+    <div class="code-block">nest generate module csv
+nest generate controller csv
+nest generate service csv</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação:</strong></p>
+      <p><code>module</code>: agrupa a funcionalidade CSV.</p>
+      <p><code>controller</code>: define as rotas ligadas ao CSV.</p>
+      <p><code>service</code>: contém a lógica de leitura do arquivo.</p>
+    </div>
+
+    <h2 class="section-title">19. Configurando o arquivo main.ts</h2>
+    <p>
+      Antes do código, é importante entender o papel deste arquivo. O <code>main.ts</code> é o ponto onde a aplicação começa. É nele que o servidor é criado. Também é nele que informamos onde estão as páginas HTML e qual mecanismo será usado para gerar essas páginas.
+    </p>
+
+    <div class="code-block">import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { join } from 'path';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+
+  await app.listen(3000);
+}
+bootstrap();</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>import { NestFactory } from '@nestjs/core';</code>: importa a fábrica que cria a aplicação Nest.</p>
+      <p><code>import { AppModule } from './app.module';</code>: importa o módulo principal.</p>
+      <p><code>import { join } from 'path';</code>: importa a função usada para montar caminhos de diretórios.</p>
+      <p><code>async function bootstrap() {</code>: cria a função principal de inicialização.</p>
+      <p><code>const app = await NestFactory.create(AppModule);</code>: cria a aplicação usando o módulo principal.</p>
+      <p><code>app.setBaseViewsDir(join(__dirname, '..', 'views'));</code>: informa que as views ficam na pasta <code>views</code>.</p>
+      <p><code>app.setViewEngine('hbs');</code>: define o Handlebars como engine de template.</p>
+      <p><code>await app.listen(3000);</code>: inicia o servidor na porta 3000.</p>
+      <p><code>bootstrap();</code>: executa a função.</p>
+    </div>
+
+    <h2 class="section-title">20. Definindo explicitamente os nomes das views</h2>
+    <p>
+      Antes de construir o controller, é importante definir formalmente os nomes e a localização física das views da aplicação. Neste tutorial, será utilizado o mecanismo de templates Handlebars, configurado com a extensão <code>.hbs</code>. Isso significa que as páginas renderizadas pelo servidor não devem ser salvas como <code>.html</code>, mas como arquivos <code>.hbs</code> dentro da pasta <code>views</code>.
+    </p>
+
+    <div class="concept-box">
+      <strong>View 1:</strong> <code>views/upload.hbs</code> — formulário para envio do arquivo CSV.<br>
+      <strong>View 2:</strong> <code>views/table.hbs</code> — página para exibição dos dados do CSV em formato tabular.
+    </div>
+
+    <p>
+      O nome de cada arquivo precisa corresponder exatamente ao nome informado no decorator <code>@Render()</code> do controller. Em outras palavras, quando o código usar <code>@Render('upload')</code>, o NestJS irá procurar o arquivo <code>views/upload.hbs</code>. Da mesma forma, quando o código usar <code>@Render('table')</code>, o framework irá procurar o arquivo <code>views/table.hbs</code>.
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Decorator no controller</th>
+          <th>Arquivo físico correspondente</th>
+          <th>Finalidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>@Render('upload')</code></td>
+          <td><code>views/upload.hbs</code></td>
+          <td>Exibir o formulário de upload</td>
+        </tr>
+        <tr>
+          <td><code>@Render('table')</code></td>
+          <td><code>views/table.hbs</code></td>
+          <td>Exibir os dados do arquivo CSV</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      Um erro comum entre iniciantes é salvar as views como <code>upload.html</code> e <code>table.html</code>. Neste projeto, como a engine configurada é <code>hbs</code>, os arquivos corretos devem ser <code>upload.hbs</code> e <code>table.hbs</code>.
+    </div>
+
+    <h2 class="section-title">21. Pensando antes do controller</h2>
+    <p>
+      O controller será o ponto de entrada das requisições relacionadas ao CSV. Sempre que o navegador acessar uma rota definida nele, o NestJS executará o método correspondente. Nesta atividade, o controller terá três responsabilidades:
+    </p>
+
+    <ol>
+      <li>mostrar a página de upload;</li>
+      <li>receber e salvar o arquivo enviado;</li>
+      <li>solicitar a leitura do arquivo e enviar os dados para a view de tabela.</li>
+    </ol>
+
+    <h2 class="section-title">22. Código do controller</h2>
+    <div class="code-block">import {
+  Controller,
+  Get,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+  Render,
+  Param,
+  Res,
+  BadRequestException
+} from '@nestjs/common';
+import { Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { CsvService } from './csv.service';
+
+@Controller('csv')
+export class CsvController {
+  constructor(private readonly csvService: CsvService) {}
+
+  @Get('upload')
+  @Render('upload')
+  uploadPage() {
+    return {};
+  }
+
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          cb(null, Date.now() + '-' + file.originalname);
+        },
+      }),
+      fileFilter: (req, file, cb) => {
+        if (!file.originalname.toLowerCase().endsWith('.csv')) {
+          return cb(new Error('Apenas arquivos CSV são permitidos.'), false);
+        }
+        cb(null, true);
+      },
+    }),
+  )
+  uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Res() res: Response,
+  ) {
+    if (!file) {
+      throw new BadRequestException('Nenhum arquivo CSV foi enviado.');
+    }
+
+    return res.redirect(`/csv/view/${file.filename}`);
+  }
+
+  @Get('view/:filename')
+  @Render('table')
+  async viewFile(@Param('filename') filename: string) {
+    const data = await this.csvService.parseCsv(filename);
+    return { data, filename };
+  }
+}</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>@Controller('csv')</code>: define o prefixo das rotas deste controller.</p>
+      <p><code>constructor(private readonly csvService: CsvService) {}</code>: injeta o service para que ele possa ser usado dentro do controller.</p>
+      <p><code>@Get('upload')</code>: cria a rota GET <code>/csv/upload</code>.</p>
+      <p><code>@Render('upload')</code>: informa que essa rota irá renderizar a página <code>views/upload.hbs</code>.</p>
+      <p><code>uploadPage() { return {}; }</code>: retorna um objeto vazio para a view.</p>
+      <p><code>@Post('upload')</code>: cria a rota POST <code>/csv/upload</code> para envio do arquivo.</p>
+      <p><code>@UseInterceptors(...)</code>: ativa o mecanismo que captura o arquivo enviado.</p>
+      <p><code>FileInterceptor('file', ...)</code>: indica que o campo de formulário chamado <code>file</code> é o arquivo.</p>
+      <p><code>destination: './uploads'</code>: define onde o arquivo será salvo.</p>
+      <p><code>filename: (req, file, cb) => { ... }</code>: define a lógica do nome do arquivo no disco.</p>
+      <p><code>Date.now() + '-' + file.originalname</code>: adiciona data e hora ao nome para reduzir conflitos.</p>
+      <p><code>fileFilter</code>: cria uma validação do tipo de arquivo.</p>
+      <p><code>endsWith('.csv')</code>: verifica se o nome termina com <code>.csv</code>.</p>
+      <p><code>@Res() res: Response</code>: permite controlar diretamente a resposta HTTP.</p>
+      <p><code>if (!file)</code>: valida se algum arquivo foi realmente recebido.</p>
+      <p><code>throw new BadRequestException(...)</code>: interrompe a execução com erro adequado quando não há arquivo enviado.</p>
+      <p><code>return res.redirect(`/csv/view/${file.filename}`)</code>: após o upload, redireciona o navegador para a rota de visualização do CSV, em vez de exibir JSON bruto.</p>
+      <p><code>@Get('view/:filename')</code>: cria uma rota com parâmetro dinâmico.</p>
+      <p><code>@Render('table')</code>: informa que essa rota irá renderizar a página <code>views/table.hbs</code>.</p>
+      <p><code>@Param('filename')</code>: captura o valor do nome do arquivo na URL.</p>
+      <p><code>const data = await this.csvService.parseCsv(filename);</code>: pede ao service para ler o arquivo.</p>
+      <p><code>return { data, filename };</code>: envia os dados para a view da tabela.</p>
+    </div>
+
+    <h2 class="section-title">23. Pensando antes do service</h2>
+    <p>
+      O service é usado para separar a lógica de processamento. Em vez de fazer toda a leitura do arquivo dentro do controller, deixamos essa responsabilidade em outro componente. Isso melhora a organização e torna o código mais fácil de manter.
+    </p>
+
+    <h2 class="section-title">24. Código do service</h2>
+    <div class="code-block">import { Injectable } from '@nestjs/common';
+import * as fs from 'fs';
+import * as csv from 'csv-parser';
+
+@Injectable()
+export class CsvService {
+  parseCsv(filename: string): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      const results: any[] = [];
+
+      fs.createReadStream(`uploads/${filename}`)
+        .pipe(csv())
+        .on('data', (data) => results.push(data))
+        .on('end', () => resolve(results))
+        .on('error', (error) => reject(error));
+    });
+  }
+}</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação linha a linha:</strong></p>
+      <p><code>import * as fs from 'fs';</code>: importa o módulo de leitura de arquivos do Node.js.</p>
+      <p><code>import * as csv from 'csv-parser';</code>: importa a biblioteca que interpreta o CSV.</p>
+      <p><code>@Injectable()</code>: informa ao NestJS que esta classe pode ser injetada.</p>
+      <p><code>parseCsv(filename: string): Promise&lt;any[]&gt;</code>: cria um método que recebe um nome de arquivo e retorna uma lista de linhas.</p>
+      <p><code>const results: any[] = [];</code>: cria a estrutura que guardará os dados lidos.</p>
+      <p><code>fs.createReadStream(`uploads/${filename}`)</code>: abre o arquivo salvo na pasta <code>uploads</code>.</p>
+      <p><code>.pipe(csv())</code>: envia o conteúdo para o interpretador CSV.</p>
+      <p><code>.on('data', (data) => results.push(data))</code>: adiciona cada linha do arquivo ao vetor.</p>
+      <p><code>.on('end', () => resolve(results))</code>: quando termina, devolve os resultados.</p>
+      <p><code>.on('error', (error) => reject(error))</code>: em caso de erro, interrompe com falha.</p>
+    </div>
+
+    <h2 class="section-title">25. Pensando antes das views</h2>
+    <p>
+      As views são páginas HTML que o servidor monta e envia ao navegador. Aqui usaremos Handlebars, que permite inserir valores dinâmicos na página. Em vez de criar HTML fixo, podemos passar dados do controller para a view.
+    </p>
+
+    <h2 class="section-title">26. Arquivo <code>views/upload.hbs</code></h2>
+    <p>
+      A seguir está o conteúdo da primeira view da aplicação. Este arquivo deve ser salvo com o nome <code>upload.hbs</code> dentro da pasta <code>views</code>. Ele será utilizado pela rota <code>GET /csv/upload</code> quando o controller executar <code>@Render('upload')</code>.
+    </p>
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Upload de CSV&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Enviar arquivo CSV&lt;/h1&gt;
+  &lt;form action="/csv/upload" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="file" accept=".csv" required&gt;
+    &lt;button type="submit"&gt;Enviar arquivo&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação:</strong></p>
+      <p>Essa página mostra um formulário. O atributo <code>action="/csv/upload"</code> indica para onde os dados serão enviados. O método <code>post</code> indica que o formulário enviará dados ao servidor. O atributo <code>enctype="multipart/form-data"</code> é obrigatório para upload de arquivos. O nome físico do arquivo deve ser <code>upload.hbs</code>, pois ele corresponde ao decorator <code>@Render('upload')</code> utilizado no controller.</p>
+    </div>
+
+    <h2 class="section-title">27. Arquivo <code>views/table.hbs</code></h2>
+    <p>
+      A segunda view da aplicação deve ser salva com o nome <code>table.hbs</code> dentro da pasta <code>views</code>. Ela será utilizada pela rota <code>GET /csv/view/:filename</code> quando o controller executar <code>@Render('table')</code>.
+    </p>
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Visualização do CSV&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Dados do arquivo {{filename}}&lt;/h1&gt;
+
+  {{#if data.length}}
+    &lt;table border="1" cellpadding="8" cellspacing="0"&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          {{#each data.[0]}}
+            &lt;th&gt;{{@key}}&lt;/th&gt;
+          {{/each}}
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        {{#each data}}
+          &lt;tr&gt;
+            {{#each this}}
+              &lt;td&gt;{{this}}&lt;/td&gt;
+            {{/each}}
+          &lt;/tr&gt;
+        {{/each}}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  {{else}}
+    &lt;p&gt;O arquivo não possui dados para exibição.&lt;/p&gt;
+  {{/if}}
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+    <div class="explanation-box">
+      <p><strong>Explicação:</strong></p>
+      <p>Essa página recebe o nome do arquivo e os dados lidos do CSV. O bloco <code>{{#if data.length}}</code> verifica se há conteúdo. O bloco <code>{{#each data.[0]}}</code> usa a primeira linha para descobrir os nomes das colunas. O bloco <code>{{#each data}}</code> percorre todas as linhas. Dentro dele, <code>{{#each this}}</code> percorre os valores de cada linha. O nome físico do arquivo deve ser <code>table.hbs</code>, pois ele corresponde ao decorator <code>@Render('table')</code> utilizado no controller.</p>
+    </div>
+
+    <h2 class="section-title">28. Criando a pasta de uploads</h2>
+    <div class="code-block">mkdir uploads</div>
+
+    <h2 class="section-title">29. Exemplo de arquivo CSV para teste</h2>
+    <div class="code-block">nome,idade,cidade
+Ana,21,Campinas
+Bruno,22,São Paulo
+Carla,20,Valinhos</div>
+
+    <h2 class="section-title">30. Executando a aplicação</h2>
+    <div class="code-block">npm run start</div>
+
+    <p>Acesse no navegador:</p>
+    <div class="code-block">http://localhost:3000/csv/upload</div>
+
+    <h2 class="section-title">31. Síntese conceitual final</h2>
+    <p>
+      Ao concluir esta atividade, o aluno deverá ser capaz de descrever o sistema nos seguintes termos: o navegador envia uma requisição, o controller recebe essa requisição, o service executa a leitura do arquivo, a view organiza a apresentação dos dados e o servidor devolve a resposta ao usuário. Essa compreensão é mais importante do que apenas fazer o código funcionar.
+    </p>
+
+    <div class="note-box">
+      Uma boa prática pedagógica é pedir que o aluno desenhe, em papel, o fluxo da aplicação antes de implementar: navegador → rota → controller → service → view → navegador.
+    </div>
+
+  </div>
+</body>
+</html>

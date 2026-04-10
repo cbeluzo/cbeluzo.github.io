@@ -41,6 +41,12 @@
           href: "pesquisa/pesquisa.html"
         },
         {
+          key: "pibisfp",
+          label: "Iniciação Científica",
+          icon: "bi-mortarboard",
+          href: "pibisfp/index.html"
+        },
+        {
           key: "apresentacoes",
           label: "Apresentações",
           icon: "bi-easel2",
@@ -93,6 +99,14 @@
             icon: "bi-flask",
             pillClass: "icon-pill icon-pill-warning text-warning",
             buttonClass: "btn btn-outline-warning btn-sm"
+          },
+          {
+            title: "Iniciação Científica",
+            description: "Tutoriais e materiais de apoio para projetos, com acesso direto aos conteúdos organizados da área.",
+            href: "pibisfp/index.html",
+            icon: "bi-mortarboard",
+            pillClass: "icon-pill text-secondary",
+            buttonClass: "btn btn-outline-secondary btn-sm"
           },
           {
             title: "Apresentações",
@@ -156,6 +170,69 @@
       }
     },
     sections: {
+      pibisfp: {
+        key: "pibisfp",
+        title: "Iniciação Científica",
+        icon: "bi-mortarboard",
+        description: "Tutoriais, roteiros e materiais de apoio para projetos de iniciação científica.",
+        searchPlaceholder: "Buscar por tutorial ou tema (ex.: 'NestJS', 'PostgreSQL')",
+        items: [
+          {
+            title: "Tutorial 01",
+            icon: "bi-file-earmark-text",
+            badge: {
+              label: "Tutorial",
+              className: "badge text-bg-primary"
+            },
+            description: "Fundamentos de sistemas web e desenvolvimento de aplicação NestJS para upload e visualização de CSV.",
+            search: "tutorial 01 nestjs csv upload visualizacao sistemas web",
+            actions: [
+              {
+                label: "Abrir Tutorial",
+                href: "./Tutorial01.html",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          },
+          {
+            title: "Tutorial 02",
+            icon: "bi-file-earmark-text",
+            badge: {
+              label: "Tutorial",
+              className: "badge text-bg-primary"
+            },
+            description: "Sistema básico de formulários em NestJS com salvamento em arquivos TXT.",
+            search: "tutorial 02 nestjs formularios html txt",
+            actions: [
+              {
+                label: "Abrir Tutorial",
+                href: "./Tutorial02.html",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          },
+          {
+            title: "Tutorial 03",
+            icon: "bi-file-earmark-text",
+            badge: {
+              label: "Tutorial",
+              className: "badge text-bg-primary"
+            },
+            description: "Tutorial completo de aplicação NestJS com formulários HTML e PostgreSQL.",
+            search: "tutorial 03 nestjs postgresql formularios html",
+            actions: [
+              {
+                label: "Abrir Tutorial",
+                href: "./tutorial03.html",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          }
+        ]
+      },
       pesquisa: {
         key: "pesquisa",
         title: "Pesquisa",

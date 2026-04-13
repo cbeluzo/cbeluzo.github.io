@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade PBL — Mapeamento e Seleção de Investidores</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #dbe3ee;
+      --accent: #1d4ed8;
+      --accent-soft: #e8f0ff;
+      --ok: #0f766e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      color: #0f172a;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    p { margin: 10px 0; }
+
+    .highlight {
+      background: var(--accent-soft);
+      border-left: 5px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+
+    .problem-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 5px solid #ea580c;
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 1.02rem;
+    }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+    }
+
+    li { margin: 8px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.96rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: var(--ok);
+      border: 1px solid #a5f3fc;
+      font-size: 0.86rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .span-8, .span-6, .span-4 { grid-column: span 12; }
+      .hero h1 { font-size: 1.6rem; }
+    }
+
+    @media print {
+      body { background: white; }
+      .container { max-width: 100%; padding: 0; }
+      .hero, .card { box-shadow: none; }
+      .hero { background: #1d4ed8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>Atividade PBL — Mapeamento e Seleção de Investidores para Startups</h1>
+      <p>
+        Nesta atividade, os estudantes atuarão como equipe de análise estratégica de uma startup de base tecnológica e deverão investigar opções reais de investimento para apoiar a expansão do projeto. A proposta está organizada em formato PBL, de modo que a análise seja construída a partir de um problema concreto, com pesquisa, comparação de alternativas e tomada de decisão fundamentada.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card span-8">
+        <span class="badge">Contexto do problema</span>
+        <h2>Situação-problema</h2>
+        <p>
+          A startup <strong>NeuroAssist IA</strong> está desenvolvendo um aplicativo de assistente pessoal com inteligência artificial voltado a profissionais autônomos. Após a definição inicial do produto e da proposta de valor, a equipe percebeu que será necessário captar recursos para avançar em etapas como desenvolvimento tecnológico, validação de mercado, testes com usuários, estruturação comercial e melhoria da infraestrutura.
+        </p>
+        <p>
+          Entretanto, captar investimento não significa apenas procurar dinheiro. A startup precisa identificar investidores cujo perfil seja compatível com seu estágio de maturidade, área de atuação, potencial de escala e modelo de negócio. Isso exige pesquisa, comparação e justificativa fundamentada.
+        </p>
+        <div class="problem-box">
+          <strong>Problema central:</strong> Quais organizações, redes ou investidores poderiam ser contatados para investir no projeto, e quais três opções devem ser priorizadas com base em critérios técnicos e estratégicos?
+        </div>
+      </section>
+
+      <section class="card span-4">
+        <span class="badge">Objetivo da atividade</span>
+        <h2>Resultados esperados</h2>
+        <p>Ao final da atividade, espera-se que o grupo seja capaz de:</p>
+        <ul>
+          <li>compreender como funciona o ecossistema de investimento em startups;</li>
+          <li>identificar diferentes tipos de investidores e fontes de financiamento;</li>
+          <li>comparar opções reais de investimento com base em critérios verificáveis;</li>
+          <li>avaliar a aderência entre o projeto e o perfil do potencial investidor;</li>
+          <li>produzir um relatório técnico com justificativa consistente.</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <span class="badge">Desenvolvimento da atividade</span>
+        <h2>Tarefa do grupo</h2>
+        <p>
+          O grupo deverá pesquisar o ecossistema de investimento e selecionar <strong>três opções reais</strong> que possam, em tese, ser contatadas para avaliar um possível investimento no projeto da startup.
+        </p>
+        <p>
+          As opções podem incluir, por exemplo, redes de investidores-anjo, investidores individuais com atuação pública, aceleradoras com capital semente, plataformas de investimento em startups ou fundos com foco em negócios em estágio inicial.
+        </p>
+        <div class="highlight">
+          O foco da atividade não é apenas listar nomes. O grupo deverá demonstrar capacidade de análise, comparação e argumentação sobre a adequação das opções escolhidas.
+        </div>
+      </section>
+
+      <section class="card span-6">
+        <span class="badge">Produto final</span>
+        <h2>O que deve ser entregue</h2>
+        <p>
+          Cada grupo deverá entregar um <strong>relatório analítico</strong> contendo a descrição de três opções de investidores ou organizações de investimento e a justificativa da escolha dessas alternativas para o projeto.
+        </p>
+        <p>
+          O relatório deve evidenciar a qualidade da pesquisa realizada, a consistência das informações coletadas e a capacidade do grupo de relacionar o perfil do projeto às exigências e características de cada potencial investidor.
+        </p>
+      </section>
+
+      <section class="card span-12">
+        <span class="badge">Etapas sugeridas</span>
+        <h2>Roteiro de investigação</h2>
+        <ol>
+          <li><strong>Compreender o estágio do projeto:</strong> definir se a startup está em fase de ideação, validação, MVP, operação inicial ou crescimento.</li>
+          <li><strong>Pesquisar tipos de investidores:</strong> diferenciar investimento-anjo, capital semente, aceleradoras, fundos early-stage e plataformas de investimento coletivo.</li>
+          <li><strong>Levantar opções reais:</strong> buscar organizações ou investidores com presença pública, site oficial, histórico de atuação ou critérios divulgados.</li>
+          <li><strong>Coletar informações relevantes:</strong> registrar dados verificáveis sobre área de atuação, estágio de investimento, ticket, tese de investimento, localização, forma de contato e requisitos.</li>
+          <li><strong>Comparar as opções:</strong> avaliar quais alternativas apresentam maior aderência ao projeto NeuroAssist IA.</li>
+          <li><strong>Justificar a seleção final:</strong> explicar por que as três opções escolhidas seriam as mais adequadas para uma tentativa de aproximação.</li>
+        </ol>
+      </section>
+
+      <section class="card span-12">
+        <span class="badge">Conteúdo obrigatório no relatório</span>
+        <h2>O que analisar em cada uma das 3 opções</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Descrição esperada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nome da opção</td>
+              <td>Nome da organização, rede, fundo, aceleradora ou investidor identificado.</td>
+            </tr>
+            <tr>
+              <td>Tipo de investidor</td>
+              <td>Indicar se se trata de investidor-anjo, rede de anjos, aceleradora, fundo pre-seed/seed ou outro tipo.</td>
+            </tr>
+            <tr>
+              <td>Estágio de atuação</td>
+              <td>Informar em que estágio costuma investir: ideação, MVP, validação, tração inicial ou expansão.</td>
+            </tr>
+            <tr>
+              <td>Setores de interesse</td>
+              <td>Indicar áreas priorizadas, como IA, software, educação, saúde, fintech, produtividade, SaaS etc.</td>
+            </tr>
+            <tr>
+              <td>Faixa de investimento</td>
+              <td>Apresentar ticket médio, faixa de aporte ou informação equivalente, quando disponível publicamente.</td>
+            </tr>
+            <tr>
+              <td>Critérios de seleção</td>
+              <td>Registrar exigências, perfil das startups aceitas, presença de equipe, receita, escalabilidade, inovação e outros critérios relevantes.</td>
+            </tr>
+            <tr>
+              <td>Forma de contato</td>
+              <td>Descrever se existe formulário, site, edital, submissão de pitch deck, rede social profissional ou canal institucional.</td>
+            </tr>
+            <tr>
+              <td>Análise de aderência</td>
+              <td>Explicar em que medida aquela opção combina com o projeto analisado.</td>
+            </tr>
+            <tr>
+              <td>Justificativa</td>
+              <td>Apresentar a razão pela qual essa opção foi incluída entre as três selecionadas.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card span-8">
+        <span class="badge">Insumos para pesquisa</span>
+        <h2>Fontes iniciais recomendadas</h2>
+        <p>
+          O grupo deverá realizar pesquisa própria, mas pode iniciar o trabalho a partir de fontes públicas e confiáveis do ecossistema de inovação e investimento. Essas fontes servem como ponto de partida para o levantamento de opções reais.
+        </p>
+        <ul>
+          <li><strong>Anjos do Brasil:</strong> rede e referência nacional em investimento-anjo.</li>
+          <li><strong>Sebrae Startups:</strong> conteúdos, estudos e mapeamentos sobre empreendedorismo inovador.</li>
+          <li><strong>ABVCAP:</strong> associação do setor de venture capital e private equity no Brasil.</li>
+          <li><strong>Plataformas de mercado:</strong> bases públicas e semiabertas com informações sobre startups e investidores.</li>
+          <li><strong>Sites oficiais de aceleradoras e fundos:</strong> páginas com tese de investimento, portfólio e critérios.</li>
+          <li><strong>Notícias especializadas:</strong> portais de inovação, startups e tecnologia com cobertura de investimentos.</li>
+        </ul>
+        <div class="highlight">
+          O grupo deve priorizar informações obtidas em fontes primárias, como páginas oficiais, formulários institucionais, documentos de apresentação e regulamentos públicos.
+        </div>
+      </section>
+
+      <section class="card span-4">
+        <span class="badge">Perguntas orientadoras</span>
+        <h2>Questões para guiar a análise</h2>
+        <ul>
+          <li>O investidor apoia negócios no estágio em que o projeto se encontra?</li>
+          <li>Há interesse declarado em tecnologia, IA ou software?</li>
+          <li>O porte do aporte é compatível com a necessidade da startup?</li>
+          <li>O investidor oferece apenas capital ou também mentoria e rede de contatos?</li>
+          <li>A startup teria condições reais de cumprir os critérios de seleção?</li>
+          <li>Há coerência entre o perfil do investidor e a proposta de valor do projeto?</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <span class="badge">Estrutura sugerida</span>
+        <h2>Modelo de organização do relatório</h2>
+        <ol>
+          <li><strong>Introdução:</strong> contextualização do investimento em startups e apresentação do problema.</li>
+          <li><strong>Metodologia:</strong> descrição de como a pesquisa foi feita e quais fontes foram consultadas.</li>
+          <li><strong>Análise da opção 1</strong></li>
+          <li><strong>Análise da opção 2</strong></li>
+          <li><strong>Análise da opção 3</strong></li>
+          <li><strong>Quadro comparativo:</strong> síntese das três alternativas.</li>
+          <li><strong>Justificativa final:</strong> defesa da escolha realizada pelo grupo.</li>
+          <li><strong>Conclusão:</strong> reflexão sobre a decisão e sobre o aprendizado obtido.</li>
+          <li><strong>Referências:</strong> registro das fontes utilizadas.</li>
+        </ol>
+      </section>
+
+      
+
+      
+
+      <section class="card span-12">
+        <span class="badge">Entrega da atividade</span>
+        <h2>Enunciado</h2>
+        <p>
+          Com base no contexto apresentado, pesquise o ecossistema de investimento em startups e identifique <strong>três opções reais</strong> de investidores, redes, aceleradoras ou organizações que poderiam, em tese, ser contatadas para avaliar um possível investimento no projeto <strong>NeuroAssist IA</strong>. Para cada opção, apresente suas principais características, analise a aderência ao projeto e justifique tecnicamente sua escolha. Ao final, elabore um relatório comparativo com as três alternativas e uma conclusão defendendo por que essas seriam as opções mais adequadas.
+        </p>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Documento em formato HTML preparado para leitura, pesquisa orientada e entrega da atividade pelos estudantes.
+    </p>
+  </div>
+</body>
+</html>

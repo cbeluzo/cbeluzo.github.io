@@ -15,7 +15,7 @@ TARGET_FILES = [
   ROOT / "admin" / "admin.html",
   ROOT / "admin" / "plano_negocios_modal_wizard_ifsp.html",
   ROOT / "gestao-ti" / "gestao-ti.html",
-  ROOT / "gestao-ti" / "jogo_da_governanca" / "00_Jogo_da_Governanca.html",
+  ROOT / "gestao-ti" / "jogo_da_governanca" / "00-jogo-da-governanca.html",
   ROOT / "gestao-projetos" / "gestao-projetos.html",
   ROOT / "pesquisa" / "pesquisa.html",
   ROOT / "pesquisa" / "tese" / "index.html",

@@ -143,7 +143,7 @@
             badge: "Curso",
             badgeClass: "text-bg-primary",
             description: "Curso introdutório de Python com material HTML publicado no próprio site.",
-            href: "python-101/CursoIntroducaoPython.html",
+            href: "python-101/curso-introducao-python.html",
             icon: "bi-terminal",
             buttonClass: "btn btn-outline-primary btn-sm"
           },
@@ -152,7 +152,7 @@
             badge: "Exercícios",
             badgeClass: "text-bg-success",
             description: "Coleção de exercícios em HTML para capítulos da disciplina DM017.",
-            href: "DM017/Exercicios_Capitulo_02.html",
+            href: "DM017/exercicios-capitulo-02.html",
             icon: "bi-calculator",
             buttonClass: "btn btn-outline-success btn-sm"
           },
@@ -189,7 +189,7 @@
             actions: [
               {
                 label: "Abrir Tutorial",
-                href: "./Tutorial01.html",
+                href: "./tutorial-01.html",
                 className: "btn btn-outline-primary btn-sm",
                 icon: "bi-box-arrow-up-right"
               }
@@ -207,7 +207,7 @@
             actions: [
               {
                 label: "Abrir Tutorial",
-                href: "./Tutorial02.html",
+                href: "./tutorial-02.html",
                 className: "btn btn-outline-primary btn-sm",
                 icon: "bi-box-arrow-up-right"
               }
@@ -666,6 +666,9 @@
                 badge: { label: "Aula 6", className: "text-bg-primary" },
                 title: "Plano de Negócios: Estrutura e Elaboração",
                 search: "aula 6 plano de negócios estrutura elaboração",
+                titleAction: {
+                  href: "./aula-6-plano-negocios.html"
+                },
                 actions: [
                   {
                     label: "Apresentação",
@@ -675,10 +678,10 @@
                     newTab: true
                   },
                   {
-                    label: "Formulário",
-                    href: "plano_negocios_modal_wizard_ifsp.html",
+                    label: "Atividade",
+                    href: "aula-6-atividade-plano-negocios.html",
                     className: "btn btn-secondary btn-sm",
-                    icon: "bi-box-arrow-up-right"
+                    icon: "bi-ui-checks-grid"
                   }
                 ]
               },
@@ -686,6 +689,9 @@
                 badge: { label: "Aula 7", className: "text-bg-primary" },
                 title: "Inovação, Criatividade e Propriedade Intelectual",
                 search: "aula 7 inovação criatividade propriedade intelectual formulário atividade estudo de caso neuroassist",
+                titleAction: {
+                  href: "./aula-7-inovacao.html"
+                },
                 actions: [
                   {
                     label: "Apresentação",
@@ -702,8 +708,8 @@
                     newTab: true
                   },
                   {
-                    label: "Formulário da Atividade",
-                    href: "formulario_inovacao.html",
+                    label: "Atividade",
+                    href: "aula-7-atividade-inovacao.html",
                     className: "btn btn-secondary btn-sm",
                     icon: "bi-ui-checks-grid"
                   }
@@ -713,6 +719,9 @@
                 badge: { label: "Aula 8", className: "text-bg-primary" },
                 title: "Aceleração de Startups e Investimento Anjo",
                 search: "aula 8 aceleração startups investimento anjo",
+                titleAction: {
+                  href: "./aula-8-aceleracao.html"
+                },
                 actions: [
                   {
                     label: "Apresentação",
@@ -720,6 +729,12 @@
                     className: "btn btn-primary btn-sm",
                     icon: "bi-box-arrow-up-right",
                     newTab: true
+                  },
+                  {
+                    label: "Atividade",
+                    href: "aula-8-atividade-investimento-anjo.html",
+                    className: "btn btn-secondary btn-sm",
+                    icon: "bi-ui-checks-grid"
                   }
                 ]
               },
@@ -1065,7 +1080,7 @@
                 actions: [
                   {
                     label: "Dinâmica de Grupo",
-                    href: "jogo_da_governanca/00_Jogo_da_Governanca.html",
+                    href: "jogo_da_governanca/00-jogo-da-governanca.html",
                     className: "btn btn-outline-secondary btn-sm",
                     icon: "bi-box-arrow-up-right",
                     newTab: true

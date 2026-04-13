@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inovação e Propriedade Intelectual</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(13, 110, 253, .18), transparent 45%),
+        radial-gradient(1200px circle at 80% 30%, rgba(13, 202, 240, .14), transparent 45%);
+    }
+
+    /* Print / PDF overrides */
+    @media print {
+      body { background: #fff !important; }
+      #site-nav, #site-footer, .no-print { display: none !important; }
+      main.container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+      .page-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 1rem 0 !important; border: none !important;}
+      .card { box-shadow: none !important; border: 1px solid #dee2e6 !important; page-break-inside: avoid; margin-bottom: 2rem !important; }
+      .form-control { border: none !important; padding: 0 !important; background: transparent !important; resize: none !important; overflow: visible !important; }
+      .page-break { page-break-before: always; }
+      .form-text { color: #495057 !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <div id="site-nav"></div>
+
+  <noscript>
+    <div class="container py-3">
+      <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e o rodapé do portal.</div>
+    </div>
+  </noscript>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+        <div>
+          <div class="text-uppercase small text-primary fw-semibold mb-1"><i class="bi bi-ui-checks-grid me-1"></i>Formulário da Atividade</div>
+          <h1 class="h3 mb-2">Inovação, Criatividade e Propriedade Intelectual</h1>
+          <p class="text-muted mb-0" style="max-width: 800px;">
+            <strong>Título do caso:</strong> NeuroAssist IA: Estruturação da Inovação e Estratégias de Apropriação de Valor<br>
+            Preencha este formulário com base na leitura do caso e na aplicação ao projeto do grupo. As respostas devem ser analíticas, consistentes e tecnicamente justificadas.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2 no-print">
+          <button class="btn btn-primary" onclick="gerarPDF()"><i class="bi bi-printer"></i> Gerar PDF</button>
+          <button class="btn btn-light border" onclick="salvarRascunho()"><i class="bi bi-cloud-arrow-up"></i> Salvar</button>
+          <button class="btn btn-light border" onclick="carregarRascunho()"><i class="bi bi-cloud-arrow-down"></i> Carregar</button>
+          <button class="btn btn-outline-danger" onclick="limparFormulario()"><i class="bi bi-trash"></i> Limpar</button>
+          <a class="btn btn-outline-primary" href="./aula-7-inovacao.html"><i class="bi bi-arrow-left"></i> Voltar</a>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="grupo" class="form-label fw-bold mb-1">Nome do grupo</label>
+          <input type="text" id="grupo" class="form-control bg-white" placeholder="Informe o nome do grupo" />
+        </div>
+        <div class="col-md-6">
+          <label for="integrantes" class="form-label fw-bold mb-1">Integrantes</label>
+          <input type="text" id="integrantes" class="form-control bg-white" placeholder="Separe os nomes por vírgula" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+
+    <!-- Seção 1 -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">1. Análise estrutural das iniciativas</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Diagnóstico inicial</span>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <label for="tipo_algoritmo" class="form-label fw-bold mb-1">1.1 Algoritmo de recomendação</label>
+            <textarea id="tipo_algoritmo" class="form-control bg-white" rows="4" placeholder="Classifique o tipo de inovação, indique o grau de novidade, dependência tecnológica e impacto no modelo de negócio."></textarea>
+          </div>
+          <div class="col-lg-4">
+            <label for="tipo_atendimento" class="form-label fw-bold mb-1">1.2 Atendimento automatizado</label>
+            <textarea id="tipo_atendimento" class="form-control bg-white" rows="4" placeholder="Classifique o tipo de inovação, indique o grau de novidade, dependência tecnológica e impacto no modelo de negócio."></textarea>
+          </div>
+          <div class="col-lg-4">
+            <label for="tipo_rebranding" class="form-label fw-bold mb-1">1.3 Rebranding da marca</label>
+            <textarea id="tipo_rebranding" class="form-control bg-white" rows="4" placeholder="Classifique o tipo de inovação, indique o grau de novidade, dependência tecnológica e impacto no modelo de negócio."></textarea>
+          </div>
+          <div class="col-12 mt-4">
+            <label for="comparacao_iniciativas" class="form-label fw-bold mb-1">1.4 Comparação crítica entre as três iniciativas</label>
+            <textarea id="comparacao_iniciativas" class="form-control bg-white" rows="5" placeholder="Explique semelhanças, diferenças e relevância relativa de cada frente de inovação."></textarea>
+            <div class="form-text">Evite apenas nomear categorias. Explique a função estratégica de cada iniciativa na lógica de crescimento da startup.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 2 -->
+    <div class="card border-0 shadow-sm mb-4 page-break">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">2. Delimitação da inovação central</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Priorização estratégica</span>
+        </div>
+        <div class="mb-3">
+          <label for="inovacao_central" class="form-label fw-bold mb-1">2.1 Qual iniciativa representa a inovação central da startup?</label>
+          <textarea id="inovacao_central" class="form-control bg-white" rows="3" placeholder="Defina qual iniciativa constitui o núcleo de geração de valor e justifique."></textarea>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="inovacoes_complementares" class="form-label fw-bold mb-1">2.2 Quais iniciativas são complementares?</label>
+            <textarea id="inovacoes_complementares" class="form-control bg-white" rows="3" placeholder="Explique por que são complementares e como reforçam a proposta principal."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="baixo_impacto" class="form-label fw-bold mb-1">2.3 Quais possuem menor impacto estratégico?</label>
+            <textarea id="baixo_impacto" class="form-control bg-white" rows="3" placeholder="Indique o que pode ser adiado, descartado ou tratado como secundário."></textarea>
+          </div>
+        </div>
+        <div>
+          <label for="criterios_priorizacao" class="form-label fw-bold mb-1">2.4 Critérios utilizados para priorização</label>
+          <textarea id="criterios_priorizacao" class="form-control bg-white" rows="3" placeholder="Considere potencial de diferenciação, escalabilidade, aderência ao problema do usuário, barreiras à imitação e retorno esperado."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 3 -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">3. Modelagem do processo de inovação</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Da ideia ao impacto</span>
+        </div>
+        <div class="mb-3">
+          <label for="problema_resolvido" class="form-label fw-bold mb-1">3.1 Problema que a inovação central resolve</label>
+          <textarea id="problema_resolvido" class="form-control bg-white" rows="3" placeholder="Defina com precisão qual problema do usuário ou do processo organizacional é resolvido pela inovação central."></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="mecanismo_tecnico" class="form-label fw-bold mb-1">3.2 Mecanismo técnico envolvido</label>
+          <textarea id="mecanismo_tecnico" class="form-control bg-white" rows="3" placeholder="Descreva a lógica técnica da solução sem cair em excesso de generalidade."></textarea>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="validacao_tecnica" class="form-label fw-bold mb-1">3.3 Estratégia de validação técnica</label>
+            <textarea id="validacao_tecnica" class="form-control bg-white" rows="4" placeholder="Como a equipe verificará desempenho, confiabilidade, integração e viabilidade técnica?"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="validacao_mercado" class="form-label fw-bold mb-1">3.4 Estratégia de validação de mercado</label>
+            <textarea id="validacao_mercado" class="form-control bg-white" rows="4" placeholder="Como a equipe testará aderência ao usuário, aceitação e valor percebido?"></textarea>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="implementacao" class="form-label fw-bold mb-1">3.5 Implementação</label>
+            <textarea id="implementacao" class="form-control bg-white" rows="4" placeholder="Descreva etapas, recursos, responsáveis e condições necessárias para colocar a solução em operação."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="metricas_impacto" class="form-label fw-bold mb-1">3.6 Métricas de impacto</label>
+            <textarea id="metricas_impacto" class="form-control bg-white" rows="4" placeholder="Indique métricas objetivas de resultado: retenção, uso, satisfação, redução de tempo, conversão, receita etc."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 4 -->
+    <div class="card border-0 shadow-sm mb-4 page-break">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">4. Estratégia de propriedade intelectual</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Proteção e captura de valor</span>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="ativos_proteger" class="form-label fw-bold mb-1">4.1 Ativos que devem ser protegidos</label>
+            <textarea id="ativos_proteger" class="form-control bg-white" rows="3" placeholder="Ex.: marca, código, interface, algoritmo, base de dados, documentação, know-how."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="ativos_nao_proteger" class="form-label fw-bold mb-1">4.2 Ativos que não serão protegidos formalmente</label>
+            <textarea id="ativos_nao_proteger" class="form-control bg-white" rows="3" placeholder="Indique o que não será protegido e justifique a decisão."></textarea>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="estrategia_pi" class="form-label fw-bold mb-1">4.3 Estratégia de proteção adotada</label>
+          <textarea id="estrategia_pi" class="form-control bg-white" rows="3" placeholder="Explique o uso combinado ou isolado de patente, marca, direito autoral, segredo industrial, contratos de confidencialidade ou outras medidas."></textarea>
+        </div>
+        <div>
+          <label for="justificativa_pi" class="form-label fw-bold mb-1">4.4 Justificativa estratégica</label>
+          <textarea id="justificativa_pi" class="form-control bg-white" rows="3" placeholder="Considere custo, prazo, risco de engenharia reversa, facilidade de cópia, maturidade tecnológica e contexto competitivo."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 5 -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">5. Trade-offs estratégicos</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Decisão sob restrição</span>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col-lg-4">
+            <label for="cenario_rapido" class="form-label fw-bold mb-1">5.1 Cenário A – Lançamento rápido</label>
+            <textarea id="cenario_rapido" class="form-control bg-white" rows="4" placeholder="Quais seriam as vantagens e riscos de lançar rapidamente com baixa proteção?"></textarea>
+          </div>
+          <div class="col-lg-4">
+            <label for="cenario_protegido" class="form-label fw-bold mb-1">5.2 Cenário B – Proteção antes do lançamento</label>
+            <textarea id="cenario_protegido" class="form-control bg-white" rows="4" placeholder="Quais seriam as vantagens e riscos de proteger mais antes de lançar?"></textarea>
+          </div>
+          <div class="col-lg-4">
+            <label for="cenario_hibrido" class="form-label fw-bold mb-1">5.3 Cenário C – Estratégia híbrida</label>
+            <textarea id="cenario_hibrido" class="form-control bg-white" rows="4" placeholder="Como seria uma estratégia intermediária? Quais ativos seriam protegidos primeiro e quais poderiam esperar?"></textarea>
+          </div>
+        </div>
+        <div>
+          <label for="decisao_tradeoff" class="form-label fw-bold mb-1">5.4 Decisão final do grupo</label>
+          <textarea id="decisao_tradeoff" class="form-control bg-white" rows="3" placeholder="Defina qual cenário o grupo adotaria e justifique tecnicamente a decisão."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 6 -->
+    <div class="card border-0 shadow-sm mb-4 page-break">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+          <h2 class="h5 mb-0 text-dark">6. Aplicação ao projeto do grupo</h2>
+          <span class="badge text-bg-light text-muted text-uppercase">Transposição prática</span>
+        </div>
+        <div class="mb-3">
+          <label for="nome_projeto" class="form-label fw-bold mb-1">6.1 Nome da startup do grupo</label>
+          <input type="text" id="nome_projeto" class="form-control bg-white" placeholder="Informe o nome da startup ou do projeto" />
+        </div>
+        <div class="mb-3">
+          <label for="descricao_projeto" class="form-label fw-bold mb-1">6.2 Descrição sintética do projeto</label>
+          <textarea id="descricao_projeto" class="form-control bg-white" rows="3" placeholder="Descreva o produto, o público-alvo e o problema que a startup pretende resolver."></textarea>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="inovacao_grupo" class="form-label fw-bold mb-1">6.3 Inovação central do projeto</label>
+            <textarea id="inovacao_grupo" class="form-control bg-white" rows="4" placeholder="Defina claramente qual é a inovação central do produto do grupo."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="tipo_inovacao_grupo" class="form-label fw-bold mb-1">6.4 Tipo de inovação</label>
+            <textarea id="tipo_inovacao_grupo" class="form-control bg-white" rows="4" placeholder="Classifique a inovação central e justifique a classificação."></textarea>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="processo_inovacao_grupo" class="form-label fw-bold mb-1">6.5 Processo da ideia ao impacto</label>
+          <textarea id="processo_inovacao_grupo" class="form-control bg-white" rows="3" placeholder="Explique a trajetória da ideia, sua validação, implementação e impacto esperado no contexto do projeto do grupo."></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="pi_grupo" class="form-label fw-bold mb-1">6.6 Estratégia de proteção intelectual do grupo</label>
+          <textarea id="pi_grupo" class="form-control bg-white" rows="3" placeholder="Defina como a equipe pretende proteger sua inovação e como essa decisão se relaciona com o estágio atual do projeto."></textarea>
+        </div>
+        <div>
+          <label for="observacoes_finais" class="form-label fw-bold mb-1">6.7 Observações finais</label>
+          <textarea id="observacoes_finais" class="form-control bg-white" rows="3" placeholder="Registre limitações, hipóteses adotadas, decisões ainda em aberto ou encaminhamentos futuros."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-muted small pb-4 no-print">
+      Dica: após preencher, clique em <strong>Gerar PDF</strong>. O navegador abrirá a janela de impressão; escolha <strong>Salvar como PDF</strong>.
+    </div>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/portal-data.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.renderSiteNav({
+      rootRelative: "..",
+      currentKey: "admin"
+    });
+
+    PortalUI.renderFooter({
+      rootRelative: "..",
+      showHomeLink: true
+    });
+
+    // Scripts do Formulário
+    const campos = Array.from(document.querySelectorAll('input, textarea, select'));
+    const STORAGE_KEY = 'formulario_pbl_inovacao_html_v1';
+
+    function autoResizeAll() {
+      document.querySelectorAll('textarea').forEach(t => {
+        t.style.height = 'auto';
+        t.style.height = (t.scrollHeight + 2) + 'px';
+      });
+    }
+
+    campos.forEach(c => {
+      c.addEventListener('input', autoResizeAll);
+    });
+
+    function salvarRascunho() {
+      const dados = {};
+      campos.forEach(c => dados[c.id] = c.value);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+      alert('Rascunho salvo no navegador.');
+    }
+
+    function carregarRascunho() {
+      const bruto = localStorage.getItem(STORAGE_KEY);
+      if (!bruto) {
+        alert('Nenhum rascunho salvo foi encontrado.');
+        return;
+      }
+      const dados = JSON.parse(bruto);
+      campos.forEach(c => {
+        if (dados[c.id] !== undefined) c.value = dados[c.id];
+      });
+      autoResizeAll();
+      alert('Rascunho carregado com sucesso.');
+    }
+
+    function limparFormulario() {
+      if (!confirm('Deseja realmente limpar todo o formulário?')) return;
+      campos.forEach(c => c.value = '');
+      localStorage.removeItem(STORAGE_KEY);
+      autoResizeAll();
+    }
+
+    function gerarPDF() {
+      autoResizeAll();
+      setTimeout(() => window.print(), 150);
+    }
+
+    // Inicialização do autosize ao carregar a página
+    window.addEventListener('load', autoResizeAll);
+  </script>
+</body>
+</html>

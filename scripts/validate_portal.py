@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET_FILES = [
   ROOT / "index.html",
   ROOT / "admin" / "admin.html",
-  ROOT / "admin" / "plano_negocios_modal_wizard_ifsp.html",
+  ROOT / "admin" / "aula-6-atividade-plano-negocios.html",
   ROOT / "gestao-ti" / "gestao-ti.html",
   ROOT / "gestao-ti" / "jogo_da_governanca" / "00-jogo-da-governanca.html",
   ROOT / "gestao-projetos" / "gestao-projetos.html",

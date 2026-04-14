@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CursoIntroducaoPython</title>
+  <title>Curso: Python 101</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 15% 10%, rgba(13, 202, 240, 0.15), transparent 40%), radial-gradient(1200px circle at 85% 30%, rgba(255, 193, 7, 0.12), transparent 40%);
+    }
+  </style>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1242,8 +1256,55 @@ pre[class*="language-"] {
   
   
 </head>
-<body>
-  <article class="markdown-body"><h1 class="atx" id="introducao-a-programacao-em-python">Introdução à Programação em Python</h1>
+<body class="bg-light">
+  <div id="site-nav"></div>
+
+  <noscript>
+    <div class="container py-3">
+      <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e o rodapé do portal.
+      </div>
+    </div>
+  </noscript>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Acervo e Materiais Históricos</div>
+          <h1 class="h3 mb-1">Curso: Python 101</h1>
+          <div class="text-muted">Curso introdutório de Python com material HTML publicado no próprio site.</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-primary" href="../index.html">
+            <i class="bi bi-arrow-left me-1"></i>Voltar
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid my-5 px-lg-5">
+    <div class="row g-4">
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="position-sticky" style="top: 2rem;">
+          <h5 class="fw-semibold text-primary mb-3">Índice do Curso</h5>
+          <nav id="course-nav" class="nav flex-column nav-pills small gap-1">
+            <a class="nav-link" href="#introducao-a-programacao-em-python">Início</a>
+            <a class="nav-link" href="#Intro">1. Introdução ao Python</a>
+            <a class="nav-link" href="#Vars">2. Variáveis e Tipos</a>
+            <a class="nav-link" href="#Structures">3. Estruturas Condicionais</a>
+            <a class="nav-link" href="#Functions">4. Funções</a>
+            <a class="nav-link" href="#Collections">5. Coleções</a>
+            <a class="nav-link" href="#DataAnalysis">6. Análise de Dados</a>
+            <a class="nav-link" href="#Assigment">7. Atividade Prática</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="col-lg-9">
+        <section class="card border-0 shadow-sm">
+          <div class="card-body p-4 p-lg-5">
+            <article class="markdown-body"><h1 class="atx" id="introducao-a-programacao-em-python">Introdução à Programação em Python</h1>
 <p><em>Material concebido e organizado por Carlos Beluzo</em></p>
 <p><em>Conteúdo gerado com apoio de IA Generativa (ChatGPT) e revisado por Carlos Beluzo</em></p>
 <p></p>
@@ -2035,7 +2096,30 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
 <li>Durante o processo, não hesite em consultar a documentação do Pandas, NumPy e Seaborn para aproveitar ao máximo as funcionalidades dessas bibliotecas.</li>
 <li>A atividade pode ser adaptada e expandida de acordo com o nível de experiência dos participantes e os objetivos específicos da análise.</li>
 </ul>
-</article>
-  
+        </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/portal-data.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.renderSiteNav({
+      rootRelative: "..",
+      currentKey: "legacy"
+    });
+
+    PortalUI.renderFooter({
+      rootRelative: "..",
+      showHomeLink: true
+    });
+  </script>
 </body>
 </html>

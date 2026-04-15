@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 08 - Gerenciamento de Escopo de Projetos - Material de Leitura</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(13,110,253,.14), transparent 45%),
+                      radial-gradient(1200px circle at 80% 30%, rgba(15,118,110,.12), transparent 45%);
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --primary: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --border: #d1d5db;
+      --accent: #0f766e;
+      --warning: #92400e;
+      --warning-bg: #fef3c7;
+      --success-bg: #dcfce7;
+      --success: #166534;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .content-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 48px 20px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .topbar .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.25;
+      margin-top: 0;
+    }
+
+    .topbar-title {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #0f172a;
+      border-left: 6px solid var(--primary);
+      padding-left: 12px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      max-width: 850px;
+      opacity: 0.96;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px 20px 60px;
+      align-items: start;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      padding: 18px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      transition: 0.2s ease;
+      font-size: 0.96rem;
+    }
+
+    .sidebar a:hover {
+      background: #eff6ff;
+      color: var(--primary);
+    }
+
+    .content section {
+      margin-top: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .toc {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .toc ul, .card ul, .card ol {
+      padding-left: 22px;
+    }
+
+    .highlight {
+      background: var(--primary-soft);
+      border-left: 5px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .note {
+      background: var(--warning-bg);
+      color: var(--warning);
+      border-left: 5px solid #f59e0b;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .good {
+      background: var(--success-bg);
+      color: var(--success);
+      border-left: 5px solid #22c55e;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #e5eefc;
+    }
+
+    .exercise {
+      border: 1px solid #c7d2fe;
+      background: #f8faff;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .case-box {
+      border: 2px solid #93c5fd;
+      background: #f0f9ff;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-title {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+      }
+
+      .content-shell,
+      .layout {
+        padding: 20px 14px 40px;
+      }
+
+      .topbar {
+        padding: 36px 16px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      #site-nav,
+      .page-hero,
+      #site-footer {
+        display: none;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .layout {
+        display: block;
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .topbar {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Gestão de Projetos</div>
+          <h1 class="h3 mb-1">Aula 08 - Gerenciamento de Escopo de Projetos</h1>
+          <div class="text-muted">Material complementar de leitura com foco em escopo, requisitos, EAP e controle de mudanças.</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-primary" href="./gestao-projetos.html">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para a disciplina
+          </a>
+          <a class="btn btn-outline-primary" href="#exercicios">
+            <i class="bi bi-journal-text me-1"></i>Ir para exercícios
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="topbar">
+    <div class="inner">
+      <div class="eyebrow">Gestão de Projetos</div>
+      <div class="topbar-title">Material de Leitura - Gerenciamento de Escopo de Projetos</div>
+      <p class="subtitle">
+        Material de leitura em formato didático para estudo do gerenciamento de escopo em projetos, abrangendo fundamentos conceituais, processos, ferramentas, exemplos práticos, exercícios de fixação e estudo de caso aplicado.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-box"><strong>Objetivo</strong>Compreender como definir, estruturar, validar e controlar o escopo de um projeto.</div>
+        <div class="hero-box"><strong>Foco</strong>Requisitos, declaração de escopo, EAP, validação das entregas e controle de mudanças.</div>
+        <div class="hero-box"><strong>Como usar</strong>Ler por etapas, revisar as sínteses e responder aos exercícios e ao estudo de caso ao final.</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <aside class="sidebar">
+        <h3>Navegação</h3>
+        <a href="#apresentacao">Apresentação do material</a>
+        <a href="#objetivos-aprendizagem">Objetivos de aprendizagem</a>
+        <a href="#sumario">Sumário</a>
+        <a href="#introducao">1. Introdução</a>
+        <a href="#conceitos">2. Conceitos fundamentais</a>
+        <a href="#importancia">3. Importância estratégica</a>
+        <a href="#processos">4. Processos do gerenciamento de escopo</a>
+        <a href="#planejamento">5. Planejamento do escopo</a>
+        <a href="#requisitos">6. Coleta de requisitos</a>
+        <a href="#definicao-escopo">7. Definição do escopo</a>
+        <a href="#eap">8. Estrutura Analítica do Projeto</a>
+        <a href="#validacao">9. Validação do escopo</a>
+        <a href="#controle">10. Controle do escopo</a>
+        <a href="#problemas">11. Problemas frequentes</a>
+        <a href="#boas-praticas">12. Boas práticas</a>
+        <a href="#exercicios">13. Exercícios de fixação</a>
+        <a href="#estudo-de-caso">14. Estudo de caso</a>
+        <a href="#revisao-final">Quadro de revisão final</a>
+        <a href="#encerramento">Encerramento</a>
+      </aside>
+
+      <div class="content">
+    <section id="apresentacao" class="card">
+      <h2>Apresentação do material</h2>
+      <p>
+        Este material foi elaborado para apoiar o estudo autônomo sobre gerenciamento de escopo de projetos. Seu objetivo é apresentar os principais fundamentos conceituais e práticos do tema de forma progressiva, permitindo que o estudante compreenda o papel do escopo no planejamento, na execução e no controle de projetos.
+      </p>
+      <p>
+        Ao longo da leitura, serão discutidos os conceitos centrais, os processos envolvidos, as ferramentas mais utilizadas, os problemas mais frequentes e as boas práticas de aplicação. Ao final, os exercícios de fixação e o estudo de caso permitirão consolidar a aprendizagem por meio da análise e da aplicação dos conteúdos.
+      </p>
+      <div class="highlight">
+        Recomenda-se que o estudante realize a leitura de forma sequencial, registre anotações próprias e elabore as respostas em documento Word, organizando o raciocínio de forma técnica, clara e consistente.
+      </div>
+    </section>
+
+    <section id="objetivos-aprendizagem" class="card">
+      <h2>Objetivos de aprendizagem</h2>
+      <p>Ao final do estudo deste material, espera-se que o estudante seja capaz de:</p>
+      <ul>
+        <li>Compreender o conceito de gerenciamento de escopo e sua importância para o sucesso de projetos;</li>
+        <li>Diferenciar escopo do produto e escopo do projeto;</li>
+        <li>Identificar os principais processos relacionados ao gerenciamento de escopo;</li>
+        <li>Reconhecer a relevância da coleta de requisitos e da definição formal do escopo;</li>
+        <li>Entender a função da EAP como instrumento de organização do trabalho do projeto;</li>
+        <li>Analisar problemas típicos de escopo, incluindo mudanças não controladas;</li>
+        <li>Aplicar os conceitos estudados em situações práticas e estudos de caso.</li>
+      </ul>
+    </section>
+
+    <section id="sumario" class="card toc">
+      <h2>Sumário</h2>
+      <ul>
+        <li>1. Introdução ao gerenciamento de escopo</li>
+        <li>2. Conceitos fundamentais: projeto, produto e escopo</li>
+        <li>3. Importância estratégica do gerenciamento de escopo</li>
+        <li>4. Processos do gerenciamento de escopo</li>
+        <li>5. Planejamento do gerenciamento do escopo</li>
+        <li>6. Coleta de requisitos</li>
+        <li>7. Definição do escopo</li>
+        <li>8. Estrutura Analítica do Projeto (EAP)</li>
+        <li>9. Validação do escopo</li>
+        <li>10. Controle do escopo</li>
+        <li>11. Problemas frequentes no gerenciamento de escopo</li>
+        <li>12. Boas práticas</li>
+        <li>13. Exercícios de fixação</li>
+        <li>14. Estudo de caso</li>
+      </ul>
+    </section>
+
+    <section id="introducao" class="card">
+      <h2>1. Introdução ao gerenciamento de escopo</h2>
+      <p>
+        O gerenciamento de escopo de projetos corresponde ao conjunto de processos necessários para assegurar que o projeto inclua todo o trabalho necessário, e apenas o trabalho necessário, para que seus objetivos sejam alcançados. Em outras palavras, trata-se de definir com clareza o que será entregue, quais atividades precisam ser executadas e quais limites deverão ser respeitados ao longo da execução.
+      </p>
+      <p>
+        Em qualquer projeto, a definição inadequada do escopo tende a produzir retrabalho, conflitos entre partes interessadas, custos adicionais, atrasos e entregas que não correspondem às expectativas do cliente ou do patrocinador. Por essa razão, o escopo é um dos elementos centrais do planejamento e do controle do projeto.
+      </p>
+      <div class="highlight">
+        O gerenciamento de escopo não se limita a listar tarefas. Ele envolve compreender necessidades, transformar essas necessidades em requisitos claros, organizar o trabalho e controlar mudanças de forma disciplinada.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> o gerenciamento de escopo define os limites do projeto e ajuda a garantir que o trabalho executado esteja alinhado com os resultados esperados.
+      </div>
+    </section>
+
+    <section id="conceitos" class="card">
+      <h2>2. Conceitos fundamentais: projeto, produto e escopo</h2>
+      <h3>2.1 Projeto</h3>
+      <p>
+        Projeto é um esforço temporário realizado para criar um produto, serviço ou resultado único. Seu caráter temporário significa que possui início e fim definidos. Seu caráter único indica que a entrega final não é uma repetição operacional rotineira, mas algo com propósito específico.
+      </p>
+
+      <h3>2.2 Produto</h3>
+      <p>
+        O produto do projeto é a entrega gerada ao final do trabalho. Pode ser um software, uma obra, um serviço implantado, uma campanha, uma metodologia, um equipamento ou qualquer outro resultado que atenda a uma necessidade definida.
+      </p>
+
+      <h3>2.3 Escopo do produto e escopo do projeto</h3>
+      <p>
+        O escopo do produto descreve as características e funcionalidades daquilo que será entregue. Já o escopo do projeto descreve o trabalho que precisa ser executado para produzir essa entrega.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Dimensão</th>
+            <th>Descrição</th>
+            <th>Exemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Escopo do produto</td>
+            <td>Características, funções e requisitos da entrega final</td>
+            <td>Um sistema com cadastro de usuários, login, relatórios e painel administrativo</td>
+          </tr>
+          <tr>
+            <td>Escopo do projeto</td>
+            <td>Trabalho necessário para construir a entrega</td>
+            <td>Levantamento de requisitos, modelagem, programação, testes, treinamento e implantação</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        Confundir escopo do produto com escopo do projeto é um erro comum. Um descreve o que será entregue; o outro descreve o que precisa ser feito para entregar.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> projeto, produto e escopo são conceitos relacionados, mas distintos. A compreensão dessa diferença é indispensável para planejar e controlar adequadamente as entregas.
+      </div>
+    </section>
+
+    <section id="importancia" class="card">
+      <h2>3. Importância estratégica do gerenciamento de escopo</h2>
+      <p>
+        O gerenciamento de escopo é importante porque estabelece a base sobre a qual são desenvolvidos o cronograma, o orçamento, a alocação de recursos, o monitoramento e a avaliação do sucesso do projeto. Se o escopo não estiver adequadamente definido, todas as demais dimensões de gestão tornam-se instáveis.
+      </p>
+      <p>
+        Um escopo bem elaborado contribui para alinhar expectativas, reduzir ambiguidades, apoiar a comunicação entre equipe e cliente, orientar a priorização das atividades e oferecer critérios objetivos para validar entregas. Além disso, torna mais fácil identificar solicitações de mudança e analisar seus impactos antes de incorporá-las ao projeto.
+      </p>
+      <div class="good">
+        Quanto mais claro for o escopo, maior a chance de o projeto ser executado com previsibilidade, coerência e controle.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> o escopo possui função estratégica porque sustenta decisões relacionadas a prazo, custo, recursos, qualidade e alinhamento entre expectativas e resultados.
+      </div>
+    </section>
+
+    <section id="processos" class="card">
+      <h2>4. Processos do gerenciamento de escopo</h2>
+      <p>
+        O gerenciamento de escopo pode ser compreendido por meio de cinco processos principais, que se encadeiam logicamente ao longo do projeto.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Processo</th>
+            <th>Finalidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Planejar o gerenciamento do escopo</td>
+            <td>Definir como o escopo será planejado, documentado, validado e controlado</td>
+          </tr>
+          <tr>
+            <td>Coletar os requisitos</td>
+            <td>Identificar necessidades, expectativas e condições que o projeto deve atender</td>
+          </tr>
+          <tr>
+            <td>Definir o escopo</td>
+            <td>Descrever formalmente o que será incluído e excluído do projeto</td>
+          </tr>
+          <tr>
+            <td>Criar a EAP</td>
+            <td>Decompor o trabalho do projeto em partes menores e gerenciáveis</td>
+          </tr>
+          <tr>
+            <td>Validar e controlar o escopo</td>
+            <td>Obter aceitação das entregas e monitorar mudanças no escopo</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="good">
+        <strong>Síntese da seção:</strong> os processos de gerenciamento de escopo formam uma sequência lógica que vai da definição da abordagem até a aceitação e o controle das entregas.
+      </div>
+    </section>
+
+    <section id="planejamento" class="card">
+      <h2>5. Planejamento do gerenciamento do escopo</h2>
+      <p>
+        O planejamento do gerenciamento do escopo consiste em definir a abordagem que será adotada para tratar o escopo ao longo do projeto. Nessa etapa, a equipe estabelece os critérios, documentos, responsabilidades e mecanismos de aprovação e controle.
+      </p>
+      <p>
+        O plano de gerenciamento do escopo normalmente define como os requisitos serão coletados, quem aprovará o escopo, como a EAP será construída, como as mudanças serão avaliadas e quais critérios serão usados para validar entregas.
+      </p>
+
+      <h3>Elementos que podem compor esse plano</h3>
+      <ul>
+        <li>Procedimentos para levantamento de requisitos</li>
+        <li>Modelo de documentação do escopo</li>
+        <li>Estratégia de elaboração da EAP</li>
+        <li>Critérios formais de aceitação das entregas</li>
+        <li>Fluxo de solicitação e aprovação de mudanças</li>
+        <li>Papéis e responsabilidades das partes interessadas</li>
+      </ul>
+      <div class="good">
+        <strong>Síntese da seção:</strong> planejar o gerenciamento do escopo significa definir regras, responsabilidades e procedimentos que darão consistência ao tratamento do escopo ao longo do projeto.
+      </div>
+    </section>
+
+    <section id="requisitos" class="card">
+      <h2>6. Coleta de requisitos</h2>
+      <p>
+        Requisitos são condições, capacidades, características ou critérios que devem ser atendidos pelo produto ou pelo projeto. A coleta de requisitos é uma etapa decisiva, pois constitui a base para a definição do escopo. Requisitos mal identificados ou mal documentados geram problemas em cascata ao longo de toda a execução.
+      </p>
+
+      <h3>6.1 Fontes de requisitos</h3>
+      <ul>
+        <li>Cliente ou usuário final</li>
+        <li>Patrocinador do projeto</li>
+        <li>Equipe técnica</li>
+        <li>Normas institucionais ou legais</li>
+        <li>Documentos de processos existentes</li>
+        <li>Partes interessadas internas e externas</li>
+      </ul>
+
+      <h3>6.2 Técnicas de coleta</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Técnica</th>
+            <th>Aplicação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Entrevistas</td>
+            <td>Permitem aprofundar necessidades específicas de indivíduos-chave</td>
+          </tr>
+          <tr>
+            <td>Questionários</td>
+            <td>Úteis quando há muitos participantes e necessidade de padronização</td>
+          </tr>
+          <tr>
+            <td>Workshops</td>
+            <td>Favorecem alinhamento coletivo e construção conjunta de requisitos</td>
+          </tr>
+          <tr>
+            <td>Observação</td>
+            <td>Ajuda a compreender fluxos reais de trabalho e necessidades não verbalizadas</td>
+          </tr>
+          <tr>
+            <td>Análise documental</td>
+            <td>Permite recuperar regras já existentes em normas, contratos e processos</td>
+          </tr>
+          <tr>
+            <td>Protótipos</td>
+            <td>Facilitam o refinamento de requisitos, sobretudo em sistemas de informação</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>6.3 Tipos de requisitos</h3>
+      <ul>
+        <li><strong>Funcionais:</strong> descrevem funções que o produto deve executar.</li>
+        <li><strong>Não funcionais:</strong> tratam de desempenho, segurança, usabilidade, disponibilidade e outras qualidades.</li>
+        <li><strong>De negócio:</strong> relacionam-se aos objetivos organizacionais que justificam o projeto.</li>
+        <li><strong>Legais e regulatórios:</strong> expressam conformidade com normas e legislações.</li>
+      </ul>
+
+      <div class="highlight">
+        Coletar requisitos não é apenas registrar pedidos. É interpretar necessidades, resolver ambiguidades e transformar expectativas em condições objetivas de entrega.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> a qualidade do escopo depende diretamente da qualidade dos requisitos coletados. Requisitos claros e bem documentados reduzem ambiguidades e retrabalho.
+      </div>
+    </section>
+
+    <section id="definicao-escopo" class="card">
+      <h2>7. Definição do escopo</h2>
+      <p>
+        Depois de coletar e analisar os requisitos, a equipe define o escopo do projeto. Essa definição deve resultar em uma descrição clara, objetiva e verificável do que será feito. Também deve deixar explícito o que não será feito, pois os limites do projeto são tão importantes quanto suas inclusões.
+      </p>
+
+      <h3>7.1 Conteúdos normalmente presentes na declaração do escopo</h3>
+      <ul>
+        <li>Objetivo do projeto</li>
+        <li>Descrição do produto ou serviço</li>
+        <li>Entregas principais</li>
+        <li>Critérios de aceitação</li>
+        <li>Premissas</li>
+        <li>Restrições</li>
+        <li>Exclusões explícitas</li>
+      </ul>
+
+      <h3>7.2 Exemplo simplificado</h3>
+      <div class="card" style="margin: 12px 0 0;">
+        <p><strong>Projeto:</strong> desenvolvimento de um portal acadêmico para alunos.</p>
+        <p><strong>Inclui:</strong> autenticação, consulta de notas, emissão de declaração e visualização de horários.</p>
+        <p><strong>Não inclui:</strong> módulo financeiro, aplicativo móvel nativo e integração com sistemas externos não previstos.</p>
+      </div>
+
+      <div class="note">
+        Um escopo sem exclusões explícitas abre espaço para interpretações amplas e conflitos posteriores.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> definir o escopo é explicitar, de forma objetiva, o que será entregue, sob quais condições e dentro de quais limites.
+      </div>
+    </section>
+
+    <section id="eap" class="card">
+      <h2>8. Estrutura Analítica do Projeto (EAP)</h2>
+      <p>
+        A EAP é uma decomposição hierárquica do trabalho total do projeto em componentes menores e mais gerenciáveis. Seu objetivo é organizar o projeto em partes que facilitem planejamento, atribuição de responsabilidades, monitoramento e controle.
+      </p>
+
+      <h3>8.1 Por que a EAP é importante</h3>
+      <ul>
+        <li>Transforma o escopo em estrutura operacional</li>
+        <li>Reduz risco de omissão de entregas importantes</li>
+        <li>Facilita estimativas de prazo e custo</li>
+        <li>Apoia a distribuição de responsabilidades</li>
+        <li>Melhora a comunicação sobre o trabalho a ser realizado</li>
+      </ul>
+
+      <h3>8.2 Exemplo simplificado de EAP</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nível</th>
+            <th>Elemento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Projeto Portal Acadêmico</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>1. Planejamento</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2. Levantamento de requisitos</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>3. Desenvolvimento</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>3.1 Módulo de login</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>3.2 Módulo de notas</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>3.3 Módulo de horários</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>4. Testes</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>5. Implantação</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>6. Treinamento e encerramento</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>8.3 Pacotes de trabalho</h3>
+      <p>
+        Os níveis mais detalhados da EAP são chamados de pacotes de trabalho. Eles representam unidades de trabalho suficientemente pequenas para serem planejadas, executadas e controladas com clareza.
+      </p>
+      <div class="good">
+        <strong>Síntese da seção:</strong> a EAP traduz o escopo em uma estrutura operacional, permitindo decompor o trabalho em partes menores, gerenciáveis e monitoráveis.
+      </div>
+    </section>
+
+    <section id="validacao" class="card">
+      <h2>9. Validação do escopo</h2>
+      <p>
+        A validação do escopo consiste em formalizar a aceitação das entregas concluídas. Nessa etapa, as partes interessadas responsáveis verificam se aquilo que foi produzido atende aos requisitos, critérios de aceitação e expectativas estabelecidas.
+      </p>
+      <p>
+        Validar o escopo não é o mesmo que testar tecnicamente uma entrega. O teste verifica funcionamento e conformidade técnica; a validação verifica aceitação formal do que foi entregue em relação ao escopo aprovado.
+      </p>
+
+      <h3>Exemplos de critérios de validação</h3>
+      <ul>
+        <li>Funcionalidades entregues conforme especificação</li>
+        <li>Documentação mínima concluída</li>
+        <li>Treinamento realizado</li>
+        <li>Aprovação do cliente ou usuário-chave registrada</li>
+      </ul>
+      <div class="good">
+        <strong>Síntese da seção:</strong> validar o escopo significa obter aceitação formal das entregas, garantindo que o projeto esteja produzindo resultados compatíveis com o que foi aprovado.
+      </div>
+    </section>
+
+    <section id="controle" class="card">
+      <h2>10. Controle do escopo</h2>
+      <p>
+        O controle do escopo envolve monitorar o status do escopo do projeto e gerenciar mudanças na linha de base do escopo. É por meio desse processo que a equipe evita a chamada ampliação indevida do escopo, frequentemente conhecida como <em>scope creep</em>.
+      </p>
+
+      <h3>10.1 Scope creep</h3>
+      <p>
+        Scope creep ocorre quando novas demandas, ajustes ou funcionalidades são incorporados ao projeto sem análise formal de impacto em prazo, custo, recursos e qualidade. Muitas vezes, essas mudanças parecem pequenas isoladamente, mas acumulam efeitos significativos.
+      </p>
+
+      <h3>10.2 Como controlar mudanças no escopo</h3>
+      <ul>
+        <li>Registrar formalmente toda solicitação de mudança</li>
+        <li>Analisar impactos em cronograma, orçamento e recursos</li>
+        <li>Submeter a mudança a aprovação competente</li>
+        <li>Atualizar documentos e linha de base do escopo</li>
+        <li>Comunicar a decisão às partes interessadas</li>
+      </ul>
+
+      <div class="note">
+        Nem toda mudança é indesejável. O problema está na mudança não controlada.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> controlar o escopo é evitar alterações desordenadas, assegurando que toda mudança seja analisada, aprovada e incorporada de forma documentada.
+      </div>
+    </section>
+
+    <section id="problemas" class="card">
+      <h2>11. Problemas frequentes no gerenciamento de escopo</h2>
+      <ul>
+        <li>Objetivos vagos ou excessivamente amplos</li>
+        <li>Requisitos incompletos ou contraditórios</li>
+        <li>Ausência de critérios claros de aceitação</li>
+        <li>Falta de participação das partes interessadas</li>
+        <li>Documentação insuficiente do que está dentro e fora do projeto</li>
+        <li>Mudanças aceitas informalmente</li>
+        <li>EAP superficial ou mal estruturada</li>
+        <li>Comunicação inadequada entre áreas técnicas e demandantes</li>
+      </ul>
+
+      <p>
+        Esses problemas não são apenas falhas administrativas. Eles têm impacto direto sobre custo, prazo, qualidade e satisfação dos envolvidos. Em ambientes organizacionais complexos, a ausência de disciplina no escopo frequentemente compromete a governança do projeto como um todo.
+      </p>
+      <div class="good">
+        <strong>Síntese da seção:</strong> a maior parte dos problemas de escopo decorre de falhas de definição, comunicação, documentação e controle de mudanças.
+      </div>
+    </section>
+
+    <section id="boas-praticas" class="card">
+      <h2>12. Boas práticas</h2>
+      <ul>
+        <li>Definir objetivos de forma precisa e verificável</li>
+        <li>Documentar requisitos com linguagem clara e sem ambiguidade</li>
+        <li>Registrar exclusões explícitas do projeto</li>
+        <li>Construir a EAP com base em entregas e não apenas em departamentos</li>
+        <li>Estabelecer critérios formais de aceitação</li>
+        <li>Manter processo de mudança definido e respeitado</li>
+        <li>Revisar periodicamente o alinhamento entre escopo e expectativas</li>
+        <li>Promover comunicação constante com as partes interessadas</li>
+      </ul>
+
+      <div class="good">
+        A melhor proteção contra falhas de escopo é a combinação de clareza documental, participação das partes interessadas e disciplina de controle.
+      </div>
+      <div class="good">
+        <strong>Síntese da seção:</strong> boas práticas de escopo envolvem clareza, documentação, participação das partes interessadas e disciplina gerencial ao longo de todo o projeto.
+      </div>
+    </section>
+
+    <section id="exercicios" class="card">
+      <h2>13. Exercícios de fixação</h2>
+      <p>
+        As respostas dos exercícios devem ser elaboradas pelo estudante em um documento do Word, com redação clara, organizada e tecnicamente fundamentada. Recomenda-se que cada resposta seja identificada pelo número da questão e desenvolvida de forma completa, evitando respostas excessivamente breves.
+      </p>
+
+      <div class="exercise">
+        <h3>Exercício 1</h3>
+        <p>Explique, com suas palavras, a diferença entre escopo do produto e escopo do projeto.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 2</h3>
+        <p>Descreva por que a coleta de requisitos é decisiva para a qualidade do gerenciamento de escopo.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 3</h3>
+        <p>Apresente três exemplos de requisitos funcionais e três exemplos de requisitos não funcionais para um sistema de biblioteca digital.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 4</h3>
+        <p>Considere um projeto de implantação de laboratório de informática em uma escola. Liste possíveis inclusões e exclusões do escopo.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 5</h3>
+        <p>Explique a finalidade da EAP e discuta como ela contribui para o planejamento e o controle do projeto.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 6</h3>
+        <p>Analise a afirmação: “Toda mudança no projeto representa falha de planejamento”. Você concorda? Justifique.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 7</h3>
+        <p>Defina o conceito de <em>scope creep</em> e apresente dois exemplos de como ele pode surgir em projetos de tecnologia.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 8</h3>
+        <p>Explique a diferença entre validar o escopo e controlar o escopo.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 9</h3>
+        <p>Monte uma estrutura simplificada de EAP para um projeto de organização de um evento acadêmico.</p>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercício 10</h3>
+        <p>Elabore uma resposta crítica: quais riscos uma organização assume quando inicia um projeto com escopo mal definido?</p>
+      </div>
+    </section>
+
+    <section id="estudo-de-caso" class="card">
+      <h2>14. Estudo de caso</h2>
+      <div class="case-box">
+        <h3>Implantação de um sistema de atendimento digital em uma clínica</h3>
+        <p>
+          Uma clínica de médio porte decidiu implantar um sistema digital para melhorar o atendimento aos pacientes. O objetivo inicial era permitir agendamento on-line de consultas, cadastro eletrônico de pacientes e emissão automática de lembretes por mensagem.
+        </p>
+        <p>
+          No início do projeto, a direção informou que desejava “modernizar a clínica”, mas não formalizou claramente o que seria incluído. Durante as primeiras reuniões, surgiram demandas adicionais: prontuário eletrônico completo, integração com convênios, controle de estoque da farmácia interna, aplicativo móvel, painel financeiro e relatórios gerenciais avançados.
+        </p>
+        <p>
+          A equipe técnica iniciou o trabalho com base em anotações informais, sem documento detalhado de requisitos, sem declaração formal de escopo e sem EAP estruturada. Após dois meses, a direção passou a cobrar funcionalidades que a equipe afirmava nunca ter recebido como prioridade. O cronograma já estava atrasado, o orçamento havia aumentado e os desenvolvedores relataram retrabalho frequente.
+        </p>
+      </div>
+
+      <h3>Questões para análise</h3>
+      <ol>
+        <li>Quais foram os principais erros de gerenciamento de escopo observados no caso?</li>
+        <li>Que consequências esses erros trouxeram para prazo, custo e qualidade do projeto?</li>
+        <li>Quais requisitos parecem ter sido inicialmente centrais e quais foram adicionados posteriormente?</li>
+        <li>Como a coleta de requisitos poderia ter sido conduzida de forma mais adequada?</li>
+        <li>Que elementos deveriam constar em uma declaração formal de escopo para esse projeto?</li>
+        <li>Como a EAP poderia ajudar a organizar e controlar o trabalho da equipe?</li>
+        <li>Há indícios de <em>scope creep</em>? Justifique com base na situação apresentada.</li>
+        <li>Que procedimento de controle de mudanças deveria ser implantado?</li>
+        <li>Como a validação do escopo poderia reduzir conflitos entre direção e equipe técnica?</li>
+        <li>Elabore uma proposta resumida de redefinição do escopo para recolocar o projeto sob controle.</li>
+      </ol>
+
+      <h3>Orientação para desenvolvimento do estudo de caso</h3>
+      <p>
+        O estudo de caso deve ser analisado pelo estudante em um documento do Word. A resposta deve apresentar uma análise estruturada do problema, contemplando a identificação das falhas de gerenciamento de escopo, os impactos observados no projeto e uma proposta de reorganização do escopo com base nos conceitos estudados ao longo do material.
+      </p>
+      <p>
+        Recomenda-se que o documento final inclua, de forma organizada, a descrição dos problemas identificados, uma proposta de requisitos mínimos, uma declaração resumida de escopo, possíveis exclusões do projeto, um esboço de EAP e um procedimento adequado para controle de mudanças. O objetivo é demonstrar compreensão conceitual e capacidade de aplicação prática.
+      </p>
+    </section>
+
+    <section id="revisao-final" class="card">
+      <h2>Quadro de revisão final</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Ideia central</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gerenciamento de escopo</td>
+            <td>Assegura que o projeto inclua somente o trabalho necessário para alcançar seus objetivos.</td>
+          </tr>
+          <tr>
+            <td>Requisitos</td>
+            <td>Representam necessidades e condições que orientam a definição do escopo.</td>
+          </tr>
+          <tr>
+            <td>Definição do escopo</td>
+            <td>Formaliza entregas, limites, critérios de aceitação, premissas e exclusões.</td>
+          </tr>
+          <tr>
+            <td>EAP</td>
+            <td>Decompõe o trabalho do projeto em partes menores e gerenciáveis.</td>
+          </tr>
+          <tr>
+            <td>Validação do escopo</td>
+            <td>Busca a aceitação formal das entregas concluídas.</td>
+          </tr>
+          <tr>
+            <td>Controle do escopo</td>
+            <td>Monitora mudanças e evita ampliação desordenada do trabalho do projeto.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="encerramento" class="card">
+      <h2>Encerramento</h2>
+      <p>
+        O gerenciamento de escopo é uma dimensão essencial da gestão de projetos porque define os limites do trabalho, organiza as entregas e sustenta o controle sobre mudanças. Projetos bem-sucedidos não dependem apenas de boa execução técnica, mas também de clareza sobre aquilo que se pretende entregar e sobre aquilo que não será realizado.
+      </p>
+      <p>
+        Em ambientes organizacionais, especialmente nos projetos de tecnologia, inovação e transformação digital, a disciplina na definição e no controle do escopo constitui um fator decisivo para reduzir incertezas, melhorar a comunicação e assegurar maior alinhamento entre expectativas e resultados.
+      </p>
+    </section>
+
+    <div class="footer">
+      Material didático em HTML – Gerenciamento de Escopo de Projetos.
+    </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/portal-data.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.renderSiteNav({
+      rootRelative: "..",
+      currentKey: "gestao-projetos"
+    });
+
+    PortalUI.renderFooter({
+      rootRelative: "..",
+      showHomeLink: true
+    });
+  </script>
+</body>
+</html>

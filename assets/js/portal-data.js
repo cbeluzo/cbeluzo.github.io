@@ -1096,16 +1096,16 @@
               },
               {
                 badge: { label: "Aula 7", className: "text-bg-primary" },
-                title: "COBIT, ITIL e modelos complementares",
-                search: "aula 7 cobit itil modelos complementares ativ 6 seleção frameworks escopo",
+                title: "COBIT",
+                search: "aula 7 cobit governança de ti cobit 5 ativ 6 framework",
                 inlineActions: [
                   {
                     label: "Atividade 6",
-                    className: "badge text-bg-warning text-dark",
+                    href: "aula_07_material_de_leitura_cobit_5.html",
+                    className: "badge text-bg-warning text-dark text-decoration-none",
                     icon: "bi-clipboard-check"
                   }
                 ],
-                metaText: ["Seleção justificada (escopo)"],
                 actions: [
                   {
                     label: "Abrir (Gamma)",
@@ -1541,27 +1541,21 @@
               },
               {
                 badge: { label: "Aula 08", className: "text-bg-primary" },
-                title: "Fundamentos do Ciclo de Vida em Gestão de Projetos",
-                search: "aula 08 fundamentos do ciclo de vida em gestão de projetos fases entregas",
+                title: "Gerenciamento de Escopo de Projetos",
+                search: "aula 08 gerenciamento de escopo de projetos requisitos entregas eap escopo",
                 actions: [
                   {
-                    label: "Abrir (Gamma)",
+                    label: "Material de Leitura",
+                    href: "aula_08_material_gerenciamento_escopo_projetos.html",
                     className: "btn btn-outline-secondary btn-sm",
-                    icon: "bi-box-arrow-up-right"
+                    icon: "bi-file-earmark-text"
                   }
                 ]
               },
               {
                 badge: { label: "Aula 09", className: "text-bg-primary" },
-                title: "Gerenciamento de Escopo de Projetos",
-                search: "aula 09 gerenciamento de escopo projetos requisitos entregas eap",
-                actions: [
-                  {
-                    label: "Abrir (Gamma)",
-                    className: "btn btn-outline-secondary btn-sm",
-                    icon: "bi-box-arrow-up-right"
-                  }
-                ]
+                title: "Atividade em sala",
+                search: "aula 09 atividade em sala gerenciamento de projetos discussão aplicação prática"
               },
               {
                 badge: { label: "Caso 10", className: "text-bg-info" },

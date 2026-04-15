@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 07 - COBIT - Material de Leitura</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(25,135,84,.18), transparent 45%),
+                      radial-gradient(1200px circle at 80% 30%, rgba(13,110,253,.12), transparent 45%);
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #dbe4f0;
+      --brand: #1d4ed8;
+      --brand-2: #2563eb;
+      --brand-3: #0f172a;
+      --soft: #eff6ff;
+      --soft-2: #f8fbff;
+      --ok: #166534;
+      --warn: #92400e;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 180px, var(--bg) 100%);
+      line-height: 1.68;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 42px 24px 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar .wrap,
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 { line-height: 1.25; }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+    }
+
+    .topbar-title {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 900px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.94);
+      margin: 0;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--brand);
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      transition: 0.2s ease;
+      font-size: 0.96rem;
+    }
+
+    .sidebar a:hover {
+      background: var(--soft);
+      color: var(--brand);
+    }
+
+    .content section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      color: #0f172a;
+      font-size: 1.55rem;
+    }
+
+    .content h3 {
+      color: var(--brand);
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .box {
+      background: #fafcff;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--brand);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .card h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--soft);
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    ul, ol { padding-left: 22px; margin: 10px 0 14px; }
+    li { margin-bottom: 8px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 10px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand);
+      border: 1px solid #cfe0ff;
+      margin-bottom: 10px;
+    }
+
+    .didactic-note,
+    .summary-panel,
+    .practice-panel {
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      border: 1px solid var(--line);
+    }
+
+    .didactic-note {
+      background: #fffdf5;
+      border-left: 5px solid #d97706;
+    }
+
+    .summary-panel {
+      background: var(--soft-2);
+      border-left: 5px solid var(--brand);
+    }
+
+    .practice-panel {
+      background: #f0fdf4;
+      border-left: 5px solid #16a34a;
+    }
+
+    .didactic-note strong,
+    .summary-panel strong,
+    .practice-panel strong {
+      color: var(--brand-3);
+    }
+
+    .exercise {
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: #fcfdff;
+    }
+
+    .exercise strong {
+      color: #0f172a;
+    }
+
+    .response-box {
+      margin-top: 12px;
+      padding: 12px;
+      min-height: 90px;
+      border: 1px dashed #94a3b8;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    details {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .footer-note {
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .highlight-ok {
+      background: #f0fdf4;
+      border-left-color: #16a34a;
+    }
+
+    .highlight-warn {
+      background: #fff7ed;
+      border-left-color: #ea580c;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .grid-2, .grid-3, .grid-4, .hero-meta {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 1.8rem; }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+      #site-nav,
+      .page-hero,
+      #site-footer {
+        display: none;
+      }
+      .sidebar {
+        display: none;
+      }
+      .layout {
+        display: block;
+        padding: 0;
+      }
+      .content section {
+        box-shadow: none;
+        border: 1px solid #cbd5e1;
+        margin-bottom: 16px;
+        break-inside: avoid;
+      }
+      .topbar {
+        box-shadow: none;
+      }
+      details {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Gestão de TI</div>
+          <h1 class="h3 mb-1">Aula 07 - COBIT</h1>
+          <div class="text-muted">Material complementar de leitura sobre COBIT 5.</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-success" href="./gestao-ti.html">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para a disciplina
+          </a>
+          <a class="btn btn-outline-success" href="#exercicios">
+            <i class="bi bi-journal-text me-1"></i>Ir para exercícios
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="eyebrow">Governança e Gestão de TI</div>
+      <div class="topbar-title">Material de Leitura - COBIT 5</div>
+      <p class="lead">
+        Este material apresenta uma visão didática e estruturada do COBIT 5, com foco na compreensão conceitual, no uso prático em organizações e na preparação para atividades acadêmicas e profissionais. O conteúdo foi organizado para leitura, revisão e apoio a discussões em sala de aula.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-box"><strong>Objetivo</strong>Compreender os fundamentos, a estrutura e a aplicação prática do COBIT 5.</div>
+        <div class="hero-box"><strong>Indicado para</strong>Disciplinas de governança de TI, gestão de serviços, auditoria, controles e compliance.</div>
+        <div class="hero-box"><strong>Como usar</strong>Ler por seções, revisar os quadros-resumo e responder aos exercícios ao final.</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <aside class="sidebar">
+        <h3>Navegação</h3>
+        <a href="#intro">1. Introdução</a>
+        <a href="#conceito">2. O que é COBIT 5</a>
+        <a href="#objetivos">3. Finalidade e benefícios</a>
+        <a href="#principios">4. Os 5 princípios</a>
+        <a href="#habilitadores">5. Os 7 habilitadores</a>
+        <a href="#cascade">6. Goals Cascade</a>
+        <a href="#processos">7. Domínios e processos</a>
+        <a href="#governanca-gestao">8. Governança x gestão</a>
+        <a href="#implementacao">9. Implementação</a>
+        <a href="#aplicacoes">10. Aplicações práticas</a>
+        <a href="#resumo">11. Síntese</a>
+        <a href="#exercicios">12. Exercícios de fixação</a>
+        <a href="#gabarito">13. Gabarito comentado</a>
+        <a href="#caso">14. Estudo de caso aplicado</a>
+      </aside>
+
+      <div class="content">
+        <section id="intro">
+          <span class="pill">Visão geral</span>
+          <h2>1. Introdução</h2>
+          <p>
+            A governança e a gestão da tecnologia da informação tornaram-se dimensões centrais para o funcionamento das organizações contemporâneas. A transformação digital ampliou a dependência de sistemas, dados, serviços em nuvem, plataformas e mecanismos de segurança da informação. Nesse contexto, não basta apenas possuir recursos tecnológicos: é necessário assegurar que a tecnologia gere valor, reduza riscos, utilize adequadamente os recursos disponíveis e contribua para os objetivos institucionais.
+          </p>
+          <p>
+            O COBIT 5 foi concebido justamente para apoiar esse desafio. Trata-se de um framework amplamente utilizado para orientar a governança e a gestão corporativa da tecnologia da informação. Sua proposta não é apenas descrever controles técnicos, mas integrar tecnologia, estratégia, processos, pessoas, estruturas organizacionais e informação em uma abordagem coerente e abrangente.
+          </p>
+          <div class="summary-panel">
+            <strong>Em termos simples:</strong> o COBIT 5 organiza a relação entre objetivos institucionais, decisões de governança, práticas de gestão, processos, controles e resultados esperados da TI.
+          </div>
+          <div class="didactic-note">
+            <strong>Leitura orientada:</strong> ao estudar COBIT 5, procure sempre responder a três perguntas: que valor a TI deve gerar, quais riscos precisam ser controlados e como os recursos tecnológicos devem ser organizados para apoiar o negócio.
+          </div>
+          <div class="box">
+            <strong>Ideia central:</strong> o COBIT 5 ajuda a transformar necessidades das partes interessadas em objetivos organizacionais, objetivos relacionados à TI, processos, práticas e mecanismos de monitoramento.
+          </div>
+        </section>
+
+        <section id="conceito">
+          <span class="pill">Fundamentos</span>
+          <h2>2. O que é COBIT 5</h2>
+          <p>
+            COBIT é a sigla para <em>Control Objectives for Information and Related Technology</em>. O COBIT 5 representa uma evolução importante do framework, pois consolida conceitos anteriores e amplia o foco para uma visão corporativa da informação e da tecnologia. Em vez de tratar a TI como uma área isolada, o modelo a insere na lógica do negócio e da governança institucional.
+          </p>
+          <p>
+            O framework pode ser entendido como um guia estruturado que auxilia organizações a definir responsabilidades, alinhar tecnologia e estratégia, organizar processos, monitorar desempenho, estabelecer controles e promover conformidade. Assim, sua utilidade não se limita à auditoria: ele também apoia gestores, analistas, executivos, conselhos, equipes de risco e profissionais de segurança.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <h4>O que o COBIT 5 oferece</h4>
+              <ul>
+                <li>Linguagem comum para governança e gestão de TI.</li>
+                <li>Estrutura de objetivos, processos e práticas.</li>
+                <li>Integração entre valor, risco e recursos.</li>
+                <li>Visão de ponta a ponta da organização.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>O que o COBIT 5 não é</h4>
+              <ul>
+                <li>Não é apenas um checklist técnico.</li>
+                <li>Não se restringe à auditoria de sistemas.</li>
+                <li>Não substitui a estratégia organizacional.</li>
+                <li>Não funciona de modo eficaz sem adaptação ao contexto institucional.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="objetivos">
+          <span class="pill">Propósito</span>
+          <h2>3. Finalidade e benefícios do COBIT 5</h2>
+          <p>
+            O propósito do COBIT 5 é apoiar a criação de um sistema de governança e gestão capaz de assegurar que a informação e a tecnologia sustentem os objetivos organizacionais. Em termos práticos, isso significa organizar decisões, definir responsabilidades, priorizar investimentos, controlar riscos, garantir conformidade e acompanhar resultados.
+          </p>
+          <p>
+            Em muitas organizações, problemas recorrentes decorrem justamente da ausência dessa lógica estruturada: projetos de TI sem alinhamento com o negócio, investimentos pouco justificáveis, falhas de segurança, retrabalho operacional, baixa integração entre áreas, ausência de métricas e pouca clareza sobre quem decide o quê. O COBIT 5 contribui para reduzir essas fragilidades ao oferecer um modelo de referência coerente e integrado.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Benefício</th>
+                <th>Explicação</th>
+                <th>Exemplo organizacional</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Geração de valor</td>
+                <td>Ajuda a direcionar investimentos e serviços de TI para resultados relevantes ao negócio.</td>
+                <td>Priorização de sistemas que reduzem custos ou ampliam a capacidade de atendimento.</td>
+              </tr>
+              <tr>
+                <td>Otimização de riscos</td>
+                <td>Permite identificar, avaliar e tratar riscos relacionados à tecnologia e à informação.</td>
+                <td>Definição de controles para indisponibilidade de sistemas críticos e vazamento de dados.</td>
+              </tr>
+              <tr>
+                <td>Otimização de recursos</td>
+                <td>Favorece melhor uso de pessoas, aplicações, infraestrutura, dados e orçamento.</td>
+                <td>Revisão do portfólio de sistemas para reduzir redundâncias e gastos desnecessários.</td>
+              </tr>
+              <tr>
+                <td>Conformidade</td>
+                <td>Apoia o cumprimento de leis, normas, políticas internas e exigências regulatórias.</td>
+                <td>Adequação de processos a requisitos de auditoria e proteção de dados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="principios">
+          <span class="pill">Base conceitual</span>
+          <h2>4. Os cinco princípios do COBIT 5</h2>
+          <p>
+            O COBIT 5 está fundamentado em cinco princípios. Esses princípios formam a espinha dorsal do framework e orientam a sua lógica de aplicação. Compreender esses elementos é essencial para evitar uma utilização superficial do modelo.
+          </p>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="icon">1</div>
+              <h4>Atender às necessidades das partes interessadas</h4>
+              <p>A tecnologia deve contribuir para a geração de valor organizacional, equilibrando benefícios, riscos e recursos.</p>
+            </div>
+            <div class="card">
+              <div class="icon">2</div>
+              <h4>Cobrir a organização de ponta a ponta</h4>
+              <p>A governança de TI não se restringe ao setor de informática; ela envolve toda a organização.</p>
+            </div>
+            <div class="card">
+              <div class="icon">3</div>
+              <h4>Aplicar um framework integrado</h4>
+              <p>O COBIT 5 se articula com outras normas e frameworks, promovendo coerência institucional.</p>
+            </div>
+            <div class="card">
+              <div class="icon">4</div>
+              <h4>Possibilitar uma abordagem holística</h4>
+              <p>Resultados dependem da interação entre processos, pessoas, estruturas, cultura, informação e tecnologia.</p>
+            </div>
+            <div class="card">
+              <div class="icon">5</div>
+              <h4>Distinguir governança de gestão</h4>
+              <p>É necessário separar funções de direcionamento estratégico das funções de planejamento e execução.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>4.1 Interpretação didática dos princípios</h3>
+            <p>
+              Esses princípios podem ser entendidos como regras orientadoras do uso do framework. Eles mostram que o COBIT 5 não deve ser aplicado como uma coleção de tarefas isoladas, mas como um sistema coerente de decisão e organização institucional. Quando uma organização ignora esses princípios, tende a transformar a governança em mera formalidade documental.
+            </p>
+          </div>
+
+          <div class="summary-panel">
+            <strong>Resumo do tópico:</strong> os cinco princípios mostram que o COBIT 5 é estratégico, organizacional, integrado, holístico e orientado à clareza entre direção e execução.
+          </div>
+        </section>
+
+        <section id="habilitadores">
+          <span class="pill">Abordagem holística</span>
+          <h2>5. Os sete habilitadores do COBIT 5</h2>
+          <p>
+            Os habilitadores são os fatores que tornam possível a implementação e o funcionamento da governança e da gestão. Eles traduzem a ideia de que resultados organizacionais dependem de múltiplos elementos articulados. Um problema de TI raramente é apenas tecnológico; com frequência, envolve também papéis, informação, cultura, competências e estruturas.
+          </p>
+
+          <div class="grid-3">
+            <div class="card"><div class="icon">📘</div><h4>1. Princípios, políticas e frameworks</h4><p>Formalizam diretrizes e orientam decisões e comportamentos. Ex.: política de segurança da informação, política de gestão de mudanças.</p></div>
+            <div class="card"><div class="icon">⚙️</div><h4>2. Processos</h4><p>Conjunto estruturado de práticas e atividades para produzir resultados específicos. Ex.: gerenciamento de incidentes, gestão de riscos.</p></div>
+            <div class="card"><div class="icon">🏛️</div><h4>3. Estruturas organizacionais</h4><p>Instâncias de decisão e responsabilidade. Ex.: comitê de TI, conselho, escritório de projetos, área de segurança.</p></div>
+            <div class="card"><div class="icon">🤝</div><h4>4. Cultura, ética e comportamento</h4><p>Valores e atitudes que influenciam a efetividade dos controles e das decisões. Ex.: adesão às políticas, comunicação, accountability.</p></div>
+            <div class="card"><div class="icon">🗂️</div><h4>5. Informação</h4><p>Ativo central para operação, controle e tomada de decisão. Inclui qualidade, disponibilidade, integridade e proteção.</p></div>
+            <div class="card"><div class="icon">💻</div><h4>6. Serviços, infraestrutura e aplicações</h4><p>Recursos tecnológicos necessários para suportar processos e objetivos organizacionais.</p></div>
+            <div class="card"><div class="icon">👥</div><h4>7. Pessoas, habilidades e competências</h4><p>Capacidades humanas requeridas para executar processos, analisar informações e tomar decisões adequadas.</p></div>
+          </div>
+
+          <div class="practice-panel">
+            <strong>Aplicação prática:</strong> ao diagnosticar um problema de TI, pergunte se sua origem está em falhas de processo, estrutura, informação, cultura ou qualificação das pessoas. Essa leitura amplia a capacidade de análise e evita soluções simplistas.
+          </div>
+
+          <div class="box highlight-warn">
+            <strong>Ponto didático importante:</strong> falhas de governança frequentemente surgem quando a organização concentra sua atenção apenas em tecnologia e negligencia cultura, papéis, competências e qualidade da informação.
+          </div>
+        </section>
+
+        <section id="cascade">
+          <span class="pill">Encadeamento de objetivos</span>
+          <h2>6. Goals Cascade</h2>
+          <p>
+            Um dos elementos mais importantes do COBIT 5 é a chamada <em>goals cascade</em>, ou cascata de objetivos. Trata-se de um mecanismo que transforma necessidades das partes interessadas em objetivos organizacionais, depois em objetivos relacionados à TI e, por fim, em metas dos habilitadores e processos.
+          </p>
+          <p>
+            Esse encadeamento evita um problema bastante comum: a implementação de ações de TI sem justificativa estratégica. Com a cascata de objetivos, procura-se garantir coerência entre aquilo que a organização precisa alcançar e aquilo que a tecnologia efetivamente deve fazer para contribuir com esse resultado.
+          </p>
+          <div class="box">
+            <strong>Fluxo simplificado:</strong><br>
+            Necessidades das partes interessadas → Objetivos corporativos → Objetivos relacionados à TI → Objetivos dos habilitadores → Processos, práticas, indicadores e responsabilidades.
+          </div>
+          <h3>Exemplo didático</h3>
+          <p>
+            Imagine uma instituição de ensino que deseja melhorar a experiência do estudante e reduzir falhas em serviços digitais. Essa necessidade pode ser traduzida em um objetivo corporativo de melhoria da qualidade do serviço. Em seguida, esse objetivo é desdobrado em metas de TI, como disponibilidade dos sistemas acadêmicos, melhoria no suporte e maior confiabilidade dos dados. Por fim, definem-se processos e controles associados, como gestão de incidentes, monitoramento de desempenho, gestão de mudanças e definição de acordos de nível de serviço.
+          </p>
+        </section>
+
+        <section id="processos">
+          <span class="pill">Modelo de referência</span>
+          <h2>7. Domínios e processos do COBIT 5</h2>
+          <p>
+            O COBIT 5 organiza seu modelo de referência de processos em cinco domínios. Um deles pertence à esfera da governança e os outros quatro pertencem à esfera da gestão. Esse arranjo procura refletir a diferença entre direcionar e supervisionar, de um lado, e executar e controlar a operação, de outro.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Domínio</th>
+                <th>Sigla</th>
+                <th>Natureza</th>
+                <th>Função principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Evaluate, Direct and Monitor</td>
+                <td>EDM</td>
+                <td>Governança</td>
+                <td>Avaliar necessidades, direcionar prioridades e monitorar resultados.</td>
+              </tr>
+              <tr>
+                <td>Align, Plan and Organize</td>
+                <td>APO</td>
+                <td>Gestão</td>
+                <td>Alinhar, planejar, estruturar e organizar os recursos e estratégias de TI.</td>
+              </tr>
+              <tr>
+                <td>Build, Acquire and Implement</td>
+                <td>BAI</td>
+                <td>Gestão</td>
+                <td>Desenvolver, adquirir, implementar e integrar soluções.</td>
+              </tr>
+              <tr>
+                <td>Deliver, Service and Support</td>
+                <td>DSS</td>
+                <td>Gestão</td>
+                <td>Entregar serviços, prestar suporte e manter a operação.</td>
+              </tr>
+              <tr>
+                <td>Monitor, Evaluate and Assess</td>
+                <td>MEA</td>
+                <td>Gestão</td>
+                <td>Monitorar desempenho, conformidade, controles e aderência a requisitos.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Em termos gerais, o domínio EDM concentra os processos ligados ao papel da alta administração e da governança. Já os domínios APO, BAI, DSS e MEA reúnem processos associados ao planejamento, desenvolvimento, operação, suporte, monitoramento e melhoria.
+          </p>
+
+          <h3>7.1 Como interpretar os domínios</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h4>APO – Estratégia e organização</h4>
+              <p>Envolve temas como estratégia de TI, arquitetura corporativa, orçamento, recursos humanos, riscos, segurança, fornecedores e qualidade.</p>
+            </div>
+            <div class="card">
+              <h4>BAI – Mudança e implementação</h4>
+              <p>Relaciona-se a programas, projetos, requisitos, desenvolvimento, mudanças, conhecimento e transição para operação.</p>
+            </div>
+            <div class="card">
+              <h4>DSS – Operação e suporte</h4>
+              <p>Foca em serviços, incidentes, problemas, continuidade, segurança operacional e suporte ao usuário.</p>
+            </div>
+            <div class="card">
+              <h4>MEA – Acompanhamento e avaliação</h4>
+              <p>Trata de desempenho, controle interno, conformidade e avaliação da efetividade do sistema de governança e gestão.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="governanca-gestao">
+          <span class="pill">Distinção essencial</span>
+          <h2>8. Governança e gestão: qual é a diferença?</h2>
+          <p>
+            Uma das contribuições mais importantes do COBIT 5 é deixar explícita a separação entre governança e gestão. Em muitas organizações, essas funções se confundem. Quando isso ocorre, é comum haver decisões sem legitimidade adequada, excesso de centralização, falta de responsabilização e baixa capacidade de acompanhamento estratégico.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>Governança</th>
+                <th>Gestão</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pergunta central</td>
+                <td>Estamos escolhendo a direção correta?</td>
+                <td>Estamos executando corretamente?</td>
+              </tr>
+              <tr>
+                <td>Responsáveis típicos</td>
+                <td>Conselho, alta administração, comitês estratégicos.</td>
+                <td>Gestores, coordenadores, equipes técnicas e operacionais.</td>
+              </tr>
+              <tr>
+                <td>Foco</td>
+                <td>Valor, risco, prioridades, direcionamento e supervisão.</td>
+                <td>Planejamento, execução, operação, controle e melhoria.</td>
+              </tr>
+              <tr>
+                <td>Horizonte</td>
+                <td>Mais estratégico.</td>
+                <td>Mais tático e operacional.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="box highlight-ok">
+            <strong>Exemplo:</strong> aprovar a prioridade de um grande sistema institucional é ato de governança; conduzir o projeto, definir cronograma, implantar a solução e prestar suporte é atividade de gestão.
+          </div>
+        </section>
+
+        <section id="implementacao">
+          <span class="pill">Aplicação institucional</span>
+          <h2>9. Como implementar o COBIT 5</h2>
+          <p>
+            Implementar o COBIT 5 não significa aplicar todos os processos de forma extensa e simultânea. O framework deve ser adaptado ao contexto organizacional, à maturidade existente, aos riscos mais relevantes e às prioridades estratégicas. Uma implementação consistente costuma começar por diagnóstico, definição de objetivos, identificação de lacunas e estabelecimento de um plano progressivo.
+          </p>
+
+          <ol>
+            <li><strong>Compreender o contexto:</strong> identificar missão, estratégia, partes interessadas, ambiente regulatório e principais problemas de TI.</li>
+            <li><strong>Definir prioridades:</strong> selecionar objetivos e processos mais críticos para a organização.</li>
+            <li><strong>Mapear situação atual:</strong> levantar processos existentes, responsabilidades, controles, métricas e lacunas.</li>
+            <li><strong>Desenhar estado desejado:</strong> estabelecer papéis, práticas, indicadores e resultados esperados.</li>
+            <li><strong>Executar melhorias:</strong> implementar políticas, estruturas, processos, capacitações e mecanismos de monitoramento.</li>
+            <li><strong>Acompanhar e ajustar:</strong> avaliar desempenho, corrigir desvios e amadurecer gradualmente o sistema.</li>
+          </ol>
+
+          <div class="box highlight-warn">
+            <strong>Erro frequente:</strong> adotar o framework apenas como exigência formal de auditoria, sem integração real com decisões, prioridades e cultura organizacional.
+          </div>
+        </section>
+
+        <section id="aplicacoes">
+          <span class="pill">Uso prático</span>
+          <h2>10. Aplicações práticas do COBIT 5</h2>
+          <p>
+            O COBIT 5 pode ser aplicado em diversos contextos, tanto no setor privado quanto no setor público. Sua utilidade cresce especialmente em ambientes com alta dependência de sistemas, pressão regulatória, necessidade de transparência, restrição orçamentária e cobrança por resultados.
+          </p>
+
+          <div class="grid-2">
+            <div class="card">
+              <h4>Em organizações públicas</h4>
+              <p>Auxilia na definição de responsabilidades, conformidade, prestação de contas, transparência, continuidade dos serviços e melhoria da eficiência administrativa.</p>
+            </div>
+            <div class="card">
+              <h4>Em empresas privadas</h4>
+              <p>Contribui para alinhamento estratégico, priorização de investimentos, segurança da informação, gestão de fornecedores e governança de projetos e serviços.</p>
+            </div>
+            <div class="card">
+              <h4>Na auditoria e no controle interno</h4>
+              <p>Oferece linguagem de referência para avaliação de processos, controles, riscos, conformidade e capacidade organizacional.</p>
+            </div>
+            <div class="card">
+              <h4>Na gestão acadêmica e educacional</h4>
+              <p>Pode orientar a governança de ambientes virtuais, sistemas acadêmicos, dados institucionais, suporte ao usuário e planejamento digital.</p>
+            </div>
+          </div>
+
+          <h3>Exemplo resumido</h3>
+          <p>
+            Uma organização enfrenta falhas recorrentes em seus sistemas, reclamações dos usuários, ausência de métricas e projetos atrasados. Ao utilizar o COBIT 5, ela pode estruturar um comitê decisório, definir objetivos de TI alinhados ao negócio, revisar os processos de incidentes, mudanças e continuidade, estabelecer indicadores e monitorar resultados. Nesse caso, o framework atua como elemento de organização e disciplina gerencial.
+          </p>
+        </section>
+
+        <section id="resumo">
+          <span class="pill">Fechamento conceitual</span>
+          <h2>11. Síntese do conteúdo</h2>
+          <p>
+            O COBIT 5 é um framework para governança e gestão corporativa da tecnologia da informação. Seu valor reside na capacidade de integrar estratégia, risco, recursos, processos, estruturas, informação e pessoas em uma visão coerente. Em vez de restringir a TI ao plano técnico, o modelo a posiciona como parte do sistema organizacional de criação de valor.
+          </p>
+          <p>
+            Para compreender o COBIT 5, é necessário dominar quatro ideias centrais: a atenção às necessidades das partes interessadas, a cobertura de ponta a ponta da organização, a abordagem holística por meio dos habilitadores e a distinção entre governança e gestão. A partir desses elementos, o framework oferece um modelo de referência que pode orientar desde decisões estratégicas até práticas operacionais e controles de desempenho.
+          </p>
+          <div class="summary-panel">
+            <strong>Quadro-resumo final:</strong>
+            <ul>
+              <li>O COBIT 5 conecta objetivos institucionais e objetivos de TI.</li>
+              <li>Seu foco está em valor, risco e uso adequado de recursos.</li>
+              <li>Os cinco princípios organizam a lógica do framework.</li>
+              <li>Os sete habilitadores mostram que governança depende de múltiplos fatores interdependentes.</li>
+              <li>Governança e gestão são funções complementares, mas distintas.</li>
+              <li>Os domínios EDM, APO, BAI, DSS e MEA estruturam o modelo de processos.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="exercicios">
+          <span class="pill">Aprendizagem ativa</span>
+          <h2>12. Exercícios de fixação</h2>
+          <p>
+            Os exercícios a seguir devem ser respondidos em um documento formal (por exemplo, arquivo Word), com linguagem técnica, organização lógica e, sempre que possível, uso de exemplos aplicados.
+          </p>
+
+          <div class="exercise">
+            <p><strong>1.</strong> Explique, com suas palavras, por que o COBIT 5 não deve ser entendido apenas como um modelo técnico de controle de TI.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>2.</strong> Descreva a diferença entre governança e gestão no contexto do COBIT 5 e apresente um exemplo de decisão típica de cada uma.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>3.</strong> Qual é a importância da <em>goals cascade</em> para o alinhamento entre estratégia organizacional e tecnologia da informação?</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>4.</strong> Liste os cinco princípios do COBIT 5 e explique brevemente o significado de cada um.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>5.</strong> Escolha três dos sete habilitadores do COBIT 5 e explique como eles podem influenciar o sucesso ou o fracasso da governança de TI.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>6.</strong> Uma instituição possui bons equipamentos e sistemas atualizados, mas enfrenta falhas recorrentes em segurança e baixa adesão às políticas internas. Com base no COBIT 5, que habilitadores parecem estar mais fragilizados?</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>7.</strong> Associe cada domínio a sua função principal:</p>
+            <ol type="a">
+              <li>EDM</li>
+              <li>APO</li>
+              <li>BAI</li>
+              <li>DSS</li>
+              <li>MEA</li>
+            </ol>
+            <p>Funções: monitorar conformidade; entregar serviços; avaliar e direcionar; construir e implementar soluções; alinhar e planejar.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>8.</strong> Elabore um pequeno diagnóstico de uma organização fictícia que apresenta dois problemas de TI e indique como o COBIT 5 poderia ajudar a tratá-los.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>9.</strong> Por que a cobertura da organização de ponta a ponta é uma característica relevante do COBIT 5?</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>10.</strong> Redija um parágrafo explicando por que pessoas, competências e cultura são tão importantes quanto tecnologia na governança de TI.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>11. Questão objetiva.</strong> Assinale a alternativa correta:</p>
+            <p>O domínio do COBIT 5 mais diretamente relacionado à entrega de serviços e suporte operacional é:</p>
+            <ol type="a">
+              <li>EDM</li>
+              <li>APO</li>
+              <li>BAI</li>
+              <li>DSS</li>
+              <li>MEA</li>
+            </ol>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>12. Questão objetiva.</strong> Assinale a alternativa correta:</p>
+            <p>Entre os habilitadores do COBIT 5, aquele que se refere diretamente aos valores, atitudes e comportamentos predominantes na organização é:</p>
+            <ol type="a">
+              <li>Processos</li>
+              <li>Informação</li>
+              <li>Cultura, ética e comportamento</li>
+              <li>Serviços, infraestrutura e aplicações</li>
+              <li>Estruturas organizacionais</li>
+            </ol>
+            
+          </div>
+        </section>
+
+        <section id="gabarito">
+          <span class="pill">Correção comentada</span>
+          <h2>13. Gabarito comentado</h2>
+
+          <details>
+            <summary>Ver gabarito e comentários</summary>
+            <p><strong>1.</strong> Espera-se que o estudante reconheça que o COBIT 5 trata de governança e gestão corporativa, articulando estratégia, valor, risco, recursos, processos, estruturas e pessoas. Não se limita ao controle técnico, pois sua lógica é institucional e organizacional.</p>
+            <p><strong>2.</strong> Governança avalia, direciona e monitora; gestão planeja, executa e acompanha. Exemplo de governança: decidir prioridades estratégicas de investimento em TI. Exemplo de gestão: conduzir a implantação de um sistema aprovado.</p>
+            <p><strong>3.</strong> A <em>goals cascade</em> conecta necessidades das partes interessadas aos objetivos corporativos e aos objetivos de TI, evitando ações desconectadas da estratégia institucional.</p>
+            <p><strong>4.</strong> Atender às necessidades das partes interessadas; cobrir a organização de ponta a ponta; aplicar um framework integrado; possibilitar uma abordagem holística; distinguir governança de gestão.</p>
+            <p><strong>5.</strong> Resposta aberta. O importante é justificar como cada habilitador influencia resultados. Exemplo: processos definem rotinas; cultura influencia adesão; competências afetam qualidade da execução.</p>
+            <p><strong>6.</strong> Os habilitadores mais fragilizados provavelmente são cultura, ética e comportamento; princípios e políticas; e pessoas, habilidades e competências.</p>
+            <p><strong>7.</strong> a) EDM = avaliar e direcionar; b) APO = alinhar e planejar; c) BAI = construir e implementar soluções; d) DSS = entregar serviços; e) MEA = monitorar conformidade e desempenho.</p>
+            <p><strong>8.</strong> Resposta aberta. Deve conter diagnóstico coerente e indicação de como o framework ajudaria por meio de processos, papéis, métricas e controles.</p>
+            <p><strong>9.</strong> Porque evita que a TI seja tratada como área isolada, integrando tecnologia aos processos, objetivos e responsabilidades de toda a organização.</p>
+            <p><strong>10.</strong> Resposta aberta. Espera-se destaque para o fato de que tecnologias só geram resultados quando utilizadas por pessoas competentes em uma cultura favorável ao cumprimento de políticas, decisões e controles.</p>
+            <p><strong>11.</strong> Alternativa correta: <strong>d) DSS</strong>.</p>
+            <p><strong>12.</strong> Alternativa correta: <strong>c) Cultura, ética e comportamento</strong>.</p>
+          </details>
+
+          <p class="footer-note">
+            Sugestão de uso didático: este material pode ser combinado com estudo de caso, discussão em grupo, mapa conceitual, quadro comparativo entre COBIT 5 e outros frameworks e atividade prática de diagnóstico organizacional.
+          </p>
+        </section>
+
+        <section id="caso">
+          <span class="pill">Aplicação em sala</span>
+          <h2>14. Estudo de caso aplicado</h2>
+          <p>
+            O estudo de caso a seguir foi elaborado para permitir a aplicação prática dos conceitos do COBIT 5 em um contexto organizacional plausível. A proposta é que os estudantes leiam a situação, identifiquem problemas de governança e gestão de TI e proponham melhorias com base nos princípios, habilitadores e domínios do framework.
+          </p>
+
+          <div class="summary-panel">
+            <strong>Objetivo pedagógico:</strong> desenvolver a capacidade de analisar situações organizacionais reais ou simuladas, relacionando problemas de tecnologia a dimensões de estrutura, processo, risco, cultura, informação e decisão.
+          </div>
+
+          <h3>14.1 Contexto organizacional</h3>
+          <p>
+            A organização fictícia <strong>EducaMais Integrada</strong> é uma instituição de médio porte que atua no setor educacional e oferece serviços presenciais e digitais. Nos últimos anos, a instituição investiu em diferentes soluções tecnológicas, incluindo sistema acadêmico, ambiente virtual de aprendizagem, portal do aluno, sistema financeiro e ferramentas de comunicação interna.
+          </p>
+          <p>
+            Apesar desse conjunto de investimentos, a direção percebe que os resultados alcançados estão aquém do esperado. Há reclamações frequentes de usuários sobre indisponibilidade de serviços, atrasos na resolução de incidentes, retrabalho entre setores, falhas de comunicação entre a área de TI e os gestores das áreas acadêmica e administrativa, além de insegurança quanto à qualidade e à consistência de algumas informações institucionais.
+          </p>
+          <p>
+            Em auditoria interna recente, foram observados alguns problemas adicionais: ausência de indicadores formais para acompanhar o desempenho dos serviços de TI, pouca clareza sobre quem aprova mudanças relevantes em sistemas, inexistência de um comitê estruturado para decisões estratégicas de tecnologia, políticas internas desatualizadas, treinamentos esporádicos e baixa adesão dos usuários a procedimentos de segurança da informação.
+          </p>
+
+          <div class="didactic-note">
+            <strong>Leitura analítica:</strong> observe que o problema da organização não é apenas técnico. Há indícios de fragilidades em processos, estruturas organizacionais, cultura, políticas, responsabilidades e gestão da informação.
+          </div>
+
+          <h3>14.2 Situações-problema identificadas</h3>
+          <div class="grid-2">
+            <div class="card">
+              <div class="icon">⚠️</div>
+              <h4>Serviços instáveis</h4>
+              <p>O portal do aluno e o ambiente virtual de aprendizagem apresentam períodos de lentidão e indisponibilidade em momentos críticos, como matrícula e lançamento de notas.</p>
+            </div>
+            <div class="card">
+              <div class="icon">🧭</div>
+              <h4>Falta de direcionamento claro</h4>
+              <p>As decisões de priorização de projetos de TI são tomadas de forma reativa, sem critérios claros e sem alinhamento explícito com objetivos institucionais.</p>
+            </div>
+            <div class="card">
+              <div class="icon">🔄</div>
+              <h4>Gestão de mudanças frágil</h4>
+              <p>Atualizações em sistemas são realizadas sem comunicação adequada com usuários e sem fluxo formal de aprovação.</p>
+            </div>
+            <div class="card">
+              <div class="icon">📉</div>
+              <h4>Ausência de métricas</h4>
+              <p>Não existem indicadores consolidados para avaliar disponibilidade, tempo de resposta, satisfação dos usuários ou desempenho de processos de TI.</p>
+            </div>
+            <div class="card">
+              <div class="icon">🔐</div>
+              <h4>Baixa adesão à segurança</h4>
+              <p>Usuários compartilham senhas, ignoram procedimentos internos e tratam temas de segurança como responsabilidade exclusiva da equipe técnica.</p>
+            </div>
+            <div class="card">
+              <div class="icon">🧩</div>
+              <h4>Informação inconsistente</h4>
+              <p>Diferentes setores relatam divergências entre dados extraídos de sistemas distintos, dificultando relatórios gerenciais e decisões.</p>
+            </div>
+          </div>
+
+          <h3>14.3 Questões para análise</h3>
+          <div class="exercise">
+            <p><strong>1.</strong> Quais princípios do COBIT 5 são mais relevantes para analisar o caso da EducaMais Integrada? Justifique.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>2.</strong> Quais habilitadores do COBIT 5 aparecem como mais fragilizados no caso? Relacione pelo menos quatro e explique o motivo.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>3.</strong> Identifique problemas que pertencem mais claramente ao campo da governança e problemas que pertencem mais claramente ao campo da gestão.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>4.</strong> Que domínios do COBIT 5 parecem mais diretamente envolvidos na melhoria da situação descrita? Justifique sua resposta.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>5.</strong> Proponha três ações prioritárias para iniciar a melhoria da governança e da gestão de TI nessa organização.</p>
+            
+          </div>
+
+          <div class="exercise">
+            <p><strong>6.</strong> Elabore dois indicadores que poderiam ser adotados para acompanhar a evolução das melhorias propostas.</p>
+            
+          </div>
+
+          
+
+          <h3>14.5 Referência de resposta esperada</h3>
+          <details>
+            <summary>Ver referência de análise do caso</summary>
+            <p>
+              Espera-se que os estudantes reconheçam, entre outros pontos, a relevância dos princípios de atender às necessidades das partes interessadas, cobrir a organização de ponta a ponta, possibilitar uma abordagem holística e distinguir governança de gestão. Entre os habilitadores mais fragilizados, destacam-se processos, estruturas organizacionais, princípios e políticas, cultura/ética/comportamento, informação e pessoas/competências.
+            </p>
+            <p>
+              No plano da governança, aparecem problemas como ausência de direcionamento estratégico, falta de definição clara de prioridades e inexistência de instância decisória estruturada. No plano da gestão, destacam-se falhas em incidentes, mudanças, monitoramento, comunicação operacional, segurança e qualidade da informação. Os domínios mais diretamente associados tendem a incluir EDM, APO, DSS e MEA, além de BAI em temas ligados à implementação de melhorias e mudanças.
+            </p>
+          </details>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/portal-data.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.renderSiteNav({
+      rootRelative: "..",
+      currentKey: "gestao-ti"
+    });
+
+    PortalUI.renderFooter({
+      rootRelative: "..",
+      showHomeLink: true
+    });
+  </script>
+</body>
+</html>

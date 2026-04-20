@@ -27,7 +27,7 @@ O ponto de entrada do site é [`index.html`](./index.html).
 
 Os diretórios abaixo permanecem no repositório como acervo, materiais temáticos ou arquivos auxiliares:
 
-- `DM017/`
+- `dm017/`
 - `lp3/`
 - `python-101/`
 - `pibisfp/`

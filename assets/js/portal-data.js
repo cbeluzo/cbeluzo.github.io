@@ -152,7 +152,7 @@
             badge: "Exercícios",
             badgeClass: "text-bg-success",
             description: "Coleção de exercícios em HTML para capítulos da disciplina DM017.",
-            href: "DM017/exercicios-capitulo-02.html",
+            href: "dm017/exercicios-capitulo-02.html",
             icon: "bi-calculator",
             buttonClass: "btn btn-outline-success btn-sm"
           },
@@ -225,7 +225,7 @@
             actions: [
               {
                 label: "Abrir Tutorial",
-                href: "./tutorial03.html",
+                href: "./tutorial-03.html",
                 className: "btn btn-outline-primary btn-sm",
                 icon: "bi-box-arrow-up-right"
               }
@@ -1080,7 +1080,7 @@
                 actions: [
                   {
                     label: "Dinâmica de Grupo",
-                    href: "jogo_da_governanca/00-jogo-da-governanca.html",
+                    href: "jogo-da-governanca/00-jogo-da-governanca.html",
                     className: "btn btn-outline-secondary btn-sm",
                     icon: "bi-box-arrow-up-right",
                     newTab: true

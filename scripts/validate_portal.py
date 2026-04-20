@@ -15,7 +15,7 @@ TARGET_FILES = [
   ROOT / "admin" / "admin.html",
   ROOT / "admin" / "aula-6-atividade-plano-negocios.html",
   ROOT / "gestao-ti" / "gestao-ti.html",
-  ROOT / "gestao-ti" / "jogo_da_governanca" / "00-jogo-da-governanca.html",
+  ROOT / "gestao-ti" / "jogo-da-governanca" / "00-jogo-da-governanca.html",
   ROOT / "gestao-projetos" / "gestao-projetos.html",
   ROOT / "pesquisa" / "pesquisa.html",
   ROOT / "pesquisa" / "tese" / "index.html",

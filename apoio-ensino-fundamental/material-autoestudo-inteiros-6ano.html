@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missão Matemática — Números Inteiros</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: #e5eefc;
+      --muted: #bfd0ef;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top, #1d4ed8 0%, var(--bg1) 35%, #020617 100%);
+      min-height: 100vh;
+    }
+    .app {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+    .topbar, .card, .reward-pop {
+      backdrop-filter: blur(10px);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+    .topbar {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    }
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .hud {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .stat {
+      background: var(--panel-strong);
+      padding: 12px 14px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .stat .label { color: var(--muted); font-size: 0.84rem; }
+    .stat .value { font-size: 1.35rem; font-weight: bold; margin-top: 4px; }
+
+    .progress-wrap { margin-top: 16px; }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 16px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #60a5fa, #818cf8);
+      transition: width 0.35s ease;
+      border-radius: 999px;
+    }
+
+    .card {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .question-title {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      margin: 10px 0 14px;
+      line-height: 1.35;
+    }
+    .context {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.24);
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .visual {
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+    }
+    .answer-area { margin-top: 12px; }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+    .option-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.10); }
+    .option-btn.selected { border-color: var(--accent); background: rgba(56,189,248,0.18); }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    button {
+      border: none;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-size: 0.98rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .primary { background: linear-gradient(90deg, #38bdf8, #3b82f6); color: white; }
+    .secondary { background: rgba(255,255,255,0.10); color: white; }
+    .success { background: linear-gradient(90deg, #22c55e, #16a34a); color: white; }
+    .feedback {
+      margin-top: 18px;
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.5;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.ok {
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.35);
+    }
+    .feedback.error {
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.35);
+    }
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+    .reward-pop {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      padding: 14px 16px;
+      max-width: 320px;
+      display: none;
+      z-index: 10;
+    }
+    .reward-pop.show { display: block; animation: rise 0.45s ease; }
+    @keyframes rise {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .completed {
+      text-align: center;
+      padding: 16px;
+      margin-top: 18px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 18px;
+      display: none;
+    }
+    @media (max-width: 720px) {
+      .hud { grid-template-columns: repeat(2, 1fr); }
+      .app { padding: 14px 12px 28px; }
+      .card, .topbar { padding: 16px; }
+    }
+  </style>
+</head>
+<body class="bg-dark">
+  <div id="site-nav"></div>
+  <div class="app">
+    <div class="topbar">
+      <div class="title">
+        <div>
+          <h1>Missão Matemática: Números Inteiros</h1>
+          <div class="subtitle">Resolva uma questão por vez, ganhe XP, avance de nível e acompanhe seu progresso em tempo real.</div>
+        </div>
+        <div class="badge">Banco de questões em JSON</div>
+      </div>
+
+      <div class="hud">
+        <div class="stat"><div class="label">Nível</div><div class="value" id="level">1</div></div>
+        <div class="stat"><div class="label">XP</div><div class="value" id="xp">0</div></div>
+        <div class="stat"><div class="label">Acertos</div><div class="value" id="correct">0</div></div>
+        <div class="stat"><div class="label">Sequência</div><div class="value" id="streak">0</div></div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressLabel">Questão 1 de 36</span>
+          <span id="missionLabel">Missão inicial</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge-row">
+        <div class="badge" id="topicBadge">Tópico</div>
+        <div class="badge" id="difficultyBadge">Dificuldade</div>
+        <div class="badge" id="xpBadge">+0 XP</div>
+      </div>
+
+      <div class="context" id="contextBox"></div>
+      <div class="question-title" id="questionText"></div>
+      <div class="visual" id="visualBox" style="display:none"></div>
+      <div class="answer-area" id="answerArea"></div>
+
+      <div class="actions">
+        <button class="primary" id="checkBtn">Corrigir resposta</button>
+        <button class="secondary" id="nextBtn" disabled>Próxima questão</button>
+        <button class="secondary" id="restartBtn">Reiniciar missão</button>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+      <div class="completed" id="completedBox"></div>
+      <div class="footer-note">Dica: responda com atenção. Quando errar, leia a explicação e tente identificar o raciocínio correto antes de avançar.</div>
+    </div>
+    <div id="site-footer"></div>
+  </div>
+
+  <div class="reward-pop" id="rewardPop"></div>
+
+  <script>
+    const TOPIC_CONTEXT = {
+      "Sentenças abertas": "Neste tópico, o estudante aprende a identificar um valor desconhecido representado por uma letra. A ideia principal é perceber que a letra ocupa o lugar de um número que deve tornar a sentença verdadeira.",
+      "Equações": "Aqui o foco está em resolver igualdades com número desconhecido. O estudante deve aplicar operações inversas com cuidado para encontrar o valor correto.",
+      "Inequações": "Neste bloco, a meta é compreender que nem sempre existe apenas uma resposta. Em uma inequação, vários valores podem satisfazer a condição apresentada.",
+      "Situações com inteiros": "Este conteúdo relaciona os números inteiros ao cotidiano: temperaturas, dívidas, andares, saldos e movimentos para cima e para baixo.",
+      "Reta numérica": "A reta numérica ajuda a visualizar a posição dos números. Números maiores ficam à direita, menores à esquerda, e o zero serve como referência central.",
+      "Operações com inteiros": "Neste tópico, o estudante pratica adição e subtração com números positivos e negativos, consolidando regras e interpretação de sinais."
+    };
+
+    const state = {
+      questions: [],
+      currentIndex: 0,
+      xp: 0,
+      level: 1,
+      correct: 0,
+      streak: 0,
+      answeredCurrent: false,
+      selectedOption: null
+    };
+
+    const el = {
+      level: document.getElementById('level'),
+      xp: document.getElementById('xp'),
+      correct: document.getElementById('correct'),
+      streak: document.getElementById('streak'),
+      progressLabel: document.getElementById('progressLabel'),
+      missionLabel: document.getElementById('missionLabel'),
+      progressFill: document.getElementById('progressFill'),
+      topicBadge: document.getElementById('topicBadge'),
+      difficultyBadge: document.getElementById('difficultyBadge'),
+      xpBadge: document.getElementById('xpBadge'),
+      contextBox: document.getElementById('contextBox'),
+      questionText: document.getElementById('questionText'),
+      visualBox: document.getElementById('visualBox'),
+      answerArea: document.getElementById('answerArea'),
+      checkBtn: document.getElementById('checkBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      restartBtn: document.getElementById('restartBtn'),
+      feedback: document.getElementById('feedback'),
+      rewardPop: document.getElementById('rewardPop'),
+      completedBox: document.getElementById('completedBox')
+    };
+
+    function difficultyLabel(n) {
+      if (n === 1) return 'Dificuldade: Fácil';
+      if (n === 2) return 'Dificuldade: Média';
+      return 'Dificuldade: Desafio';
+    }
+
+    function missionLabel(index, total) {
+      const p = (index + 1) / total;
+      if (p <= 0.2) return 'Missão inicial';
+      if (p <= 0.5) return 'Zona de progresso';
+      if (p <= 0.8) return 'Reta final';
+      return 'Desafio final';
+    }
+
+    function normalize(value) {
+      return String(value).trim().toLowerCase().replace(',', '.').replace(/^\+/, '+');
+    }
+
+    function isCorrect(question, value) {
+      const normalized = normalize(value);
+      const answers = [];
+      if (question.answer !== undefined) answers.push(question.answer);
+      if (Array.isArray(question.answerAlias)) answers.push(...question.answerAlias);
+      return answers.some(a => normalize(a) === normalized);
+    }
+
+    function xpToNextLevel(level) {
+      return level * 80;
+    }
+
+    function updateLevel() {
+      let lvl = 1;
+      let remainingXp = state.xp;
+      while (remainingXp >= xpToNextLevel(lvl)) {
+        remainingXp -= xpToNextLevel(lvl);
+        lvl += 1;
+      }
+      if (lvl > state.level) {
+        showReward(`Parabéns! Você alcançou o nível ${lvl}.`);
+      }
+      state.level = lvl;
+    }
+
+    function updateHUD() {
+      updateLevel();
+      el.level.textContent = state.level;
+      el.xp.textContent = state.xp;
+      el.correct.textContent = state.correct;
+      el.streak.textContent = state.streak;
+
+      const total = state.questions.length;
+      const index = state.currentIndex;
+      el.progressLabel.textContent = `Questão ${Math.min(index + 1, total)} de ${total}`;
+      el.missionLabel.textContent = missionLabel(index, total);
+      const percent = total ? ((index) / total) * 100 : 0;
+      el.progressFill.style.width = `${Math.min(percent, 100)}%`;
+    }
+
+    function showReward(message) {
+      el.rewardPop.textContent = message;
+      el.rewardPop.classList.add('show');
+      setTimeout(() => el.rewardPop.classList.remove('show'), 2200);
+    }
+
+    function renderNumberLine(visual) {
+      const min = visual.min;
+      const max = visual.max;
+      const highlight = visual.highlight || [];
+      const width = 720;
+      const height = 120;
+      const padding = 40;
+      const range = max - min;
+      const step = (width - 2 * padding) / range;
+
+      let ticks = '';
+      for (let n = min; n <= max; n++) {
+        const x = padding + (n - min) * step;
+        const isHigh = highlight.includes(n);
+        ticks += `<line x1="${x}" y1="48" x2="${x}" y2="72" stroke="white" stroke-width="2" />`;
+        ticks += `<text x="${x}" y="92" text-anchor="middle" font-size="14" fill="${isHigh ? '#38bdf8' : '#e5eefc'}" font-weight="${isHigh ? 'bold' : 'normal'}">${n}</text>`;
+        if (isHigh) {
+          ticks += `<circle cx="${x}" cy="40" r="7" fill="#38bdf8" />`;
+        }
+      }
+
+      return `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="120" aria-label="Reta numérica ilustrada">
+          <line x1="${padding}" y1="60" x2="${width - padding}" y2="60" stroke="white" stroke-width="4" />
+          <polygon points="${width - padding},60 ${width - padding - 12},54 ${width - padding - 12},66" fill="white"></polygon>
+          ${ticks}
+        </svg>
+      `;
+    }
+
+    function renderAnswerArea(question) {
+      state.selectedOption = null;
+      if (question.type === 'input') {
+        el.answerArea.innerHTML = `
+          <label for="studentAnswer">${question.prompt || 'Digite sua resposta.'}</label>
+          <input type="text" id="studentAnswer" autocomplete="off" />
+        `;
+      } else if (question.type === 'multiple') {
+        const options = question.options.map(option => `
+          <button type="button" class="option-btn" data-option="${option.replace(/"/g, '&quot;')}">${option}</button>
+        `).join('');
+        el.answerArea.innerHTML = `<div class="options">${options}</div>`;
+        [...el.answerArea.querySelectorAll('.option-btn')].forEach(btn => {
+          btn.addEventListener('click', () => {
+            [...el.answerArea.querySelectorAll('.option-btn')].forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            state.selectedOption = btn.dataset.option;
+          });
+        });
+      } else if (question.type === 'truefalse') {
+        el.answerArea.innerHTML = `
+          <div class="options">
+            <button type="button" class="option-btn" data-option="verdadeiro">Verdadeiro</button>
+            <button type="button" class="option-btn" data-option="falso">Falso</button>
+          </div>
+        `;
+        [...el.answerArea.querySelectorAll('.option-btn')].forEach(btn => {
+          btn.addEventListener('click', () => {
+            [...el.answerArea.querySelectorAll('.option-btn')].forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            state.selectedOption = btn.dataset.option;
+          });
+        });
+      }
+    }
+
+    function renderQuestion() {
+      const q = state.questions[state.currentIndex];
+      if (!q) {
+        el.completedBox.style.display = 'block';
+        el.completedBox.innerHTML = `<h2>Missão concluída</h2><p>Você finalizou todas as questões.</p><p>XP total: <strong>${state.xp}</strong> | Acertos: <strong>${state.correct}</strong> de <strong>${state.questions.length}</strong>.</p>`;
+        el.questionText.textContent = 'Todas as questões foram respondidas.';
+        el.contextBox.textContent = 'Reinicie a missão para praticar novamente.';
+        el.answerArea.innerHTML = '';
+        el.visualBox.style.display = 'none';
+        el.feedback.className = 'feedback';
+        el.feedback.innerHTML = '';
+        el.checkBtn.disabled = true;
+        el.nextBtn.disabled = true;
+        el.progressFill.style.width = '100%';
+        return;
+      }
+
+      state.answeredCurrent = false;
+      el.completedBox.style.display = 'none';
+      el.topicBadge.textContent = q.topic;
+      el.difficultyBadge.textContent = difficultyLabel(q.difficulty);
+      el.xpBadge.textContent = `+${q.xp} XP`;
+      el.contextBox.textContent = TOPIC_CONTEXT[q.topic] || 'Leia com atenção e resolva a questão.';
+      el.questionText.textContent = q.statement;
+      el.feedback.className = 'feedback';
+      el.feedback.innerHTML = '';
+      el.nextBtn.disabled = true;
+      el.checkBtn.disabled = false;
+
+      if (q.visual && q.visual.type === 'numberline') {
+        el.visualBox.style.display = 'block';
+        el.visualBox.innerHTML = renderNumberLine(q.visual);
+      } else {
+        el.visualBox.style.display = 'none';
+        el.visualBox.innerHTML = '';
+      }
+
+      renderAnswerArea(q);
+      updateHUD();
+    }
+
+    function getCurrentAnswer() {
+      const q = state.questions[state.currentIndex];
+      if (q.type === 'input') {
+        const input = document.getElementById('studentAnswer');
+        return input ? input.value : '';
+      }
+      return state.selectedOption || '';
+    }
+
+    function checkAnswer() {
+      if (state.answeredCurrent) return;
+      const q = state.questions[state.currentIndex];
+      const answer = getCurrentAnswer();
+      if (!String(answer).trim()) {
+        el.feedback.className = 'feedback error show';
+        el.feedback.innerHTML = '<strong>Atenção:</strong> informe uma resposta antes de corrigir.';
+        return;
+      }
+
+      const ok = isCorrect(q, answer);
+      state.answeredCurrent = true;
+      el.nextBtn.disabled = false;
+      el.checkBtn.disabled = true;
+
+      if (ok) {
+        state.correct += 1;
+        state.streak += 1;
+        const bonus = state.streak >= 3 ? 5 : 0;
+        state.xp += q.xp + bonus;
+        el.feedback.className = 'feedback ok show';
+        el.feedback.innerHTML = `<strong>Resposta correta.</strong> Você ganhou <strong>${q.xp} XP</strong>${bonus ? ` + <strong>${bonus} XP</strong> de bônus por sequência` : ''}.<br>${q.explanation}`;
+        showReward(`Acerto! +${q.xp + bonus} XP.`);
+      } else {
+        state.streak = 0;
+        el.feedback.className = 'feedback error show';
+        el.feedback.innerHTML = `<strong>Resposta incorreta.</strong> Resposta esperada: <strong>${q.answer}</strong>.<br>${q.explanation}`;
+      }
+      updateHUD();
+    }
+
+    function nextQuestion() {
+      if (!state.answeredCurrent) return;
+      state.currentIndex += 1;
+      renderQuestion();
+    }
+
+    function restartMission() {
+      state.currentIndex = 0;
+      state.xp = 0;
+      state.level = 1;
+      state.correct = 0;
+      state.streak = 0;
+      state.answeredCurrent = false;
+      state.selectedOption = null;
+      renderQuestion();
+    }
+
+    async function init() {
+      try {
+        const response = await fetch('./questoes-inteiros-6ano.json');
+        const data = await response.json();
+        state.questions = data;
+        renderQuestion();
+      } catch (error) {
+        el.questionText.textContent = 'Não foi possível carregar o arquivo JSON de questões.';
+        el.contextBox.textContent = 'Verifique se o HTML e o arquivo JSON estão na mesma pasta.';
+        el.answerArea.innerHTML = '';
+        console.error(error);
+      }
+    }
+
+    el.checkBtn.addEventListener('click', checkAnswer);
+    el.nextBtn.addEventListener('click', nextQuestion);
+    el.restartBtn.addEventListener('click', restartMission);
+    init();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.init({ rootRelative: ".." }).then(() => {
+      PortalUI.renderSiteNav({ rootRelative: "..", currentKey: "ensino-fundamental" });
+      PortalUI.renderFooter({ rootRelative: "..", showHomeLink: true });
+    });
+  </script>
+</body>
+</html>

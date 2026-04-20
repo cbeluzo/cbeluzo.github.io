@@ -217,14 +217,14 @@
       ],
       "items": [
         {
-          "title": "Missão Matemática do 6º Ano",
-          "icon": "bi-calculator",
+          "title": "Missão Matemática: Números Inteiros (Gamificada)",
+          "icon": "bi-controller",
           "badge": {
             "label": "6º Ano · Matemática",
             "className": "badge text-bg-primary"
           },
-          "description": "Sentenças abertas, equações, inequações e números inteiros. Contextualização, orientações para pensar e exercícios corrigidos na própria página.",
-          "search": "6 ano sexto ano matematica sentencas abertas equacoes inequacoes numeros inteiros reta numerica operacoes positivos negativos cotidiano autoestudo missao",
+          "description": "Aprenda números inteiros de forma interativa. Ganhe XP, suba de nível e enfrente desafios dinâmicos com banco de questões dedicado.",
+          "search": "6 ano sexto ano matematica inteiros reta numerica operacoes positivos negativos autoestudo missao game gamificado",
           "tags": [
             "6ano",
             "matematica",
@@ -232,10 +232,10 @@
           ],
           "actions": [
             {
-              "label": "Abrir Material",
-              "href": "./missao-matematica-6-ano.html",
+              "label": "Iniciar Missão",
+              "href": "./material-autoestudo-inteiros-6ano.html",
               "className": "btn btn-outline-primary btn-sm",
-              "icon": "bi-box-arrow-up-right"
+              "icon": "bi-play-circle"
             }
           ]
         }

@@ -242,7 +242,6 @@
   </style>
 </head>
 <body class="bg-dark">
-  <div id="site-nav"></div>
   <div class="app">
     <div class="topbar">
       <div class="title">
@@ -291,7 +290,6 @@
       <div class="completed" id="completedBox"></div>
       <div class="footer-note">Dica: responda com atenção. Quando errar, leia a explicação e tente identificar o raciocínio correto antes de avançar.</div>
     </div>
-    <div id="site-footer"></div>
   </div>
 
   <div class="reward-pop" id="rewardPop"></div>
@@ -589,12 +587,5 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/site.js"></script>
-  <script>
-    PortalUI.init({ rootRelative: ".." }).then(() => {
-      PortalUI.renderSiteNav({ rootRelative: "..", currentKey: "ensino-fundamental" });
-      PortalUI.renderFooter({ rootRelative: "..", showHomeLink: true });
-    });
-  </script>
 </body>
 </html>

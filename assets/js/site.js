@@ -42,6 +42,10 @@
     const label = escapeHtml(action.label || "");
     const isBadgeLike = className.includes("badge");
 
+    if (action.modalTarget) {
+      return '<button type="button" class="' + className + '" data-bs-toggle="modal" data-bs-target="' + escapeHtml(action.modalTarget) + '">' + iconHtml + label + "</button>";
+    }
+
     if (!href) {
       if (isBadgeLike) {
         return '<span class="' + className + '">' + iconHtml + label + "</span>";

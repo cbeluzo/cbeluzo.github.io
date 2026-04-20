@@ -233,7 +233,7 @@
           "actions": [
             {
               "label": "Iniciar Missão",
-              "href": "./material-autoestudo-inteiros-6ano.html",
+              "modalTarget": "#gamifiedModal",
               "className": "btn btn-outline-primary btn-sm",
               "icon": "bi-play-circle"
             }

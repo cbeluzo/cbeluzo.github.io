@@ -751,7 +751,25 @@
     return { applyFilter: applyFilter };
   }
 
+  function init(config) {
+    const rootRelative = (config && config.rootRelative) || ".";
+    const dataUrl = (rootRelative === "." ? "" : rootRelative.replace(/\/$/, "") + "/") + "assets/data/portal-data.json";
+
+    return fetch(dataUrl)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Falha ao carregar os dados do portal.");
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        window.PortalData = data;
+        return data;
+      });
+  }
+
   window.PortalUI = {
+    init: init,
     normalize: normalize,
     renderCollectionPage: renderCollectionPage,
     renderCoursePage: renderCoursePage,

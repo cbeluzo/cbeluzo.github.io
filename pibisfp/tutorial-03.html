@@ -122,17 +122,20 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="../assets/js/portal-data.js"></script>
     <script src="../assets/js/site.js"></script>
     <script>
-      PortalUI.renderSiteNav({
+      PortalUI.init({ rootRelative: ".." }).then(() => {
+        PortalUI.renderSiteNav({
         rootRelative: "..",
         currentKey: "pibisfp"
       });
+      });
 
-      PortalUI.renderFooter({
+      PortalUI.init({ rootRelative: ".." }).then(() => {
+        PortalUI.renderFooter({
         rootRelative: "..",
         showHomeLink: true
+      });
       });
 
       const status = document.getElementById("tutorial-status");

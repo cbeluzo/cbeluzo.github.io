@@ -161,7 +161,7 @@
             badge: "Material",
             badgeClass: "text-bg-warning text-dark",
             description: "Páginas temáticas e conteúdos de apoio preservados da disciplina LP3.",
-            href: "lp3/cap01.html",
+            href: "lp3/cap-01.html",
             icon: "bi-code-slash",
             buttonClass: "btn btn-outline-warning btn-sm"
           }
@@ -1101,7 +1101,7 @@
                 inlineActions: [
                   {
                     label: "Atividade 6",
-                    href: "aula_07_material_de_leitura_cobit_5.html",
+                    href: "aula-07-material-de-leitura-cobit-5.html",
                     className: "badge text-bg-warning text-dark text-decoration-none",
                     icon: "bi-clipboard-check"
                   }
@@ -1546,7 +1546,7 @@
                 actions: [
                   {
                     label: "Material de Leitura",
-                    href: "aula_08_material_gerenciamento_escopo_projetos.html",
+                    href: "aula-08-material-gerenciamento-escopo-projetos.html",
                     className: "btn btn-outline-secondary btn-sm",
                     icon: "bi-file-earmark-text"
                   }

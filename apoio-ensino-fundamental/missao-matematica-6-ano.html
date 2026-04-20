@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Material de autoestudo do 6º ano sobre sentenças abertas, equações, inequações e números inteiros, com exercícios interativos e correção na própria página.">
+    <title>Missão Matemática do 6º Ano</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
+
+    <style>
+      :root {
+        --page-hero-bg: radial-gradient(1200px circle at 10% 20%, rgba(25,135,84,.20), transparent 45%),
+                        radial-gradient(1200px circle at 85% 15%, rgba(13,110,253,.14), transparent 45%);
+      }
+
+      .fase-header {
+        background: linear-gradient(135deg, #198754 0%, #0d6efd 100%);
+        color: white;
+        border-radius: 0.75rem 0.75rem 0 0;
+        padding: 1rem 1.5rem;
+      }
+      .fase-body {
+        border: 1px solid #dee2e6;
+        border-top: none;
+        border-radius: 0 0 0.75rem 0.75rem;
+        padding: 1.5rem;
+        background: white;
+      }
+      .exercicio-card {
+        border-left: 4px solid #0d6efd;
+        background: #f8f9fa;
+        border-radius: 0 0.5rem 0.5rem 0;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .exercicio-card.correto { border-left-color: #198754; background: #f0fff4; }
+      .exercicio-card.errado { border-left-color: #dc3545; background: #fff5f5; }
+      .feedback { display: none; margin-top: 0.5rem; font-size: 0.9rem; }
+      .reta-numerica {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .reta-num-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 48px;
+      }
+      .reta-num-label { font-size: 0.8rem; font-weight: 600; }
+      .reta-num-tick { width: 100%; height: 2px; background: #343a40; position: relative; }
+      .reta-num-tick::before {
+        content: '';
+        position: absolute;
+        top: -5px; left: 50%;
+        transform: translateX(-50%);
+        width: 2px; height: 12px;
+        background: #343a40;
+      }
+      .reta-num-zero .reta-num-label { color: #0d6efd; font-weight: 800; }
+      .reta-num-zero .reta-num-tick::before { background: #0d6efd; }
+      .badge-fase {
+        font-size: 0.75rem;
+        padding: 0.3em 0.75em;
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div id="site-nav"></div>
+
+    <noscript>
+      <div class="container py-3">
+        <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação.</div>
+      </div>
+    </noscript>
+
+    <header class="page-hero py-4 border-bottom">
+      <div class="container">
+        <nav aria-label="breadcrumb" class="mb-2">
+          <ol class="breadcrumb mb-0" style="font-size:.875rem">
+            <li class="breadcrumb-item"><a href="../index.html">Início</a></li>
+            <li class="breadcrumb-item"><a href="./index.html">Ensino Fundamental</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Missão Matemática — 6º Ano</li>
+          </ol>
+        </nav>
+        <h1 class="h3 mb-1">
+          <i class="bi bi-calculator me-2 text-success"></i>Missão Matemática do 6º Ano
+        </h1>
+        <p class="text-muted mb-0">
+          Material de autoestudo · 6º Ano · Matemática
+        </p>
+      </div>
+    </header>
+
+    <main class="container my-4">
+
+      <!-- Apresentação da Missão -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="rounded-circle bg-success bg-opacity-10 d-flex align-items-center justify-content-center" style="width:52px;height:52px;min-width:52px">
+              <i class="bi bi-backpack fs-4 text-success"></i>
+            </div>
+            <div>
+              <h2 class="h5 mb-0">Sobre este material</h2>
+              <small class="text-muted">Leia antes de começar</small>
+            </div>
+          </div>
+          <p class="mb-2">
+            Este material foi elaborado para <strong>autoestudo</strong>. Em cada fase, o estudante encontra uma breve
+            contextualização do conteúdo, uma orientação para pensar e exercícios que podem ser respondidos e
+            corrigidos na própria página.
+          </p>
+          <p class="mb-0">
+            O objetivo é aprender gradualmente os temas de <strong>sentenças abertas</strong>, <strong>equações</strong>,
+            <strong>inequações</strong> e <strong>números inteiros</strong>, com uso de situações do cotidiano,
+            reta numérica e operações com números positivos e negativos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tags de conteúdo -->
+      <div class="mb-4 d-flex flex-wrap gap-2">
+        <span class="badge rounded-pill text-bg-primary">6º Ano</span>
+        <span class="badge rounded-pill text-bg-success">Matemática</span>
+        <span class="badge rounded-pill text-bg-warning text-dark">Autoestudo</span>
+        <span class="badge rounded-pill text-bg-secondary">Sentenças Abertas</span>
+        <span class="badge rounded-pill text-bg-secondary">Equações</span>
+        <span class="badge rounded-pill text-bg-secondary">Inequações</span>
+        <span class="badge rounded-pill text-bg-secondary">Números Inteiros</span>
+        <span class="badge rounded-pill text-bg-secondary">Reta Numérica</span>
+      </div>
+
+      <!-- Fase 1: Sentenças Abertas -->
+      <div class="mb-4">
+        <div class="fase-header d-flex align-items-center gap-2">
+          <span class="badge badge-fase bg-white text-dark">Fase 1</span>
+          <span class="fw-semibold">Sentenças Abertas</span>
+        </div>
+        <div class="fase-body">
+          <h3 class="h6 text-muted text-uppercase mb-2" style="letter-spacing:.04em">Contextualização</h3>
+          <p>Uma <strong>sentença aberta</strong> é uma afirmação que contém um valor desconhecido (chamado de <em>incógnita</em>) e pode ser verdadeira ou falsa dependendo do valor que substituímos nela. Exemplo: <code>x + 3 = 7</code>.</p>
+
+          <h3 class="h6 text-muted text-uppercase mb-2 mt-3" style="letter-spacing:.04em">Orientação para pensar</h3>
+          <p>Pergunte-se: <em>"Qual número, somado a 3, dá 7?"</em> Tente diferentes valores até encontrar o que torna a sentença verdadeira.</p>
+
+          <h3 class="h6 text-muted text-uppercase mb-3 mt-3" style="letter-spacing:.04em">Exercícios</h3>
+
+          <!-- Exercício 1.1 -->
+          <div class="exercicio-card" id="ex1-1">
+            <p class="mb-2"><strong>1.1.</strong> Qual valor de <em>x</em> torna verdadeira a sentença <code>x + 5 = 12</code>?</p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">x =</span>
+              <input type="number" class="form-control" id="ex1-1-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex1-1', 7)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex1-1-fb"></div>
+          </div>
+
+          <!-- Exercício 1.2 -->
+          <div class="exercicio-card" id="ex1-2">
+            <p class="mb-2"><strong>1.2.</strong> Em uma gincana, Pedro marcou <em>n</em> pontos e João marcou 8 pontos. Juntos, eles fizeram 15 pontos. Qual sentença representa o problema?</p>
+            <div class="d-flex flex-column gap-2 mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex1-2" id="ex1-2-a" value="a">
+                <label class="form-check-label" for="ex1-2-a"><code>n – 8 = 15</code></label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex1-2" id="ex1-2-b" value="b">
+                <label class="form-check-label" for="ex1-2-b"><code>n + 8 = 15</code> ✓</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex1-2" id="ex1-2-c" value="c">
+                <label class="form-check-label" for="ex1-2-c"><code>8 · n = 15</code></label>
+              </div>
+            </div>
+            <button class="btn btn-outline-primary btn-sm" onclick="corrigirMultipla('ex1-2','b')">Verificar</button>
+            <div class="feedback" id="ex1-2-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 2: Equações -->
+      <div class="mb-4">
+        <div class="fase-header d-flex align-items-center gap-2" style="background: linear-gradient(135deg,#0d6efd 0%,#6610f2 100%)">
+          <span class="badge badge-fase bg-white text-dark">Fase 2</span>
+          <span class="fw-semibold">Equações do 1º Grau</span>
+        </div>
+        <div class="fase-body">
+          <h3 class="h6 text-muted text-uppercase mb-2" style="letter-spacing:.04em">Contextualização</h3>
+          <p>Uma <strong>equação</strong> é uma sentença aberta com sinal de igualdade <code>=</code>. Para resolvê-la, isolamos a incógnita realizando a operação inversa em ambos os lados. Princípio da igualdade: <em>o que faz de um lado, faz do outro</em>.</p>
+
+          <h3 class="h6 text-muted text-uppercase mb-2 mt-3" style="letter-spacing:.04em">Exercícios</h3>
+
+          <!-- Exercício 2.1 -->
+          <div class="exercicio-card" id="ex2-1">
+            <p class="mb-2"><strong>2.1.</strong> Resolva a equação: <code>3x = 18</code></p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">x =</span>
+              <input type="number" class="form-control" id="ex2-1-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex2-1', 6)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex2-1-fb"></div>
+          </div>
+
+          <!-- Exercício 2.2 -->
+          <div class="exercicio-card" id="ex2-2">
+            <p class="mb-2"><strong>2.2.</strong> Uma caixa tem <em>y</em> livros. Retirando 4 livros, ficaram 9. Qual equação representa isso e qual é o valor de <em>y</em>?</p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">y =</span>
+              <input type="number" class="form-control" id="ex2-2-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex2-2', 13)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex2-2-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 3: Inequações -->
+      <div class="mb-4">
+        <div class="fase-header d-flex align-items-center gap-2" style="background: linear-gradient(135deg,#fd7e14 0%,#ffc107 100%)">
+          <span class="badge badge-fase bg-white text-dark">Fase 3</span>
+          <span class="fw-semibold">Inequações</span>
+        </div>
+        <div class="fase-body">
+          <h3 class="h6 text-muted text-uppercase mb-2" style="letter-spacing:.04em">Contextualização</h3>
+          <p>Uma <strong>inequação</strong> usa sinais de desigualdade (<code>&lt;</code>, <code>&gt;</code>, <code>≤</code>, <code>≥</code>) em vez de <code>=</code>. Sua solução é um conjunto de valores (não apenas um único número).</p>
+
+          <h3 class="h6 text-muted text-uppercase mb-2 mt-3" style="letter-spacing:.04em">Exercícios</h3>
+
+          <!-- Exercício 3.1 -->
+          <div class="exercicio-card" id="ex3-1">
+            <p class="mb-2"><strong>3.1.</strong> Qual alternativa apresenta um valor de <em>x</em> que satisfaz <code>x + 2 &gt; 8</code>?</p>
+            <div class="d-flex flex-column gap-2 mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex3-1" id="ex3-1-a" value="a">
+                <label class="form-check-label" for="ex3-1-a">x = 4</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex3-1" id="ex3-1-b" value="b">
+                <label class="form-check-label" for="ex3-1-b">x = 6</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ex3-1" id="ex3-1-c" value="c">
+                <label class="form-check-label" for="ex3-1-c">x = 7 ✓</label>
+              </div>
+            </div>
+            <button class="btn btn-outline-primary btn-sm" onclick="corrigirMultipla('ex3-1','c')">Verificar</button>
+            <div class="feedback" id="ex3-1-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 4: Números Inteiros e Reta Numérica -->
+      <div class="mb-4">
+        <div class="fase-header d-flex align-items-center gap-2" style="background: linear-gradient(135deg,#198754 0%,#20c997 100%)">
+          <span class="badge badge-fase bg-white text-dark">Fase 4</span>
+          <span class="fw-semibold">Números Inteiros e Reta Numérica</span>
+        </div>
+        <div class="fase-body">
+          <h3 class="h6 text-muted text-uppercase mb-2" style="letter-spacing:.04em">Contextualização</h3>
+          <p>Os <strong>números inteiros</strong> incluem os números naturais, o zero e seus opostos negativos. Na reta numérica, os números positivos ficam à direita do zero e os negativos à esquerda.</p>
+
+          <!-- Reta Numérica Ilustrativa -->
+          <div class="reta-numerica" aria-label="Reta numérica de -5 a 5">
+            <i class="bi bi-arrow-left fs-5 text-muted me-1"></i>
+            <div class="reta-num-item"><span class="reta-num-label">−5</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">−4</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">−3</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">−2</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">−1</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item reta-num-zero"><span class="reta-num-label">0</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">+1</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">+2</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">+3</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">+4</span><div class="reta-num-tick"></div></div>
+            <div class="reta-num-item"><span class="reta-num-label">+5</span><div class="reta-num-tick"></div></div>
+            <i class="bi bi-arrow-right fs-5 text-muted ms-1"></i>
+          </div>
+
+          <h3 class="h6 text-muted text-uppercase mb-2 mt-3" style="letter-spacing:.04em">Exercícios</h3>
+
+          <!-- Exercício 4.1 -->
+          <div class="exercicio-card" id="ex4-1">
+            <p class="mb-2"><strong>4.1.</strong> Qual é o resultado de <code>(−3) + (+8)</code>?</p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">= </span>
+              <input type="number" class="form-control" id="ex4-1-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex4-1', 5)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex4-1-fb"></div>
+          </div>
+
+          <!-- Exercício 4.2 -->
+          <div class="exercicio-card" id="ex4-2">
+            <p class="mb-2"><strong>4.2.</strong> A temperatura às 7h era de −2°C. Ao meio-dia, subiu 9°C. Qual era a temperatura ao meio-dia?</p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">°C =</span>
+              <input type="number" class="form-control" id="ex4-2-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex4-2', 7)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex4-2-fb"></div>
+          </div>
+
+          <!-- Exercício 4.3 -->
+          <div class="exercicio-card" id="ex4-3">
+            <p class="mb-2"><strong>4.3.</strong> Calcule: <code>(+5) – (+9)</code></p>
+            <div class="input-group mb-2" style="max-width:240px">
+              <span class="input-group-text">= </span>
+              <input type="number" class="form-control" id="ex4-3-resp" placeholder="Sua resposta">
+              <button class="btn btn-outline-primary btn-sm" onclick="corrigir('ex4-3', -4)">Verificar</button>
+            </div>
+            <div class="feedback" id="ex4-3-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão voltar -->
+      <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
+        <a href="./index.html" class="btn btn-outline-secondary btn-sm">
+          <i class="bi bi-arrow-left me-1"></i>Voltar à lista de materiais
+        </a>
+        <span class="text-muted small">Bons estudos! 🎓</span>
+      </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
+    <script src="../assets/js/portal-data.js"></script>
+    <script src="../assets/js/site.js"></script>
+
+    <script>
+      // Lógica de correção dos exercícios
+      function corrigir(id, respostaCorreta) {
+        const card = document.getElementById(id);
+        const input = document.getElementById(id + '-resp');
+        const fb = document.getElementById(id + '-fb');
+        const valor = parseFloat(input.value);
+
+        card.classList.remove('correto','errado');
+        fb.style.display = 'block';
+
+        if (valor === respostaCorreta) {
+          card.classList.add('correto');
+          fb.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i><strong>Correto!</strong> Muito bem! 🎉';
+          fb.className = 'feedback text-success';
+        } else {
+          card.classList.add('errado');
+          fb.innerHTML = `<i class="bi bi-x-circle-fill text-danger me-1"></i><strong>Não é bem isso.</strong> Tente novamente! (Dica: a resposta correta é <strong>${respostaCorreta}</strong>)`;
+          fb.className = 'feedback text-danger';
+        }
+      }
+
+      function corrigirMultipla(id, respostaCorreta) {
+        const card = document.getElementById(id);
+        const fb = document.getElementById(id + '-fb');
+        const selecionada = document.querySelector(`input[name="${id}"]:checked`);
+
+        card.classList.remove('correto','errado');
+        fb.style.display = 'block';
+
+        if (!selecionada) {
+          fb.innerHTML = '<i class="bi bi-info-circle text-warning me-1"></i>Selecione uma alternativa antes de verificar.';
+          fb.className = 'feedback text-warning';
+          return;
+        }
+
+        if (selecionada.value === respostaCorreta) {
+          card.classList.add('correto');
+          fb.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i><strong>Correto!</strong> Excelente escolha! 🎉';
+          fb.className = 'feedback text-success';
+        } else {
+          card.classList.add('errado');
+          fb.innerHTML = '<i class="bi bi-x-circle-fill text-danger me-1"></i><strong>Não é essa.</strong> Revise o enunciado e tente outra alternativa.';
+          fb.className = 'feedback text-danger';
+        }
+      }
+    </script>
+  </body>
+</html>

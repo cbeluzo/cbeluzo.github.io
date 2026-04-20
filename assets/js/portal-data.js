@@ -57,6 +57,12 @@
           label: "Protótipos Conceituais",
           icon: "bi-window-stack",
           href: "prototipos-conceituais/index.html"
+        },
+        {
+          key: "ensino-fundamental",
+          label: "Ensino Fundamental",
+          icon: "bi-backpack",
+          href: "apoio-ensino-fundamental/index.html"
         }
       ],
       home: {
@@ -131,6 +137,14 @@
             icon: "bi-archive",
             pillClass: "icon-pill text-secondary",
             buttonClass: "btn btn-outline-secondary btn-sm"
+          },
+          {
+            title: "Apoio ao Ensino Fundamental",
+            description: "Materiais interativos de autoestudo para alunos do 6º e 7º ano, organizados por disciplina e tema.",
+            href: "apoio-ensino-fundamental/index.html",
+            icon: "bi-backpack",
+            pillClass: "icon-pill text-success",
+            buttonClass: "btn btn-outline-success btn-sm"
           }
         ]
       },
@@ -170,6 +184,60 @@
       }
     },
     sections: {
+      "ensino-fundamental": {
+        key: "ensino-fundamental",
+        title: "Apoio ao Ensino Fundamental",
+        icon: "bi-backpack",
+        description: "Materiais interativos de autoestudo para alunos do 6º e 7º ano: exercícios, contextualização e correção na própria página, organizados por disciplina, tema e ano escolar.",
+        searchPlaceholder: "Buscar por tema, disciplina ou ano (ex.: 'equações', '6º ano', 'inteiros')",
+        tags: [
+          {
+            key: "6ano",
+            label: "6º Ano",
+            icon: "bi-1-circle",
+            className: "badge rounded-pill text-bg-primary tag"
+          },
+          {
+            key: "7ano",
+            label: "7º Ano",
+            icon: "bi-2-circle",
+            className: "badge rounded-pill text-bg-info tag"
+          },
+          {
+            key: "matematica",
+            label: "Matemática",
+            icon: "bi-calculator",
+            className: "badge rounded-pill text-bg-success tag"
+          },
+          {
+            key: "autoestudo",
+            label: "Autoestudo",
+            icon: "bi-book",
+            className: "badge rounded-pill text-bg-warning text-dark tag"
+          }
+        ],
+        items: [
+          {
+            title: "Missão Matemática do 6º Ano",
+            icon: "bi-calculator",
+            badge: {
+              label: "6º Ano · Matemática",
+              className: "badge text-bg-primary"
+            },
+            description: "Sentenças abertas, equações, inequações e números inteiros. Contextualização, orientações para pensar e exercícios corrigidos na própria página.",
+            search: "6 ano sexto ano matematica sentencas abertas equacoes inequacoes numeros inteiros reta numerica operacoes positivos negativos cotidiano autoestudo missao",
+            tags: ["6ano", "matematica", "autoestudo"],
+            actions: [
+              {
+                label: "Abrir Material",
+                href: "./missao-matematica-6-ano.html",
+                className: "btn btn-outline-primary btn-sm",
+                icon: "bi-box-arrow-up-right"
+              }
+            ]
+          }
+        ]
+      },
       pibisfp: {
         key: "pibisfp",
         title: "Iniciação Científica",

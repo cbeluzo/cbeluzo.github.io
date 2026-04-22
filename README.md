@@ -19,9 +19,15 @@ O ponto de entrada do site é [`index.html`](./index.html).
 ## Organização do portal
 
 - Navegação e footer são compartilhados por todas as páginas principais.
-- As disciplinas principais são renderizadas a partir de uma fonte única de dados em [`assets/js/portal-data.js`](./assets/js/portal-data.js).
+- As disciplinas principais são renderizadas a partir de uma fonte única de dados em [`assets/data/portal-data.json`](./assets/data/portal-data.json).
 - O comportamento comum do portal fica em [`assets/js/site.js`](./assets/js/site.js).
 - O estilo compartilhado fica em [`assets/css/site.css`](./assets/css/site.css).
+
+## Materiais de disciplinas
+
+- `gestao-ti/` concentra a página da disciplina, materiais complementares e a dinâmica do jogo da governança.
+- `gestao-projetos/` reúne a página da disciplina, páginas HTML de apoio e uma pasta [`templates/`](./gestao-projetos/templates/) para arquivos `.docx` usados nas atividades.
+- Os links públicos das disciplinas são configurados em [`assets/data/portal-data.json`](./assets/data/portal-data.json).
 
 ## Conteúdo legado e auxiliar
 

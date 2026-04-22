@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EAP - Estrutura Analítica do Projeto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 16% 10%, rgba(25, 135, 84, .16), transparent 45%),
+                      radial-gradient(1200px circle at 82% 24%, rgba(13, 110, 253, .12), transparent 45%),
+                      radial-gradient(900px circle at 55% 88%, rgba(255, 193, 7, .12), transparent 45%);
+      --page-bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #dbe4f0;
+      --brand: #0f4c5c;
+      --brand-strong: #0b7285;
+      --soft: #ecfeff;
+      --soft-2: #f8fbff;
+      --warn-bg: #fff8e1;
+      --warn-border: #e0a800;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef7fb 0%, var(--page-bg) 180px, var(--page-bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.68;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #0b7285);
+      color: #fff;
+      padding: 42px 24px 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar .wrap,
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+
+    .topbar-title {
+      margin: 0 0 12px;
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 1.05rem;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-box {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--brand);
+    }
+
+    .sidebar a {
+      display: block;
+      margin-bottom: 4px;
+      border-radius: 10px;
+      padding: 8px 10px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: .2s ease;
+      font-size: 0.96rem;
+    }
+
+    .sidebar a:hover {
+      background: var(--soft);
+      color: var(--brand-strong);
+    }
+
+    .content section {
+      margin-bottom: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #0f172a;
+      font-size: 1.55rem;
+    }
+
+    .content h3 {
+      margin-top: 22px;
+      margin-bottom: 10px;
+      color: var(--brand-strong);
+      font-size: 1.12rem;
+    }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 10px 0 14px; padding-left: 22px; }
+    li { margin-bottom: 8px; }
+
+    .box,
+    .callout,
+    .footer-note {
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--brand-strong);
+      background: #fafcff;
+    }
+
+    .callout {
+      border-left: 5px solid var(--warn-border);
+      background: var(--warn-bg);
+    }
+
+    .footer-note {
+      border: 1px solid var(--line);
+      background: var(--soft-2);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card-lite {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      padding: 18px;
+    }
+
+    .card-lite h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #0f172a;
+      font-size: 1rem;
+    }
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: var(--soft);
+      color: var(--brand-strong);
+      font-size: 1rem;
+    }
+
+    pre {
+      margin: 14px 0 0;
+      border-radius: 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .link-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover { color: #fff; text-decoration: underline; }
+
+    @media (max-width: 991px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .hero-meta,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .topbar {
+        padding: 32px 18px 28px;
+      }
+
+      .topbar-title {
+        font-size: 1.8rem;
+      }
+
+      .content section {
+        padding: 22px;
+      }
+    }
+
+    @media print {
+      #site-nav,
+      .page-hero,
+      #site-footer,
+      .sidebar {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .topbar {
+        background: none;
+        color: #000;
+        box-shadow: none;
+        padding: 0 0 18px;
+      }
+
+      .hero-box,
+      .content section {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Gestão de Projetos</div>
+          <h1 class="h3 mb-1">Tópico Complementar - Estrutura Analítica do Projeto (EAP)</h1>
+          <div class="text-muted">Material de apoio com visão conceitual, boas práticas e modelos prontos para adaptação.</div>
+        </div>
+        <a class="btn btn-outline-secondary btn-sm" href="gestao-projetos.html">
+          <i class="bi bi-arrow-left"></i>
+          Voltar para a disciplina
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="eyebrow">Planejamento e Escopo</div>
+      <div class="topbar-title">Estrutura Analítica do Projeto (EAP)</div>
+      <p class="lead">
+        A EAP organiza o escopo do projeto em entregas, subentregas e pacotes de trabalho. Quando bem construída,
+        ela reduz ambiguidades, melhora a comunicação da equipe e cria uma base sólida para cronograma, custos e acompanhamento.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-box"><strong>Objetivo</strong>Compreender a função da EAP no gerenciamento do escopo e no planejamento do projeto.</div>
+        <div class="hero-box"><strong>Aplicação</strong>Usar a EAP para decompor entregas, estruturar o trabalho e dar suporte ao controle do projeto.</div>
+        <div class="hero-box"><strong>Como usar</strong>Ler por seções, adaptar o template Mermaid e relacionar a EAP com requisitos e escopo.</div>
+      </div>
+      <a class="back-link" href="gestao-projetos.html">
+        <i class="bi bi-arrow-left-circle"></i>
+        Retornar para Gestão de Projetos
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>Navegação</h2>
+        <a href="#conceito">1. Conceito e finalidade</a>
+        <a href="#papel">2. Papel no gerenciamento</a>
+        <a href="#boas-praticas">3. Boas práticas</a>
+        <a href="#estrutura">4. Estrutura em níveis</a>
+        <a href="#template">5. Template Mermaid</a>
+        <a href="#exemplo">6. Exemplo aplicado</a>
+        <a href="#ferramenta">7. Ferramenta recomendada</a>
+        <a href="#fechamento">8. Síntese didática</a>
+      </aside>
+
+      <div class="content">
+        <section id="conceito">
+          <h2>1. Conceito e finalidade</h2>
+          <p>
+            A Estrutura Analítica do Projeto, conhecida pela sigla <strong>EAP</strong>, é uma decomposição hierárquica
+            do trabalho total do projeto. Seu foco está nas <strong>entregas</strong> que precisam ser produzidas, e não
+            apenas em atividades soltas ou setores responsáveis.
+          </p>
+          <p>
+            Na prática, a EAP ajuda a transformar um projeto amplo em partes menores, mais compreensíveis e mais fáceis de
+            planejar, atribuir, acompanhar e controlar. Isso fortalece o entendimento comum entre os envolvidos sobre o
+            que efetivamente será entregue.
+          </p>
+          <div class="box">
+            <strong>Ideia central:</strong> a EAP organiza o escopo do projeto em componentes progressivamente detalhados,
+            até chegar a pacotes de trabalho que possam ser planejados, executados e monitorados.
+          </div>
+        </section>
+
+        <section id="papel">
+          <h2>2. Papel no gerenciamento do projeto</h2>
+          <p>
+            No gerenciamento de projetos, a EAP é um instrumento-chave para o controle do escopo. Ela serve como ponte
+            entre a definição do que o projeto deve entregar e o detalhamento necessário para viabilizar cronograma,
+            custos, responsabilidades e monitoramento.
+          </p>
+          <div class="grid-3">
+            <div class="card-lite">
+              <div class="icon"><i class="bi bi-diagram-3"></i></div>
+              <h3>Organização</h3>
+              <p>Estrutura o projeto em partes menores e mais gerenciáveis.</p>
+            </div>
+            <div class="card-lite">
+              <div class="icon"><i class="bi bi-people"></i></div>
+              <h3>Comunicação</h3>
+              <p>Facilita o alinhamento entre equipe, cliente e demais partes interessadas.</p>
+            </div>
+            <div class="card-lite">
+              <div class="icon"><i class="bi bi-clipboard-data"></i></div>
+              <h3>Controle</h3>
+              <p>Cria base para acompanhar progresso, mudanças e aderência ao escopo.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="boas-praticas">
+          <h2>3. Boas práticas para elaborar uma EAP</h2>
+          <p>
+            Uma EAP consistente deve refletir o escopo real do projeto, evitando sobreposições e omissões. O ideal é que
+            seus elementos sejam mutuamente exclusivos e, em conjunto, cubram todo o trabalho necessário para a entrega final.
+          </p>
+          <ul>
+            <li>Priorizar entregas e resultados, e não apenas tarefas genéricas.</li>
+            <li>Detalhar até um nível que seja útil para planejamento e controle.</li>
+            <li>Manter coerência entre requisitos, escopo declarado e pacotes de trabalho.</li>
+            <li>Usar nomenclatura clara e padronizada entre os níveis da estrutura.</li>
+            <li>Evitar decomposição excessiva que torne a estrutura difícil de manter.</li>
+          </ul>
+          <div class="callout">
+            <strong>Orientação prática:</strong> em projetos acadêmicos ou de software, é comum incluir componentes como
+            levantamento de requisitos, definição de escopo, modelagem, desenvolvimento, testes, implantação e documentação.
+          </div>
+        </section>
+
+        <section id="estrutura">
+          <h2>4. Estrutura em níveis</h2>
+          <p>
+            A lógica da EAP costuma seguir níveis progressivos de detalhamento. Essa organização ajuda a visualizar o projeto
+            como um todo e, ao mesmo tempo, identificar partes específicas que exigem planejamento individualizado.
+          </p>
+          <div class="grid-2">
+            <div class="card-lite">
+              <h3>Nível 1</h3>
+              <p>Projeto completo.</p>
+            </div>
+            <div class="card-lite">
+              <h3>Nível 2</h3>
+              <p>Entregas principais.</p>
+            </div>
+            <div class="card-lite">
+              <h3>Nível 3</h3>
+              <p>Subentregas ou componentes estruturais.</p>
+            </div>
+            <div class="card-lite">
+              <h3>Nível 4</h3>
+              <p>Pacotes de trabalho com granularidade suficiente para gestão.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="template">
+          <h2>5. Template de EAP em Mermaid</h2>
+          <p>
+            O modelo abaixo pode ser copiado e adaptado conforme o projeto. O formato Mermaid facilita a criação de diagramas
+            hierárquicos a partir de um texto simples e editável.
+          </p>
+          <div class="callout">
+            <strong>Como usar:</strong> copie o código e cole em um editor Mermaid para visualizar o diagrama e ajustar os nomes das entregas.
+          </div>
+          <pre><code>flowchart TB
+A["Projeto: &lt;Nome do Projeto&gt;"]
+
+A --&gt; B1["1. &lt;Entrega principal 1&gt;"]
+A --&gt; B2["2. &lt;Entrega principal 2&gt;"]
+A --&gt; B3["3. &lt;Entrega principal 3&gt;"]
+A --&gt; B4["4. &lt;Entrega principal 4&gt;"]
+
+B1 --&gt; C11["1.1 &lt;Subentrega ou pacote de trabalho&gt;"]
+B1 --&gt; C12["1.2 &lt;Subentrega ou pacote de trabalho&gt;"]
+B1 --&gt; C13["1.3 &lt;Subentrega ou pacote de trabalho&gt;"]
+
+B2 --&gt; C21["2.1 &lt;Subentrega ou pacote de trabalho&gt;"]
+B2 --&gt; C22["2.2 &lt;Subentrega ou pacote de trabalho&gt;"]
+B2 --&gt; C23["2.3 &lt;Subentrega ou pacote de trabalho&gt;"]
+
+B3 --&gt; C31["3.1 &lt;Subentrega ou pacote de trabalho&gt;"]
+B3 --&gt; C32["3.2 &lt;Subentrega ou pacote de trabalho&gt;"]
+
+B4 --&gt; C41["4.1 &lt;Subentrega ou pacote de trabalho&gt;"]
+B4 --&gt; C42["4.2 &lt;Subentrega ou pacote de trabalho&gt;"]</code></pre>
+        </section>
+
+        <section id="exemplo">
+          <h2>6. Exemplo aplicado a um projeto de software</h2>
+          <p>
+            O exemplo abaixo apresenta uma EAP simplificada para um sistema de gestão acadêmica. Ele mostra como as grandes
+            entregas do projeto podem ser organizadas em subcomponentes mais concretos.
+          </p>
+          <pre><code>flowchart TB
+A["Projeto: Sistema de Gestão Acadêmica"]
+
+A --&gt; B1["1. Levantamento de Requisitos"]
+A --&gt; B2["2. Análise e Projeto"]
+A --&gt; B3["3. Desenvolvimento"]
+A --&gt; B4["4. Testes"]
+A --&gt; B5["5. Implantação"]
+
+B1 --&gt; C11["1.1 Reuniões com usuários"]
+B1 --&gt; C12["1.2 Histórias de usuário"]
+B1 --&gt; C13["1.3 Documento de requisitos"]
+
+B2 --&gt; C21["2.1 Modelagem de processos"]
+B2 --&gt; C22["2.2 Modelagem de dados"]
+B2 --&gt; C23["2.3 Protótipos de interface"]
+
+B3 --&gt; C31["3.1 Módulo de login"]
+B3 --&gt; C32["3.2 Módulo de cadastro"]
+B3 --&gt; C33["3.3 Módulo de relatórios"]
+
+B4 --&gt; C41["4.1 Testes unitários"]
+B4 --&gt; C42["4.2 Testes integrados"]
+B4 --&gt; C43["4.3 Correção de falhas"]
+
+B5 --&gt; C51["5.1 Publicação no servidor"]
+B5 --&gt; C52["5.2 Treinamento dos usuários"]
+B5 --&gt; C53["5.3 Entrega final"]</code></pre>
+        </section>
+
+        <section id="ferramenta">
+          <h2>7. Ferramenta recomendada</h2>
+          <p>
+            Para testar, editar e visualizar diagramas Mermaid, você pode usar o editor online oficial:
+          </p>
+          <p>
+            <a class="link-card" href="https://mermaid.ai" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-box-arrow-up-right"></i>
+              https://mermaid.ai
+            </a>
+          </p>
+        </section>
+
+        <section id="fechamento">
+          <h2>8. Síntese didática</h2>
+          <p>
+            A EAP é mais do que uma representação gráfica: ela é uma ferramenta de organização do escopo e de integração entre
+            requisitos, entregas e planejamento. Quando usada de forma clara e consistente, ela melhora a rastreabilidade e dá
+            suporte a decisões mais objetivas ao longo do projeto.
+          </p>
+          <p class="footer-note">
+            <strong>Sugestão didática:</strong> ao montar a EAP, verifique se cada requisito relevante está associado a uma ou
+            mais entregas e se cada entrega pode ser desdobrada em pacotes de trabalho viáveis. Isso conecta coleta de requisitos,
+            declaração de escopo, planejamento e controle em uma mesma visão estruturada.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.init({ rootRelative: ".." });
+  </script>
+</body>
+</html>

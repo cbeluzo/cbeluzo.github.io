@@ -19,7 +19,7 @@ jobs:
 
       - name: Validate JavaScript syntax
         run: |
-          node -e "const fs=require('fs'); global.window={}; eval(fs.readFileSync('assets/js/portal-data.js','utf8')); eval(fs.readFileSync('assets/js/site.js','utf8'));"
+          node -e "const fs=require('fs'); global.window={}; eval(fs.readFileSync('assets/js/site.js','utf8')); if (!window.PortalUI || typeof window.PortalUI.init !== 'function') { throw new Error('PortalUI.init não foi exposto por assets/js/site.js'); } JSON.parse(fs.readFileSync('assets/data/portal-data.json','utf8'));"
 
       - name: Validate local HTML references
         run: python3 scripts/validate_portal.py

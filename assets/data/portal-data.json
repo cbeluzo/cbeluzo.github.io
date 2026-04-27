@@ -864,7 +864,7 @@
                 "className": "text-bg-primary"
               },
               "title": "Gestão Estratégica nas Organizações",
-              "search": "aula 9 gestão estratégica nas organizações",
+              "search": "aula 9 gestão estratégica nas organizações material de apoio estudo de caso atividade",
               "actions": [
                 {
                   "label": "Apresentação",
@@ -872,6 +872,25 @@
                   "className": "btn btn-primary btn-sm",
                   "icon": "bi-box-arrow-up-right",
                   "newTab": true
+                },
+                {
+                  "label": "Material de Apoio",
+                  "href": "aula-09-revisao-teorica-estrutura-organizacional.html",
+                  "className": "btn btn-outline-primary btn-sm",
+                  "icon": "bi-file-earmark-text"
+                },
+                {
+                  "label": "Estudo de Caso",
+                  "href": "aula-09-estudo-de-caso-spotify.html",
+                  "className": "btn btn-outline-info btn-sm",
+                  "icon": "bi-chat-left-text",
+                  "newTab": true
+                },
+                {
+                  "label": "Atividade",
+                  "href": "aula-09-atividade-pbl-estrutura.html",
+                  "className": "btn btn-secondary btn-sm",
+                  "icon": "bi-ui-checks-grid"
                 }
               ]
             }

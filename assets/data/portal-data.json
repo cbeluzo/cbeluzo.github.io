@@ -1814,6 +1814,23 @@
           "items": [
             {
               "badge": {
+                "label": "Tópico 11",
+                "className": "text-bg-primary"
+              },
+              "title": "Gerenciamento do Tempo do Projeto",
+              "search": "aula 11 gerenciamento do tempo do projeto cronograma duração caminho crítico",
+              "actions": [
+                {
+                  "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/11-Gerenciamento-do-Tempo-do-Projeto-nhqecwonxosfrvw",
+                  "className": "btn btn-outline-secondary btn-sm",
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
+                }
+              ]
+            },
+            {
+              "badge": {
                 "label": "11A",
                 "className": "text-bg-light text-dark border"
               },
@@ -1822,8 +1839,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/11A-Estrutura-Analitica-do-Projeto-EAP-ehhmmwjw65cy1xt",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },
@@ -1837,8 +1856,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/11B-Grafico-de-Gantt-ww3a89nfqjel4ve",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },
@@ -1852,23 +1873,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/11C-Caminho-Critico-CPM-e-PERT-cqhptrgqk0dyhld",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
-                }
-              ]
-            },
-            {
-              "badge": {
-                "label": "Tópico 11",
-                "className": "text-bg-primary"
-              },
-              "title": "Gerenciamento do Tempo do Projeto",
-              "search": "aula 11 gerenciamento do tempo do projeto cronograma duração caminho crítico",
-              "actions": [
-                {
-                  "label": "Abrir (Gamma)",
-                  "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             }

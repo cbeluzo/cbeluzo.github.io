@@ -907,7 +907,7 @@
                 "className": "text-bg-primary"
               },
               "title": "Estrutura Organizacional",
-              "search": "aula 10 estrutura organizacional conceitos modelos estudo de caso agrot",
+              "search": "aula 10 estrutura organizacional conceitos modelos estudo de caso agrot formulário download",
               "inlineActions": [
                 {
                   "label": "Estudo de Caso",
@@ -923,6 +923,13 @@
                   "href": "https://gamma.app/docs/10-Estrutura-Organizacional-Conceitos-e-Modelos-9ppjj8ftypt0y2n",
                   "className": "btn btn-primary btn-sm",
                   "icon": "bi-box-arrow-up-right",
+                  "newTab": true
+                },
+                {
+                  "label": "Formulário de Respostas",
+                  "href": "formulario_estudo_caso_agrotech.docx",
+                  "className": "btn btn-outline-primary btn-sm",
+                  "icon": "bi-file-earmark-word",
                   "newTab": true
                 }
               ]

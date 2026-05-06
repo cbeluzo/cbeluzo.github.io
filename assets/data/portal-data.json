@@ -1338,14 +1338,25 @@
               },
               "title": "ITIL: fundamentos, aplicação prática e melhoria contínua dos serviços",
               "search": "aula 8 itil fundamentos gestão de serviços de ti aplicação prática melhoria contínua ativ 8 ativ 9 valor práticas incidentes mudanças problemas sla",
+              "inlineActions": [
+                {
+                  "label": "Estudo de caso",
+                  "href": "atividade_estudo_de_caso_itil.md",
+                  "className": "badge text-bg-info text-decoration-none",
+                  "icon": "bi-chat-left-text",
+                  "newTab": true
+                }
+              ],
               "metaText": [
                 "Conceitos centrais, incidentes, mudanças, SLAs e melhoria contínua"
               ],
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/ITIL-Fundamentos-Aplicacao-Pratica-e-Melhoria-Continua-dos-Servic-y46ajpgz3cgmk0v",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             }

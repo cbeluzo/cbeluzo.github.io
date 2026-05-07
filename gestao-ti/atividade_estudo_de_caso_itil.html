@@ -287,14 +287,15 @@
       color: #0f172a;
     }
 
-    .response-box {
+    .response-placeholder {
       margin-top: 12px;
       padding: 12px;
-      min-height: 90px;
-      border: 1px dashed #94a3b8;
+      min-height: 48px;
+      border: 1px dashed #cbd5e1;
       border-radius: 12px;
-      background: #ffffff;
-      color: #64748b;
+      background: #fdfdfd;
+      color: #a0aec0;
+      font-style: italic;
       font-size: 0.95rem;
     }
 
@@ -387,7 +388,7 @@
             <i class="bi bi-arrow-left me-1"></i>Voltar para a disciplina
           </a>
           <a class="btn btn-outline-success" href="#modelo-entrega">
-            <i class="bi bi-journal-check me-1"></i>Modelo de Entrega
+            <i class="bi bi-file-earmark-arrow-down me-1"></i>Modelo de Entrega
           </a>
         </div>
       </div>
@@ -434,7 +435,7 @@
             A gestão de serviços de Tecnologia da Informação tem como finalidade organizar, entregar, sustentar e melhorar serviços que apoiam as atividades da organização. Em vez de tratar a TI apenas como uma área técnica responsável por computadores, redes e sistemas, a abordagem de gestão de serviços considera que a TI deve entregar valor aos usuários e às áreas de negócio.
           </p>
           <p>
-            Nesse contexto, frameworks como o ITIL oferecem conceitos e boas práticas para estruturar serviços, definir responsabilidades, organizar canais de atendimento, classificar demandas, acompanhar indicadores e promover melhoria contínua. A aplicação do ITIL não exige, necessariamente, a implantação imediata de ferramentas complexas. Mesmo organizações pequenas podem iniciar sua evolução com medidas simples, como padronização de chamados, definição de catálogo de serviços, priorização de demandas e acompanhamento de indicadores básicos.
+            Nesse contexto, frameworks como o ITIL oferecem conceitos e boas práticas para estruturar serviços, define responsabilidades, organizar canais de atendimento, classificar demandas, acompanhar indicadores e promover melhoria contínua. A aplicação do ITIL não exige, necessariamente, a implantação imediata de ferramentas complexas. Mesmo organizações pequenas podem iniciar sua evolução com medidas simples, como padronização de chamados, definição de catálogo de serviços, priorização de demandas e acompanhamento de indicadores básicos.
           </p>
           <p>
             Esta atividade tem como objetivo aplicar esses conceitos em um estudo de caso fictício, simulando uma situação comum em organizações que possuem serviços de TI importantes, mas ainda pouco estruturados.
@@ -634,44 +635,62 @@
         <section id="produto-esperado">
           <span class="pill">Entregas</span>
           <h2>7. Produto Esperado</h2>
-          <p>Cada grupo deverá entregar uma proposta organizada contendo os 11 itens estruturados no <strong>Modelo de Entrega</strong> abaixo. A proposta deve ser objetiva, coerente com o caso e baseada nos conceitos discutidos em aula.</p>
+          <p>Cada grupo deverá estruturar sua entrega em um documento de texto ou documento de Word, contendo os 11 itens apresentados no modelo de referência abaixo. Utilize o botão no painel de entrega para copiar o template com a estrutura idêntica para o seu editor de texto!</p>
         </section>
 
         <!-- 8. Modelo de Entrega -->
         <section id="modelo-entrega">
-          <span class="pill">Template</span>
+          <span class="pill">Template de Entrega</span>
           <h2>8. Modelo de Entrega da Atividade</h2>
-          <p class="text-muted mb-4">Utilize o modelo estruturado abaixo para preencher a entrega da sua equipe.</p>
+          <p class="text-muted">Abaixo você pode visualizar a estrutura requerida e copiar o template completo de forma rápida para colar em seu documento de Word.</p>
 
+          <!-- Clipboard Copy Action Panel -->
+          <div class="summary-panel highlight-ok border-success p-4 mb-4">
+            <div class="row align-items-center g-3">
+              <div class="col-12 col-md-8">
+                <h5 class="fw-bold mb-1 text-success d-flex align-items-center">
+                  <i class="bi bi-file-earmark-word-fill fs-4 me-2"></i> Pronto para preenchimento no Word
+                </h5>
+                <p class="mb-0 text-muted small">Copie a estrutura formatada em Markdown (que é aceita perfeitamente pelo Microsoft Word e outros editores) para criar seu relatório rapidamente.</p>
+              </div>
+              <div class="col-12 col-md-4 text-md-end">
+                <button id="copyBtn" class="btn btn-outline-success d-inline-flex align-items-center fw-semibold px-4 py-2 w-100 justify-content-center" onclick="copyTemplate()">
+                  <i class="bi bi-clipboard-plus me-2"></i> Copiar Template para Word
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Read-only clean preview fields -->
           <div class="exercise mb-4">
             <h4 class="fw-bold border-bottom pb-2">Identificação do Grupo</h4>
             <div class="row g-3">
               <div class="col-md-6">
                 <strong>Nome dos integrantes:</strong>
-                <div class="response-box" contenteditable="true">Insira os nomes aqui...</div>
+                <div class="response-placeholder">[Nomes completos dos integrantes]</div>
               </div>
               <div class="col-md-3">
                 <strong>Turma:</strong>
-                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+                <div class="response-placeholder">[Identificação da turma]</div>
               </div>
               <div class="col-md-3">
                 <strong>Data:</strong>
-                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+                <div class="response-placeholder">[Data da atividade]</div>
               </div>
               <div class="col-12">
                 <strong>Serviço escolhido:</strong>
-                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+                <div class="response-placeholder">[Ex: Suporte aos laboratórios de informática, Wi-Fi, etc.]</div>
               </div>
             </div>
           </div>
 
           <div class="exercise mb-4">
             <h4 class="fw-bold">8.1 Serviço Analisado</h4>
-            <p class="small text-muted">Explique, de forma objetiva, o que esse serviço entrega aos usuários e por que ele é importante para a instituição.</p>
+            <p class="small text-muted">Explique o que esse serviço entrega de valor aos usuários e por que ele é importante para a instituição.</p>
             <strong>Nome do serviço:</strong>
-            <div class="response-box mb-3" contenteditable="true">Insira o nome do serviço escolhido...</div>
+            <div class="response-placeholder mb-3">[Ex: Serviço de Wi-Fi institucional]</div>
             <strong>Descrição do serviço:</strong>
-            <div class="response-box" contenteditable="true">Explique a entrega de valor do serviço...</div>
+            <div class="response-placeholder">[Descrição objetiva da entrega de valor aos usuários]</div>
           </div>
 
           <div class="exercise mb-4">
@@ -686,16 +705,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true" class="text-muted">Ex: Alunos</td>
-                  <td contenteditable="true" class="text-muted">Utilizam a rede Wi-Fi nos espaços acadêmicos para consultas e atividades...</td>
+                  <td>Ex: Alunos</td>
+                  <td class="text-muted">Utilizam a rede Wi-Fi nos espaços acadêmicos para consultas e atividades...</td>
                 </tr>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -713,12 +728,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -736,12 +747,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -760,14 +767,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -786,14 +788,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -812,9 +809,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -827,39 +824,39 @@
               <tbody>
                 <tr>
                   <td style="width: 30%; font-weight: bold; background: #fafcff;">Nome do serviço</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Nome formatado do serviço]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Descrição do serviço</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Valor, o que é entregue]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Público atendido</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Quem pode solicitar]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Canal de solicitação</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Onde solicitar]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Horário de atendimento</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Quando é atendido]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Prazo inicial sugerido</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Tempo estimado para entrega]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Responsável pelo atendimento</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Quem atende o chamado]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Condições ou pré-requisitos</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Pré-requisitos do solicitante]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">O que está fora do escopo</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[O que não é atendido por este item]</td>
                 </tr>
               </tbody>
             </table>
@@ -879,22 +876,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -915,18 +900,11 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true"></td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
                 </tr>
               </tbody>
             </table>
@@ -939,27 +917,27 @@
               <tbody>
                 <tr>
                   <td style="width: 40%; font-weight: bold; background: #fafcff;">O que será observado?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Métricas, reclamações, instabilidade, etc.]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Quais dados serão coletados?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Logs, volumetria de chamados, prazos]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Como os problemas serão priorizados?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Matriz de impacto e urgência]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Quais ações serão implementadas primeiro?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Quick wins, soluções de alta viabilidade]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Como os resultados serão verificados?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Comparação antes x depois, pesquisa rápida]</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background: #fafcff;">Como os aprendizados serão incorporados ao serviço?</td>
-                  <td contenteditable="true"></td>
+                  <td class="text-muted">[Atualização do catálogo, novos POPs]</td>
                 </tr>
               </tbody>
             </table>
@@ -1042,6 +1020,127 @@
     PortalUI.init({ rootRelative: ".." }).then(() => {
       // Custom render if needed, or default nav/footer setup
     });
+
+    function copyTemplate() {
+      const templateText = `# MODELO DE ENTREGA - CLÍNICA ITIL: REDESENHO DE UM SERVIÇO DE TI
+
+## IDENTIFICAÇÃO DO GRUPO
+- Nome dos integrantes: 
+- Turma: 
+- Data: 
+- Serviço escolhido: 
+
+---
+
+## 8.1 SERVIÇO ANALISADO
+- Nome do serviço: 
+- Descrição do serviço: 
+
+---
+
+## 8.2 USUÁRIOS PRINCIPAIS
+| Tipo de usuário | Como utiliza o serviço |
+|---|---|
+| Ex: Alunos | Utilizam a rede Wi-Fi nos espaços acadêmicos para consultas e atividades... |
+| | |
+| | |
+
+---
+
+## 8.3 PARTES INTERESSADAS
+| Parte interessada | Interesse ou impacto relacionado ao serviço |
+|---|---|
+| | |
+| | |
+
+---
+
+## 8.4 PROBLEMAS ATUAIS
+| Problema identificado | Impacto para os usuários ou para a instituição |
+|---|---|
+| | |
+| | |
+
+---
+
+## 8.5 INCIDENTES TÍPICOS
+| Incidente típico | Impacto | Prioridade sugerida |
+|---|---|---|
+| | | |
+| | | |
+
+---
+
+## 8.6 REQUISIÇÕES TÍPICAS
+| Requisição típica | Informações necessárias | Prazo sugerido |
+|---|---|---|
+| | | |
+| | | |
+
+---
+
+## 8.7 PROBLEMAS RECORRENTES
+| Padrão observado (Sintomas) | Possível causa | Ação inicial de investigação (Causa-raiz) |
+|---|---|---|
+| | | |
+
+---
+
+## 8.8 PROPOSTA INICIAL DE CATÁLOGO DE SERVIÇO
+- Nome do serviço: 
+- Descrição do serviço: 
+- Público atendido: 
+- Canal de solicitação: 
+- Horário de atendimento: 
+- Prazo inicial sugerido: 
+- Responsável pelo atendimento: 
+- Condições ou pré-requisitos: 
+- O que está fora do escopo: 
+
+---
+
+## 8.9 INDICADORES DE ACOMPANHAMENTO
+| Indicador | O que mede | Como pode ser coletado | Meta inicial sugerida |
+|---|---|---|---|
+| | | | |
+| | | | |
+| | | | |
+
+---
+
+## 8.10 AÇÕES DE MELHORIA DE CURTO PRAZO
+| Ação proposta | Responsável | Prazo | Evidência de conclusão | Resultado esperado |
+|---|---|---|---|---|
+| | | | | |
+| | | | | |
+
+---
+
+## 8.11 CICLO DE MELHORIA CONTÍNUA
+- O que será observado? 
+- Quais dados serão coletados? 
+- Como os problemas serão priorizados? 
+- Quais ações serão implementadas primeiro? 
+- Como os resultados serão verificados? 
+- Como os aprendizados serão incorporados ao serviço? 
+`;
+
+      navigator.clipboard.writeText(templateText).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="bi bi-clipboard-check me-2"></i> Copiado!';
+        btn.classList.remove('btn-outline-success');
+        btn.classList.add('btn-success');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('btn-success');
+          btn.classList.add('btn-outline-success');
+        }, 2000);
+      }).catch(err => {
+        console.error('Falha ao copiar:', err);
+        alert('Não foi possível copiar automaticamente. Selecione e copie o conteúdo manualmente.');
+      });
+    }
   </script>
 </body>
 </html>

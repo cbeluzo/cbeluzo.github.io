@@ -1341,10 +1341,9 @@
               "inlineActions": [
                 {
                   "label": "Estudo de caso",
-                  "href": "atividade_estudo_de_caso_itil.md",
+                  "href": "atividade_estudo_de_caso_itil.html",
                   "className": "badge text-bg-info text-decoration-none",
-                  "icon": "bi-chat-left-text",
-                  "newTab": true
+                  "icon": "bi-chat-left-text"
                 }
               ],
               "metaText": [

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade Prática - Clínica ITIL</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(25,135,84,.18), transparent 45%),
+                      radial-gradient(1200px circle at 80% 30%, rgba(13,110,253,.12), transparent 45%);
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #dbe4f0;
+      --brand: #198754; /* Green success theme for Gestão de TI */
+      --brand-2: #157347;
+      --brand-3: #0f172a;
+      --soft: #e8f5e9;
+      --soft-2: #f1f8f5;
+      --ok: #166534;
+      --warn: #92400e;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f0f7f4 0%, var(--bg) 180px, var(--bg) 100%);
+      line-height: 1.68;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, var(--brand));
+      color: white;
+      padding: 42px 24px 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar .wrap,
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3, h4 { line-height: 1.25; }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+    }
+
+    .topbar-title {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 900px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.94);
+      margin: 0;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--brand);
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      transition: 0.2s ease;
+      font-size: 0.96rem;
+    }
+
+    .sidebar a:hover {
+      background: var(--soft);
+      color: var(--brand);
+    }
+
+    .content section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      color: #0f172a;
+      font-size: 1.55rem;
+    }
+
+    .content h3 {
+      color: var(--brand);
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .box {
+      background: #fafcff;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--brand);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .card h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--soft);
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: var(--brand);
+    }
+
+    ul, ol { padding-left: 22px; margin: 10px 0 14px; }
+    li { margin-bottom: 8px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 10px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand);
+      border: 1px solid #c8e6c9;
+      margin-bottom: 10px;
+    }
+
+    .didactic-note,
+    .summary-panel,
+    .practice-panel {
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      border: 1px solid var(--line);
+    }
+
+    .didactic-note {
+      background: #fffdf5;
+      border-left: 5px solid #d97706;
+    }
+
+    .summary-panel {
+      background: var(--soft-2);
+      border-left: 5px solid var(--brand);
+    }
+
+    .practice-panel {
+      background: #f0fdf4;
+      border-left: 5px solid #16a34a;
+    }
+
+    .didactic-note strong,
+    .summary-panel strong,
+    .practice-panel strong {
+      color: var(--brand-3);
+    }
+
+    .exercise {
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: #fcfdff;
+    }
+
+    .exercise strong {
+      color: #0f172a;
+    }
+
+    .response-box {
+      margin-top: 12px;
+      padding: 12px;
+      min-height: 90px;
+      border: 1px dashed #94a3b8;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    details {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .footer-note {
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .highlight-ok {
+      background: #f0fdf4;
+      border-left-color: #16a34a;
+    }
+
+    .highlight-warn {
+      background: #fff7ed;
+      border-left-color: #ea580c;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .grid-2, .grid-3, .grid-4, .hero-meta {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 1.8rem; }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+      #site-nav,
+      .page-hero,
+      #site-footer {
+        display: none;
+      }
+      .sidebar {
+        display: none;
+      }
+      .layout {
+        display: block;
+        padding: 0;
+      }
+      .content section {
+        box-shadow: none;
+        border: 1px solid #cbd5e1;
+        margin-bottom: 16px;
+        break-inside: avoid;
+      }
+      .topbar {
+        box-shadow: none;
+      }
+      details {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Gestão de TI</div>
+          <h1 class="h3 mb-1">Clínica ITIL: Redesenho de um Serviço de TI</h1>
+          <div class="text-muted">Atividade prática de modelagem de serviços de TI utilizando boas práticas ITIL.</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-success" href="./gestao-ti.html">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para a disciplina
+          </a>
+          <a class="btn btn-outline-success" href="#modelo-entrega">
+            <i class="bi bi-journal-check me-1"></i>Modelo de Entrega
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="eyebrow">Gestão de Serviços de TI</div>
+      <div class="topbar-title">Clínica ITIL: Redesenho de um Serviço de TI</div>
+      <p class="lead">
+        Esta atividade prática em grupo tem como objetivo aplicar os conceitos do framework ITIL para mapear, redesenhar e propor melhorias para serviços de TI de uma instituição de ensino, promovendo alinhamento entre tecnologia e entrega de valor.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-box"><strong>Duração sugerida</strong>40 a 60 minutos</div>
+        <div class="hero-box"><strong>Formato</strong>Trabalho prático em grupo</div>
+        <div class="hero-box"><strong>Produto final</strong>Proposta inicial de melhoria para um serviço de TI</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <aside class="sidebar">
+        <h3>Navegação</h3>
+        <a href="#contextualizacao">1. Contextualização</a>
+        <a href="#estudo-caso">2. Faculdade Horizonte Digital</a>
+        <a href="#desafio">3. Desafio da Atividade</a>
+        <a href="#objetivos">4. Objetivos</a>
+        <a href="#orientacoes">5. Orientações</a>
+        <a href="#conceitos">6. Conceitos de Apoio</a>
+        <a href="#produto-esperado">7. Produto Esperado</a>
+        <a href="#modelo-entrega">8. Modelo de Entrega</a>
+        <a href="#criterios">9. Critérios de Avaliação</a>
+        <a href="#orientacao-final">10. Orientação Final</a>
+      </aside>
+
+      <div class="content">
+        <!-- 1. Contextualização -->
+        <section id="contextualizacao">
+          <span class="pill">Visão Geral</span>
+          <h2>1. Contextualização</h2>
+          <p>
+            A gestão de serviços de Tecnologia da Informação tem como finalidade organizar, entregar, sustentar e melhorar serviços que apoiam as atividades da organização. Em vez de tratar a TI apenas como uma área técnica responsável por computadores, redes e sistemas, a abordagem de gestão de serviços considera que a TI deve entregar valor aos usuários e às áreas de negócio.
+          </p>
+          <p>
+            Nesse contexto, frameworks como o ITIL oferecem conceitos e boas práticas para estruturar serviços, definir responsabilidades, organizar canais de atendimento, classificar demandas, acompanhar indicadores e promover melhoria contínua. A aplicação do ITIL não exige, necessariamente, a implantação imediata de ferramentas complexas. Mesmo organizações pequenas podem iniciar sua evolução com medidas simples, como padronização de chamados, definição de catálogo de serviços, priorização de demandas e acompanhamento de indicadores básicos.
+          </p>
+          <p>
+            Esta atividade tem como objetivo aplicar esses conceitos em um estudo de caso fictício, simulando uma situação comum em organizações que possuem serviços de TI importantes, mas ainda pouco estruturados.
+          </p>
+        </section>
+
+        <!-- 2. Estudo de Caso -->
+        <section id="estudo-caso">
+          <span class="pill">Estudo de Caso</span>
+          <h2>2. Faculdade Horizonte Digital</h2>
+          <p>
+            A instituição fictícia <strong>Faculdade Horizonte Digital</strong> possui aproximadamente <strong>2.800 alunos</strong>, <strong>180 docentes</strong> e <strong>70 técnicos administrativos</strong>. A área de TI conta com uma equipe pequena, responsável por diferentes serviços essenciais para o funcionamento da instituição.
+          </p>
+          <p>Entre as responsabilidades da equipe de TI estão:</p>
+          <div class="grid-2 mb-3">
+            <div class="card p-3">
+              <ul>
+                <li>Manutenção da rede institucional;</li>
+                <li>Suporte ao Wi-Fi;</li>
+                <li>Administração dos laboratórios de informática;</li>
+                <li>Suporte aos sistemas acadêmicos;</li>
+              </ul>
+            </div>
+            <div class="card p-3">
+              <ul>
+                <li>Gestão do e-mail institucional;</li>
+                <li>Atendimento a docentes;</li>
+                <li>Manutenção de computadores;</li>
+                <li>Suporte a alunos e setores administrativos.</li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            Nos últimos meses, a direção da instituição percebeu aumento no número de reclamações relacionadas aos serviços de TI. Entre as principais reclamações estão:
+          </p>
+          <div class="didactic-note border-danger bg-light">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ul>
+                  <li>Lentidão no atendimento;</li>
+                  <li>Falta de retorno sobre chamados;</li>
+                  <li>Indisponibilidade frequente do Wi-Fi;</li>
+                  <li>Dificuldade de acesso ao sistema acadêmico;</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-6">
+                <ul>
+                  <li>Demora na liberação de softwares nos laboratórios;</li>
+                  <li>Ausência de informação sobre prazos;</li>
+                  <li>Sensação de desorganização no atendimento;</li>
+                  <li>Solicitações feitas por canais informais e sem rastreabilidade.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p>
+            Atualmente, o atendimento ocorre por e-mail, mensagens informais e solicitações presenciais. Não existe um catálogo formal de serviços. Os chamados são registrados de maneira irregular. As prioridades são definidas caso a caso, muitas vezes com base na pressão do solicitante. Os usuários não sabem quais são os prazos esperados para cada tipo de atendimento. Ao mesmo tempo, a equipe de TI relata sobrecarga de trabalho e sente que seu esforço é pouco reconhecido pela comunidade acadêmica.
+          </p>
+          <div class="summary-panel mt-3">
+            <strong>Restrições da Direção:</strong>
+            <ol class="mb-0">
+              <li>A equipe de TI não será ampliada no curto prazo;</li>
+              <li>A instituição não pretende adquirir uma ferramenta complexa de gestão de chamados neste primeiro momento.</li>
+            </ol>
+          </div>
+          <p class="mt-3">
+            Assim, a proposta deve priorizar ações simples, viáveis e de curto prazo, capazes de organizar melhor o serviço, melhorar a comunicação com os usuários, reduzir improvisos e criar uma base para melhoria contínua.
+          </p>
+        </section>
+
+        <!-- 3. Desafio da Atividade -->
+        <section id="desafio">
+          <span class="pill">Desafio</span>
+          <h2>3. Desafio da Atividade</h2>
+          <p>
+            Cada grupo deverá atuar como uma pequena equipe de consultoria em gestão de serviços de TI. O objetivo é analisar um dos serviços prestados pela área de TI da Faculdade Horizonte Digital e propor um redesenho inicial com base em fundamentos do ITIL.
+          </p>
+          <div class="practice-panel">
+            <strong>Escolha um serviço de TI para analisar:</strong>
+            <div class="row mt-2">
+              <div class="col-12 col-md-6">
+                <ul>
+                  <li>Wi-Fi institucional;</li>
+                  <li>Suporte aos laboratórios de informática;</li>
+                  <li>Acesso ao sistema acadêmico;</li>
+                  <li>Criação de contas de usuários;</li>
+                  <li>Instalação de softwares autorizados;</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-6">
+                <ul>
+                  <li>Atendimento a incidentes em sala de aula;</li>
+                  <li>Suporte ao e-mail institucional;</li>
+                  <li>Manutenção de computadores administrativos;</li>
+                  <li>Suporte a docentes durante atividades acadêmicas.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3">
+            A proposta deve demonstrar como o serviço pode ser melhor organizado, comunicado, monitorado e aprimorado, mesmo sem aumento imediato da equipe e sem adoção inicial de uma ferramenta sofisticada.
+          </p>
+        </section>
+
+        <!-- 4. Objetivos da Atividade -->
+        <section id="objetivos">
+          <span class="pill">Objetivos</span>
+          <h2>4. Objetivos da Atividade</h2>
+          <p>Ao final da atividade, o grupo deverá ser capaz de:</p>
+          <ul>
+            <li>Descrever um serviço de TI de forma clara;</li>
+            <li>Identificar usuários e partes interessadas;</li>
+            <li>Reconhecer problemas atuais na prestação do serviço;</li>
+            <li>Diferenciar incidentes, requisições de serviço e problemas recorrentes;</li>
+            <li>Propor uma versão inicial de catálogo de serviço;</li>
+            <li>Definir indicadores básicos de acompanhamento;</li>
+            <li>Sugerir ações de melhoria contínua;</li>
+            <li>Relacionar a proposta aos princípios de criação de valor em serviços de TI.</li>
+          </ul>
+        </section>
+
+        <!-- 5. Orientações para os Grupos -->
+        <section id="orientacoes">
+          <span class="pill">Instruções</span>
+          <h2>5. Orientações para os Grupos</h2>
+          <p>
+            O grupo deve discutir o caso e elaborar uma proposta objetiva, considerando a realidade da instituição. A proposta não deve depender de soluções caras ou complexas. O foco deve estar em organização, clareza, priorização, comunicação, registro de demandas e melhoria gradual.
+          </p>
+          <div class="box">
+            <strong>Questões Norteadoras para Discussão:</strong>
+            <ol class="mb-0 mt-2">
+              <li>Qual serviço de TI será analisado?</li>
+              <li>Quem utiliza diretamente esse serviço?</li>
+              <li>Quem é impactado pela qualidade ou indisponibilidade desse serviço?</li>
+              <li>Quais são os principais problemas percebidos atualmente?</li>
+              <li>Quais demandas devem ser classificadas como incidentes?</li>
+              <li>Quais demandas devem ser classificadas como requisições de serviço?</li>
+              <li>Existem problemas recorrentes que indicam necessidade de investigação de causa?</li>
+              <li>Como esse serviço poderia ser descrito em um catálogo de serviços?</li>
+              <li>Quais prazos, canais e responsabilidades poderiam ser definidos?</li>
+              <li>Quais indicadores permitiriam acompanhar a melhoria do serviço?</li>
+              <li>Quais ações de curto prazo poderiam ser implementadas?</li>
+              <li>Como verificar se as ações propostas realmente melhoraram o serviço?</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 6. Conceitos de Apoio -->
+        <section id="conceitos">
+          <span class="pill">Apoio Teórico</span>
+          <h2>6. Conceitos de Apoio</h2>
+
+          <h3>6.1 Serviço de TI</h3>
+          <p>
+            Um serviço de TI é uma forma de entregar valor aos usuários por meio do uso organizado de tecnologia, pessoas, processos, informações e suporte. O serviço não se limita ao componente técnico. Ele envolve também canais de atendimento, responsabilidades, comunicação, prazos, indicadores e melhoria contínua.
+          </p>
+
+          <h3>6.2 Incidente</h3>
+          <p>
+            Um incidente é uma interrupção não planejada ou uma redução na qualidade de um serviço. O objetivo da gestão de incidentes é restaurar o serviço o mais rapidamente possível, reduzindo impactos para os usuários.
+          </p>
+          <div class="card mb-3">
+            <strong>Exemplos:</strong> Wi-Fi fora do ar; sistema acadêmico indisponível; computador do laboratório sem acesso à rede; e-mail institucional com falha; projetor de sala sem funcionamento durante a aula.
+          </div>
+
+          <h3>6.3 Requisição de Serviço</h3>
+          <p>
+            Uma requisição de serviço é uma solicitação padronizada feita pelo usuário, geralmente prevista e repetitiva. Ela não representa necessariamente uma falha, mas uma demanda comum que pode seguir um fluxo definido.
+          </p>
+          <div class="card mb-3">
+            <strong>Exemplos:</strong> reset de senha; criação de conta institucional; liberação de acesso a sistema; instalação de software autorizado; solicitação de equipamento; configuração de e-mail.
+          </div>
+
+          <h3>6.4 Problema</h3>
+          <p>
+            Um problema é uma causa, conhecida ou desconhecida, de um ou mais incidentes. A gestão de problemas busca investigar causas-raiz e reduzir a recorrência de falhas.
+          </p>
+          <div class="didactic-note">
+            <strong>Exemplo de Problema x Incidente:</strong> Se o Wi-Fi fica indisponível toda segunda-feira no início da manhã, cada indisponibilidade é um incidente. A investigação sobre a causa da recorrência, como sobrecarga, falha de autenticação, configuração inadequada ou limitação de infraestrutura, caracteriza gestão de problemas.
+          </div>
+
+          <h3>6.5 Catálogo de Serviços</h3>
+          <p>
+            O catálogo de serviços descreve os serviços oferecidos pela TI, indicando quem pode solicitá-los, por qual canal, em quais condições, com quais prazos e sob responsabilidade de quem. Ele ajuda a alinhar expectativas entre usuários e equipe de TI.
+          </p>
+
+          <h3>6.6 Indicadores</h3>
+          <p>
+            Indicadores permitem acompanhar o desempenho dos serviços e orientar decisões de melhoria. Eles devem ser simples, mensuráveis e úteis para a gestão.
+          </p>
+          <div class="card mb-3">
+            <strong>Exemplos de Indicadores:</strong> tempo médio de primeiro atendimento; tempo médio de resolução; percentual de chamados resolvidos dentro do prazo; número de chamados por categoria; taxa de reincidência; satisfação do usuário; quantidade de chamados reabertos; disponibilidade do serviço.
+          </div>
+        </section>
+
+        <!-- 7. Produto Esperado -->
+        <section id="produto-esperado">
+          <span class="pill">Entregas</span>
+          <h2>7. Produto Esperado</h2>
+          <p>Cada grupo deverá entregar uma proposta organizada contendo os 11 itens estruturados no <strong>Modelo de Entrega</strong> abaixo. A proposta deve ser objetiva, coerente com o caso e baseada nos conceitos discutidos em aula.</p>
+        </section>
+
+        <!-- 8. Modelo de Entrega -->
+        <section id="modelo-entrega">
+          <span class="pill">Template</span>
+          <h2>8. Modelo de Entrega da Atividade</h2>
+          <p class="text-muted mb-4">Utilize o modelo estruturado abaixo para preencher a entrega da sua equipe.</p>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold border-bottom pb-2">Identificação do Grupo</h4>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <strong>Nome dos integrantes:</strong>
+                <div class="response-box" contenteditable="true">Insira os nomes aqui...</div>
+              </div>
+              <div class="col-md-3">
+                <strong>Turma:</strong>
+                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+              </div>
+              <div class="col-md-3">
+                <strong>Data:</strong>
+                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+              </div>
+              <div class="col-12">
+                <strong>Serviço escolhido:</strong>
+                <div class="response-box" contenteditable="true">Preencha aqui...</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.1 Serviço Analisado</h4>
+            <p class="small text-muted">Explique, de forma objetiva, o que esse serviço entrega aos usuários e por que ele é importante para a instituição.</p>
+            <strong>Nome do serviço:</strong>
+            <div class="response-box mb-3" contenteditable="true">Insira o nome do serviço escolhido...</div>
+            <strong>Descrição do serviço:</strong>
+            <div class="response-box" contenteditable="true">Explique a entrega de valor do serviço...</div>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.2 Usuários Principais</h4>
+            <p class="small text-muted">Identifique quem utiliza diretamente o serviço e de que forma.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th style="width: 35%;">Tipo de usuário</th>
+                  <th>Como utiliza o serviço</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true" class="text-muted">Ex: Alunos</td>
+                  <td contenteditable="true" class="text-muted">Utilizam a rede Wi-Fi nos espaços acadêmicos para consultas e atividades...</td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.3 Partes Interessadas</h4>
+            <p class="small text-muted">Identifique pessoas, setores ou organizações impactadas pelo funcionamento do serviço.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th style="width: 35%;">Parte interessada</th>
+                  <th>Interesse ou impacto relacionado ao serviço</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.4 Problemas Atuais</h4>
+            <p class="small text-muted">Liste os principais problemas percebidos no serviço escolhido e seus impactos.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th style="width: 40%;">Problema identificado</th>
+                  <th>Impacto para os usuários ou para a instituição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.5 Incidentes Típicos</h4>
+            <p class="small text-muted">Apresente exemplos de interrupções ou degradações comuns do serviço.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th>Incidente típico</th>
+                  <th>Impacto</th>
+                  <th style="width: 25%;">Prioridade sugerida</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.6 Requisições Típicas</h4>
+            <p class="small text-muted">Apresente exemplos de solicitações padronizadas e previsíveis relacionadas ao serviço.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th>Requisição típica</th>
+                  <th>Informações necessárias</th>
+                  <th style="width: 25%;">Prazo sugerido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.7 Problemas Recorrentes</h4>
+            <p class="small text-muted">Diferencie a solução imediata de incidentes isolados da investigação de um padrão repetitivo.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th>Padrão observado (Sintomas)</th>
+                  <th>Possível causa</th>
+                  <th>Ação inicial de investigação (Causa-raiz)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.8 Proposta Inicial de Catálogo de Serviço</h4>
+            <p class="small text-muted">Construa o alinhamento de expectativas detalhando o serviço.</p>
+            <table class="table table-bordered bg-white">
+              <tbody>
+                <tr>
+                  <td style="width: 30%; font-weight: bold; background: #fafcff;">Nome do serviço</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Descrição do serviço</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Público atendido</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Canal de solicitação</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Horário de atendimento</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Prazo inicial sugerido</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Responsável pelo atendimento</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Condições ou pré-requisitos</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">O que está fora do escopo</td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.9 Indicadores de Acompanhamento</h4>
+            <p class="small text-muted">Defina pelo menos três indicadores simples, mensuráveis e úteis para acompanhar o desempenho.</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th>Indicador</th>
+                  <th>O que mede</th>
+                  <th>Como pode ser coletado</th>
+                  <th style="width: 25%;">Meta inicial sugerida</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.10 Ações de Melhoria de Curto Prazo</h4>
+            <p class="small text-muted">Proponha ações simples e viáveis para melhorar o serviço nos próximos 30 a 60 dias (sem ampliação de equipe ou compras caras).</p>
+            <table class="table table-bordered bg-white">
+              <thead>
+                <tr>
+                  <th>Ação proposta</th>
+                  <th>Responsável</th>
+                  <th>Prazo</th>
+                  <th>Evidência de conclusão</th>
+                  <th>Resultado esperado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="exercise mb-4">
+            <h4 class="fw-bold">8.11 Ciclo de Melhoria Contínua</h4>
+            <p class="small text-muted">Descreva como o grupo planeja acompanhar e refinar a qualidade do serviço ao longo do tempo.</p>
+            <table class="table table-bordered bg-white">
+              <tbody>
+                <tr>
+                  <td style="width: 40%; font-weight: bold; background: #fafcff;">O que será observado?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Quais dados serão coletados?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Como os problemas serão priorizados?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Quais ações serão implementadas primeiro?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Como os resultados serão verificados?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fafcff;">Como os aprendizados serão incorporados ao serviço?</td>
+                  <td contenteditable="true"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 9. Critérios de Avaliação -->
+        <section id="criterios">
+          <span class="pill">Avaliação</span>
+          <h2>9. Critérios de Avaliação</h2>
+          <table class="table table-striped table-bordered mt-3">
+            <thead>
+              <tr>
+                <th>Critério</th>
+                <th style="width: 20%;" class="text-center">Pontuação Sugerida</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Compreensão dos conceitos</strong></td>
+                <td class="text-center">2,0</td>
+                <td>O grupo diferencia corretamente o que é serviço, incidente, requisição e problema no redesenho.</td>
+              </tr>
+              <tr>
+                <td><strong>Diagnóstico do serviço</strong></td>
+                <td class="text-center">2,0</td>
+                <td>O grupo identifica os problemas mais críticos e coerentes com o caso e mapeia seus impactos adequadamente.</td>
+              </tr>
+              <tr>
+                <td><strong>Proposta de catálogo</strong></td>
+                <td class="text-center">2,0</td>
+                <td>O grupo descreve o serviço, o público-alvo, canais de contato, prazos, papéis de suporte e escopo de forma prática.</td>
+              </tr>
+              <tr>
+                <td><strong>Indicadores e melhoria</strong></td>
+                <td class="text-center">2,0</td>
+                <td>O grupo propõe métricas realistas e plano de ações de curto prazo, de alta viabilidade prática.</td>
+              </tr>
+              <tr>
+                <td><strong>Clareza e entrega</strong></td>
+                <td class="text-center">2,0</td>
+                <td>A proposta é estruturada de forma lógica, clara, concisa e focada em utilidade real para a instituição.</td>
+              </tr>
+              <tr class="table-success text-success font-weight-bold">
+                <td><strong>Total</strong></td>
+                <td class="text-center"><strong>10,0</strong></td>
+                <td><strong>Pontuação máxima da atividade prática.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 10. Orientação Final -->
+        <section id="orientacao-final">
+          <span class="pill">Finalização</span>
+          <h2>10. Orientação Final aos Estudantes</h2>
+          <p>
+            A proposta não precisa resolver todos os problemas da Faculdade Horizonte Digital. O objetivo é demonstrar como conceitos de ITIL podem ser aplicados de forma prática e gradual para organizar um serviço de TI.
+          </p>
+          <div class="summary-panel text-success highlight-ok border-success mb-3">
+            <strong>Lembre-se:</strong> uma área de TI madura não é aquela que apenas responde a chamados de modo reativo, mas aquela que conhece seus serviços, mede sua qualidade, aprende com falhas recorrentes e busca incansavelmente a melhoria contínua da entrega de valor ao negócio!
+          </div>
+          <div class="footer-note mt-4 pt-3 border-top text-muted d-flex justify-content-between">
+            <span>© Portal do Professor - Disciplina: Gestão de TI</span>
+            <span>Estudo de Caso Prático: Clínica ITIL</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.init({ rootRelative: ".." }).then(() => {
+      // Custom render if needed, or default nav/footer setup
+    });
+  </script>
+</body>
+</html>

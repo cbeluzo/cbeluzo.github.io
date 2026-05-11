@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial 04 - Login, PostgreSQL e JWT em NestJS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
+
+    <style>
+      :root {
+        --page-hero-bg: radial-gradient(1200px circle at 15% 15%, rgba(108,117,125,.18), transparent 45%),
+                        radial-gradient(1200px circle at 80% 30%, rgba(13,110,253,.12), transparent 45%);
+      }
+
+      .tutorial-markdown {
+        line-height: 1.7;
+      }
+
+      .tutorial-markdown h1,
+      .tutorial-markdown h2,
+      .tutorial-markdown h3,
+      .tutorial-markdown h4 {
+        margin-top: 1.75rem;
+        margin-bottom: .75rem;
+      }
+
+      .tutorial-markdown h1:first-child {
+        margin-top: 0;
+      }
+
+      .tutorial-markdown p,
+      .tutorial-markdown ul,
+      .tutorial-markdown ol,
+      .tutorial-markdown pre,
+      .tutorial-markdown blockquote,
+      .tutorial-markdown table {
+        margin-bottom: 1rem;
+      }
+
+      .tutorial-markdown pre {
+        padding: 1rem;
+        overflow-x: auto;
+        border-radius: .75rem;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+
+      .tutorial-markdown code {
+        padding: .1rem .35rem;
+        border-radius: .35rem;
+        background: rgba(15, 23, 42, .06);
+      }
+
+      .tutorial-markdown pre code {
+        padding: 0;
+        background: transparent;
+        color: inherit;
+      }
+
+      .tutorial-markdown blockquote {
+        padding: .75rem 1rem;
+        border-left: .25rem solid #0d6efd;
+        background: rgba(13, 110, 253, .04);
+      }
+
+      .tutorial-markdown table {
+        width: 100%;
+      }
+
+      .tutorial-markdown table,
+      .tutorial-markdown th,
+      .tutorial-markdown td {
+        border: 1px solid rgba(15, 23, 42, .12);
+      }
+
+      .tutorial-markdown th,
+      .tutorial-markdown td {
+        padding: .75rem;
+      }
+
+      .tutorial-markdown hr {
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div id="site-nav"></div>
+
+    <noscript>
+      <div class="container py-3">
+        <div class="alert alert-warning my-0">Esta página usa JavaScript para carregar e renderizar o tutorial.</div>
+      </div>
+    </noscript>
+
+    <header class="page-hero py-4 border-bottom">
+      <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-muted fw-semibold">Iniciação Científica</div>
+          <h1 class="h3 mb-1">Tutorial 04</h1>
+          <div class="text-muted">Login, senha, PostgreSQL e JWT em NestJS.</div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-outline-secondary" href="./index.html">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para a área
+          </a>
+          <a class="btn btn-outline-primary" href="./tutorial_login_postgresql_jwt_nestjs_corrigido(1).md">
+            <i class="bi bi-download me-1"></i>Abrir .md
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container my-4">
+      <section class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4 p-lg-5">
+          <div id="tutorial-status" class="text-muted">Carregando tutorial...</div>
+          <article id="tutorial-content" class="tutorial-markdown"></article>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../assets/js/site.js"></script>
+    <script>
+      const markdownFile = "./tutorial_login_postgresql_jwt_nestjs_corrigido(1).md";
+
+      PortalUI.init({ rootRelative: ".." }).then(() => {
+        PortalUI.renderSiteNav({
+          rootRelative: "..",
+          currentKey: "pibifsp"
+        });
+
+        PortalUI.renderFooter({
+          rootRelative: "..",
+          showHomeLink: true
+        });
+      });
+
+      const status = document.getElementById("tutorial-status");
+      const content = document.getElementById("tutorial-content");
+
+      marked.setOptions({
+        breaks: false,
+        gfm: true
+      });
+
+      fetch(markdownFile)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("Falha ao carregar o tutorial.");
+          }
+
+          return response.text();
+        })
+        .then(function (markdown) {
+          status.remove();
+          content.innerHTML = marked.parse(markdown);
+        })
+        .catch(function () {
+          status.className = "alert alert-warning mb-0";
+          status.textContent = "Não foi possível carregar o tutorial automaticamente. Use o botão 'Abrir .md'.";
+        });
+    </script>
+  </body>
+</html>

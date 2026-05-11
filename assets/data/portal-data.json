@@ -301,6 +301,24 @@
               "icon": "bi-box-arrow-up-right"
             }
           ]
+        },
+        {
+          "title": "Tutorial 04",
+          "icon": "bi-file-earmark-text",
+          "badge": {
+            "label": "Tutorial",
+            "className": "badge text-bg-primary"
+          },
+          "description": "Autenticação em NestJS com cadastro, login, PostgreSQL, bcryptjs e JWT.",
+          "search": "tutorial 04 nestjs login senha postgresql jwt bcryptjs passport autenticacao",
+          "actions": [
+            {
+              "label": "Abrir Tutorial",
+              "href": "./tutorial-04.html",
+              "className": "btn btn-outline-primary btn-sm",
+              "icon": "bi-box-arrow-up-right"
+            }
+          ]
         }
       ]
     },

@@ -36,7 +36,7 @@ Os diretórios abaixo permanecem no repositório como acervo, materiais temátic
 - `dm017/`
 - `lp3/`
 - `python-101/`
-- `pibisfp/`
+- `pibifsp/`
 - `code/`
 - `data/`
 

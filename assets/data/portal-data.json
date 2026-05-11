@@ -40,10 +40,10 @@
         "href": "pesquisa/pesquisa.html"
       },
       {
-        "key": "pibisfp",
+        "key": "pibifsp",
         "label": "Iniciação Científica",
         "icon": "bi-mortarboard",
-        "href": "pibisfp/index.html"
+        "href": "pibifsp/index.html"
       },
       {
         "key": "apresentacoes",
@@ -108,7 +108,7 @@
         {
           "title": "Iniciação Científica",
           "description": "Tutoriais e materiais de apoio para projetos, com acesso direto aos conteúdos organizados da área.",
-          "href": "pibisfp/index.html",
+          "href": "pibifsp/index.html",
           "icon": "bi-mortarboard",
           "pillClass": "icon-pill text-secondary",
           "buttonClass": "btn btn-outline-secondary btn-sm"
@@ -241,8 +241,8 @@
         }
       ]
     },
-    "pibisfp": {
-      "key": "pibisfp",
+    "pibifsp": {
+      "key": "pibifsp",
       "title": "Iniciação Científica",
       "icon": "bi-mortarboard",
       "description": "Tutoriais, roteiros e materiais de apoio para projetos de iniciação científica.",

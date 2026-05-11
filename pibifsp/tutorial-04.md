@@ -1,4 +1,4 @@
-# Tutorial corrigido: login, senha, PostgreSQL e JWT em NestJS
+# Tutorial: login, senha, PostgreSQL e JWT em NestJS
 
 ## 1. Objetivo do tutorial
 

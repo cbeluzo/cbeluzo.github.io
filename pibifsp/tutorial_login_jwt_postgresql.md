@@ -1,28 +1,54 @@
-# Tutorial: login, senha, PostgreSQL e JWT em NestJS
+# Tutorial corrigido: login, senha, PostgreSQL e JWT em NestJS
 
-## 1. Objetivo da atividade
+## 1. Objetivo do tutorial
 
-Este tutorial apresenta, passo a passo, a implementação de um mecanismo básico de autenticação em uma aplicação **NestJS**, utilizando **PostgreSQL** como banco de dados, **bcrypt** para armazenar senhas de forma segura e **JWT** para autenticação e controle de sessão em rotas protegidas.
+Este tutorial apresenta a implementação completa de um mecanismo de autenticação em uma API desenvolvida com **NestJS**, utilizando **PostgreSQL** para armazenar usuários, **bcryptjs** para gerar hash de senhas e **JWT** para autenticar requisições em rotas protegidas.
 
-A atividade foi escrita para estudantes iniciantes. Portanto, antes de cada trecho de código há uma explicação conceitual sobre o que será feito, por que será feito e qual é o papel de cada arquivo dentro da aplicação.
+O material foi escrito para estudantes iniciantes. Por isso, cada etapa apresenta primeiro a explicação conceitual e, em seguida, o código correspondente. A proposta é construir uma API simples, porém organizada, com cadastro, login e acesso a uma rota privada.
 
-Ao final, a aplicação terá três funcionalidades principais:
+Ao final, a aplicação terá o seguinte fluxo:
 
-1. Cadastro de usuário com nome, e-mail e senha.
-2. Login com verificação de e-mail e senha.
-3. Acesso a uma rota protegida usando um token JWT.
+```text
+1. O usuário se cadastra informando nome, e-mail e senha.
+2. A senha não é salva diretamente no banco.
+3. A aplicação gera um hash da senha e salva esse hash no PostgreSQL.
+4. O usuário faz login informando e-mail e senha.
+5. A aplicação compara a senha digitada com o hash salvo.
+6. Se as credenciais estiverem corretas, a aplicação gera um token JWT.
+7. O cliente usa esse token para acessar rotas protegidas.
+```
 
 ---
 
-## 2. O que o aluno precisa entender antes de programar
+## 2. Tecnologias utilizadas
 
-Antes de iniciar a implementação, é importante compreender alguns conceitos básicos.
+Neste tutorial serão utilizadas as seguintes tecnologias:
 
-### 2.1. O que é autenticação?
+```text
+Node.js
+NestJS
+TypeScript
+PostgreSQL
+TypeORM
+JWT
+Passport JWT
+bcryptjs
+class-validator
+Thunder Client, Postman ou Insomnia
+VS Code
+```
 
-Autenticação é o processo de verificar se uma pessoa realmente é quem afirma ser. Em uma aplicação web, isso normalmente ocorre quando o usuário informa um e-mail e uma senha.
+A escolha do `bcryptjs` foi feita por ser uma biblioteca mais simples para uso em laboratório, especialmente em computadores Windows, pois não exige compilação nativa. Em projetos profissionais, também é comum utilizar `bcrypt` nativo ou `argon2`, dependendo dos requisitos de segurança e desempenho.
 
-Exemplo:
+---
+
+## 3. Conceitos básicos antes da implementação
+
+### 3.1. O que é autenticação?
+
+Autenticação é o processo de verificar a identidade de um usuário. Em sistemas web, isso normalmente ocorre por meio de e-mail e senha.
+
+Exemplo conceitual:
 
 ```text
 Usuário informa:
@@ -34,96 +60,31 @@ Existe um usuário com esse e-mail?
 A senha informada corresponde à senha cadastrada?
 ```
 
-Se as informações estiverem corretas, o sistema autentica o usuário.
+Se as duas verificações forem verdadeiras, o usuário é considerado autenticado.
 
 ---
 
-### 2.2. O que é autorização?
+### 3.2. O que é autorização?
 
-Autorização é diferente de autenticação.
+Autenticação e autorização não são a mesma coisa. A autenticação verifica quem é o usuário. A autorização verifica o que esse usuário pode acessar.
 
-A autenticação responde à pergunta:
-
-```text
-Quem é você?
-```
-
-A autorização responde à pergunta:
-
-```text
-O que você pode acessar?
-```
-
-Neste tutorial, implementaremos apenas uma autorização simples: algumas rotas só poderão ser acessadas por usuários autenticados.
+Neste tutorial, será implementada uma autorização simples: apenas usuários autenticados poderão acessar a rota `/auth/profile`.
 
 ---
 
-### 2.3. O que é uma sessão?
+### 3.3. O que é JWT?
 
-Em aplicações tradicionais, uma sessão é uma forma de lembrar que um usuário já fez login. Em muitos sistemas antigos, o servidor guardava uma sessão em memória ou em banco de dados.
+JWT significa **JSON Web Token**. Ele é um token assinado digitalmente pelo servidor. Depois que o usuário faz login, o servidor entrega um token ao cliente. Nas próximas requisições, o cliente envia esse token no cabeçalho HTTP.
 
-Com JWT, a lógica é diferente. O servidor gera um token assinado e entrega esse token ao cliente. Nas próximas requisições, o cliente envia o token de volta. Se o token for válido, o servidor considera o usuário autenticado.
+O cabeçalho usado é:
 
-Portanto, neste tutorial, o controle de sessão será feito por meio de um token JWT.
-
----
-
-### 2.4. Por que não se deve salvar a senha diretamente no banco?
-
-Nunca se deve armazenar senhas em texto puro.
-
-Errado:
-
-```text
-email: ana@ifsp.edu.br
-senha: Senha@123
+```http
+Authorization: Bearer TOKEN_AQUI
 ```
 
-Se alguém tiver acesso indevido ao banco de dados, todas as senhas dos usuários serão expostas.
+O JWT normalmente contém informações mínimas, como o identificador do usuário e o e-mail. Ele não deve armazenar senha, dados sensíveis ou informações desnecessárias.
 
-O correto é armazenar um **hash** da senha.
-
-Exemplo conceitual:
-
-```text
-Senha original:
-Senha@123
-
-Valor armazenado no banco:
-$2b$10$9sxD3XlV0wQwYgRk...
-```
-
-O hash não deve ser convertido de volta para a senha original. No login, o sistema compara a senha digitada com o hash armazenado.
-
----
-
-### 2.5. O que é bcrypt?
-
-`bcrypt` é uma biblioteca usada para gerar hashes de senhas. Ela aplica um algoritmo próprio para dificultar ataques de força bruta.
-
-Neste tutorial, o fluxo será:
-
-```text
-Cadastro:
-senha digitada -> bcrypt.hash() -> hash salvo no banco
-
-Login:
-senha digitada + hash salvo -> bcrypt.compare() -> verdadeiro ou falso
-```
-
----
-
-### 2.6. O que é JWT?
-
-JWT significa **JSON Web Token**. É um token composto por três partes:
-
-```text
-HEADER.PAYLOAD.SIGNATURE
-```
-
-O JWT contém informações mínimas sobre o usuário, como seu identificador e e-mail. Ele também possui uma assinatura, que permite ao servidor verificar se o token é válido.
-
-Exemplo de payload interno de um JWT:
+Exemplo conceitual do conteúdo interno de um JWT:
 
 ```json
 {
@@ -134,85 +95,133 @@ Exemplo de payload interno de um JWT:
 }
 ```
 
-O campo `sub` normalmente representa o identificador do usuário autenticado.
+O campo `sub` é uma convenção usada para representar o identificador principal do usuário autenticado.
 
 ---
 
-## 3. Visão geral da arquitetura
+### 3.4. JWT é uma sessão?
 
-A aplicação será organizada em módulos. Essa organização é importante porque o NestJS trabalha com uma arquitetura modular.
+Em aplicações tradicionais, o servidor costuma armazenar uma sessão. Com JWT, o servidor normalmente não armazena a sessão em memória. O token assinado funciona como uma prova temporária de autenticação.
 
-A estrutura principal será:
+Por isso, dizemos que JWT é uma forma de autenticação **stateless**, ou seja, sem estado de sessão armazenado no servidor.
+
+Neste tutorial, a expressão “controle de sessão” significa que o cliente manterá temporariamente um token JWT e o enviará nas requisições protegidas.
+
+---
+
+### 3.5. Por que a senha não pode ser salva diretamente?
+
+Nunca se deve salvar senhas em texto puro no banco de dados.
+
+Forma incorreta:
+
+```text
+email: ana@ifsp.edu.br
+senha: Senha@123
+```
+
+Forma correta:
+
+```text
+email: ana@ifsp.edu.br
+password_hash: $2a$10$...
+```
+
+O hash é um resultado matemático gerado a partir da senha. Na autenticação, a aplicação não descriptografa o hash. Ela compara a senha digitada com o hash armazenado.
+
+Fluxo correto:
+
+```text
+Cadastro:
+senha digitada -> hash -> banco de dados
+
+Login:
+senha digitada + hash salvo -> comparação -> verdadeiro ou falso
+```
+
+---
+
+## 4. Arquitetura da aplicação
+
+A aplicação será organizada em dois módulos principais.
 
 ```text
 src/
 ├── app.module.ts
 ├── main.ts
 ├── users/
+│   ├── dto/
+│   │   └── create-user.dto.ts
 │   ├── user.entity.ts
 │   ├── users.module.ts
-│   ├── users.service.ts
-│   └── dto/
-│       └── create-user.dto.ts
+│   └── users.service.ts
 └── auth/
-    ├── auth.controller.ts
-    ├── auth.module.ts
-    ├── auth.service.ts
+    ├── decorators/
+    │   └── current-user.decorator.ts
     ├── dto/
     │   └── login.dto.ts
     ├── guards/
     │   └── jwt-auth.guard.ts
-    └── strategies/
-        └── jwt.strategy.ts
+    ├── strategies/
+    │   └── jwt.strategy.ts
+    ├── types/
+    │   └── jwt-user.type.ts
+    ├── auth.controller.ts
+    ├── auth.module.ts
+    └── auth.service.ts
 ```
 
-Cada parte terá uma responsabilidade:
+Responsabilidades principais:
 
 ```text
 users/
-Responsável pelos dados dos usuários e pela comunicação com a tabela users.
+Responsável pela entidade User, cadastro de usuários e consultas ao banco.
 
 auth/
-Responsável por cadastro, login, geração do JWT e proteção das rotas.
+Responsável por login, geração de JWT, validação do token e rotas protegidas.
 
-PostgreSQL/
+PostgreSQL
 Responsável por armazenar os usuários.
 
-bcrypt/
-Responsável por transformar senhas em hashes seguros.
+bcryptjs
+Responsável por gerar e comparar hashes de senha.
 
-JWT/
-Responsável por identificar usuários autenticados nas requisições.
+JWT
+Responsável por transportar a identidade autenticada entre cliente e servidor.
 ```
 
 ---
 
-## 4. Pré-requisitos
+## 5. Pré-requisitos
 
-Antes de começar, o aluno deve ter instalado:
+Antes de iniciar, o aluno deve ter instalado:
 
-1. Node.js LTS.
-2. VS Code.
-3. PostgreSQL.
-4. Postman, Insomnia ou extensão Thunder Client no VS Code.
-5. Git.
-6. NestJS CLI.
+```text
+Node.js LTS
+VS Code
+PostgreSQL
+Git
+Thunder Client, Postman ou Insomnia
+NestJS CLI
+```
 
-Para instalar o NestJS CLI, abra o terminal:
+Para instalar o NestJS CLI:
 
 ```bash
 npm install -g @nestjs/cli
 ```
 
-Para verificar se o NestJS CLI foi instalado corretamente:
+Para conferir a instalação:
 
 ```bash
 nest --version
+node --version
+npm --version
 ```
 
 ---
 
-## 5. Criando o projeto NestJS
+## 6. Criando o projeto NestJS
 
 Abra o terminal na pasta onde deseja criar o projeto e execute:
 
@@ -220,19 +229,21 @@ Abra o terminal na pasta onde deseja criar o projeto e execute:
 nest new auth-postgres-jwt
 ```
 
-Entre na pasta criada:
+Quando o NestJS perguntar qual gerenciador de pacotes deseja usar, selecione `npm`, caso a turma ainda esteja começando.
+
+Entre na pasta do projeto:
 
 ```bash
 cd auth-postgres-jwt
 ```
 
-Abra o projeto no VS Code:
+Abra no VS Code:
 
 ```bash
 code .
 ```
 
-Inicie a aplicação para testar se está funcionando:
+Execute a aplicação inicial:
 
 ```bash
 npm run start:dev
@@ -244,67 +255,64 @@ Acesse no navegador:
 http://localhost:3000
 ```
 
-Se aparecer uma mensagem como `Hello World!`, o projeto foi criado corretamente.
+Se aparecer a mensagem `Hello World!`, a aplicação base foi criada corretamente.
 
 ---
 
-## 6. Instalando as dependências
+## 7. Instalando as dependências
 
-Vamos instalar as bibliotecas necessárias para banco de dados, autenticação, JWT, validação de dados e criptografia de senha.
+Pare a aplicação, se ela estiver em execução, pressionando `CTRL + C` no terminal.
 
-Execute o comando:
-
-```bash
-npm install @nestjs/typeorm typeorm pg @nestjs/config bcrypt @nestjs/passport passport passport-jwt @nestjs/jwt class-validator class-transformer
-```
-
-Agora instale os tipos TypeScript das bibliotecas que precisam de definição de tipos:
+Instale as dependências principais:
 
 ```bash
-npm install -D @types/bcrypt @types/passport-jwt
+npm install @nestjs/config @nestjs/typeorm typeorm pg @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs class-validator class-transformer
 ```
 
-Explicação das principais dependências:
+Instale também a definição de tipos da estratégia JWT do Passport:
+
+```bash
+npm install -D @types/passport-jwt
+```
+
+Função de cada pacote:
 
 ```text
+@nestjs/config
+Permite carregar variáveis do arquivo .env.
+
 @nestjs/typeorm
 Integra o NestJS com o TypeORM.
 
 typeorm
-Biblioteca ORM usada para mapear classes TypeScript para tabelas do banco.
+ORM usado para mapear classes TypeScript para tabelas do banco.
 
 pg
-Driver necessário para conectar Node.js ao PostgreSQL.
-
-@nestjs/config
-Permite ler variáveis do arquivo .env.
-
-bcrypt
-Usado para gerar hash das senhas.
-
-@nestjs/passport
-Integra o NestJS com o Passport.
-
-passport
-Biblioteca de autenticação.
-
-passport-jwt
-Estratégia do Passport para validar tokens JWT.
+Driver usado para conectar Node.js ao PostgreSQL.
 
 @nestjs/jwt
-Usado para gerar e assinar tokens JWT.
+Permite gerar e assinar tokens JWT.
+
+@nestjs/passport e passport
+Integram o Passport ao NestJS.
+
+passport-jwt
+Estratégia do Passport para autenticação com JWT.
+
+bcryptjs
+Gera e compara hashes de senha.
 
 class-validator e class-transformer
-Usados para validar os dados enviados pelo cliente.
+Permitem validar os dados recebidos nas requisições.
 ```
 
 ---
 
-## 7. Criando o banco de dados no PostgreSQL
+## 8. Criando o banco de dados PostgreSQL
 
-Abra o terminal do PostgreSQL, o pgAdmin ou outro cliente de banco de dados.
+Abra o pgAdmin ou o terminal `psql` usando um usuário administrador, por exemplo `postgres`.
 
-A seguir está uma forma simples de criar o banco e um usuário específico para a aplicação.
+Execute os comandos abaixo:
 
 ```sql
 CREATE DATABASE auth_aula;
@@ -314,25 +322,27 @@ CREATE USER auth_user WITH PASSWORD 'auth123';
 GRANT ALL PRIVILEGES ON DATABASE auth_aula TO auth_user;
 ```
 
-Depois, conecte-se ao banco criado:
+Depois conecte-se ao banco criado:
 
 ```sql
 \c auth_aula
 ```
 
-Execute:
+Conceda permissão de uso e criação no schema `public`:
 
 ```sql
-GRANT ALL ON SCHEMA public TO auth_user;
+GRANT USAGE, CREATE ON SCHEMA public TO auth_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO auth_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO auth_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO auth_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO auth_user;
 ```
 
-Em ambiente didático, usaremos essas permissões para simplificar a prática. Em ambiente real, as permissões devem ser definidas com mais cuidado.
+Essas permissões são adequadas para ambiente didático. Em produção, o ideal é aplicar o princípio do menor privilégio e separar usuários administrativos de usuários da aplicação.
 
 ---
 
-## 8. Criando o arquivo `.env`
+## 9. Criando o arquivo `.env`
 
 Na raiz do projeto, crie um arquivo chamado `.env`.
 
@@ -345,21 +355,21 @@ DB_USERNAME=auth_user
 DB_PASSWORD=auth123
 DB_DATABASE=auth_aula
 
-JWT_SECRET=troque_esta_chave_por_uma_chave_grande_e_segura
-JWT_EXPIRES_IN=1h
+JWT_SECRET=troque_esta_chave_por_uma_chave_grande_aleatoria_e_segura
+JWT_EXPIRES_IN_SECONDS=3600
 ```
 
 Explicação:
 
 ```text
 DB_HOST
-Endereço do servidor PostgreSQL. Como o banco está na máquina local, usamos localhost.
+Servidor onde o PostgreSQL está rodando.
 
 DB_PORT
-Porta padrão do PostgreSQL. Normalmente é 5432.
+Porta do PostgreSQL. O padrão é 5432.
 
 DB_USERNAME
-Usuário do banco de dados.
+Usuário do banco usado pela aplicação.
 
 DB_PASSWORD
 Senha do usuário do banco.
@@ -368,231 +378,23 @@ DB_DATABASE
 Nome do banco de dados.
 
 JWT_SECRET
-Chave secreta usada para assinar os tokens JWT.
+Chave secreta usada para assinar e validar tokens JWT.
 
-JWT_EXPIRES_IN
-Tempo de validade do token.
+JWT_EXPIRES_IN_SECONDS
+Tempo de validade do token em segundos. 3600 segundos equivalem a 1 hora.
 ```
 
-Importante: o arquivo `.env` não deve ser enviado para o GitHub em projetos reais.
-
-Verifique se o arquivo `.gitignore` contém:
+Verifique se o arquivo `.gitignore` possui a linha abaixo:
 
 ```text
 .env
 ```
 
----
-
-## 9. Configurando o TypeORM no NestJS
-
-Abra o arquivo:
-
-```text
-src/app.module.ts
-```
-
-Substitua o conteúdo por:
-
-```typescript
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: parseInt(configService.get<string>('DB_PORT') ?? '5432', 10),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_DATABASE'),
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
-    }),
-  ],
-})
-export class AppModule {}
-```
-
-Explicação:
-
-```text
-ConfigModule.forRoot()
-Permite que a aplicação leia o arquivo .env.
-
-isGlobal: true
-Permite usar as configurações em qualquer módulo da aplicação.
-
-TypeOrmModule.forRootAsync()
-Configura a conexão com o banco usando valores carregados do .env.
-
-autoLoadEntities: true
-Permite que o TypeORM carregue automaticamente as entidades registradas nos módulos.
-
-synchronize: true
-Faz o TypeORM criar ou atualizar tabelas automaticamente durante o desenvolvimento.
-```
-
-Atenção: `synchronize: true` é útil em aula e desenvolvimento inicial, mas não deve ser usado em produção. Em produção, o correto é usar migrations.
+O arquivo `.env` não deve ser enviado ao GitHub, pois contém dados sensíveis.
 
 ---
 
-## 10. Criando o módulo de usuários
-
-No terminal, execute:
-
-```bash
-nest g module users
-nest g service users
-```
-
-Esses comandos criam o módulo e o serviço de usuários.
-
-O módulo `users` será responsável por:
-
-```text
-Cadastrar usuários.
-Buscar usuários pelo e-mail.
-Salvar o hash da senha no banco.
-Retornar dados públicos do usuário sem expor a senha.
-```
-
----
-
-## 11. Criando a entidade User
-
-Crie o arquivo:
-
-```text
-src/users/user.entity.ts
-```
-
-Conteúdo:
-
-```typescript
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-
-@Entity('users')
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ length: 120 })
-  name: string;
-
-  @Column({ unique: true, length: 160 })
-  email: string;
-
-  @Column({ name: 'password_hash', select: false })
-  passwordHash: string;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
-}
-```
-
-Explicação linha a linha:
-
-```text
-@Entity('users')
-Informa ao TypeORM que essa classe representa a tabela users.
-
-@PrimaryGeneratedColumn('uuid')
-Cria uma chave primária automática usando UUID.
-
-@Column({ length: 120 })
-Cria uma coluna de texto com tamanho máximo de 120 caracteres.
-
-@Column({ unique: true })
-Garante que não existam dois usuários com o mesmo e-mail.
-
-@Column({ name: 'password_hash', select: false })
-Cria a coluna password_hash, mas evita que ela seja retornada automaticamente nas consultas.
-
-@CreateDateColumn()
-Cria automaticamente a data de criação do registro.
-
-@UpdateDateColumn()
-Atualiza automaticamente a data da última alteração.
-```
-
----
-
-## 12. Criando o DTO de cadastro
-
-DTO significa **Data Transfer Object**. É uma classe usada para definir quais dados o cliente pode enviar para a API.
-
-Crie a pasta:
-
-```text
-src/users/dto
-```
-
-Dentro dela, crie o arquivo:
-
-```text
-src/users/dto/create-user.dto.ts
-```
-
-Conteúdo:
-
-```typescript
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
-
-export class CreateUserDto {
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
-  @IsEmail()
-  email: string;
-
-  @IsString()
-  @MinLength(6)
-  password: string;
-}
-```
-
-Explicação:
-
-```text
-@IsString()
-Verifica se o campo recebido é texto.
-
-@IsNotEmpty()
-Verifica se o campo não está vazio.
-
-@IsEmail()
-Verifica se o valor possui formato de e-mail.
-
-@MinLength(6)
-Exige que a senha tenha pelo menos 6 caracteres.
-```
-
-Em projetos reais, a regra de senha deve ser mais rigorosa. Para fins didáticos, usaremos no mínimo 6 caracteres.
-
----
-
-## 13. Ativando a validação global
+## 10. Configurando a validação global
 
 Abra o arquivo:
 
@@ -633,17 +435,159 @@ whitelist: true
 Remove campos que não foram declarados no DTO.
 
 forbidNonWhitelisted: true
-Rejeita requisições que enviam campos não permitidos.
+Rejeita requisições com campos desconhecidos.
 
 transform: true
-Permite converter os dados recebidos para os tipos esperados.
+Converte dados recebidos para os tipos esperados quando possível.
 ```
+
+---
+
+## 11. Criando o módulo de usuários
+
+No terminal, execute:
+
+```bash
+nest g module users
+nest g service users
+```
+
+Esses comandos criam:
+
+```text
+src/users/users.module.ts
+src/users/users.service.ts
+```
+
+O módulo `users` será responsável por operações relacionadas aos usuários, como cadastro e consulta por e-mail.
+
+---
+
+## 12. Criando a entidade User
+
+Crie o arquivo:
+
+```text
+src/users/user.entity.ts
+```
+
+Conteúdo:
+
+```typescript
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+
+@Entity('users')
+export class User {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
+
+  @Column({ length: 120 })
+  name!: string;
+
+  @Column({ unique: true, length: 160 })
+  email!: string;
+
+  @Column({ name: 'password_hash', select: false })
+  passwordHash!: string;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
+}
+```
+
+Explicação:
+
+```text
+@Entity('users')
+Indica que essa classe representa a tabela users.
+
+@PrimaryGeneratedColumn('uuid')
+Cria uma chave primária automática no formato UUID.
+
+@Column({ unique: true })
+Impede que dois usuários tenham o mesmo e-mail.
+
+@Column({ name: 'password_hash', select: false })
+Cria a coluna password_hash e evita que ela seja carregada automaticamente nas consultas.
+
+@CreateDateColumn
+Cria automaticamente a data de criação.
+
+@UpdateDateColumn
+Atualiza automaticamente a data de alteração.
+```
+
+O símbolo `!` informa ao TypeScript que esses campos serão preenchidos pelo TypeORM. Sem isso, o compilador pode reclamar que as propriedades não foram inicializadas no construtor.
+
+---
+
+## 13. Criando o DTO de cadastro
+
+DTO significa **Data Transfer Object**. Ele define quais dados a API aceita em determinada requisição.
+
+Crie a pasta:
+
+```text
+src/users/dto
+```
+
+Crie o arquivo:
+
+```text
+src/users/dto/create-user.dto.ts
+```
+
+Conteúdo:
+
+```typescript
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+
+export class CreateUserDto {
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
+
+  @IsEmail()
+  email!: string;
+
+  @IsString()
+  @MinLength(6)
+  password!: string;
+}
+```
+
+Explicação:
+
+```text
+@IsString()
+Verifica se o campo é texto.
+
+@IsNotEmpty()
+Verifica se o campo não está vazio.
+
+@IsEmail()
+Verifica se o campo possui formato de e-mail.
+
+@MinLength(6)
+Exige senha com pelo menos 6 caracteres.
+```
+
+Para fins didáticos, será exigido mínimo de 6 caracteres. Em aplicações reais, recomenda-se adotar políticas de senha mais robustas e mecanismos adicionais de proteção contra ataques de força bruta.
 
 ---
 
 ## 14. Configurando o UsersModule
 
-Abra o arquivo:
+Abra:
 
 ```text
 src/users/users.module.ts
@@ -669,13 +613,13 @@ Explicação:
 
 ```text
 TypeOrmModule.forFeature([User])
-Permite usar o repositório da entidade User dentro do módulo users.
+Disponibiliza o repositório da entidade User dentro do módulo users.
 
 providers: [UsersService]
 Registra o serviço de usuários.
 
 exports: [UsersService]
-Permite que outros módulos, como AuthModule, usem o UsersService.
+Permite que outro módulo, como AuthModule, use o UsersService.
 ```
 
 ---
@@ -693,10 +637,12 @@ Substitua por:
 ```typescript
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
+
+export type PublicUser = Omit<User, 'passwordHash'>;
 
 @Injectable()
 export class UsersService {
@@ -705,9 +651,11 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<PublicUser> {
+    const email = createUserDto.email.trim().toLowerCase();
+
     const existingUser = await this.usersRepository.findOne({
-      where: { email: createUserDto.email },
+      where: { email },
     });
 
     if (existingUser) {
@@ -718,8 +666,8 @@ export class UsersService {
     const passwordHash = await bcrypt.hash(createUserDto.password, saltRounds);
 
     const user = this.usersRepository.create({
-      name: createUserDto.name,
-      email: createUserDto.email,
+      name: createUserDto.name.trim(),
+      email,
       passwordHash,
     });
 
@@ -732,46 +680,46 @@ export class UsersService {
     return this.usersRepository
       .createQueryBuilder('user')
       .addSelect('user.passwordHash')
-      .where('user.email = :email', { email })
+      .where('user.email = :email', { email: email.trim().toLowerCase() })
       .getOne();
   }
 
-  private toPublicUser(user: User) {
-    const { passwordHash, ...safeUser } = user;
-    return safeUser;
+  private toPublicUser(user: User): PublicUser {
+    const { passwordHash, ...publicUser } = user;
+    return publicUser;
   }
 }
 ```
 
-Explicação das partes principais:
+Explicação:
 
 ```text
 @InjectRepository(User)
-Permite injetar o repositório da entidade User.
+Injeta o repositório TypeORM da entidade User.
 
-usersRepository.findOne()
+findOne()
 Busca um usuário no banco.
 
 ConflictException
-Retorna erro HTTP 409 quando o e-mail já existe.
+Retorna erro HTTP 409 quando o e-mail já está cadastrado.
 
 bcrypt.hash()
-Transforma a senha digitada em um hash seguro.
+Gera o hash da senha.
 
 saltRounds = 10
-Define o custo computacional do bcrypt. Quanto maior, mais lento e mais seguro.
+Define o custo computacional usado pelo bcrypt.
 
-usersRepository.create()
+create()
 Cria um objeto User em memória.
 
-usersRepository.save()
-Salva o usuário no banco de dados.
+save()
+Salva o usuário no PostgreSQL.
 
 findByEmailWithPassword()
-Busca o usuário pelo e-mail incluindo o passwordHash, que normalmente fica oculto.
+Busca o usuário e inclui explicitamente o passwordHash, pois esse campo usa select: false.
 
 toPublicUser()
-Remove o passwordHash antes de retornar os dados do usuário.
+Remove o passwordHash antes de retornar dados ao cliente.
 ```
 
 ---
@@ -789,11 +737,11 @@ nest g controller auth
 O módulo `auth` será responsável por:
 
 ```text
-Receber dados de cadastro.
-Receber dados de login.
+Receber o cadastro.
+Receber o login.
 Validar a senha.
 Gerar o JWT.
-Proteger rotas privadas.
+Validar o JWT em rotas protegidas.
 ```
 
 ---
@@ -819,15 +767,15 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 
 export class LoginDto {
   @IsEmail()
-  email: string;
+  email!: string;
 
   @IsString()
   @MinLength(6)
-  password: string;
+  password!: string;
 }
 ```
 
-Esse DTO define que o login exige:
+Esse DTO informa que a rota de login aceitará apenas dois campos:
 
 ```text
 email
@@ -836,221 +784,83 @@ password
 
 ---
 
-## 18. Configurando o AuthModule
+## 18. Criando o tipo do usuário autenticado
 
-Abra:
+Crie a pasta:
 
 ```text
-src/auth/auth.module.ts
+src/auth/types
 ```
 
-Substitua por:
+Crie o arquivo:
+
+```text
+src/auth/types/jwt-user.type.ts
+```
+
+Conteúdo:
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { UsersModule } from '../users/users.module';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { JwtStrategy } from './strategies/jwt.strategy';
-
-@Module({
-  imports: [
-    UsersModule,
-    PassportModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: {
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN') ?? '1h',
-        },
-      }),
-    }),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-})
-export class AuthModule {}
-```
-
-Explicação:
-
-```text
-UsersModule
-Permite que AuthService use UsersService para buscar usuários.
-
-PassportModule
-Integra o Passport ao NestJS.
-
-JwtModule
-Permite gerar tokens JWT.
-
-secret
-Chave secreta usada para assinar o token.
-
-expiresIn
-Tempo de validade do token.
-
-JwtStrategy
-Classe que validará os tokens enviados nas requisições.
-```
-
----
-
-## 19. Registrando os módulos no AppModule
-
-Agora precisamos importar os módulos `UsersModule` e `AuthModule` no módulo principal.
-
-Abra:
-
-```text
-src/app.module.ts
-```
-
-Deixe o arquivo assim:
-
-```typescript
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: parseInt(configService.get<string>('DB_PORT') ?? '5432', 10),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_DATABASE'),
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
-    }),
-
-    UsersModule,
-    AuthModule,
-  ],
-})
-export class AppModule {}
-```
-
-Neste momento, a aplicação já conhece:
-
-```text
-O banco de dados.
-O módulo de usuários.
-O módulo de autenticação.
-```
-
----
-
-## 20. Implementando o AuthService
-
-Abra:
-
-```text
-src/auth/auth.service.ts
-```
-
-Substitua por:
-
-```typescript
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { UsersService } from '../users/users.service';
-import { LoginDto } from './dto/login.dto';
-
-@Injectable()
-export class AuthService {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
-    private readonly configService: ConfigService,
-  ) {}
-
-  async login(loginDto: LoginDto) {
-    const user = await this.usersService.findByEmailWithPassword(loginDto.email);
-
-    if (!user) {
-      throw new UnauthorizedException('E-mail ou senha inválidos.');
-    }
-
-    const passwordMatches = await bcrypt.compare(
-      loginDto.password,
-      user.passwordHash,
-    );
-
-    if (!passwordMatches) {
-      throw new UnauthorizedException('E-mail ou senha inválidos.');
-    }
-
-    const payload = {
-      sub: user.id,
-      email: user.email,
-    };
-
-    const accessToken = await this.jwtService.signAsync(payload);
-
-    return {
-      accessToken,
-      tokenType: 'Bearer',
-      expiresIn: this.configService.get<string>('JWT_EXPIRES_IN') ?? '1h',
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      },
-    };
-  }
+export interface JwtUser {
+  id: string;
+  email: string;
 }
 ```
 
-Explicação:
-
-```text
-usersService.findByEmailWithPassword()
-Busca o usuário pelo e-mail, incluindo o hash da senha.
-
-UnauthorizedException
-Retorna erro HTTP 401 quando login ou senha estão incorretos.
-
-bcrypt.compare()
-Compara a senha digitada com o hash salvo no banco.
-
-payload
-Dados que serão colocados dentro do JWT.
-
-sub
-Campo usado para guardar o ID do usuário.
-
-jwtService.signAsync()
-Gera o token JWT.
-
-tokenType: 'Bearer'
-Indica que o token deve ser enviado no cabeçalho Authorization como Bearer Token.
-```
+Esse tipo representa os dados que estarão disponíveis dentro da aplicação depois que o JWT for validado.
 
 ---
 
-## 21. Criando a estratégia JWT
+## 19. Criando o decorator CurrentUser
 
-A estratégia JWT define como o sistema irá extrair e validar o token enviado pelo cliente.
+Um decorator facilita a recuperação do usuário autenticado dentro de uma rota protegida.
+
+Crie a pasta:
+
+```text
+src/auth/decorators
+```
+
+Crie o arquivo:
+
+```text
+src/auth/decorators/current-user.decorator.ts
+```
+
+Conteúdo:
+
+```typescript
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { JwtUser } from '../types/jwt-user.type';
+
+export const CurrentUser = createParamDecorator(
+  (_data: unknown, context: ExecutionContext): JwtUser => {
+    const request = context.switchToHttp().getRequest<{ user: JwtUser }>();
+    return request.user;
+  },
+);
+```
+
+Explicação:
+
+```text
+createParamDecorator
+Permite criar um decorator customizado para parâmetros de métodos.
+
+ExecutionContext
+Permite acessar a requisição HTTP atual.
+
+request.user
+Será preenchido automaticamente pelo Passport quando o JWT for válido.
+```
+
+Com esse decorator, evitamos usar `request: any` no controller e deixamos o código mais limpo.
+
+---
+
+## 20. Criando a estratégia JWT
+
+A estratégia JWT informa ao Passport como o token deve ser extraído e validado.
 
 Crie a pasta:
 
@@ -1071,6 +881,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { JwtUser } from '../types/jwt-user.type';
 
 interface JwtPayload {
   sub: string;
@@ -1078,18 +889,16 @@ interface JwtPayload {
 }
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly configService: ConfigService) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  constructor(configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey:
-        configService.get<string>('JWT_SECRET') ??
-        'chave_temporaria_apenas_para_desenvolvimento',
+      secretOrKey: configService.getOrThrow<string>('JWT_SECRET'),
     });
   }
 
-  async validate(payload: JwtPayload) {
+  validate(payload: JwtPayload): JwtUser {
     return {
       id: payload.sub,
       email: payload.email,
@@ -1101,30 +910,27 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 Explicação:
 
 ```text
-PassportStrategy(Strategy)
-Define uma estratégia de autenticação baseada em JWT.
+PassportStrategy(Strategy, 'jwt')
+Cria uma estratégia chamada jwt.
 
 ExtractJwt.fromAuthHeaderAsBearerToken()
-Indica que o token será lido do cabeçalho Authorization.
+Extrai o token do cabeçalho Authorization: Bearer TOKEN.
 
 ignoreExpiration: false
-Faz o sistema rejeitar tokens expirados.
+Faz a aplicação rejeitar tokens expirados.
 
 secretOrKey
-Chave usada para verificar se o token foi assinado corretamente.
+Chave usada para validar se o token foi realmente assinado pela aplicação.
 
 validate()
-É executado quando o token é válido.
-
-return { id, email }
-Define quais dados ficarão disponíveis em req.user nas rotas protegidas.
+É executado quando o token é válido. O retorno desse método será colocado em request.user.
 ```
 
 ---
 
-## 22. Criando o Guard de autenticação
+## 21. Criando o Guard JWT
 
-Um **Guard** no NestJS funciona como um porteiro. Antes de uma rota ser executada, o guard verifica se a requisição pode continuar.
+Um guard funciona como um filtro de acesso. Antes de executar uma rota, ele verifica se a requisição tem permissão para continuar.
 
 Crie a pasta:
 
@@ -1152,7 +958,7 @@ Explicação:
 
 ```text
 AuthGuard('jwt')
-Usa a estratégia JWT criada anteriormente.
+Usa a estratégia jwt criada no arquivo jwt.strategy.ts.
 
 JwtAuthGuard
 Será usado nas rotas que exigem autenticação.
@@ -1160,7 +966,175 @@ Será usado nas rotas que exigem autenticação.
 
 ---
 
-## 23. Implementando o AuthController
+## 22. Configurando o AuthModule
+
+Abra:
+
+```text
+src/auth/auth.module.ts
+```
+
+Substitua por:
+
+```typescript
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { UsersModule } from '../users/users.module';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { JwtStrategy } from './strategies/jwt.strategy';
+
+@Module({
+  imports: [
+    UsersModule,
+    PassportModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.getOrThrow<string>('JWT_SECRET'),
+        signOptions: {
+          expiresIn: Number(
+            configService.getOrThrow<string>('JWT_EXPIRES_IN_SECONDS'),
+          ),
+        },
+      }),
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+})
+export class AuthModule {}
+```
+
+Explicação:
+
+```text
+UsersModule
+Permite que AuthService use UsersService.
+
+PassportModule
+Integra o Passport ao NestJS.
+
+JwtModule
+Permite gerar tokens JWT.
+
+JwtModule.registerAsync()
+Configura o JWT usando dados do arquivo .env.
+
+JwtStrategy
+Valida o token recebido nas requisições protegidas.
+```
+
+Observe que o tempo de expiração foi configurado em segundos. Isso evita problemas de tipagem em algumas versões recentes das bibliotecas JWT.
+
+---
+
+## 23. Implementando o AuthService
+
+Abra:
+
+```text
+src/auth/auth.service.ts
+```
+
+Substitua por:
+
+```typescript
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcryptjs';
+import { CreateUserDto } from '../users/dto/create-user.dto';
+import { PublicUser, UsersService } from '../users/users.service';
+import { LoginDto } from './dto/login.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
+  ) {}
+
+  async register(createUserDto: CreateUserDto): Promise<PublicUser> {
+    return this.usersService.create(createUserDto);
+  }
+
+  async login(loginDto: LoginDto) {
+    const user = await this.usersService.findByEmailWithPassword(loginDto.email);
+
+    if (!user) {
+      throw new UnauthorizedException('E-mail ou senha inválidos.');
+    }
+
+    const passwordMatches = await bcrypt.compare(
+      loginDto.password,
+      user.passwordHash,
+    );
+
+    if (!passwordMatches) {
+      throw new UnauthorizedException('E-mail ou senha inválidos.');
+    }
+
+    const payload = {
+      sub: user.id,
+      email: user.email,
+    };
+
+    const accessToken = await this.jwtService.signAsync(payload);
+
+    return {
+      accessToken,
+      tokenType: 'Bearer',
+      expiresInSeconds: Number(
+        this.configService.getOrThrow<string>('JWT_EXPIRES_IN_SECONDS'),
+      ),
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    };
+  }
+}
+```
+
+Explicação:
+
+```text
+register()
+Encaminha o cadastro para o UsersService.
+
+login()
+Executa o processo de autenticação.
+
+findByEmailWithPassword()
+Busca o usuário e seu hash de senha.
+
+UnauthorizedException
+Retorna erro HTTP 401 quando o login falha.
+
+bcrypt.compare()
+Compara a senha digitada com o hash salvo.
+
+payload
+Objeto que será colocado dentro do JWT.
+
+sub
+Campo usado para guardar o ID do usuário.
+
+jwtService.signAsync()
+Gera o token JWT assinado.
+```
+
+O erro retornado é o mesmo tanto para e-mail inexistente quanto para senha incorreta. Isso evita revelar se determinado e-mail está cadastrado no sistema.
+
+---
+
+## 24. Implementando o AuthController
 
 Abra:
 
@@ -1171,35 +1145,42 @@ src/auth/auth.controller.ts
 Substitua por:
 
 ```typescript
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
-import { Request } from 'express';
-import { UsersService } from '../users/users.service';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
 import { LoginDto } from './dto/login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import { JwtUser } from './types/jwt-user.type';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  async register(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.register(createUserDto);
   }
 
+  @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
+  login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async profile(@Req() request: Request) {
-    return request.user;
+  profile(@CurrentUser() user: JwtUser) {
+    return user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('dashboard')
+  dashboard(@CurrentUser() user: JwtUser) {
+    return {
+      message: 'Você acessou uma área protegida.',
+      user,
+    };
   }
 }
 ```
@@ -1208,7 +1189,7 @@ Explicação:
 
 ```text
 @Controller('auth')
-Define que todas as rotas deste controller começam com /auth.
+Define que as rotas começam com /auth.
 
 @Post('register')
 Cria a rota POST /auth/register.
@@ -1216,31 +1197,89 @@ Cria a rota POST /auth/register.
 @Post('login')
 Cria a rota POST /auth/login.
 
+@HttpCode(HttpStatus.OK)
+Faz o login retornar HTTP 200, e não 201.
+
 @UseGuards(JwtAuthGuard)
-Protege a rota usando autenticação JWT.
+Exige JWT válido para acessar a rota.
 
-@Get('profile')
-Cria a rota GET /auth/profile.
-
-request.user
-Contém os dados retornados pelo método validate() da JwtStrategy.
+@CurrentUser()
+Recupera o usuário autenticado a partir do token validado.
 ```
 
-Observação: se o TypeScript reclamar do campo `request.user`, isso ocorre porque o tipo padrão de `Request` nem sempre conhece essa propriedade. Em contexto didático, a aplicação continuará funcionando. Se quiser evitar o aviso, substitua o método por:
-
-```typescript
-@UseGuards(JwtAuthGuard)
-@Get('profile')
-async profile(@Req() request: any) {
-  return request.user;
-}
-```
+A rota `/auth/dashboard` foi incluída como exemplo adicional de rota protegida.
 
 ---
 
-## 24. Executando a aplicação
+## 25. Configurando o AppModule
 
-No terminal:
+Abra:
+
+```text
+src/app.module.ts
+```
+
+Substitua por:
+
+```typescript
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.getOrThrow<string>('DB_HOST'),
+        port: Number(configService.getOrThrow<string>('DB_PORT')),
+        username: configService.getOrThrow<string>('DB_USERNAME'),
+        password: configService.getOrThrow<string>('DB_PASSWORD'),
+        database: configService.getOrThrow<string>('DB_DATABASE'),
+        autoLoadEntities: true,
+        synchronize: true,
+      }),
+    }),
+    UsersModule,
+    AuthModule,
+  ],
+})
+export class AppModule {}
+```
+
+Explicação:
+
+```text
+ConfigModule.forRoot({ isGlobal: true })
+Carrega o .env e permite usar ConfigService em toda a aplicação.
+
+TypeOrmModule.forRootAsync()
+Configura a conexão com o PostgreSQL usando variáveis de ambiente.
+
+getOrThrow()
+Gera erro se uma variável obrigatória não estiver definida.
+
+autoLoadEntities: true
+Carrega automaticamente as entidades registradas nos módulos.
+
+synchronize: true
+Cria ou atualiza tabelas automaticamente em ambiente de desenvolvimento.
+```
+
+Atenção: `synchronize: true` é útil em aulas e protótipos, mas não deve ser usado em produção. Em produção, use migrations.
+
+---
+
+## 26. Executando a aplicação
+
+No terminal, execute:
 
 ```bash
 npm run start:dev
@@ -1252,11 +1291,13 @@ Se tudo estiver correto, a aplicação ficará disponível em:
 http://localhost:3000
 ```
 
+Ao iniciar a aplicação, o TypeORM deve criar automaticamente a tabela `users` no PostgreSQL.
+
 ---
 
-## 25. Testando o cadastro
+## 27. Testando o cadastro
 
-### 25.1. Usando Postman, Insomnia ou Thunder Client
+Use Thunder Client, Postman ou Insomnia.
 
 Método:
 
@@ -1284,37 +1325,19 @@ Resposta esperada:
 
 ```json
 {
+  "id": "uuid-gerado",
   "name": "Ana Silva",
   "email": "ana@ifsp.edu.br",
-  "id": "uuid-gerado-pelo-banco",
-  "createdAt": "data-de-criacao",
-  "updatedAt": "data-de-atualizacao"
+  "createdAt": "2026-05-11T...",
+  "updatedAt": "2026-05-11T..."
 }
 ```
 
-Observe que a senha não aparece na resposta.
+A senha e o `passwordHash` não devem aparecer na resposta.
 
 ---
 
-### 25.2. Usando PowerShell no Windows
-
-```powershell
-$body = @{
-  name = "Ana Silva"
-  email = "ana@ifsp.edu.br"
-  password = "Senha@123"
-} | ConvertTo-Json
-
-Invoke-RestMethod `
-  -Uri "http://localhost:3000/auth/register" `
-  -Method Post `
-  -ContentType "application/json" `
-  -Body $body
-```
-
----
-
-## 26. Verificando o usuário no PostgreSQL
+## 28. Verificando o banco de dados
 
 No PostgreSQL, execute:
 
@@ -1323,21 +1346,19 @@ SELECT id, name, email, password_hash, created_at, updated_at
 FROM users;
 ```
 
-Você deverá ver algo semelhante a:
+Resultado esperado:
 
 ```text
-id                                   | name      | email             | password_hash
------------------------------------- | --------- | ----------------- | -------------------------------
-uuid                                 | Ana Silva | ana@ifsp.edu.br   | $2b$10$...
+id                                   | name      | email           | password_hash
+------------------------------------ | --------- | --------------- | -----------------------------
+uuid                                 | Ana Silva | ana@ifsp.edu.br | $2a$10$...
 ```
 
-O campo `password_hash` não deve conter a senha original.
+O campo `password_hash` deve conter um hash, não a senha original.
 
 ---
 
-## 27. Testando o login
-
-### 27.1. Usando Postman, Insomnia ou Thunder Client
+## 29. Testando login
 
 Método:
 
@@ -1366,7 +1387,7 @@ Resposta esperada:
 {
   "accessToken": "token-jwt-gerado",
   "tokenType": "Bearer",
-  "expiresIn": "1h",
+  "expiresInSeconds": 3600,
   "user": {
     "id": "uuid-do-usuario",
     "name": "Ana Silva",
@@ -1375,17 +1396,113 @@ Resposta esperada:
 }
 ```
 
-O campo mais importante é:
-
-```text
-accessToken
-```
-
-Esse token será usado para acessar rotas protegidas.
+O campo principal da resposta é `accessToken`. Ele será usado para acessar rotas protegidas.
 
 ---
 
-### 27.2. Usando PowerShell no Windows
+## 30. Testando rota protegida sem token
+
+Método:
+
+```text
+GET
+```
+
+URL:
+
+```text
+http://localhost:3000/auth/profile
+```
+
+Sem enviar token, a resposta esperada é:
+
+```json
+{
+  "message": "Unauthorized",
+  "statusCode": 401
+}
+```
+
+Esse resultado mostra que a rota está protegida.
+
+---
+
+## 31. Testando rota protegida com token
+
+Copie o valor de `accessToken` retornado no login.
+
+Método:
+
+```text
+GET
+```
+
+URL:
+
+```text
+http://localhost:3000/auth/profile
+```
+
+Header:
+
+```http
+Authorization: Bearer COLE_O_TOKEN_AQUI
+```
+
+Resposta esperada:
+
+```json
+{
+  "id": "uuid-do-usuario",
+  "email": "ana@ifsp.edu.br"
+}
+```
+
+Agora teste também:
+
+```text
+GET http://localhost:3000/auth/dashboard
+```
+
+Com o mesmo header:
+
+```http
+Authorization: Bearer COLE_O_TOKEN_AQUI
+```
+
+Resposta esperada:
+
+```json
+{
+  "message": "Você acessou uma área protegida.",
+  "user": {
+    "id": "uuid-do-usuario",
+    "email": "ana@ifsp.edu.br"
+  }
+}
+```
+
+---
+
+## 32. Testando pelo PowerShell no Windows
+
+### 32.1. Cadastro
+
+```powershell
+$body = @{
+  name = "Ana Silva"
+  email = "ana@ifsp.edu.br"
+  password = "Senha@123"
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/auth/register" `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body $body
+```
+
+### 32.2. Login
 
 ```powershell
 $login = @{
@@ -1402,77 +1519,13 @@ $response = Invoke-RestMethod `
 $response
 ```
 
-Para guardar o token em uma variável:
+### 32.3. Guardando o token
 
 ```powershell
 $token = $response.accessToken
 ```
 
----
-
-## 28. Testando uma rota protegida
-
-A rota protegida será:
-
-```text
-GET /auth/profile
-```
-
-Ela só deve funcionar se o usuário enviar o token JWT.
-
-### 28.1. Sem token
-
-Acesse:
-
-```text
-http://localhost:3000/auth/profile
-```
-
-Resposta esperada:
-
-```json
-{
-  "message": "Unauthorized",
-  "statusCode": 401
-}
-```
-
-Isso significa que a rota está protegida.
-
----
-
-### 28.2. Com token no Postman, Insomnia ou Thunder Client
-
-Método:
-
-```text
-GET
-```
-
-URL:
-
-```text
-http://localhost:3000/auth/profile
-```
-
-Header:
-
-```text
-Authorization: Bearer SEU_TOKEN_AQUI
-```
-
-Resposta esperada:
-
-```json
-{
-  "id": "uuid-do-usuario",
-  "email": "ana@ifsp.edu.br"
-}
-```
-
----
-
-### 28.3. Com token no PowerShell
+### 32.4. Acessando rota protegida
 
 ```powershell
 Invoke-RestMethod `
@@ -1483,152 +1536,74 @@ Invoke-RestMethod `
 
 ---
 
-## 29. Fluxo completo da autenticação
+## 33. Fluxo completo implementado
 
-O fluxo final da aplicação é:
-
-```text
-1. Usuário envia nome, e-mail e senha para /auth/register.
-2. A aplicação verifica se o e-mail já existe.
-3. A aplicação gera um hash da senha com bcrypt.
-4. A aplicação salva nome, e-mail e hash no PostgreSQL.
-5. Usuário envia e-mail e senha para /auth/login.
-6. A aplicação busca o usuário pelo e-mail.
-7. A aplicação compara a senha digitada com o hash armazenado.
-8. Se estiver correto, a aplicação gera um JWT.
-9. O cliente guarda temporariamente esse JWT.
-10. O cliente envia o JWT no cabeçalho Authorization.
-11. O JwtAuthGuard valida o token.
-12. Se o token for válido, a rota protegida é executada.
-```
-
----
-
-## 30. Como o token deve ser enviado pelo cliente
-
-O token deve ser enviado no cabeçalho HTTP:
-
-```http
-Authorization: Bearer token_jwt_aqui
-```
-
-A palavra `Bearer` indica que o cliente está apresentando um token de acesso.
-
-Exemplo:
-
-```http
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...
-```
-
----
-
-## 31. O que acontece quando o token expira?
-
-Como configuramos:
-
-```env
-JWT_EXPIRES_IN=1h
-```
-
-O token deixará de ser válido após uma hora.
-
-Depois disso, ao tentar acessar uma rota protegida, a aplicação retornará:
-
-```json
-{
-  "message": "Unauthorized",
-  "statusCode": 401
-}
-```
-
-Para acessar novamente, o usuário deverá fazer login outra vez.
-
-Em sistemas mais completos, é comum implementar também `refresh tokens`, mas isso está fora do escopo deste primeiro tutorial.
-
----
-
-## 32. O que significa logout em sistemas com JWT?
-
-Em uma aplicação simples baseada em JWT, o logout normalmente é feito no cliente, apagando o token armazenado.
-
-Exemplo conceitual:
+O sistema final executa o seguinte fluxo:
 
 ```text
-Login:
-cliente recebe token e guarda temporariamente.
-
-Logout:
-cliente apaga o token.
-
-Resultado:
-sem token, o cliente não consegue acessar rotas protegidas.
-```
-
-Em aplicações mais avançadas, o servidor pode manter uma lista de tokens revogados ou usar refresh tokens com rotação.
-
----
-
-## 33. Conferindo a estrutura final dos arquivos
-
-A estrutura final deve ficar próxima de:
-
-```text
-auth-postgres-jwt/
-├── .env
-├── package.json
-├── src/
-│   ├── app.module.ts
-│   ├── main.ts
-│   ├── users/
-│   │   ├── user.entity.ts
-│   │   ├── users.module.ts
-│   │   ├── users.service.ts
-│   │   └── dto/
-│   │       └── create-user.dto.ts
-│   └── auth/
-│       ├── auth.controller.ts
-│       ├── auth.module.ts
-│       ├── auth.service.ts
-│       ├── dto/
-│       │   └── login.dto.ts
-│       ├── guards/
-│       │   └── jwt-auth.guard.ts
-│       └── strategies/
-│           └── jwt.strategy.ts
+1. POST /auth/register recebe nome, e-mail e senha.
+2. UsersService verifica se o e-mail já existe.
+3. UsersService gera o hash da senha com bcryptjs.
+4. UsersService salva nome, e-mail e hash no PostgreSQL.
+5. POST /auth/login recebe e-mail e senha.
+6. AuthService busca o usuário pelo e-mail.
+7. AuthService compara a senha digitada com o hash salvo.
+8. AuthService gera um JWT com sub e email.
+9. O cliente recebe accessToken.
+10. O cliente envia Authorization: Bearer TOKEN nas rotas privadas.
+11. JwtAuthGuard chama JwtStrategy.
+12. JwtStrategy valida o token.
+13. CurrentUser recupera o usuário autenticado na rota.
 ```
 
 ---
 
 ## 34. Problemas comuns e soluções
 
-### 34.1. Erro de conexão com PostgreSQL
+### 34.1. Erro: password authentication failed for user
 
-Possíveis causas:
+Esse erro indica que usuário ou senha do PostgreSQL estão incorretos.
 
-```text
-PostgreSQL não está iniciado.
-A porta está incorreta.
-O usuário ou senha estão incorretos.
-O banco auth_aula não foi criado.
-```
-
-Verifique o arquivo `.env`:
+Verifique no `.env`:
 
 ```env
-DB_HOST=localhost
-DB_PORT=5432
 DB_USERNAME=auth_user
 DB_PASSWORD=auth123
-DB_DATABASE=auth_aula
+```
+
+Confirme também se o usuário foi criado corretamente no PostgreSQL.
+
+---
+
+### 34.2. Erro: database "auth_aula" does not exist
+
+O banco não foi criado ou o nome no `.env` está diferente.
+
+Execute novamente:
+
+```sql
+CREATE DATABASE auth_aula;
 ```
 
 ---
 
-### 34.2. Erro: relation "users" does not exist
+### 34.3. Erro: permission denied for schema public
 
-Isso significa que a tabela `users` não foi criada.
+O usuário da aplicação não tem permissão para criar tabelas.
 
-Verifique se no `app.module.ts` está:
+Conectado ao banco `auth_aula`, execute:
+
+```sql
+GRANT USAGE, CREATE ON SCHEMA public TO auth_user;
+```
+
+---
+
+### 34.4. Erro: relation "users" does not exist
+
+A tabela `users` não foi criada.
+
+Verifique se no `app.module.ts` existe:
 
 ```typescript
 synchronize: true
@@ -1642,35 +1617,22 @@ npm run start:dev
 
 ---
 
-### 34.3. Erro: usuário sem permissão no schema public
-
-Execute no PostgreSQL:
-
-```sql
-\c auth_aula
-
-GRANT ALL ON SCHEMA public TO auth_user;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO auth_user;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO auth_user;
-```
-
----
-
-### 34.4. Erro 401 no login
+### 34.5. Erro 401 no login
 
 Possíveis causas:
 
 ```text
 E-mail não cadastrado.
 Senha incorreta.
-A senha foi cadastrada com outro valor.
+Senha digitada com diferença de maiúsculas/minúsculas.
+Usuário cadastrado em outro banco de dados.
 ```
 
-Faça um novo cadastro e tente login novamente.
+Cadastre um novo usuário e tente novamente.
 
 ---
 
-### 34.5. Erro 401 na rota protegida
+### 34.6. Erro 401 na rota protegida
 
 Possíveis causas:
 
@@ -1678,57 +1640,62 @@ Possíveis causas:
 Token não foi enviado.
 Token foi enviado sem a palavra Bearer.
 Token expirou.
-JWT_SECRET foi alterado depois da geração do token.
+JWT_SECRET foi alterado depois do login.
+Aplicação foi reiniciada com outro .env.
 ```
 
-O cabeçalho correto é:
+Header correto:
 
 ```http
-Authorization: Bearer SEU_TOKEN
+Authorization: Bearer SEU_TOKEN_AQUI
 ```
 
 ---
 
-### 34.6. Erro ao instalar bcrypt no Windows
+### 34.7. Erro: Nest can't resolve dependencies
 
-Em versões atuais, normalmente o `bcrypt` instala corretamente. Se houver erro de compilação em laboratório, uma alternativa didática é usar `bcryptjs`.
+Esse erro geralmente ocorre quando um serviço não foi exportado ou o módulo correto não foi importado.
 
-Instalação alternativa:
-
-```bash
-npm uninstall bcrypt @types/bcrypt
-npm install bcryptjs
-npm install -D @types/bcryptjs
-```
-
-E trocar os imports:
+Verifique se `UsersModule` possui:
 
 ```typescript
-import * as bcrypt from 'bcryptjs';
+exports: [UsersService]
 ```
 
-Essa alternativa é útil para laboratório, mas o uso de `bcrypt` ou `argon2` continua sendo mais comum em aplicações de produção.
+Verifique também se `AuthModule` possui:
+
+```typescript
+imports: [UsersModule]
+```
 
 ---
 
-## 35. Boas práticas de segurança
+## 35. Segurança: o que este tutorial faz e o que ainda falta
 
-Esta implementação é adequada para fins didáticos, mas aplicações reais exigem cuidados adicionais.
-
-Principais recomendações:
+Este tutorial implementa uma autenticação adequada para aprendizado e protótipos acadêmicos:
 
 ```text
-Nunca salvar senha em texto puro.
-Nunca retornar passwordHash nas respostas da API.
-Nunca publicar o arquivo .env no GitHub.
-Usar JWT_SECRET longo, aleatório e seguro.
-Usar HTTPS em produção.
-Reduzir o tempo de validade dos tokens conforme o risco da aplicação.
-Implementar refresh token em sistemas maiores.
-Implementar rate limit para reduzir ataques de força bruta.
-Implementar recuperação de senha com token temporário.
-Implementar confirmação de e-mail, se necessário.
-Usar migrations em vez de synchronize: true em produção.
+Senha armazenada como hash.
+Login com comparação segura de senha.
+JWT assinado.
+Rotas protegidas por guard.
+Arquivo .env fora do GitHub.
+```
+
+Entretanto, uma aplicação real exigiria recursos adicionais:
+
+```text
+HTTPS obrigatório em produção.
+Rate limiting para reduzir força bruta.
+Refresh tokens com rotação.
+Logout com revogação de refresh token.
+Recuperação de senha por token temporário.
+Confirmação de e-mail.
+Migrations em vez de synchronize: true.
+Logs de auditoria.
+Política de senha mais robusta.
+Proteção contra enumeração de usuários.
+Monitoramento de tentativas de login.
 ```
 
 ---
@@ -1752,19 +1719,19 @@ Observe a resposta da API.
 
 ### Exercício 2 — E-mail duplicado
 
-Cadastre duas vezes o mesmo e-mail e observe o erro retornado.
+Cadastre o mesmo e-mail duas vezes e observe o erro HTTP 409.
 
 ---
 
 ### Exercício 3 — Login incorreto
 
-Tente fazer login com senha errada.
+Tente fazer login com uma senha errada e observe o erro HTTP 401.
 
 ---
 
 ### Exercício 4 — Rota protegida sem token
 
-Acesse `/auth/profile` sem enviar o cabeçalho `Authorization`.
+Acesse `/auth/profile` sem enviar o header `Authorization`.
 
 ---
 
@@ -1774,60 +1741,23 @@ Faça login, copie o token e acesse `/auth/profile`.
 
 ---
 
-### Exercício 6 — Reduzindo a validade do token
+### Exercício 6 — Token expirado
 
 Altere no `.env`:
 
 ```env
-JWT_EXPIRES_IN=30s
+JWT_EXPIRES_IN_SECONDS=30
 ```
 
-Reinicie a aplicação, faça login e teste o acesso à rota protegida depois de 30 segundos.
+Reinicie a aplicação, faça login e tente acessar a rota protegida depois de 30 segundos.
 
 ---
 
-## 37. Atividade prática sugerida
+## 37. Desafio adicional: adicionar campo role
 
-Implemente uma nova rota protegida chamada:
+Como desafio, adicione um campo `role` ao usuário.
 
-```text
-GET /auth/dashboard
-```
-
-Ela deve retornar:
-
-```json
-{
-  "message": "Você acessou uma área protegida.",
-  "user": {
-    "id": "id-do-usuario",
-    "email": "email-do-usuario"
-  }
-}
-```
-
-Dica: essa rota deve usar o mesmo `JwtAuthGuard`.
-
-Exemplo de implementação no `AuthController`:
-
-```typescript
-@UseGuards(JwtAuthGuard)
-@Get('dashboard')
-async dashboard(@Req() request: any) {
-  return {
-    message: 'Você acessou uma área protegida.',
-    user: request.user,
-  };
-}
-```
-
----
-
-## 38. Desafio adicional: campo role
-
-Como desafio, acrescente um campo `role` ao usuário.
-
-Exemplo:
+Exemplo de valores:
 
 ```text
 admin
@@ -1835,7 +1765,7 @@ student
 teacher
 ```
 
-Depois, modifique o payload do JWT para incluir a role:
+Depois, inclua a role no payload do JWT:
 
 ```typescript
 const payload = {
@@ -1845,36 +1775,72 @@ const payload = {
 };
 ```
 
-Esse desafio prepara o aluno para o próximo tema: autorização baseada em papéis, também conhecida como RBAC.
+Esse desafio prepara a turma para o próximo tema: autorização baseada em papéis, conhecida como RBAC.
 
 ---
 
-## 39. Resumo final
+## 38. Resumo final
 
-Neste tutorial, foi implementado um mecanismo básico de autenticação com NestJS, PostgreSQL, bcrypt e JWT.
+Neste tutorial foi implementado um mecanismo completo de autenticação com NestJS, PostgreSQL e JWT.
 
-O sistema desenvolvido permite:
+A aplicação permite:
 
 ```text
 Cadastrar usuários.
-Armazenar senhas como hash.
-Realizar login.
+Salvar senha apenas como hash.
+Validar login com e-mail e senha.
 Gerar token JWT.
-Proteger rotas com AuthGuard.
-Controlar a sessão de forma stateless usando JWT.
+Proteger rotas privadas.
+Recuperar o usuário autenticado a partir do token.
 ```
 
-O ponto mais importante é compreender que a senha original nunca deve ser armazenada no banco de dados. O banco armazena apenas o hash. O JWT, por sua vez, permite que o cliente prove, a cada requisição, que já realizou login.
+O ponto central é que a senha original nunca é armazenada no banco. O banco armazena apenas o hash. O JWT, por sua vez, permite que o cliente prove sua autenticação em cada requisição protegida.
 
 ---
 
-## 40. Referências oficiais consultadas
+## 39. Checklist final de arquivos
 
-- [NestJS — Authentication](https://docs.nestjs.com/security/authentication)
-- [NestJS — Passport](https://docs.nestjs.com/recipes/passport)
-- [NestJS — Database / TypeORM](https://docs.nestjs.com/techniques/database)
-- [NestJS — Encryption and Hashing](https://docs.nestjs.com/security/encryption-and-hashing)
-- [NestJS — Authorization](https://docs.nestjs.com/security/authorization)
-- [TypeORM — Getting Started](https://typeorm.io/docs/getting-started/)
-- [PostgreSQL — Official Website](https://www.postgresql.org/)
-- [node.bcrypt.js — GitHub repository](https://github.com/kelektiv/node.bcrypt.js/)
+Ao final, a estrutura deve estar semelhante a esta:
+
+```text
+auth-postgres-jwt/
+├── .env
+├── package.json
+├── src/
+│   ├── app.module.ts
+│   ├── main.ts
+│   ├── users/
+│   │   ├── dto/
+│   │   │   └── create-user.dto.ts
+│   │   ├── user.entity.ts
+│   │   ├── users.module.ts
+│   │   └── users.service.ts
+│   └── auth/
+│       ├── decorators/
+│       │   └── current-user.decorator.ts
+│       ├── dto/
+│       │   └── login.dto.ts
+│       ├── guards/
+│       │   └── jwt-auth.guard.ts
+│       ├── strategies/
+│       │   └── jwt.strategy.ts
+│       ├── types/
+│       │   └── jwt-user.type.ts
+│       ├── auth.controller.ts
+│       ├── auth.module.ts
+│       └── auth.service.ts
+```
+
+---
+
+## 40. Referências oficiais
+
+- NestJS — Authentication: https://docs.nestjs.com/security/authentication
+- NestJS — Passport: https://docs.nestjs.com/recipes/passport
+- NestJS — Database / TypeORM: https://docs.nestjs.com/techniques/database
+- NestJS — Validation: https://docs.nestjs.com/techniques/validation
+- NestJS — Configuration: https://docs.nestjs.com/techniques/configuration
+- Passport JWT: https://www.passportjs.org/packages/passport-jwt/
+- TypeORM: https://typeorm.io/
+- PostgreSQL: https://www.postgresql.org/
+- bcryptjs: https://www.npmjs.com/package/bcryptjs

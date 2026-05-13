@@ -1389,13 +1389,15 @@
                 "label": "Tópico 9",
                 "className": "text-bg-primary"
               },
-              "title": "Portfólio de TI e priorização de iniciativas",
-              "search": "aula 9 portfólio de ti priorização iniciativas",
+              "title": "Gestão Integrada de TI: Estratégia, Operação e Governança",
+              "search": "aula 9 portfólio de ti priorização iniciativas gestão integrada estratégia operação governança",
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/99-Gestao-Integrada-de-TI-Estrategia-Operacao-e-Governanca-t4q2shaebxb5miq",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },

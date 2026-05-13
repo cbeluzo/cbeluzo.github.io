@@ -1964,8 +1964,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/12-Gerenciamento-de-Aquisicoes-em-Projetos-k4r7jla6k6mqufs",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },
@@ -1979,8 +1981,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/13-Gerenciamento-de-Comunicacoes-em-Projetos-bb2q59joc69fnk9",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },
@@ -1994,8 +1998,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/14-Gerenciamento-de-Partes-Interessadas-em-Projetos-30zb4049gx9bbwx",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },
@@ -2009,8 +2015,10 @@
               "actions": [
                 {
                   "label": "Abrir (Gamma)",
+                  "href": "https://gamma.app/docs/15-Gerenciamento-do-Custo-do-Projeto-ext6i9rkcata6n2",
                   "className": "btn btn-outline-secondary btn-sm",
-                  "icon": "bi-box-arrow-up-right"
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
                 }
               ]
             },

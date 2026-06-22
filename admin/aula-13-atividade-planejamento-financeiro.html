@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratório de Planejamento Financeiro — MedAI Analytics</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(13, 110, 253, .18), transparent 45%),
+        radial-gradient(1200px circle at 80% 30%, rgba(13, 202, 240, .14), transparent 45%);
+    }
+    
+    @media print {
+      body { background: white; }
+      .page-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div id="site-nav"></div>
+
+  <noscript>
+    <div class="container py-3">
+      <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e o rodapé do portal.</div>
+    </div>
+  </noscript>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-primary fw-semibold mb-1"><i class="bi bi-ui-checks-grid me-1"></i>Laboratório Prático</div>
+          <h1 class="h3 mb-2">Laboratório de Planejamento Financeiro</h1>
+          <p class="text-muted mb-0" style="max-width: 900px;">
+            Estudo de Caso: Startup de Inteligência Artificial para Saúde (MedAI Analytics). Aplicação prática de investimentos, custos, fluxo de caixa e ponto de equilíbrio.
+          </p>
+        </div>
+        <a class="btn btn-outline-primary" href="./admin.html">
+          <i class="bi bi-arrow-left me-1"></i>Voltar para a Aula
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <div class="row g-4">
+      
+      <!-- Contexto do Caso -->
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Contexto do Caso</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">A Startup MedAI Analytics</h2>
+            <p>
+              A <strong>MedAI Analytics</strong> é uma startup de tecnologia voltada para o setor de saúde (HealthTech).
+            </p>
+            <p>
+              A empresa está desenvolvendo uma plataforma baseada em Inteligência Artificial capaz de auxiliar clínicas e hospitais na identificação precoce de pacientes com maior risco de internação ou agravamento de doenças crônicas. A solução utiliza algoritmos de Machine Learning para analisar dados clínicos e gerar alertas para equipes médicas.
+            </p>
+            <p>
+              Após concluir um protótipo funcional do sistema, os sócios precisam elaborar um planejamento financeiro para responder às seguintes perguntas críticas:
+            </p>
+            <ul class="ps-3 text-muted">
+              <li>Quanto dinheiro será necessário para iniciar a empresa?</li>
+              <li>Quais serão os custos mensais de operação?</li>
+              <li>Qual será a receita obtida com os clientes?</li>
+              <li>Quantos clientes serão necessários para cobrir os custos?</li>
+              <li>Em quanto tempo a startup poderá se tornar lucrativa?</li>
+              <li>O negócio é financeiramente viável?</li>
+            </ul>
+            <div class="alert alert-warning border-start border-warning border-5 mt-3 mb-0">
+              <strong>Sua Missão:</strong> Vocês foram contratados como consultores para modelar essas questões financeiras e propor uma tomada de decisão estratégica fundamentada.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objetivo da Atividade -->
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-success mb-2">Objetivo da atividade</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Resultados Esperados</h2>
+            <p>Nesta atividade, vocês atuarão como fundadores de uma startup e elaborarão um planejamento financeiro para aplicar conceitos fundamentais:</p>
+            <ul class="mb-0 ps-3 text-muted" style="font-size: 0.95rem;">
+              <li>Investimento inicial e capital de giro;</li>
+              <li>Custos fixos e variáveis;</li>
+              <li>Receitas e fluxo de caixa de 6 meses;</li>
+              <li>Ponto de equilíbrio (Break-Even);</li>
+              <li>Análise de cenários alternativos;</li>
+              <li>Tomada de decisão estratégica e justificativa para investidores.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 1 – INVESTIMENTO INICIAL -->
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-info mb-2">Parte 1</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Investimento Inicial</h2>
+            <p>Antes de iniciar suas operações, a startup precisa estimar e realizar diversos investimentos essenciais:</p>
+            
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered mt-2">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item</th>
+                    <th class="text-end" style="width: 120px;">Valor (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Desenvolvimento do MVP (Produto Mínimo Viável)</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Infraestrutura inicial em nuvem</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Registro e abertura da empresa</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Marketing de lançamento</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Equipamentos e notebooks</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Capital de giro inicial</td><td class="text-end text-muted">?</td></tr>
+                  <tr class="fw-bold"><td>Total</td><td class="text-end text-muted">?</td></tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="bg-light p-2 rounded border mt-2">
+              <strong style="font-size: 0.9rem;">Tarefa 1:</strong>
+              <ol class="mb-0 ps-3 text-muted" style="font-size: 0.85rem;">
+                <li>Calcule o investimento total necessário.</li>
+                <li>Determine o percentual que cada item representa sobre o total.</li>
+                <li>Identifique e justifique quais itens são os mais críticos.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 2 – CUSTOS MENSAIS -->
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-info mb-2">Parte 2</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Custos Fixos Mensais</h2>
+            <p>Custos recorrentes que ocorrem independentemente da quantidade de clientes ativos na plataforma:</p>
+
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered mt-2">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item</th>
+                    <th class="text-end" style="width: 120px;">Valor (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Desenvolvedor Full Stack</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Cientista de Dados</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Analista Comercial</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Pró-labore dos sócios</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Escritório virtual</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Internet e ferramentas de software</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Infraestrutura em nuvem</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Marketing digital</td><td class="text-end text-muted">?</td></tr>
+                  <tr class="fw-bold"><td>Total Fixo Mensal</td><td class="text-end text-muted">?</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="bg-light p-2 rounded border mt-2">
+              <strong style="font-size: 0.9rem;">Tarefa 2:</strong>
+              <ol class="mb-0 ps-3 text-muted" style="font-size: 0.85rem;">
+                <li>Calcule o custo fixo mensal total.</li>
+                <li>Indique o maior gargalo (maior parcela de despesa).</li>
+                <li>Identifique qual item poderia ser reduzido/otimizado sem parar a operação.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 3 e 4 – CUSTOS VARIÁVEIS E RECEITAS -->
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-info mb-2">Parte 3 &amp; 4</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Custos Variáveis &amp; Receita</h2>
+            
+            <h3 class="h6 fw-bold mt-2 mb-1">Custos Variáveis por Cliente</h3>
+            <p class="small text-muted mb-2">Gastos gerados de forma incremental a cada nova clínica que entra na plataforma:</p>
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item</th>
+                    <th class="text-end" style="width: 120px;">Valor (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Processamento de IA (API / Servidores)</td><td class="text-end text-muted">?</td></tr>
+                  <tr><td>Suporte Técnico Dedicado</td><td class="text-end text-muted">?</td></tr>
+                  <tr class="fw-bold"><td>Total Variável Unitário</td><td class="text-end text-muted">?</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="bg-light p-2 rounded border mb-3">
+              <strong style="font-size: 0.9rem;">Tarefa 3:</strong>
+              <ol class="mb-0 ps-3 text-muted" style="font-size: 0.85rem;">
+                <li>Determine o custo variável total por cliente.</li>
+                <li>Explique o comportamento do custo variável com o ganho de escala.</li>
+              </ol>
+            </div>
+
+            <h3 class="h6 fw-bold border-top pt-3 mb-1">Modelo de Receita</h3>
+            <p class="small text-muted mb-2">A startup trabalha com o modelo SaaS (Software as a Service) por assinatura mensal:</p>
+            <div class="p-3 bg-primary bg-opacity-10 text-primary rounded border border-primary border-opacity-25 text-center">
+              <span class="small text-uppercase fw-semibold d-block">Plano Clínica</span>
+              <strong class="fs-4">R$ 1.200,00</strong> <span class="small">/ cliente por mês</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 5 e 6 – PROJEÇÃO E FLUXO DE CAIXA -->
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-info mb-2">Parte 5 &amp; 6</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Projeção e Fluxo de Caixa</h2>
+            <p>Considere a projeção realista de crescimento de clientes fornecida pelos sócios:</p>
+
+            <div class="row g-2">
+              <div class="col-sm-4">
+                <table class="table table-sm table-bordered text-center mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Mês</th>
+                      <th>Clientes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td>10</td></tr>
+                    <tr><td>2</td><td>15</td></tr>
+                    <tr><td>3</td><td>20</td></tr>
+                    <tr><td>4</td><td>25</td></tr>
+                    <tr><td>5</td><td>30</td></tr>
+                    <tr><td>6</td><td>35</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-8">
+                <div class="bg-light p-3 rounded border h-100 d-flex flex-column justify-content-center">
+                  <strong style="font-size: 0.9rem;">Tarefa 4 e 5:</strong>
+                  <p class="small text-muted mb-0">Monte uma tabela de fluxo de caixa projetando para cada mês:</p>
+                  <ul class="mb-0 ps-3 text-muted small">
+                    <li>Receita Total (Clientes × R$ 1.200)</li>
+                    <li>Custos Variáveis Totais (Clientes × Custo Unitário)</li>
+                    <li>Resultado Líquido Mensal (Receita − Custos Fixos − Custos Variáveis)</li>
+                    <li>Avalie se o capital inicial suporta o período de prejuízo.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive mt-3">
+              <table class="table table-sm table-bordered text-center mb-0" style="font-size: 0.85rem;">
+                <thead class="table-light">
+                  <tr>
+                    <th>Mês</th>
+                    <th>Clientes</th>
+                    <th>Receitas (R$)</th>
+                    <th>Custos Fixos (R$)</th>
+                    <th>Custos Var. (R$)</th>
+                    <th>Resultado (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>10</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>2</td><td>15</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>3</td><td>20</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>4</td><td>25</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>5</td><td>30</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>6</td><td>35</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 7 – PONTO DE EQUILÍBRIO -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-warning text-dark mb-2">Parte 7</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Ponto de Equilíbrio (Break-Even)</h2>
+            <p>O ponto de equilíbrio representa a quantidade mínima de clientes ativos necessária para que a receita cubra todos os custos mensais.</p>
+            
+            <div class="p-3 bg-light rounded border text-center font-monospace my-3">
+              <strong>Ponto de Equilíbrio = Custos Fixos &divide; (Preço de Venda &minus; Custo Variável Unitário)</strong>
+            </div>
+
+            <h3 class="h6 fw-bold">Parâmetros de Cálculo</h3>
+            <ul class="ps-3 text-muted small">
+              <li>Preço de Venda: R$ 1.200 / mês</li>
+              <li>Custo Variável Unitário: R$ 150 / cliente (ou o valor calculado na Parte 3)</li>
+              <li>Custos Fixos Mensais: o total obtido na Parte 2</li>
+            </ul>
+
+            <div class="bg-light p-2 rounded border mt-2">
+              <strong style="font-size: 0.9rem;">Tarefa 6:</strong>
+              <ol class="mb-0 ps-3 text-muted" style="font-size: 0.85rem;">
+                <li>Calcule o número exato de clientes necessários para o Break-Even.</li>
+                <li>Identifique a partir de qual mês o negócio atinge o ponto de equilíbrio na projeção.</li>
+                <li>Calcule o novo ponto de equilíbrio caso o preço de venda seja reduzido para R$ 900.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 8 – ANÁLISE DE CENÁRIOS -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-secondary mb-2">Parte 8</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Análise de Cenários</h2>
+            <p>Para lidar com a incerteza do mercado, simule a projeção financeira em três cenários de crescimento de clientes:</p>
+
+            <div class="row g-2">
+              <div class="col-md-4">
+                <div class="p-2 border rounded text-center h-100 bg-white">
+                  <span class="badge text-bg-danger mb-1">Pessimista</span>
+                  <table class="table table-sm table-borderless text-center mb-0 small">
+                    <thead><tr class="border-bottom"><th>Mês</th><th>Cli</th></tr></thead>
+                    <tbody>
+                      <tr><td>1</td><td>5</td></tr>
+                      <tr><td>2</td><td>8</td></tr>
+                      <tr><td>3</td><td>10</td></tr>
+                      <tr><td>4</td><td>12</td></tr>
+                      <tr><td>5</td><td>15</td></tr>
+                      <tr><td>6</td><td>18</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-2 border rounded text-center h-100 bg-white">
+                  <span class="badge text-bg-primary mb-1">Realista</span>
+                  <table class="table table-sm table-borderless text-center mb-0 small">
+                    <thead><tr class="border-bottom"><th>Mês</th><th>Cli</th></tr></thead>
+                    <tbody>
+                      <tr><td>1</td><td>10</td></tr>
+                      <tr><td>2</td><td>15</td></tr>
+                      <tr><td>3</td><td>20</td></tr>
+                      <tr><td>4</td><td>25</td></tr>
+                      <tr><td>5</td><td>30</td></tr>
+                      <tr><td>6</td><td>35</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-2 border rounded text-center h-100 bg-white">
+                  <span class="badge text-bg-success mb-1">Otimista</span>
+                  <table class="table table-sm table-borderless text-center mb-0 small">
+                    <thead><tr class="border-bottom"><th>Mês</th><th>Cli</th></tr></thead>
+                    <tbody>
+                      <tr><td>1</td><td>15</td></tr>
+                      <tr><td>2</td><td>20</td></tr>
+                      <tr><td>3</td><td>30</td></tr>
+                      <tr><td>4</td><td>40</td></tr>
+                      <tr><td>5</td><td>50</td></tr>
+                      <tr><td>6</td><td>60</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-light p-2 rounded border mt-3">
+              <strong style="font-size: 0.9rem;">Tarefa 7:</strong>
+              <p class="small text-muted mb-0">Para cada um dos três cenários:</p>
+              <ul class="mb-0 ps-3 text-muted small">
+                <li>Calcule as receitas, custos e lucro/prejuízo final acumulado;</li>
+                <li>Compare e aponte qual apresenta o maior risco, maior retorno e o mais provável de ocorrer.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE 9 – TOMADA DE DECISÃO ESTRATÉGICA -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <span class="badge text-bg-danger mb-2">Parte 9</span>
+            <h2 class="h5 border-bottom pb-2 text-dark">Tomada de Decisão Estratégica</h2>
+            <p>O grupo deve assumir a posição de sócios-investidores e escolher <strong>apenas uma</strong> das três estratégias de crescimento abaixo:</p>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded border h-100">
+                  <div class="fw-bold text-primary mb-2"><i class="bi bi-rocket-takeoff me-1"></i>Estratégia A</div>
+                  <h3 class="h6 fw-semibold text-dark">Crescimento Acelerado</h3>
+                  <p class="small text-muted">Aumentar o marketing para <strong>R$ 10.000 / mês</strong> buscando atração massiva de novos clientes. Espera-se atingir o cenário otimista, porém com maior queima de caixa inicial.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded border h-100">
+                  <div class="fw-bold text-success mb-2"><i class="bi bi-shield-check me-1"></i>Estratégia B</div>
+                  <h3 class="h6 fw-semibold text-dark">Redução de Custos</h3>
+                  <p class="small text-muted">Reduzir o orçamento de marketing para <strong>R$ 2.000 / mês</strong>. O crescimento de clientes será mais lento, mas a queima de caixa inicial será minimizada.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 bg-light rounded border h-100">
+                  <div class="fw-bold text-info mb-2"><i class="bi bi-award me-1"></i>Estratégia C</div>
+                  <h3 class="h6 fw-semibold text-dark">Plano Premium</h3>
+                  <p class="small text-muted">Reposicionar a plataforma aumentando o preço para <strong>R$ 2.000 / clínica</strong>. O número de novos clientes captados será menor, mas o faturamento por contrato será maior.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-light p-3 rounded border mt-3">
+              <strong style="font-size: 0.95rem;">Tarefa 8:</strong>
+              <p class="small text-muted mb-0">Justifique a escolha do grupo respondendo:</p>
+              <ul class="mb-0 ps-3 text-muted small">
+                <li>Qual estratégia foi adotada e quais seus benefícios práticos?</li>
+                <li>Quais os riscos inerentes a essa escolha e como mitigá-los?</li>
+                <li>Como vocês defenderiam essa decisão para um conselho de investidores?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENTREGA E PLANILHA -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm border-start border-danger border-5">
+          <div class="card-body">
+            <span class="badge text-bg-danger mb-2">Entregável Obrigatório</span>
+            <h2 class="h5 text-dark mb-2">Instruções para Entrega</h2>
+            <p class="mb-2">
+              Cada grupo deve construir uma <strong>Planilha de Planejamento Financeiro</strong> no Excel ou Google Sheets contendo:
+            </p>
+            <div class="row g-2 text-muted small">
+              <div class="col-md-4">
+                <div class="p-2 border rounded bg-white">
+                  <i class="bi bi-calculator me-1 text-primary"></i> <strong>Modelagem Inicial:</strong> Investimento inicial, custos fixos detalhados e custos variáveis unitários.
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-2 border rounded bg-white">
+                  <i class="bi bi-graph-up-arrow me-1 text-success"></i> <strong>Projeções &amp; Fluxo:</strong> Projeção de fluxo de caixa mensal realista e cálculo do Ponto de Equilíbrio.
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-2 border rounded bg-white">
+                  <i class="bi bi-sliders me-1 text-info"></i> <strong>Cenários &amp; Estratégia:</strong> Simulação dos 3 cenários de clientes e justificativa do plano de decisão.
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 bg-light p-3 rounded border font-monospace" style="font-size: 0.9rem;">
+              <strong>Enunciado de Entrega:</strong> Com base no contexto acima, elabore a modelagem financeira completa da MedAI Analytics em sua planilha e apresente os resultados estruturados para avaliação da viabilidade financeira do projeto.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="text-muted small mt-4 text-center">
+      Documento em formato HTML preparado para leitura, pesquisa orientada e entrega da atividade pelos estudantes.
+    </p>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.init({ rootRelative: ".." }).then(() => {
+      PortalUI.renderSiteNav({
+        rootRelative: "..",
+        currentKey: "admin"
+      });
+      PortalUI.renderFooter({
+        rootRelative: "..",
+        showHomeLink: true
+      });
+    });
+  </script>
+</body>
+</html>

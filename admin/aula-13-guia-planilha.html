@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Apoio — Planilha de Planejamento Financeiro</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  
+  <style>
+    :root {
+      --page-hero-bg: radial-gradient(1200px circle at 20% 10%, rgba(13, 110, 253, .18), transparent 45%),
+        radial-gradient(1200px circle at 80% 30%, rgba(13, 202, 240, .14), transparent 45%);
+    }
+    
+    @media print {
+      body { background: white; }
+      .page-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div id="site-nav"></div>
+
+  <noscript>
+    <div class="container py-3">
+      <div class="alert alert-warning my-0">Esta página usa JavaScript para montar a navegação e o rodapé do portal.</div>
+    </div>
+  </noscript>
+
+  <header class="page-hero py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-uppercase small text-primary fw-semibold mb-1"><i class="bi bi-file-earmark-text me-1"></i>Guia de Apoio</div>
+          <h1 class="h3 mb-2">Construção da Planilha de Planejamento Financeiro</h1>
+          <p class="text-muted mb-0" style="max-width: 900px;">
+            Orientação passo a passo para a elaboração da planilha da MedAI Analytics no Excel, LibreOffice Calc ou Google Sheets.
+          </p>
+        </div>
+        <a class="btn btn-outline-primary" href="./admin.html">
+          <i class="bi bi-arrow-left me-1"></i>Voltar para a Aula
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    
+    <div class="alert alert-info border-start border-info border-5 mb-4 shadow-sm">
+      <div class="d-flex gap-3">
+        <i class="bi bi-info-circle-fill fs-4 text-info"></i>
+        <div>
+          <strong>Informação Importante:</strong> Esta planilha deverá ser criada pelo próprio grupo. Não serão fornecidas planilhas prontas. O foco da atividade é compreender os conceitos financeiros e implementar os cálculos utilizando fórmulas reais da sua ferramenta de planilhas.
+        </div>
+      </div>
+    </div>
+
+    <!-- Estrutura Recomendada -->
+    <section class="mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="h5 border-bottom pb-2 mb-3 text-dark"><i class="bi bi-folder2-open me-2 text-primary"></i>Estrutura Recomendada da Planilha</h2>
+          <p>A planilha deverá conter pelo menos <strong>seis abas (planilhas individuais)</strong> organizadas de forma clara:</p>
+          
+          <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-secondary mb-2">Aba 1</span>
+                <span class="fw-semibold small">Investimento Inicial</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-secondary mb-2">Aba 2</span>
+                <span class="fw-semibold small">Custos Operacionais</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-secondary mb-2">Aba 3</span>
+                <span class="fw-semibold small">Fluxo de Caixa</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-secondary mb-2">Aba 4</span>
+                <span class="fw-semibold small">Ponto de Equilíbrio</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-secondary mb-2">Aba 5</span>
+                <span class="fw-semibold small">Cenários</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <div class="p-3 border rounded text-center bg-white h-100 d-flex flex-column justify-content-center">
+                <span class="badge text-bg-success mb-2">Aba 6</span>
+                <span class="fw-semibold small text-success">Dashboard Executivo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="row g-4">
+      
+      <!-- ABA 1 -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Aba 1</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Investimento Inicial</h3>
+            <p class="small text-muted">Esta aba registra todos os gastos necessários para iniciar a operação da startup antes do primeiro mês.</p>
+            
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item</th>
+                    <th class="text-end" style="width: 120px;">Valor (R$)</th>
+                    <th class="text-end" style="width: 100px;">Partic. (%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>MVP, Nuvem, Abertura, Mkt, Equipamentos...</td><td class="text-end text-muted">...</td><td class="text-end text-muted">Fórmula %</td></tr>
+                  <tr class="fw-bold"><td>Total</td><td class="text-end text-muted">Fórmula SOMA</td><td class="text-end">100%</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-3 bg-light rounded border mt-3">
+              <h4 class="h6 fw-bold mb-2">Fórmulas Importantes:</h4>
+              <ul class="mb-0 ps-3 text-muted small">
+                <li class="mb-2"><strong>Investimento Total:</strong> Use a função de soma automática (ex: <code>=SOMA(B2:B7)</code>).</li>
+                <li><strong>Percentual de Participação:</strong> Calcula a fatia de cada item:
+                  <div class="font-monospace text-dark bg-white border p-1 rounded mt-1 text-center">=Valor do Item &divide; Investimento Total * 100</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 2 -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Aba 2</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Custos Operacionais</h3>
+            <p class="small text-muted">Divida os custos mensais em duas categorias fundamentais:</p>
+            
+            <div class="row g-2">
+              <div class="col-md-6">
+                <div class="p-2 border rounded bg-light h-100">
+                  <div class="fw-bold small text-primary"><i class="bi bi-lock me-1"></i>Custos Fixos</div>
+                  <p class="small text-muted mb-0" style="font-size: 0.85rem;">Não dependem da quantidade de clientes (ex: Pró-labore, salários de dev/cientista, infra básica, marketing fixo, ferramentas).</p>
+                  <code class="d-block mt-2 small text-dark">=SOMA(Custos_Fixos)</code>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-2 border rounded bg-light h-100">
+                  <div class="fw-bold small text-success"><i class="bi bi-arrow-left-right me-1"></i>Custos Variáveis</div>
+                  <p class="small text-muted mb-0" style="font-size: 0.85rem;">Variam de forma incremental com cada cliente (Processamento de IA e suporte).</p>
+                  <code class="d-block mt-2 small text-dark">=Clientes * Custo_Variável_Unitário</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light rounded border mt-3">
+              <h4 class="h6 fw-bold mb-2">Cálculo de Custo Variável Unitário:</h4>
+              <div class="font-monospace text-dark bg-white border p-1 rounded text-center small mb-2">
+                Custo Variável Unitário = Processamento IA + Suporte Técnico
+              </div>
+              <div class="font-monospace text-dark bg-white border p-1 rounded text-center small">
+                Custo Variável Total = Clientes * Custo Variável Unitário
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 3 -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Aba 3</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Fluxo de Caixa Mensal</h3>
+            <p class="small text-muted">A aba central que consolida os resultados operacionais mês a mês ao longo do período de 6 meses.</p>
+            
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm text-center align-middle" style="font-size: 0.9rem;">
+                <thead class="table-light">
+                  <tr>
+                    <th>Mês</th>
+                    <th>Clientes</th>
+                    <th>Receita (R$)</th>
+                    <th>Custos Fixos (R$)</th>
+                    <th>Custos Variáveis (R$)</th>
+                    <th>Custos Totais (R$)</th>
+                    <th>Resultado Mensal (R$)</th>
+                    <th class="table-info">Saldo Acumulado (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 a 6</td>
+                    <td>(Projeção)</td>
+                    <td class="font-monospace small">Clientes * Preço</td>
+                    <td class="font-monospace small">Link para Aba 2</td>
+                    <td class="font-monospace small">Clientes * Var_Unitário</td>
+                    <td class="font-monospace small">Fixos + Variáveis</td>
+                    <td class="font-monospace small">Receita - Custos Totais</td>
+                    <td class="font-monospace small table-info">Acumulado Anterior + Atual</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row g-3 mt-1">
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h4 class="h6 fw-bold mb-2">Fórmulas Essenciais por Mês:</h4>
+                  <ul class="mb-0 ps-3 text-muted small">
+                    <li class="mb-1"><strong>Receita:</strong> <code>=Quantidade_Clientes * R$ 1.200</code></li>
+                    <li class="mb-1"><strong>Custos Variáveis:</strong> <code>=Quantidade_Clientes * Custo_Variável_Unitário</code></li>
+                    <li class="mb-1"><strong>Custos Totais:</strong> <code>=Custos_Fixos + Custos_Variáveis</code></li>
+                    <li><strong>Resultado Mensal:</strong> <code>=Receita - Custos_Totais</code></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded bg-light">
+                  <h4 class="h6 fw-bold mb-2">Interpretação e Acumulado:</h4>
+                  <ul class="mb-0 ps-3 text-muted small">
+                    <li class="mb-2">Se <strong>Resultado &gt; 0</strong> (Lucro); Se <strong>Resultado &lt; 0</strong> (Prejuízo).</li>
+                    <li><strong>Saldo Acumulado:</strong> Indica a necessidade líquida de capital e se o capital inicial suporta o prejuízo dos meses de validação:
+                      <div class="font-monospace text-dark bg-white border p-1 rounded mt-1 text-center small">=Saldo_Anterior + Resultado_Atual</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 4 -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Aba 4</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Ponto de Equilíbrio (Break-Even)</h3>
+            <p class="small text-muted">Mapeia o limiar crítico onde o faturamento da startup se iguala exatamente ao total de despesas (Lucro = R$ 0,00).</p>
+
+            <div class="p-3 bg-light rounded border text-center font-monospace mb-3 small">
+              <strong>Ponto de Equilíbrio = Custos Fixos &divide; (Preço de Venda &minus; Custo Variável Unitário)</strong>
+            </div>
+
+            <div class="alert alert-secondary small mb-0">
+              <strong>Regra de Decisão do Indicador:</strong>
+              <ul class="mb-0 ps-3 mt-1 text-muted">
+                <li>Quantidade &lt; Ponto de Equilíbrio &rarr; Operação opera no <strong>Prejuízo</strong></li>
+                <li>Quantidade = Ponto de Equilíbrio &rarr; Operação em <strong>Equilíbrio</strong></li>
+                <li>Quantidade &gt; Ponto de Equilíbrio &rarr; Operação atinge o <strong>Lucro</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 5 -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-primary mb-2">Aba 5</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Análise de Cenários</h3>
+            <p class="small text-muted">Essencial para mensurar riscos. Modele e compare as três hipóteses na mesma aba:</p>
+
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered text-center small mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Cenário</th>
+                    <th>Clientes (Mês 6)</th>
+                    <th>Receita Total (R$)</th>
+                    <th>Custos Totais (R$)</th>
+                    <th>Lucro / Prejuízo (R$)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="text-danger fw-semibold">Pessimista</td><td>18</td><td>...</td><td>...</td><td>...</td></tr>
+                  <tr><td class="text-primary fw-semibold">Realista</td><td>35</td><td>...</td><td>...</td><td>...</td></tr>
+                  <tr><td class="text-success fw-semibold">Otimista</td><td>60</td><td>...</td><td>...</td><td>...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p class="small text-muted mt-2 mb-0">
+              Utilize o cálculo para comparar e evidenciar qual cenário apresenta maior risco, maior retorno potencial e qual é o mais provável com base no plano.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 6 -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm border-start border-success border-5">
+          <div class="card-body">
+            <span class="badge text-bg-success mb-2">Aba 6 — Novo Painel</span>
+            <h3 class="h5 border-bottom pb-2 text-dark text-success"><i class="bi bi-speedometer2 me-2"></i>Dashboard Executivo</h3>
+            <p class="small text-muted">Painel visual consolidando os principais indicadores financeiros para tomada rápida de decisão e apresentação de slides/pitch.</p>
+            
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="p-3 border rounded bg-white h-100">
+                  <div class="fw-bold text-dark mb-2"><i class="bi bi-box me-1 text-primary"></i>Indicadores Essenciais</div>
+                  <ul class="ps-3 mb-0 small text-muted">
+                    <li><strong>Investimento Inicial:</strong> Total captado para início.</li>
+                    <li><strong>Custo Operacional Mensal:</strong> Fixos + Variáveis (no último mês).</li>
+                    <li><strong>Receita Mensal:</strong> Faturamento do último mês.</li>
+                    <li><strong>Ponto de Equilíbrio:</strong> Em quantidade de clientes.</li>
+                    <li><strong>Lucro Acumulado:</strong> Soma de todos os resultados.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 border rounded bg-white h-100">
+                  <div class="fw-bold text-dark mb-2"><i class="bi bi-plus-circle me-1 text-success"></i>Indicadores de Bônus</div>
+                  <ul class="ps-3 mb-0 small text-muted">
+                    <li><strong>Margem de Lucro (%):</strong> <code>=(Lucro &divide; Receita) * 100</code></li>
+                    <li><strong>Receita Médio p/ Cliente:</strong> <code>=Receita &divide; Clientes</code></li>
+                    <li><strong>Custo Médio p/ Cliente:</strong> <code>=Custos Totais &divide; Clientes</code></li>
+                    <li><strong>Payback (Retorno):</strong> Tempo até lucro acum. cobrir investimento.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 border rounded bg-white h-100">
+                  <div class="fw-bold text-dark mb-2"><i class="bi bi-bar-chart me-1 text-info"></i>Elementos Gráficos</div>
+                  <ul class="ps-3 mb-0 small text-muted">
+                    <li><strong>Evolução dos Clientes:</strong> Gráfico de linhas mostrando o crescimento da base.</li>
+                    <li><strong>Receita x Custos:</strong> Gráfico de colunas/linhas para visualizar o cruzamento de lucratividade.</li>
+                    <li><strong>Distribuição de Investimento:</strong> Pizza evidenciando o destino do capital inicial.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOAS PRÁTICAS E REFLEXÕES -->
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-secondary mb-2">Boas Práticas</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Dicas de Formatação</h3>
+            <ul class="mb-0 ps-3 text-muted small">
+              <li class="mb-2"><strong>Moeda:</strong> Formate todos os valores financeiros em R$ (Real).</li>
+              <li class="mb-2"><strong>Destaques:</strong> Diferencie com cores suaves as células de entrada manual das células calculadas por fórmulas.</li>
+              <li class="mb-2"><strong>Nomes:</strong> Nomeie claramente todas as abas da sua planilha.</li>
+              <li class="mb-0"><strong>Fórmulas:</strong> Evite fazer cálculos manuais ou travar valores estáticos nas fórmulas. Use referências de células.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <span class="badge text-bg-secondary mb-2">Reflexão Final</span>
+            <h3 class="h5 border-bottom pb-2 text-dark">Perguntas-Chave</h3>
+            <p class="small text-muted mb-2">Ao concluir o modelo de simulação na planilha, o grupo deverá saber responder:</p>
+            <ol class="mb-0 ps-3 text-muted small">
+              <li class="mb-1">Quanto dinheiro é necessário para abrir a startup?</li>
+              <li class="mb-1">Qual o custo mensal de operação?</li>
+              <li class="mb-1">Quantos clientes são necessários para atingir o ponto de equilíbrio?</li>
+              <li class="mb-1">Quando a empresa passa a gerar lucro?</li>
+              <li class="mb-1">O negócio parece financeiramente viável?</li>
+              <li class="mb-1">Quais são os principais riscos identificados?</li>
+              <li class="mb-0">Vocês investiriam nesse empreendimento?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="text-muted small mt-4 text-center">
+      Documento em formato HTML preparado para leitura, suporte e formatação da planilha financeira.
+    </p>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/site.js"></script>
+  <script>
+    PortalUI.init({ rootRelative: ".." }).then(() => {
+      PortalUI.renderSiteNav({
+        rootRelative: "..",
+        currentKey: "admin"
+      });
+      PortalUI.renderFooter({
+        rootRelative: "..",
+        showHomeLink: true
+      });
+    });
+  </script>
+</body>
+</html>

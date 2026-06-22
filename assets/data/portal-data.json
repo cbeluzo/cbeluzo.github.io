@@ -1010,16 +1010,7 @@
                 "className": "text-bg-primary"
               },
               "title": "Administração Financeira e Orçamentária",
-              "search": "aula 13 administração financeira orçamentária glossário conceitos indicadores financeiros",
-              "inlineActions": [
-                {
-                  "label": "Glossário",
-                  "href": "https://gamma.app/docs/13-Glossario-de-Conceitos-e-Indicadores-Financeiros-570hvmz6lj22fj0",
-                  "className": "btn btn-outline-info btn-sm",
-                  "icon": "bi-book",
-                  "newTab": true
-                }
-              ],
+              "search": "aula 13 administração financeira orçamentária glossário conceitos indicadores financeiros diretrizes guia planilha",
               "actions": [
                 {
                   "label": "Apresentação",
@@ -1027,6 +1018,25 @@
                   "className": "btn btn-primary btn-sm",
                   "icon": "bi-box-arrow-up-right",
                   "newTab": true
+                },
+                {
+                  "label": "Material Apoio",
+                  "href": "https://gamma.app/docs/13-Glossario-de-Conceitos-e-Indicadores-Financeiros-570hvmz6lj22fj0",
+                  "className": "btn btn-outline-primary btn-sm",
+                  "icon": "bi-box-arrow-up-right",
+                  "newTab": true
+                },
+                {
+                  "label": "Diretrizes para planilha",
+                  "href": "aula-13-guia-planilha.html",
+                  "className": "btn btn-outline-success btn-sm",
+                  "icon": "bi-file-earmark-spreadsheet"
+                },
+                {
+                  "label": "Atividade",
+                  "href": "aula-13-atividade-planejamento-financeiro.html",
+                  "className": "btn btn-secondary btn-sm",
+                  "icon": "bi-ui-checks-grid"
                 }
               ]
             }

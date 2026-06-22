@@ -1,4 +1,5 @@
 # Portal Acadêmico - Carlos Eduardo Beluzo
+Este portal acadêmico serve como um hub centralizado para estudantes e professores acessarem disciplinas, materiais de apoio, pesquisas e apresentações de forma organizada e intuitiva. Foi desenvolvido como um site estático hospedado no GitHub Pages, utilizando HTML5, Bootstrap 5 e JavaScript vanilla para garantir desempenho rápido e fácil manutenção. O objetivo é proporcionar uma experiência de navegação fluida, facilitando a descoberta de recursos acadêmicos relevantes.
 
 Portal estático publicado em GitHub Pages para centralizar disciplinas, materiais de apoio, pesquisa, apresentações e um pequeno acervo histórico.
 

@@ -11,3 +11,5 @@ Empreendedorismo
 - [Aula_06_Oficina_Validacao_Trabalho](Aula_06_Oficina_Validacao_Trabalho_1.pptx)
 - [Aula 07 Apresentações]()
 - [Aula_08_Business_Model_Canvas](Aula_08_Business_Model_Canvas.pptx)
+- [Aula_10_Jornada_do_Cliente_e_MVP](Aula_10_Jornada_do_Cliente_e_MVP.pptx)
+- [Aula_11_Prototipacao_Experimentacao_IA](Aula_11_Prototipacao_Experimentacao_IA.pptx)

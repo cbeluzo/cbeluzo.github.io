@@ -67,25 +67,36 @@ plt.plot(historico.history["val_loss"], label="Validação")
 plt.xlabel("Época")
 plt.ylabel("Erro quadrático médio (escala normalizada)")
 plt.legend()
-plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Avaliar e comparar com uma previsão simples</h2><p>Vamos comparar a LSTM com o método sazonal ingênuo: prever o mesmo valor observado 12 meses antes. No teste, utilizamos apenas observações históricas para prever cada mês; não fazemos uma projeção recursiva de 24 meses.</p><pre><code>previstas = modelo.predict(X_teste, verbose=0)
+plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Avaliar e comparar com uma previsão simples</h2><p>Comparamos a previsão da LSTM com a referência sazonal que utiliza o valor observado do mesmo mês do ano anterior. Os índices do teste são usados de forma consistente na seleção dos valores reais, da referência e das datas.</p><pre><code># Gerar previsões da LSTM
+previstas = modelo.predict(X_teste, verbose=0)
 previstas = escala.inverse_transform(previstas).ravel()
 
-reais = valores[indices &gt;= n_treino, 0]
-referencia = valores[indices[indices &gt;= n_treino] - 12, 0]
+# Identificar os meses utilizados no teste
+indices_teste = indices[indices &gt;= n_treino]
 
+# Recuperar os valores reais
+reais = valores[indices_teste, 0]
+
+# Referência sazonal: mesmo mês do ano anterior
+referencia = valores[indices_teste - 12, 0]
+
+# Calcular os erros
 erro_lstm = mean_absolute_error(reais, previstas)
 erro_referencia = mean_absolute_error(reais, referencia)
 
 print(f"MAE da LSTM: {erro_lstm:.1f} nascimentos")
 print(f"MAE sazonal ingênuo: {erro_referencia:.1f} nascimentos")
 
-datas_teste = serie.index[indices &gt;= n_treino]
+# Visualizar as previsões
+datas_teste = serie.index[indices_teste]
+
 plt.figure(figsize=(10, 4))
 plt.plot(datas_teste, reais, label="Observado")
 plt.plot(datas_teste, previstas, label="LSTM")
 plt.plot(datas_teste, referencia, "--", label="Mesmo mês do ano anterior")
+
 plt.title("Comparação das previsões em 24 meses de teste")
 plt.ylabel("Nascimentos (simulados)")
 plt.xlabel("Mês")
 plt.legend()
-plt.show()</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Altere a janela de 12 para 6 meses, teste diferentes números de épocas e compare o erro da LSTM com a previsão que repete o valor do mesmo mês do ano anterior.</p></section><div class="notice"><strong>Observação sobre o anexo:</strong> a execução armazenada no arquivo registra um IndexError na última etapa, ao indexar a série de 120 valores com uma máscara de 108 posições. O código foi mantido conforme enviado. Para corrigir essa incompatibilidade, a seleção dos valores reais deve usar os índices de teste: <code>reais = valores[indices[indices &gt;= n_treino], 0]</code>.</div><h2>Cuidados metodológicos</h2><p>A normalização é ajustada sobre o período de treino. Cada previsão é de um mês à frente, utilizando as observações históricas disponíveis; não é uma previsão recursiva para 24 meses futuros.</p><a href="../index.html">← Voltar à trilha prática</a></main><footer class="footer">Material didático aberto · ABEP 2026 · Professor Carlos Beluzo</footer></body></html>
+plt.show()</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Altere a janela de 12 para 6 meses, teste diferentes números de épocas e compare o erro da LSTM com a previsão que repete o valor do mesmo mês do ano anterior.</p></section><h2>Cuidados metodológicos</h2><p>A normalização é ajustada sobre o período de treino. Cada previsão é de um mês à frente, utilizando as observações históricas disponíveis; não é uma previsão recursiva para 24 meses futuros.</p><a href="../index.html">← Voltar à trilha prática</a></main><footer class="footer">Material didático aberto · ABEP 2026 · Professor Carlos Beluzo</footer></body></html>

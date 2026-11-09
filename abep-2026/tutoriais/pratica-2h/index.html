@@ -55,7 +55,7 @@
 <ol>
 <li><a href="#pratica-1">Classificação: regressão logística e árvore de decisão — 30 min</a></li>
 <li><a href="#pratica-2">Aprendizagem não supervisionada: agrupamento de municípios — 30 min</a></li>
-<li><a href="#pratica-3">Redes neurais: identificação de padrões não lineares — 30 min</a></li>
+<li><a href="#pratica-3">LSTM: previsão de nascimentos mensais — 30 min</a></li>
 <li><a href="#pratica-4">Textos e recuperação de fontes: preparação para RAG — 30 min</a></li>
 </ol>
 </nav>
@@ -144,46 +144,49 @@
 <a class="lab-link" href="02-agrupamento/index.html">Acessar o Tutorial 2</a>
 </section>
 <section class="lab-card" id="pratica-3">
-<div class="lab-time">PRÁTICA 3 · 30 MINUTOS · REDES NEURAIS</div>
-<h2>Redes neurais: identificação de padrões não lineares</h2>
-<p class="lab-question"><strong>Pergunta orientadora:</strong> em que situação uma rede neural simples consegue representar padrões que uma regressão logística linear tem dificuldade de separar?</p>
+<div class="lab-time">PRÁTICA 3 · 30 MINUTOS · DEEP LEARNING E SÉRIES TEMPORAIS</div>
+<h2>LSTM: previsão de nascimentos mensais</h2>
+<p class="lab-question"><strong>Pergunta orientadora:</strong> é possível utilizar o histórico dos 12 meses anteriores para prever o número de nascimentos no mês seguinte?</p>
 <div class="lab-grid">
 <div>
 <h3>Desenho do problema</h3>
-<p>Um algoritmo linear estabelece uma fronteira de classificação reta quando utiliza duas características sem transformações não lineares. Uma rede neural multicamadas pode representar fronteiras curvas. O exercício compara os dois modelos em um conjunto sintético propositalmente não linear, permitindo observar diferenças sem exigir GPU nem conhecimentos avançados de matemática.</p>
+<p>O número mensal de nascimentos pode apresentar tendência e sazonalidade. A atividade utiliza uma série temporal sintética para demonstrar como uma rede LSTM (<em>Long Short-Term Memory</em>) processa sequências de observações anteriores e produz uma estimativa numérica para o mês seguinte. O conjunto de teste corresponde ao período mais recente, respeitando a ordem temporal.</p>
 <h3>Objetivos de aprendizagem</h3>
 <ul>
-<li>Reconhecer entradas, saídas e camadas ocultas de uma rede.</li>
-<li>Treinar uma rede neural do tipo perceptron multicamadas (MLP).</li>
-<li>Comparar seu desempenho com a regressão logística.</li>
-<li>Visualizar regiões de decisão aprendidas.</li>
-<li>Experimentar arquiteturas com diferentes números de neurônios.</li>
+<li>Reconhecer tendência, sazonalidade e ruído em uma série temporal.</li>
+<li>Entender por que a separação entre treino e teste deve respeitar o tempo.</li>
+<li>Converter a série em janelas de 12 meses consecutivos.</li>
+<li>Construir e treinar uma pequena rede LSTM com Keras.</li>
+<li>Comparar previsões com valores observados e calcular o erro absoluto médio (MAE).</li>
+<li>Avaliar se a LSTM supera uma previsão sazonal ingênua.</li>
 </ul>
 </div>
 <div>
 <h3>Base de dados</h3>
-<p><strong>450 observações sintéticas</strong> geradas pela função <code>make_moons</code> do scikit-learn:</p>
+<p><strong>120 observações mensais sintéticas</strong>, de janeiro de 2015 a dezembro de 2024, representando contagens fictícias de nascimentos.</p>
 <ul>
-<li>Duas características numéricas artificiais.</li>
-<li>Uma classe binária conhecida.</li>
-<li>Distribuição em dois padrões curvos com ruído.</li>
+<li><code>data</code>: referência mensal da observação.</li>
+<li><code>nascimentos</code>: contagem fictícia com tendência decrescente, sazonalidade anual e ruído.</li>
+<li><strong>Treino:</strong> primeiros 96 meses; <strong>teste:</strong> últimos 24 meses.</li>
+<li><strong>Entrada da rede:</strong> 12 meses consecutivos; <strong>saída:</strong> valor do mês seguinte.</li>
 </ul>
-<p class="lab-note">A base não contém informações sociodemográficas reais; sua finalidade é demonstrar geometricamente o aprendizado de relações não lineares.</p>
+<p class="lab-note">Os números não foram extraídos do SINASC ou IBGE. Trata-se de um conjunto artificial usado exclusivamente para demonstrar o método, sem validade para inferências demográficas.</p>
 <h3>Bibliotecas principais</h3>
-<p><strong>NumPy</strong> (malha de visualização), <strong>scikit-learn</strong> (<code>make_moons</code>, <code>StandardScaler</code>, <code>LogisticRegression</code>, <code>MLPClassifier</code> e avaliação) e <strong>Matplotlib</strong> (gráficos).</p>
+<p><strong>NumPy</strong> (simulação), <strong>pandas</strong> (datas e série temporal), <strong>Matplotlib</strong> (visualizações), <strong>scikit-learn</strong> (normalização com <code>MinMaxScaler</code> e cálculo do <code>MAE</code>) e <strong>TensorFlow/Keras</strong> (camada <code>LSTM</code>, treinamento e previsões).</p>
 </div>
 </div>
 <h3>O que será feito, passo a passo</h3>
 <ol>
-<li>Importar as bibliotecas.</li>
-<li>Gerar e visualizar as duas classes artificiais.</li>
-<li>Separar os dados em treino e teste.</li>
-<li>Treinar regressão logística e rede neural e comparar a acurácia no teste.</li>
-<li>Desenhar as regiões previstas pela rede neural.</li>
+<li>Importar bibliotecas e configurar a semente aleatória.</li>
+<li>Gerar e visualizar 10 anos de nascimentos mensais fictícios.</li>
+<li>Separar treino e teste cronologicamente, normalizar pelos dados de treino e construir janelas de 12 meses.</li>
+<li>Treinar uma LSTM pequena, com 16 unidades e uma saída numérica.</li>
+<li>Comparar o erro da LSTM com o de um método sazonal simples e visualizar as previsões nos 24 meses de teste.</li>
 </ol>
-<p><strong>Resultado esperado:</strong> um gráfico das classes, a comparação de acurácia e a visualização da fronteira de decisão aprendida pela rede.</p>
-<p><strong>Desafio:</strong> alterar a arquitetura de duas camadas com 12 neurônios cada para uma camada com 3 neurônios ou duas com 30, observando possíveis mudanças no resultado.</p>
-<a class="lab-link" href="03-rede-neural/index.html">Acessar o Tutorial 3</a>
+<p><strong>Resultado esperado:</strong> gráfico da série temporal, curvas de erro durante o treinamento, previsões mensais no período de teste e comparação do MAE entre LSTM e referência sazonal.</p>
+<p><strong>Desafio:</strong> alterar a janela de 12 para 6 meses e experimentar diferentes quantidades de épocas. A LSTM será sempre superior ao método simples?</p>
+<p class="lab-note"><strong>Limite da atividade:</strong> são feitas previsões de um mês à frente com observações históricas disponíveis; não se trata de prever 24 meses consecutivos sem conhecer os meses intermediários.</p>
+<a class="lab-link" href="03-rede-neural/index.html">Acessar o Tutorial 3 — LSTM</a>
 </section>
 <section class="lab-card" id="pratica-4">
 <div class="lab-time">PRÁTICA 4 · 30 MINUTOS · TEXTOS E RECUPERAÇÃO DE INFORMAÇÃO</div>

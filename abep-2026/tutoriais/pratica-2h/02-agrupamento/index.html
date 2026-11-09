@@ -1,0 +1,40 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prática 2 — Aprendizagem não supervisionada: agrupando municípios</title><link rel="stylesheet" href="../../../assets/css/style.css"><link rel="stylesheet" href="../../../assets/css/tutorial.css"></head><body><header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Prática de 2 horas</a><a href="../../index.html">Tutoriais</a></nav></div></header><main class="container"><a href="../index.html">← Voltar à trilha prática</a><p class="eyebrow">Prática 2 · 30 minutos</p><h1>Aprendizagem não supervisionada: agrupando municípios</h1><p class="lead">Como encontrar perfis semelhantes sem informar uma classe correta?</p><p>Machine Learning e estudos populacionais · 30 minutos</p><div class="notice">Todos os exemplos usam dados sintéticos e textos didáticos. Execute no Colab, uma célula de cada vez. Não é necessário instalar Python no computador.</div><div class="tutorial-buttons"><a href="https://colab.research.google.com/github/cbeluzo/cbeluzo.github.io/blob/master/abep-2026/tutoriais/pratica-2h/02-agrupamento/tutorial.ipynb" target="_blank" rel="noopener">▶ Abrir no Google Colab</a><a class="secondary" href="tutorial.ipynb">Obter notebook (.ipynb)</a></div><section class="tutorial-step"><h2>Passo 1 — Importar bibliotecas</h2><p>O K-Means organiza observações segundo a proximidade entre seus indicadores.</p><pre><code>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler</code></pre></section><section class="tutorial-step"><h2>Passo 2 — Criar municípios fictícios</h2><p>Os 36 municípios ilustrativos terão indicadores diferentes de envelhecimento e renda.</p><pre><code>rng = np.random.default_rng(10)
+n = 36
+
+dados = pd.DataFrame({
+    "municipio": [f"Município {i:02d}" for i in range(1, n + 1)],
+    "pct_idosos": rng.uniform(8, 30, n),
+    "renda_media": rng.uniform(1100, 3400, n)
+})
+print(dados.head())</code></pre></section><section class="tutorial-step"><h2>Passo 3 — Preparar as variáveis</h2><p>Como renda e percentual têm escalas distintas, padronizamos antes do agrupamento.</p><pre><code>colunas = ["pct_idosos", "renda_media"]
+padronizador = StandardScaler()
+X = padronizador.fit_transform(dados[colunas])
+
+modelo = KMeans(n_clusters=3, random_state=42, n_init=10)
+dados["grupo"] = modelo.fit_predict(X)
+
+print(dados.groupby("grupo")[colunas].mean().round(1))</code></pre></section><section class="tutorial-step"><h2>Passo 4 — Visualizar os perfis</h2><p>Cada ponto representa um município. A cor indica o grupo encontrado pelo algoritmo.</p><pre><code>plt.figure(figsize=(8, 5))
+for grupo, tabela in dados.groupby("grupo"):
+    plt.scatter(
+        tabela["pct_idosos"],
+        tabela["renda_media"],
+        label=f"Grupo {grupo}",
+        s=55
+    )
+
+plt.xlabel("Pessoas com 60 anos ou mais (%)")
+plt.ylabel("Renda média fictícia (R$)")
+plt.title("Perfis municipais — dados sintéticos")
+plt.legend()
+plt.grid(alpha=0.2)
+plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Experimentar outro número de grupos</h2><p>Os agrupamentos mudam quando definimos outra quantidade de grupos.</p><pre><code>for quantidade in [2, 3, 4]:
+    modelo = KMeans(
+        n_clusters=quantidade, random_state=42, n_init=10
+    )
+    grupos = modelo.fit_predict(X)
+    print(f"{quantidade} grupos:", np.bincount(grupos))</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Mude o número de grupos para 2 e 4. Como interpretar os perfis? Algum grupo pode ser chamado automaticamente de 'vulnerável'? Por quê?</p></section><h2>Limitações e cuidados</h2><p>Os dados e resultados são ilustrativos. Em pesquisa real, documente a origem das informações, avalie a representatividade e valide os resultados com critérios apropriados.</p><a href="../index.html">← Trilha prática</a></main><footer class="footer">Minicurso ABEP 2026 · Professor Carlos Beluzo</footer></body></html>

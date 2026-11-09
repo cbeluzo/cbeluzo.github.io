@@ -1,1 +1,242 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prática de 2 horas | ABEP 2026</title><link rel="stylesheet" href="../../assets/css/style.css"><link rel="stylesheet" href="../../assets/css/tutorial.css"></head><body><header class="top"><div class="top-inner"><a class="brand" href="../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Todos os tutoriais</a></nav></div></header><main class="container"><a href="../index.html">← Tutoriais</a><div class="eyebrow">Laboratório introdutório · 120 minutos</div><h1>Prática guiada em Python</h1><p class="lead">Quatro exercícios de 30 minutos, do primeiro modelo preditivo à consulta documental. Os notebooks usam Python simples, dados sintéticos e recursos disponíveis em CPU no Google Colab.</p><div class="notice">Para acompanhar: abra cada notebook no Colab, execute as células em ordem e faça o desafio final. Os quatro exercícios são independentes.</div><div class="index-tutorials"><article><div class="eyebrow">Prática 1 · 30 min</div><h2><a href="01-classificacao/index.html">Classificação: regressão logística e árvore de decisão</a></h2><p>Como reconhecer padrões associados a um desfecho binário?</p><a href="01-classificacao/index.html">Iniciar tutorial →</a></article><article><div class="eyebrow">Prática 2 · 30 min</div><h2><a href="02-agrupamento/index.html">Aprendizagem não supervisionada: agrupando municípios</a></h2><p>Como encontrar perfis semelhantes sem informar uma classe correta?</p><a href="02-agrupamento/index.html">Iniciar tutorial →</a></article><article><div class="eyebrow">Prática 3 · 30 min</div><h2><a href="03-rede-neural/index.html">Deep Learning: treinando uma rede neural simples</a></h2><p>O que muda quando usamos uma rede com camadas ocultas?</p><a href="03-rede-neural/index.html">Iniciar tutorial →</a></article><article><div class="eyebrow">Prática 4 · 30 min</div><h2><a href="04-ia-generativa/index.html">IA Generativa: textos, perguntas e recuperação de fontes</a></h2><p>Como consultar textos de pesquisa com rastreabilidade, sem inventar evidências?</p><a href="04-ia-generativa/index.html">Iniciar tutorial →</a></article></div><p><a href="../index.html">Consultar os seis tutoriais de aprofundamento →</a></p></main></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Quatro tutoriais práticos de Python e inteligência artificial para Estudos Populacionais: objetivos, dados, métodos, bibliotecas e atividades.">
+<title>Laboratório prático de 2 horas | IA em Estudos Populacionais — ABEP 2026</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/tutorial.css">
+<style>
+  .lab-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.85rem;margin:1.5rem 0}
+  .lab-summary div{background:#fff;border:1px solid #dce5ec;border-radius:12px;padding:1rem}
+  .lab-summary strong{display:block;font-size:1.45rem;color:#144b78}
+  .lab-summary span{font-size:.9rem;color:#4e6274}
+  .lab-card{background:#fff;border:1px solid #dce5ec;border-radius:15px;padding:1.5rem;margin:1.5rem 0}
+  .lab-card h2{margin:.3rem 0 .7rem}
+  .lab-card h3{font-size:1.04rem;margin:1.2rem 0 .4rem}
+  .lab-card p{line-height:1.65}
+  .lab-card ul,.lab-card ol{padding-left:1.4rem}
+  .lab-card li{margin:.4rem 0;line-height:1.55}
+  .lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+  .lab-grid > div{min-width:0}
+  .lab-question{border-left:4px solid #087e83;padding:.7rem 1rem;background:#edf8f7;border-radius:6px}
+  .lab-time{color:#155c66;font-weight:700;font-size:.92rem}
+  .lab-note{font-size:.94rem;color:#50627a}
+  .lab-link{display:inline-block;background:#144b78;color:white;text-decoration:none;padding:.8rem 1.1rem;border-radius:9px;font-weight:700;margin-top:1rem}
+  .lab-link:hover{background:#0e3c61}
+  .lab-outline{margin:1.5rem 0}
+  .lab-outline a{display:block;padding:.55rem 0}
+  code{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header class="top"><div class="top-inner"><a class="brand" href="../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Todos os tutoriais</a><a href="../../recursos/index.html">Recursos</a></nav></div></header>
+<main class="container" id="conteudo">
+<a class="back" href="../index.html">← Tutoriais</a>
+<div class="eyebrow">ABEP 2026 · Laboratório introdutório</div>
+<h1>Prática guiada de Inteligência Artificial com Python</h1>
+<p class="lead">Quatro tutoriais de 30 minutos, organizados do aprendizado supervisionado à recuperação de informação em documentos. Cada atividade apresenta uma pergunta de pesquisa, uma base de dados didática, um procedimento computacional simples e resultados para interpretar e discutir.</p>
+<div class="lab-summary">
+<div><strong>120 min</strong><span>Duração total</span></div>
+<div><strong>4</strong><span>Tutoriais independentes</span></div>
+<div><strong>5</strong><span>Etapas por tutorial</span></div>
+<div><strong>Python</strong><span>Google Colab · CPU</span></div>
+</div>
+<section>
+<h2>Objetivo geral do laboratório</h2>
+<p>Introduzir pesquisadores e estudantes de Estudos Populacionais à implementação de métodos básicos de Inteligência Artificial em Python. Ao final, espera-se que o participante consiga compreender a estrutura de um problema analítico, executar um código curto, interpretar os resultados de um modelo e reconhecer limitações relacionadas aos dados, à validação e à inferência científica.</p>
+<p>Não é necessário instalar programas: os notebooks podem ser executados no <a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colab</a>, utilizando bibliotecas usuais do ecossistema científico Python. Os tutoriais foram planejados para uma primeira experiência de programação e podem ser realizados separadamente.</p>
+<div class="notice"><strong>Sobre os dados:</strong> todas as bases utilizadas nesta trilha são sintéticas ou compostas de textos didáticos criados para os exercícios. Não são extrações do SINASC, do IBGE ou de outras fontes oficiais, nem devem fundamentar conclusões empíricas sobre populações reais. O objetivo é permitir que todos reproduzam os procedimentos antes de trabalhar com dados observados.</div>
+</section>
+<nav class="lab-outline" aria-label="Navegação dos tutoriais">
+<h2>Percurso da prática</h2>
+<ol>
+<li><a href="#pratica-1">Classificação: regressão logística e árvore de decisão — 30 min</a></li>
+<li><a href="#pratica-2">Aprendizagem não supervisionada: agrupamento de municípios — 30 min</a></li>
+<li><a href="#pratica-3">Redes neurais: identificação de padrões não lineares — 30 min</a></li>
+<li><a href="#pratica-4">Textos e recuperação de fontes: preparação para RAG — 30 min</a></li>
+</ol>
+</nav>
+<section class="lab-card" id="pratica-1">
+<div class="lab-time">PRÁTICA 1 · 30 MINUTOS · MACHINE LEARNING SUPERVISIONADO</div>
+<h2>Classificação: regressão logística e árvore de decisão</h2>
+<p class="lab-question"><strong>Pergunta orientadora:</strong> como utilizar características de registros de nascimentos para classificar a ocorrência de um desfecho binário?</p>
+<div class="lab-grid">
+<div>
+<h3>Desenho do problema</h3>
+<p>O exercício simula um problema de classificação binária inspirado em pesquisas sobre mortalidade neonatal. Cada linha representa um registro fictício de nascimento, com duas características observadas e uma variável de resultado. O desafio é aprender uma relação nos dados de treinamento e verificar o comportamento do modelo em registros reservados para teste.</p>
+<h3>Objetivos de aprendizagem</h3>
+<ul>
+<li>Diferenciar variáveis explicativas e variável-alvo.</li>
+<li>Compreender a divisão entre treino e teste.</li>
+<li>Treinar regressão logística e árvore de decisão.</li>
+<li>Interpretar matriz de confusão, sensibilidade e precisão.</li>
+<li>Observar como a profundidade altera uma árvore de decisão.</li>
+</ul>
+</div>
+<div>
+<h3>Base de dados</h3>
+<p><strong>400 registros sintéticos</strong>, gerados com semente aleatória fixa para favorecer a reprodução do exercício.</p>
+<ul>
+<li><code>idade_gestacional</code>: semanas, de 28 a 41.</li>
+<li><code>consultas_prenatais</code>: de 0 a 10.</li>
+<li><code>evento</code>: desfecho binário fictício (0 ou 1).</li>
+</ul>
+<p class="lab-note">O desfecho é simulado por uma regra probabilística artificial, sem validade epidemiológica ou clínica. Os limiares aprendidos pelo modelo não são critérios médicos.</p>
+<h3>Bibliotecas principais</h3>
+<p><strong>NumPy</strong> (simulação), <strong>pandas</strong> (tabela), <strong>scikit-learn</strong> (separação, treinamento e métricas) e <strong>Matplotlib</strong> (visualização da árvore).</p>
+</div>
+</div>
+<h3>O que será feito, passo a passo</h3>
+<ol>
+<li>Importar as bibliotecas necessárias.</li>
+<li>Construir e examinar uma tabela fictícia de nascimentos.</li>
+<li>Separar 70% dos registros para treino e 30% para teste, preservando a proporção das classes.</li>
+<li>Treinar dois classificadores e comparar seus erros e acertos.</li>
+<li>Desenhar a árvore de decisão e alterar sua profundidade.</li>
+</ol>
+<p><strong>Resultado esperado:</strong> uma comparação reproduzível entre dois algoritmos, acompanhada de matrizes de confusão, métricas de classificação e uma árvore visualizada.</p>
+<p><strong>Desafio:</strong> alterar a profundidade da árvore de 3 para 1 e 5 e verificar se a sensibilidade e a precisão melhoram ou pioram.</p>
+<a class="lab-link" href="01-classificacao/index.html">Acessar o Tutorial 1</a>
+</section>
+<section class="lab-card" id="pratica-2">
+<div class="lab-time">PRÁTICA 2 · 30 MINUTOS · MACHINE LEARNING NÃO SUPERVISIONADO</div>
+<h2>Agrupamento de municípios com K-Means</h2>
+<p class="lab-question"><strong>Pergunta orientadora:</strong> é possível identificar perfis municipais semelhantes usando indicadores de envelhecimento e renda, mesmo sem conhecer previamente os grupos?</p>
+<div class="lab-grid">
+<div>
+<h3>Desenho do problema</h3>
+<p>Municípios podem apresentar características distintas ou semelhantes quando considerados indicadores sociodemográficos. Neste exercício, a tarefa é identificar agrupamentos a partir das distâncias entre observações, sem fornecer ao algoritmo uma classificação previamente conhecida.</p>
+<h3>Objetivos de aprendizagem</h3>
+<ul>
+<li>Compreender a diferença entre classificação e agrupamento.</li>
+<li>Reconhecer a importância da escala das variáveis.</li>
+<li>Aplicar a padronização com <code>StandardScaler</code>.</li>
+<li>Executar o algoritmo K-Means.</li>
+<li>Interpretar gráficos e médias dos grupos sem atribuir causalidade ou rótulos normativos.</li>
+</ul>
+</div>
+<div>
+<h3>Base de dados</h3>
+<p><strong>36 municípios fictícios</strong>, com os seguintes campos:</p>
+<ul>
+<li><code>municipio</code>: identificação.</li>
+<li><code>pct_idosos</code>: participação fictícia de pessoas com 60 anos ou mais, entre 8% e 30%.</li>
+<li><code>renda_media</code>: renda média fictícia entre R$ 1.100 e R$ 3.400.</li>
+</ul>
+<p class="lab-note">Os valores são sorteados para fins didáticos; não representam estimativas municipais reais.</p>
+<h3>Bibliotecas principais</h3>
+<p><strong>NumPy</strong> (simulação), <strong>pandas</strong> (organização), <strong>scikit-learn</strong> (padronização e K-Means) e <strong>Matplotlib</strong> (gráfico de dispersão).</p>
+</div>
+</div>
+<h3>O que será feito, passo a passo</h3>
+<ol>
+<li>Importar as bibliotecas.</li>
+<li>Gerar uma tabela de municípios e indicadores.</li>
+<li>Padronizar as duas variáveis e formar três grupos com K-Means.</li>
+<li>Calcular médias por grupo e visualizar os municípios em um gráfico.</li>
+<li>Repetir o agrupamento com duas e quatro categorias para comparar os resultados.</li>
+</ol>
+<p><strong>Resultado esperado:</strong> uma tabela com identificadores de grupo, médias descritivas por grupo e um gráfico que permite examinar os perfis encontrados.</p>
+<p><strong>Desafio:</strong> discutir por que pertencer a determinado agrupamento não basta para definir um município como vulnerável.</p>
+<a class="lab-link" href="02-agrupamento/index.html">Acessar o Tutorial 2</a>
+</section>
+<section class="lab-card" id="pratica-3">
+<div class="lab-time">PRÁTICA 3 · 30 MINUTOS · REDES NEURAIS</div>
+<h2>Redes neurais: identificação de padrões não lineares</h2>
+<p class="lab-question"><strong>Pergunta orientadora:</strong> em que situação uma rede neural simples consegue representar padrões que uma regressão logística linear tem dificuldade de separar?</p>
+<div class="lab-grid">
+<div>
+<h3>Desenho do problema</h3>
+<p>Um algoritmo linear estabelece uma fronteira de classificação reta quando utiliza duas características sem transformações não lineares. Uma rede neural multicamadas pode representar fronteiras curvas. O exercício compara os dois modelos em um conjunto sintético propositalmente não linear, permitindo observar diferenças sem exigir GPU nem conhecimentos avançados de matemática.</p>
+<h3>Objetivos de aprendizagem</h3>
+<ul>
+<li>Reconhecer entradas, saídas e camadas ocultas de uma rede.</li>
+<li>Treinar uma rede neural do tipo perceptron multicamadas (MLP).</li>
+<li>Comparar seu desempenho com a regressão logística.</li>
+<li>Visualizar regiões de decisão aprendidas.</li>
+<li>Experimentar arquiteturas com diferentes números de neurônios.</li>
+</ul>
+</div>
+<div>
+<h3>Base de dados</h3>
+<p><strong>450 observações sintéticas</strong> geradas pela função <code>make_moons</code> do scikit-learn:</p>
+<ul>
+<li>Duas características numéricas artificiais.</li>
+<li>Uma classe binária conhecida.</li>
+<li>Distribuição em dois padrões curvos com ruído.</li>
+</ul>
+<p class="lab-note">A base não contém informações sociodemográficas reais; sua finalidade é demonstrar geometricamente o aprendizado de relações não lineares.</p>
+<h3>Bibliotecas principais</h3>
+<p><strong>NumPy</strong> (malha de visualização), <strong>scikit-learn</strong> (<code>make_moons</code>, <code>StandardScaler</code>, <code>LogisticRegression</code>, <code>MLPClassifier</code> e avaliação) e <strong>Matplotlib</strong> (gráficos).</p>
+</div>
+</div>
+<h3>O que será feito, passo a passo</h3>
+<ol>
+<li>Importar as bibliotecas.</li>
+<li>Gerar e visualizar as duas classes artificiais.</li>
+<li>Separar os dados em treino e teste.</li>
+<li>Treinar regressão logística e rede neural e comparar a acurácia no teste.</li>
+<li>Desenhar as regiões previstas pela rede neural.</li>
+</ol>
+<p><strong>Resultado esperado:</strong> um gráfico das classes, a comparação de acurácia e a visualização da fronteira de decisão aprendida pela rede.</p>
+<p><strong>Desafio:</strong> alterar a arquitetura de duas camadas com 12 neurônios cada para uma camada com 3 neurônios ou duas com 30, observando possíveis mudanças no resultado.</p>
+<a class="lab-link" href="03-rede-neural/index.html">Acessar o Tutorial 3</a>
+</section>
+<section class="lab-card" id="pratica-4">
+<div class="lab-time">PRÁTICA 4 · 30 MINUTOS · TEXTOS E RECUPERAÇÃO DE INFORMAÇÃO</div>
+<h2>IA Generativa: recuperação de documentos e preparação de um RAG</h2>
+<p class="lab-question"><strong>Pergunta orientadora:</strong> como localizar trechos pertinentes em documentos de pesquisa e organizar essas evidências para apoiar uma resposta com referência explícita à fonte?</p>
+<div class="lab-grid">
+<div>
+<h3>Desenho do problema</h3>
+<p>Pesquisadores frequentemente consultam definições, relatórios e documentos metodológicos. O exercício cria uma coleção pequena de textos, transforma as palavras em representações numéricas e recupera os documentos mais próximos de uma pergunta. Em seguida, organiza um prompt que poderia ser enviado a um modelo de linguagem para elaborar uma resposta fundamentada nas fontes.</p>
+<h3>Objetivos de aprendizagem</h3>
+<ul>
+<li>Compreender o papel dos documentos em um sistema de consulta.</li>
+<li>Introduzir representação textual por TF-IDF.</li>
+<li>Calcular similaridade por cosseno e ordenar documentos.</li>
+<li>Associar trechos recuperados a identificadores rastreáveis.</li>
+<li>Entender a diferença entre recuperar evidências e gerar uma resposta com LLM.</li>
+</ul>
+</div>
+<div>
+<h3>Base documental</h3>
+<p><strong>Quatro textos didáticos curtos</strong>, com identificadores <code>DOC-01</code> a <code>DOC-04</code>, abordando:</p>
+<ul>
+<li>Saldo migratório.</li>
+<li>Envelhecimento populacional.</li>
+<li>Projeções populacionais.</li>
+<li>Taxa bruta de natalidade.</li>
+</ul>
+<p class="lab-note">Os textos foram preparados exclusivamente para a aula; não são excertos de documentos oficiais. A coleção está incorporada diretamente ao código.</p>
+<h3>Bibliotecas principais</h3>
+<p><strong>scikit-learn</strong> (<code>TfidfVectorizer</code> e <code>cosine_similarity</code>) e recursos nativos do <strong>Python</strong> (dicionários, listas e strings).</p>
+</div>
+</div>
+<h3>O que será feito, passo a passo</h3>
+<ol>
+<li>Organizar os textos e seus identificadores em uma pequena coleção.</li>
+<li>Construir uma representação TF-IDF dos documentos.</li>
+<li>Formular uma pergunta e ordenar os textos pela similaridade.</li>
+<li>Exibir o trecho mais próximo acompanhado do identificador de origem.</li>
+<li>Preparar um prompt que oriente um LLM a responder apenas com base no texto recuperado.</li>
+</ol>
+<p><strong>Resultado esperado:</strong> um recuperador textual simples e um prompt estruturado com referência documental, demonstrando uma parte do funcionamento de sistemas RAG.</p>
+<p><strong>Desafio:</strong> consultar o significado de saldo migratório e, depois, perguntar sobre um dado numérico ausente da coleção. Discutir por que a resposta não deve ser inventada.</p>
+<div class="notice"><strong>Delimitação técnica:</strong> este notebook não executa um LLM, não produz uma resposta gerada por IA e não implementa um sistema RAG completo. Ele ensina a etapa de recuperação e a construção do contexto que poderia alimentar um gerador. Também não emprega embeddings neurais ou banco vetorial.</div>
+<a class="lab-link" href="04-ia-generativa/index.html">Acessar o Tutorial 4</a>
+</section>
+<section>
+<h2>Como conduzir cada atividade em 30 minutos</h2>
+<p>Uma organização sugerida é dedicar cerca de cinco minutos à apresentação do problema e dos dados; quinze minutos à execução comentada das cinco etapas; cinco minutos à interpretação dos resultados; e cinco minutos ao desafio de modificação do código. Trata-se de uma sugestão de condução, ajustável ao ritmo da turma.</p>
+<h2>Cuidados metodológicos comuns</h2>
+<p>Em todas as atividades, resultados computacionais devem ser interpretados à luz do problema de pesquisa. Dados sintéticos permitem demonstrar operações e conceitos, mas não fornecem evidências sobre populações reais. Modelos preditivos exigem validação apropriada, agrupamentos não demonstram causalidade e a recuperação de documentos não garante, por si só, correção factual ou suficiência das fontes.</p>
+<p><a href="../index.html">Consultar também os seis tutoriais complementares →</a></p>
+</section>
+</main>
+<footer class="footer">Material didático aberto · ABEP 2026 · Professor Carlos Beluzo</footer>
+</body>
+</html>

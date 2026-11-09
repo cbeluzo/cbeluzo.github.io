@@ -1,51 +1,91 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prática 3 — Deep Learning: treinando uma rede neural simples</title><link rel="stylesheet" href="../../../assets/css/style.css"><link rel="stylesheet" href="../../../assets/css/tutorial.css"></head><body><header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Prática de 2 horas</a><a href="../../index.html">Tutoriais</a></nav></div></header><main class="container"><a href="../index.html">← Voltar à trilha prática</a><p class="eyebrow">Prática 3 · 30 minutos</p><h1>Deep Learning: treinando uma rede neural simples</h1><p class="lead">O que muda quando usamos uma rede com camadas ocultas?</p><p>Deep Learning · 30 minutos</p><div class="notice">Todos os exemplos usam dados sintéticos e textos didáticos. Execute no Colab, uma célula de cada vez. Não é necessário instalar Python no computador.</div><div class="tutorial-buttons"><a href="https://colab.research.google.com/github/cbeluzo/cbeluzo.github.io/blob/master/abep-2026/tutoriais/pratica-2h/03-rede-neural/tutorial.ipynb" target="_blank" rel="noopener">▶ Abrir no Google Colab</a><a class="secondary" href="tutorial.ipynb">Obter notebook (.ipynb)</a></div><section class="tutorial-step"><h2>Passo 1 — Importar bibliotecas</h2><p>Utilizaremos a implementação de rede neural do scikit-learn, sem GPU.</p><pre><code>import numpy as np
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prática 3 — LSTM e previsão de nascimentos</title><link rel="stylesheet" href="../../../assets/css/style.css"><link rel="stylesheet" href="../../../assets/css/tutorial.css"></head><body><header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Prática de 2 horas</a><a href="../../index.html">Tutoriais</a></nav></div></header><main class="container"><a href="../index.html">← Voltar à trilha prática</a><p class="eyebrow">Prática 3 · 30 minutos · Deep Learning</p><h1>LSTM: previsão de nascimentos mensais</h1><p class="lead">Como utilizar os 12 meses anteriores para prever os nascimentos do mês seguinte?</p><div class="notice">Exercício com 120 valores mensais sintéticos, sem uso de dados reais. Rodará no Google Colab com TensorFlow/Keras, sem necessidade de GPU.</div><p><strong>Objetivos:</strong> compreender séries temporais, janelas de observação, divisão temporal entre treino e teste, rede LSTM e avaliação com MAE e uma previsão sazonal simples.</p><div class="tutorial-buttons"><a href="https://colab.research.google.com/github/cbeluzo/cbeluzo.github.io/blob/master/abep-2026/tutoriais/pratica-2h/03-rede-neural/tutorial.ipynb" target="_blank" rel="noopener">▶ Abrir no Google Colab</a><a class="secondary" href="tutorial.ipynb">Obter notebook (.ipynb)</a></div><section class="tutorial-step"><h2>Passo 1 — Importar bibliotecas</h2><p>Utilizaremos NumPy e pandas para organizar a série mensal, Matplotlib para os gráficos, scikit-learn para normalização e avaliação, e TensorFlow/Keras para construir a LSTM.</p><pre><code>import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
-from sklearn.datasets import make_moons
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score</code></pre></section><section class="tutorial-step"><h2>Passo 2 — Criar dados não lineares</h2><p>Os pontos simulam dois padrões em formato curvo. Não representam indivíduos ou territórios reais.</p><pre><code>X, y = make_moons(
-    n_samples=450, noise=0.22, random_state=42
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_absolute_error
+from tensorflow import keras
+
+keras.utils.set_random_seed(42)</code></pre></section><section class="tutorial-step"><h2>Passo 2 — Criar uma série temporal sintética</h2><p>Geraremos 120 meses (10 anos) de nascimentos fictícios com tendência, sazonalidade anual e ruído. Esta série não é uma base do SINASC ou do IBGE.</p><pre><code>rng = np.random.default_rng(42)
+datas = pd.date_range("2015-01-01", periods=120, freq="MS")
+mes = np.arange(120)
+
+nascimentos = (
+    2500
+    - 2.5 * mes
+    + 170 * np.sin(2 * np.pi * mes / 12)
+    + rng.normal(0, 35, 120)
 )
 
-plt.scatter(X[:, 0], X[:, 1], c=y, s=22)
-plt.title("Padrão não linear: duas classes fictícias")
-plt.xlabel("Indicador sintético 1")
-plt.ylabel("Indicador sintético 2")
-plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 3 — Separar treino e teste</h2><p>O mesmo conjunto de teste será usado para os dois modelos.</p><pre><code>X_treino, X_teste, y_treino, y_teste = train_test_split(
-    X, y, test_size=0.30, random_state=42, stratify=y
-)</code></pre></section><section class="tutorial-step"><h2>Passo 4 — Comparar regressão e rede neural</h2><p>A rede pode aprender fronteiras curvas; a regressão logística linear cria uma fronteira reta.</p><pre><code>modelos = {
-    "Regressão logística": make_pipeline(
-        StandardScaler(), LogisticRegression()
-    ),
-    "Rede neural": make_pipeline(
-        StandardScaler(),
-        MLPClassifier(
-            hidden_layer_sizes=(12, 12),
-            max_iter=900,
-            random_state=42
-        )
-    )
-}
+serie = pd.Series(nascimentos, index=datas, name="nascimentos")
 
-for nome, modelo in modelos.items():
-    modelo.fit(X_treino, y_treino)
-    previsao = modelo.predict(X_teste)
-    print(nome, "— acurácia:", round(
-        accuracy_score(y_teste, previsao), 3
-    ))</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Visualizar a decisão da rede</h2><p>O mapa mostra como a rede classifica combinações de valores, inclusive entre pontos observados.</p><pre><code>rede = modelos["Rede neural"]
-eixo_x = np.linspace(X[:, 0].min()-0.3, X[:, 0].max()+0.3, 150)
-eixo_y = np.linspace(X[:, 1].min()-0.3, X[:, 1].max()+0.3, 150)
-xx, yy = np.meshgrid(eixo_x, eixo_y)
-grade = np.column_stack([xx.ravel(), yy.ravel()])
-previsoes = rede.predict(grade).reshape(xx.shape)
+serie.plot(figsize=(10, 3), title="Nascimentos mensais fictícios")
+plt.ylabel("Nascimentos (simulados)")
+plt.xlabel("Mês")
+plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 3 — Preparar janelas de 12 meses</h2><p>Usaremos os primeiros 96 meses para treinamento e os 24 últimos para teste. A normalização é ajustada apenas no treino. Para prever um mês, o modelo receberá os 12 meses anteriores.</p><pre><code>n_treino = 96
+janela = 12
 
-plt.contourf(xx, yy, previsoes, alpha=0.25)
-plt.scatter(X_teste[:, 0], X_teste[:, 1], c=y_teste, s=20)
-plt.title("Regiões previstas pela rede neural — dados sintéticos")
-plt.xlabel("Indicador sintético 1")
-plt.ylabel("Indicador sintético 2")
-plt.show()</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Altere hidden_layer_sizes de (12, 12) para (3,) e (30, 30). Compare as fronteiras. Uma rede maior melhora necessariamente a avaliação?</p></section><h2>Limitações e cuidados</h2><p>Os dados e resultados são ilustrativos. Em pesquisa real, documente a origem das informações, avalie a representatividade e valide os resultados com critérios apropriados.</p><a href="../index.html">← Trilha prática</a></main><footer class="footer">Minicurso ABEP 2026 · Professor Carlos Beluzo</footer></body></html>
+valores = serie.to_numpy().reshape(-1, 1)
+
+escala = MinMaxScaler()
+escala.fit(valores[:n_treino])
+normalizados = escala.transform(valores)
+
+X, y, indices = [], [], []
+for i in range(janela, len(normalizados)):
+    X.append(normalizados[i-janela:i])
+    y.append(normalizados[i, 0])
+    indices.append(i)
+
+X = np.array(X)
+y = np.array(y)
+indices = np.array(indices)
+
+X_treino, y_treino = X[indices &lt; n_treino], y[indices &lt; n_treino]
+X_teste, y_teste = X[indices &gt;= n_treino], y[indices &gt;= n_treino]
+
+print("Treino:", X_treino.shape, "Teste:", X_teste.shape)
+print("Formato: (exemplos, meses anteriores, variáveis)")</code></pre></section><section class="tutorial-step"><h2>Passo 4 — Treinar uma LSTM</h2><p>A camada LSTM aprende relações na sequência de 12 observações anteriores. A camada final retorna uma previsão numérica para o mês seguinte.</p><pre><code>modelo = keras.Sequential([
+    keras.Input(shape=(janela, 1)),
+    keras.layers.LSTM(16),
+    keras.layers.Dense(1)
+])
+
+modelo.compile(optimizer="adam", loss="mse")
+
+historico = modelo.fit(
+    X_treino, y_treino,
+    epochs=25,
+    batch_size=16,
+    validation_split=0.15,
+    shuffle=False,
+    verbose=0
+)
+
+plt.plot(historico.history["loss"], label="Treino")
+plt.plot(historico.history["val_loss"], label="Validação")
+plt.xlabel("Época")
+plt.ylabel("Erro quadrático médio (escala normalizada)")
+plt.legend()
+plt.show()</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Avaliar e comparar com uma previsão simples</h2><p>Vamos comparar a LSTM com o método sazonal ingênuo: prever o mesmo valor observado 12 meses antes. No teste, utilizamos apenas observações históricas para prever cada mês; não fazemos uma projeção recursiva de 24 meses.</p><pre><code>previstas = modelo.predict(X_teste, verbose=0)
+previstas = escala.inverse_transform(previstas).ravel()
+
+reais = valores[indices &gt;= n_treino, 0]
+referencia = valores[indices[indices &gt;= n_treino] - 12, 0]
+
+erro_lstm = mean_absolute_error(reais, previstas)
+erro_referencia = mean_absolute_error(reais, referencia)
+
+print(f"MAE da LSTM: {erro_lstm:.1f} nascimentos")
+print(f"MAE sazonal ingênuo: {erro_referencia:.1f} nascimentos")
+
+datas_teste = serie.index[indices &gt;= n_treino]
+plt.figure(figsize=(10, 4))
+plt.plot(datas_teste, reais, label="Observado")
+plt.plot(datas_teste, previstas, label="LSTM")
+plt.plot(datas_teste, referencia, "--", label="Mesmo mês do ano anterior")
+plt.title("Comparação das previsões em 24 meses de teste")
+plt.ylabel("Nascimentos (simulados)")
+plt.xlabel("Mês")
+plt.legend()
+plt.show()</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Altere a janela de 12 para 6 meses e compare o MAE. Teste 10 e 40 épocas. Verifique se a LSTM supera a previsão que repete o valor do mesmo mês do ano anterior.</p></section><h2>Cuidados metodológicos</h2><p>A série é inteiramente fictícia. A normalização utiliza apenas o período de treino, e o teste contém os 24 últimos meses. Cada previsão corresponde a um passo à frente com observações históricas reais da série sintética, não a uma projeção recursiva de 24 passos. Uma LSTM não é necessariamente superior a um método sazonal simples.</p><a href="../index.html">← Voltar à trilha prática</a></main><footer class="footer">Material didático aberto · ABEP 2026 · Professor Carlos Beluzo</footer></body></html>

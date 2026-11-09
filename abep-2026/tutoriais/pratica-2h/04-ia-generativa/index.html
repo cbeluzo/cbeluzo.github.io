@@ -1,0 +1,39 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prática 4 — IA Generativa: textos, perguntas e recuperação de fontes</title><link rel="stylesheet" href="../../../assets/css/style.css"><link rel="stylesheet" href="../../../assets/css/tutorial.css"></head><body><header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">IA em Estudos Populacionais</a><nav><a href="../index.html">Prática de 2 horas</a><a href="../../index.html">Tutoriais</a></nav></div></header><main class="container"><a href="../index.html">← Voltar à trilha prática</a><p class="eyebrow">Prática 4 · 30 minutos</p><h1>IA Generativa: textos, perguntas e recuperação de fontes</h1><p class="lead">Como consultar textos de pesquisa com rastreabilidade, sem inventar evidências?</p><p>IA Generativa, RAG e estudos de caso · 30 minutos</p><div class="notice">Todos os exemplos usam dados sintéticos e textos didáticos. Execute no Colab, uma célula de cada vez. Não é necessário instalar Python no computador.</div><div class="tutorial-buttons"><a href="https://colab.research.google.com/github/cbeluzo/cbeluzo.github.io/blob/master/abep-2026/tutoriais/pratica-2h/04-ia-generativa/tutorial.ipynb" target="_blank" rel="noopener">▶ Abrir no Google Colab</a><a class="secondary" href="tutorial.ipynb">Obter notebook (.ipynb)</a></div><section class="tutorial-step"><h2>Passo 1 — Preparar uma coleção documental</h2><p>Os quatro textos são didáticos e foram escritos para o exercício, não são transcrições de fontes oficiais.</p><pre><code>documentos = {
+    "DOC-01": "Saldo migratório é a diferença entre entradas e saídas em um território e período.",
+    "DOC-02": "O envelhecimento populacional pode ser descrito pela participação de pessoas idosas.",
+    "DOC-03": "Projeções populacionais dependem de hipóteses sobre fecundidade, mortalidade e migração.",
+    "DOC-04": "A taxa bruta de natalidade relaciona nascidos vivos à população média no período."
+}
+print("Documentos disponíveis:", len(documentos))</code></pre></section><section class="tutorial-step"><h2>Passo 2 — Transformar textos em números</h2><p>TF-IDF representa termos importantes em cada texto; nesta versão não utilizamos embeddings neurais.</p><pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+identificadores = list(documentos)
+textos = list(documentos.values())
+
+vetorizador = TfidfVectorizer(strip_accents="unicode")
+matriz = vetorizador.fit_transform(textos)
+print("Formato da matriz:", matriz.shape)</code></pre></section><section class="tutorial-step"><h2>Passo 3 — Fazer uma pergunta</h2><p>A busca compara os termos da pergunta com os termos dos documentos.</p><pre><code>pergunta = "Quais fatores entram nas projeções populacionais?"
+vetor_pergunta = vetorizador.transform([pergunta])
+
+similaridades = cosine_similarity(vetor_pergunta, matriz)[0]
+ordem = similaridades.argsort()[::-1]
+
+for posicao in ordem[:2]:
+    print(identificadores[posicao], "—", textos[posicao])</code></pre></section><section class="tutorial-step"><h2>Passo 4 — Produzir uma resposta rastreável</h2><p>Nesta etapa demonstramos a recuperação, não uma geração real por LLM. Assim, tudo funciona sem credenciais ou downloads.</p><pre><code>melhor = ordem[0]
+if similaridades[melhor] &gt; 0:
+    print("Trecho recuperado:")
+    print(f"[{identificadores[melhor]}] {textos[melhor]}")
+else:
+    print("Não há evidência textual suficiente no acervo.")</code></pre></section><section class="tutorial-step"><h2>Passo 5 — Criar um prompt para um LLM</h2><p>O texto abaixo ilustra como usar a fonte recuperada. Não enviamos dados a serviços externos.</p><pre><code>fonte = f"[{identificadores[melhor]}] {textos[melhor]}"
+
+prompt = f"""
+Responda à pergunta usando apenas a fonte abaixo.
+Cite o identificador do documento.
+Se não houver evidência, diga que não consta na fonte.
+
+Pergunta: {pergunta}
+
+Fonte:
+{fonte}
+"""
+print(prompt)</code></pre></section><section class="exercise"><h2>Agora é sua vez</h2><p>Troque a pergunta por 'O que é saldo migratório?' e depois por 'Qual era a população brasileira em 2022?'. Explique por que a segunda pergunta não deve receber um número inventado.</p></section><h2>Limitações e cuidados</h2><p>Os dados e resultados são ilustrativos. Em pesquisa real, documente a origem das informações, avalie a representatividade e valide os resultados com critérios apropriados.</p><a href="../index.html">← Trilha prática</a></main><footer class="footer">Minicurso ABEP 2026 · Professor Carlos Beluzo</footer></body></html>

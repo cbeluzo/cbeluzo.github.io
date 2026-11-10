@@ -12,7 +12,11 @@
   .lab-summary div{background:#fff;border:1px solid #dce5ec;border-radius:12px;padding:1rem}
   .lab-summary strong{display:block;font-size:1.45rem;color:#144b78}
   .lab-summary span{font-size:.9rem;color:#4e6274}
-  .lab-card{background:#fff;border:1px solid #dce5ec;border-radius:15px;padding:1.5rem;margin:1.5rem 0}
+  .lab-card{position:relative;background:#fff;border:1px solid #dce5ec;border-radius:15px;padding:1.5rem;margin:1.5rem 0}
+  .lab-card > .lab-time{padding-right:3.1rem}
+  .lab-help{position:absolute;top:1rem;right:1rem;display:inline-flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid #9ebdc9;background:#eaf5f7;color:#124b68;font-size:1.35rem;font-weight:700;text-decoration:none;box-shadow:0 1px 2px #00000012}
+  .lab-help:hover,.lab-help:focus-visible{background:#144b78;color:#fff;outline-offset:3px}
+  .lab-help:focus-visible{outline:2px solid #144b78}
   .lab-card h2{margin:.3rem 0 .7rem}
   .lab-card h3{font-size:1.04rem;margin:1.2rem 0 .4rem}
   .lab-card p{line-height:1.65}
@@ -60,6 +64,7 @@
 </ol>
 </nav>
 <section class="lab-card" id="pratica-1">
+<a class="lab-help" href="pdfs/guia_tecnico_tutorial_01_classificacao.pdf" download="guia_tecnico_tutorial_01_classificacao.pdf" title="Baixar guia técnico em PDF do Tutorial 1" aria-label="Baixar guia técnico em PDF do Tutorial 1">?</a>
 <div class="lab-time">PRÁTICA 1 · 30 MINUTOS · MACHINE LEARNING SUPERVISIONADO</div>
 <h2>Classificação: regressão logística e árvore de decisão</h2>
 <p class="lab-question"><strong>Pergunta orientadora:</strong> como utilizar características de registros de nascimentos para classificar a ocorrência de um desfecho binário?</p>
@@ -102,6 +107,7 @@
 <a class="lab-link" href="01-classificacao/index.html">Acessar o Tutorial 1</a>
 </section>
 <section class="lab-card" id="pratica-2">
+<a class="lab-help" href="pdfs/guia_tecnico_tutorial_02_agrupamento.pdf" download="guia_tecnico_tutorial_02_agrupamento.pdf" title="Baixar guia técnico em PDF do Tutorial 2" aria-label="Baixar guia técnico em PDF do Tutorial 2">?</a>
 <div class="lab-time">PRÁTICA 2 · 30 MINUTOS · MACHINE LEARNING NÃO SUPERVISIONADO</div>
 <h2>Agrupamento de municípios com K-Means</h2>
 <p class="lab-question"><strong>Pergunta orientadora:</strong> é possível identificar perfis municipais semelhantes usando indicadores de envelhecimento e renda, mesmo sem conhecer previamente os grupos?</p>
@@ -144,6 +150,7 @@
 <a class="lab-link" href="02-agrupamento/index.html">Acessar o Tutorial 2</a>
 </section>
 <section class="lab-card" id="pratica-3">
+<a class="lab-help" href="pdfs/guia_tecnico_tutorial_03_lstm.pdf" download="guia_tecnico_tutorial_03_lstm.pdf" title="Baixar guia técnico em PDF do Tutorial 3" aria-label="Baixar guia técnico em PDF do Tutorial 3">?</a>
 <div class="lab-time">PRÁTICA 3 · 30 MINUTOS · DEEP LEARNING E SÉRIES TEMPORAIS</div>
 <h2>LSTM: previsão de nascimentos mensais</h2>
 <p class="lab-question"><strong>Pergunta orientadora:</strong> é possível utilizar o histórico dos 12 meses anteriores para prever o número de nascimentos no mês seguinte?</p>
@@ -189,6 +196,7 @@
 <a class="lab-link" href="03-rede-neural/index.html">Acessar o Tutorial 3 — LSTM</a>
 </section>
 <section class="lab-card" id="pratica-4">
+<a class="lab-help" href="pdfs/guia_tecnico_tutorial_04_recuperacao_rag.pdf" download="guia_tecnico_tutorial_04_recuperacao_rag.pdf" title="Baixar guia técnico em PDF do Tutorial 4" aria-label="Baixar guia técnico em PDF do Tutorial 4">?</a>
 <div class="lab-time">PRÁTICA 4 · 30 MINUTOS · TEXTOS E RECUPERAÇÃO DE INFORMAÇÃO</div>
 <h2>IA Generativa: recuperação de documentos e preparação de um RAG</h2>
 <p class="lab-question"><strong>Pergunta orientadora:</strong> como localizar trechos pertinentes em documentos de pesquisa e organizar essas evidências para apoiar uma resposta com referência explícita à fonte?</p>

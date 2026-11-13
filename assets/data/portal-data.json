@@ -1041,24 +1041,39 @@
               ]
             }
           ]
+        },
+        {
+          "icon": "bi-clipboard-check",
+          "title": "Projeto Final — Curricularização da Extensão",
+          "className": "module-theme-cyan",
+          "items": [
+            {
+              "badge": {
+                "label": "Projeto Final",
+                "className": "text-bg-primary"
+              },
+              "title": "Análise e Proposta de Gestão Administrativa da Empresa",
+              "search": "projeto final curricularização extensão administração análise administrativa planejamento organização direção controle SWOT indicadores formulário word",
+              "titleAction": {
+                "href": "./projeto-final.html"
+              },
+              "actions": [
+                {
+                  "label": "Orientações e Fundamentação",
+                  "href": "projeto-final.html",
+                  "className": "btn btn-primary btn-sm",
+                  "icon": "bi-book"
+                },
+                {
+                  "label": "Formulário Editável",
+                  "href": "Formulario_Projeto_Final_Introducao_Administracao.doc",
+                  "className": "btn btn-outline-primary btn-sm",
+                  "icon": "bi-file-earmark-word"
+                }
+              ]
+            }
+          ]
         }
-      ,{
-        "icon": "bi-clipboard-check",
-        "title": "Projeto Final — Curricularização da Extensão",
-        "className": "module-theme-cyan",
-        "items": [
-          {
-            "badge": {"label": "Projeto Final", "className": "text-bg-primary"},
-            "title": "Análise e Proposta de Gestão Administrativa da Empresa",
-            "search": "projeto final curricularização extensão administração análise administrativa planejamento organização direção controle SWOT indicadores formulário word",
-            "titleAction": {"href": "./projeto-final.html"},
-            "actions": [
-              {"label": "Orientações e Fundamentação", "href": "projeto-final.html", "className": "btn btn-primary btn-sm", "icon": "bi-book"},
-              {"label": "Formulário Editável", "href": "Formulario_Projeto_Final_Introducao_Administracao.doc", "className": "btn btn-outline-primary btn-sm", "icon": "bi-file-earmark-word"}
-            ]
-          }
-        ]
-      }
       ]
     },
     "gestao-ti": {
@@ -1542,6 +1557,38 @@
                   "label": "Abrir (Gamma)",
                   "className": "btn btn-outline-secondary btn-sm",
                   "icon": "bi-box-arrow-up-right"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "icon": "bi-clipboard2-check",
+          "title": "Projeto Final — Integração com a curricularização da extensão",
+          "className": "module-theme-green",
+          "items": [
+            {
+              "badge": {
+                "label": "Projeto final",
+                "className": "text-bg-success"
+              },
+              "title": "Projeto Final da Disciplina — Plano de Governança e Gestão de TI",
+              "search": "projeto final atividade integradora curricularização da extensão TADS empresa COBIT ITIL governança gestão TI formulário word",
+              "metaText": [
+                "Aplicação à empresa do projeto integrador • relatório e plano de ação"
+              ],
+              "actions": [
+                {
+                  "label": "Abrir atividade",
+                  "href": "projeto-final.html",
+                  "className": "btn btn-outline-primary btn-sm",
+                  "icon": "bi-box-arrow-up-right"
+                },
+                {
+                  "label": "Baixar formulário Word",
+                  "href": "Formulario_Projeto_Final_Gestao_TI.docx",
+                  "className": "btn btn-outline-success btn-sm",
+                  "icon": "bi-file-earmark-word"
                 }
               ]
             }

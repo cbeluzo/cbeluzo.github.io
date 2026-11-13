@@ -1042,6 +1042,23 @@
             }
           ]
         }
+      ,{
+        "icon": "bi-clipboard-check",
+        "title": "Projeto Final — Curricularização da Extensão",
+        "className": "module-theme-cyan",
+        "items": [
+          {
+            "badge": {"label": "Projeto Final", "className": "text-bg-primary"},
+            "title": "Análise e Proposta de Gestão Administrativa da Empresa",
+            "search": "projeto final curricularização extensão administração análise administrativa planejamento organização direção controle SWOT indicadores formulário word",
+            "titleAction": {"href": "./projeto-final.html"},
+            "actions": [
+              {"label": "Orientações e Fundamentação", "href": "projeto-final.html", "className": "btn btn-primary btn-sm", "icon": "bi-book"},
+              {"label": "Formulário Editável", "href": "Formulario_Projeto_Final_Introducao_Administracao.doc", "className": "btn btn-outline-primary btn-sm", "icon": "bi-file-earmark-word"}
+            ]
+          }
+        ]
+      }
       ]
     },
     "gestao-ti": {
